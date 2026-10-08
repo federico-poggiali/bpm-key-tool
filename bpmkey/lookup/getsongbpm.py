@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from .. import config
-from ..camelot import to_camelot
+from ..camelot import open_key_to_camelot, to_camelot
 from ..models import Measurement, Track
 from .base import Lookup, get_json
 
@@ -25,7 +25,7 @@ class GetSongBPM(Lookup):
             bpm = float(h.get("tempo"))
         except (TypeError, ValueError):
             bpm = None
-        cam = to_camelot(h.get("open_key")) or to_camelot(h.get("key_of"))
+        cam = open_key_to_camelot(h.get("open_key")) or to_camelot(h.get("key_of"))
         if bpm is None and cam is None:
             return None
         return Measurement(self.name, bpm or None, cam, h.get("key_of"))

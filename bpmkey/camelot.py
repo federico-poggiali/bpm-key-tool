@@ -43,3 +43,12 @@ def to_camelot(key) -> Optional[str]:
         minor = False
     table = _MINOR if minor else _MAJOR
     return f"{table[pc]}{'A' if minor else 'B'}"
+
+
+def open_key_to_camelot(ok) -> Optional[str]:
+    """Open Key ('3d' = D major, '5m' = C minor) -> Camelot. Same wheel, rotated by 7."""
+    m = re.fullmatch(r"(1[0-2]|[1-9])\s*([dmDM])", str(ok or "").strip())
+    if not m:
+        return None
+    n = (int(m.group(1)) + 6) % 12 + 1
+    return f"{n}{'B' if m.group(2).lower() == 'd' else 'A'}"
