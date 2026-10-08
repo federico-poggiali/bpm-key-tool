@@ -80,3 +80,30 @@ def analyze_url(url: str) -> Measurement:
     """Download -> analyze -> delete. Works for YouTube URLs, other yt-dlp sites, or ytsearch1:."""
     with tempfile.TemporaryDirectory(prefix="bpmkey_") as tmp:
         return analyze_file(download_audio(url, Path(tmp)))
+
+
+def download_direct(url: str, dest: Path) -> Path:
+    """Plain HTTP download for direct media URLs (Bandcamp streams, iTunes previews)."""
+    import requests
+
+    ext = Path(url.split("?")[0]).suffix or ".mp3"
+    path = dest / f"audio{ext}"
+    try:
+        with requests.get(url, stream=True, timeout=30) as r:
+            r.raise_for_status()
+            with open(path, "wb") as f:
+                for chunk in r.iter_content(1 << 16):
+                    f.write(chunk)
+    except requests.RequestException as e:
+        raise AudioUnavailable(str(e)[:200]) from e
+    return path
+
+
+def analyze_source(source) -> Measurement:
+    """Analyze an AudioSource of any kind; temp files are always removed."""
+    with tempfile.TemporaryDirectory(prefix="bpmkey_") as tmp:
+        d = Path(tmp)
+        path = download_audio(source.url, d) if source.kind == "youtube" else download_direct(source.url, d)
+        m = analyze_file(path)
+        m.origin = f"essentia:{source.kind}"
+        return m

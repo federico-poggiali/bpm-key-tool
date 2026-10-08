@@ -6,22 +6,36 @@ It looks values up online first, compares the sources, and only analyses the aud
 
 ## Status
 
-Work in progress.
-
-- [x] Step 1: Discogs release URL → tracklist
-- [ ] Step 2: find audio sources (YouTube, Bandcamp, iTunes preview)
-- [ ] Step 3: online BPM/key lookup and comparison
-- [ ] Step 4: audio analysis fallback (Essentia)
-- [ ] Step 5: Camelot conversion, merging, caching
+- [x] Discogs release URL → tracklist and YouTube videos
+- [x] Audio sources: Discogs videos → YouTube search → iTunes 30 s preview (Bandcamp for known URLs only; its search is behind a bot challenge)
+- [x] Online BPM/key lookup: GetSongBPM, Deezer, AcousticBrainz
+- [x] Audio analysis fallback: yt-dlp + Essentia (BPM, EDM key profile)
+- [x] Camelot conversion, reconciliation, SQLite cache, CSV export
 
 ## Usage
 
 ```bash
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-cp .env.example .env   # then add your Discogs token
-python -m bpmkey.cli https://www.discogs.com/release/249504
+cp .env.example .env   # add your Discogs token, GetSongBPM key and contact email
+python -m bpmkey https://www.discogs.com/release/10296528
 ```
+
+Options: `--no-analyze` (online lookups only), `--refresh` (ignore the cache), `--csv out.csv`, `--tracks-only`, `-v`.
+
+Tracks are marked `agreed` when sources agree, `analyzed` when the audio analysis overruled or replaced the online values, `single` when only one source answered, and `conflict`/`none` otherwise.
+
+## How it works
+
+1. Look the track up in GetSongBPM, Deezer and AcousticBrainz.
+2. If BPM and key are confirmed by at least two sources, stop.
+3. Otherwise download the audio (matched by title and duration, ±6 s), analyze the whole track with Essentia, and let the result break the tie.
+
+## Known limitations
+
+- Half/double tempo is ambiguous for some genres (e.g. footwork at 80 vs 160 BPM).
+- Key detection is unreliable on atonal or heavily percussive music.
+- YouTube sometimes blocks downloads (403 or age-gating); the next source is tried automatically.
 
 ## Data sources and credits
 

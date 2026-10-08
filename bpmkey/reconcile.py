@@ -43,3 +43,38 @@ def reconcile(track: Track) -> Result:
 
 def needs_analysis(result: Result) -> bool:
     return result.status != "agreed"
+
+
+def is_analysis(m: Measurement) -> bool:
+    return m.origin.startswith("essentia")
+
+
+def finalize(track: Track) -> Result:
+    """Reconcile online sources, then let the audio analysis break ties.
+
+    Online sources that agree with Essentia are kept (and averaged for BPM); otherwise
+    the audio analysis wins, because it measured the actual recording.
+    """
+    online = Track(track.release_id, track.position, track.artist, track.title,
+                   track.duration, measurements=[m for m in track.measurements if not is_analysis(m)])
+    base = reconcile(online)
+    ess = next((m for m in track.measurements if is_analysis(m)), None)
+    if ess is None:
+        return base
+
+    notes = []
+    agreeing = [fold_bpm(m.bpm, ess.bpm) for m in online.measurements
+                if m.bpm and abs(fold_bpm(m.bpm, ess.bpm) - ess.bpm) <= BPM_TOLERANCE]
+    bpm_ok = bool(agreeing)
+    bpm = round(sum(agreeing + [ess.bpm]) / (len(agreeing) + 1), 1)
+    online_keys = {m.camelot: m.origin for m in online.measurements if m.camelot}
+    key = ess.camelot
+    key_ok = key in online_keys
+    if key_ok:
+        notes.append(f"key confirmed by {online_keys[key]}")
+    elif online_keys:
+        notes.append("online keys " + "/".join(sorted(online_keys)) + " rejected by audio")
+    if not bpm_ok and any(m.bpm for m in online.measurements):
+        notes.append("online BPM rejected by audio")
+    status = "agreed" if (bpm_ok or not any(m.bpm for m in online.measurements)) and key_ok else "analyzed"
+    return Result(track, bpm, key, status, "; ".join(notes))

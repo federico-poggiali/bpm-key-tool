@@ -26,3 +26,11 @@ def test_single_and_none():
 def test_matching():
     assert is_match("Daft Punk", "One More Time", "Daft Punk", "One More Time (Radio Edit)")
     assert not is_match("Daft Punk", "One More Time", "Daft Punk", "Around The World")
+
+
+def test_score_candidate_rules():
+    from bpmkey.matching import score_candidate as sc
+    assert sc("Jlin", "Black Origami", 271, "Jlin - Black Origami", "", 272) >= 0.9
+    assert sc("Jlin", "Black Origami", 271, "Jlin - Black Origami", "", 400) == 0.0   # wrong length
+    assert sc("Jlin", "Black Origami", None, "Jlin - Black Origami", "", 2676) == 0.0  # DJ mix
+    assert sc("Jlin", "Black Origami", 271, "Jlin - Black Origami (Remix)", "", 271) < 0.75

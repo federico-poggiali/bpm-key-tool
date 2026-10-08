@@ -38,3 +38,4 @@ class Result:
     bpm: Optional[float] = None
     camelot: Optional[str] = None
     status: str = "none"  # agreed | single | conflict | analyzed | none
+    note: str = ""
