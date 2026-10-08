@@ -18,24 +18,41 @@ It looks values up online first, compares the sources, and only analyses the aud
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env   # add your Discogs token, GetSongBPM key and contact email
-python -m bpmkey https://www.discogs.com/release/10296528
+python -m bpmkey https://www.discogs.com/release/10296528        # command line
+python -m bpmkey.server                                           # local web UI on http://127.0.0.1:8765
 ```
 
-Options: `--no-analyze` (online lookups only), `--refresh` (ignore the cache), `--csv out.csv`, `--tracks-only`, `-v`.
+CLI options: `--no-analyze` (online lookups only), `--refresh` (redo online lookups, keep cached audio analysis), `--reanalyze` (redo everything), `--csv out.csv`, `--tracks-only`, `-v`.
+The web UI also accepts `?url=<discogs link>` to start straight away.
 
 Tracks are marked `agreed` when sources agree, `analyzed` when the audio analysis overruled or replaced the online values, `single` when only one source answered, and `conflict`/`none` otherwise.
 
 ## How it works
 
-1. Look the track up in GetSongBPM, Deezer and AcousticBrainz.
+1. Look the track up in GetSongBPM, Deezer and AcousticBrainz. Every hit is checked against the artist and title, because these APIs happily return unrelated songs (and remixes of the right one).
 2. If BPM and key are confirmed by at least two sources, stop.
-3. Otherwise download the audio (matched by title and duration, ±6 s), analyze the whole track with Essentia, and let the result break the tie.
+3. Otherwise find the audio (Discogs videos, YouTube search, Bandcamp via artist/label pages, SoundCloud, iTunes preview as a last resort), matched by title and duration, and analyze it.
+4. Audio gives a BPM and a probability for each of the 24 keys. Validated database keys then add weight to their key, so a close audio call can be tipped by an independent source, but a confident one can't.
+
+## Accuracy
+
+Measured against human-labelled electronic music (GiantSteps-MTG, Beatport previews; not included in this repo):
+
+| | result |
+|---|---|
+| BPM, within ±4% of the Beatport BPM | 94.8% (885 clips) |
+| Key, exact match, learned model (5-fold cross-validation, 1,156 clips) | about 62% |
+| Key, exact match, Essentia default EDM profile on the same clips | 54% |
+| Key, exact match, Essentia `bgate` profile on the same clips | 58% |
+
+Key detection by audio alone is the weak spot: published methods top out around the same level on this benchmark, so the database votes matter. A 90% exact-key target is not realistic for any current method; roughly 80% of the learned model's answers are at least mix-compatible with the true key (same, relative, or one step on the Camelot wheel).
 
 ## Known limitations
 
 - Half/double tempo is ambiguous for some genres (e.g. footwork at 80 vs 160 BPM).
-- Key detection is unreliable on atonal or heavily percussive music.
+- Key detection is unreliable on atonal or heavily percussive music, and on tracks that change key.
 - YouTube sometimes blocks downloads (403 or age-gating); the next source is tried automatically.
+- Bandcamp's own search is behind a bot challenge, so tracks are only found through artist and label pages, with rate limiting.
 
 ## Data sources and credits
 

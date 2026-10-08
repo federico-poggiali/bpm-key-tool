@@ -444,10 +444,10 @@ function layoutDots() {
   const byKey = {};
   results.forEach((r, i) => { if (r && r.camelot) (byKey[r.camelot] ||= []).push(i); });
   for (const key in byKey) {
-    const { n, l } = keyParts(key), [r0, r1] = R[l], mid = (r0 + r1) / 2, list = byKey[key];
+    const { n, l } = keyParts(key), [r0, r1] = R[l], mid = r1 - 11, list = byKey[key];   // hug the outer edge, clear of the label
     list.forEach((i, j) => {
       const off = (j - (list.length - 1) / 2) * Math.min(9, 22 / list.length + 3);
-      const [x, y] = pol(mid + 12, centreDeg(n) + off);
+      const [x, y] = pol(mid, centreDeg(n) + off);
       dots[i].style.transform = `translate(${x}px, ${y}px)`;
     });
   }
@@ -590,6 +590,10 @@ $("#csv").addEventListener("click", () => {
 });
 
 buildWheel();
+{ // ?url=<discogs link> fills the box and starts straight away
+  const q = new URLSearchParams(location.search).get("url");
+  if (q) { $("#url").value = q; start(q); }
+}
 </script>
 </body>
 </html>
