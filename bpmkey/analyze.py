@@ -4,7 +4,10 @@ import tempfile
 from pathlib import Path
 from typing import Optional
 
-from .camelot import to_camelot
+import numpy as np
+
+from . import keymodel
+from .camelot import key_index_to_camelot
 from .models import Measurement
 
 SAMPLE_RATE = 44100
@@ -55,7 +58,7 @@ def download_audio(url: str, dest: Path) -> Path:
 
 
 def analyze_file(path: Path | str) -> Measurement:
-    """BPM + key from an audio file, using the whole track (centered, capped for very long files)."""
+    """BPM from the whole track; key from sparse excerpts plus an Essentia vote."""
     import essentia.standard as es
 
     audio = es.MonoLoader(filename=str(path), sampleRate=SAMPLE_RATE)()
@@ -64,16 +67,27 @@ def analyze_file(path: Path | str) -> Measurement:
         start = (len(audio) - n) // 2
         audio = audio[start:start + n]
 
-    bpm, _, beat_conf, _, _ = es.RhythmExtractor2013(method="multifeature")(audio)
+    bpm, _, _, _, _ = es.RhythmExtractor2013(method="multifeature")(audio)
     bpm = clamp_bpm(float(bpm))
 
-    key, scale, strength = es.KeyExtractor(profileType="edma")(audio)
-    alt_key, alt_scale, _ = es.KeyExtractor(profileType="krumhansl")(audio)
-    cam = to_camelot((key, scale))
-    # Confidence: key strength, boosted when two profiles agree
-    agree = to_camelot((alt_key, alt_scale)) == cam
-    conf = round(min(1.0, float(strength) * (1.0 if agree else 0.7)), 2)
-    return Measurement("essentia", round(bpm, 1), cam, f"{key} {scale}", conf)
+    bkey, bscale, _ = es.KeyExtractor(profileType="bgate")(audio)
+    bgate_idx = _name_to_index(bkey, bscale)
+    try:
+        y = es.MonoLoader(filename=str(path), sampleRate=keymodel.SR)()
+        scores = keymodel.fuse(keymodel.log_probs(y), bgate_idx)
+    except ImportError:  # librosa/scipy missing: fall back to the Essentia vote alone
+        scores = np.full(24, -10.0)
+        scores[bgate_idx] = 0.0
+    best = int(np.argmax(scores))
+    name, mode = keymodel.index_to_key(best)
+    return Measurement("essentia", round(bpm, 1), key_index_to_camelot(best), f"{name} {mode}",
+                       round(float(np.exp(scores[best])), 2), [round(float(v), 3) for v in scores])
+
+
+def _name_to_index(key: str, scale: str) -> int:
+    pc = {"C": 0, "C#": 1, "Db": 1, "D": 2, "D#": 3, "Eb": 3, "E": 4, "F": 5, "F#": 6, "Gb": 6,
+          "G": 7, "G#": 8, "Ab": 8, "A": 9, "A#": 10, "Bb": 10, "B": 11}[key]
+    return pc + (12 if scale == "minor" else 0)
 
 
 def analyze_url(url: str) -> Measurement:
@@ -103,7 +117,8 @@ def analyze_source(source) -> Measurement:
     """Analyze an AudioSource of any kind; temp files are always removed."""
     with tempfile.TemporaryDirectory(prefix="bpmkey_") as tmp:
         d = Path(tmp)
-        path = download_audio(source.url, d) if source.kind == "youtube" else download_direct(source.url, d)
+        # yt-dlp handles page URLs (YouTube, Bandcamp, SoundCloud); iTunes gives a raw preview file
+        path = download_direct(source.url, d) if source.kind == "itunes" else download_audio(source.url, d)
         m = analyze_file(path)
         m.origin = f"essentia:{source.kind}"
         return m

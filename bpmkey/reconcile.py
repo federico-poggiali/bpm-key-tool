@@ -2,9 +2,15 @@ from __future__ import annotations
 
 from typing import Optional
 
+import numpy as np
+
+from .camelot import camelot_to_key_index, key_index_to_camelot
 from .models import Measurement, Result, Track
 
 BPM_TOLERANCE = 1.5
+# Evidence (in nats) each validated online key adds to the audio's own log-probabilities.
+# GetSongBPM is matched on artist+title and agreed with audio most often; AcousticBrainz is noisier.
+KEY_VOTE_WEIGHT = {"getsongbpm": 1.0, "acousticbrainz": 0.5}
 
 
 def fold_bpm(bpm: float, ref: float) -> float:
@@ -69,11 +75,18 @@ def finalize(track: Track) -> Result:
     bpm = round(sum(agreeing + [ess.bpm]) / (len(agreeing) + 1), 1)
     online_keys = {m.camelot: m.origin for m in online.measurements if m.camelot}
     key = ess.camelot
+    if ess.key_scores:  # audio gave a full distribution: let validated database keys weigh in
+        scores = np.array(ess.key_scores, dtype=float)
+        for m in online.measurements:
+            idx = camelot_to_key_index(m.camelot)
+            if idx is not None:
+                scores[idx] += KEY_VOTE_WEIGHT.get(m.origin, 0.5)
+        key = key_index_to_camelot(int(scores.argmax()))
     key_ok = key in online_keys
     if key_ok:
         notes.append(f"key confirmed by {online_keys[key]}")
     elif online_keys:
-        notes.append("online keys " + "/".join(sorted(online_keys)) + " rejected by audio")
+        notes.append("online keys " + "/".join(sorted(online_keys)) + " outvoted by audio")
     if not bpm_ok and any(m.bpm for m in online.measurements):
         notes.append("online BPM rejected by audio")
     status = "agreed" if (bpm_ok or not any(m.bpm for m in online.measurements)) and key_ok else "analyzed"

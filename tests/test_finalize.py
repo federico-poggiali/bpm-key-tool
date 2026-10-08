@@ -23,3 +23,24 @@ def test_audio_overrules_wrong_online_values():
 
 def test_no_audio_falls_back_to_online():
     assert finalize(mk(Measurement("deezer", 120, None))).status == "single"
+
+
+def test_database_vote_can_flip_a_close_audio_call():
+    import numpy as np
+    from bpmkey.camelot import camelot_to_key_index
+    scores = np.full(24, -6.0)
+    scores[camelot_to_key_index("8A")] = -0.6     # audio's favourite
+    scores[camelot_to_key_index("10B")] = -1.0    # close second
+    r = finalize(mk(Measurement("getsongbpm", 122, "10B"),
+                    Measurement("essentia:youtube", 122.5, "8A", key_scores=scores.tolist())))
+    assert r.camelot == "10B" and "confirmed by getsongbpm" in r.note
+
+
+def test_confident_audio_beats_a_database_vote():
+    import numpy as np
+    from bpmkey.camelot import camelot_to_key_index
+    scores = np.full(24, -8.0)
+    scores[camelot_to_key_index("8A")] = -0.05
+    r = finalize(mk(Measurement("getsongbpm", 122, "10B"),
+                    Measurement("essentia:youtube", 122.5, "8A", key_scores=scores.tolist())))
+    assert r.camelot == "8A" and "outvoted" in r.note

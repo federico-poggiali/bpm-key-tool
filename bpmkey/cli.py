@@ -18,7 +18,8 @@ def main(argv=None) -> None:
     ap.add_argument("url", help="Discogs release or master URL")
     ap.add_argument("--tracks-only", action="store_true", help="just list the tracklist")
     ap.add_argument("--no-analyze", action="store_true", help="online lookups only, skip audio analysis")
-    ap.add_argument("--refresh", action="store_true", help="ignore cached lookups")
+    ap.add_argument("--refresh", action="store_true", help="redo online lookups (keeps cached audio analysis)")
+    ap.add_argument("--reanalyze", action="store_true", help="redo everything, including audio analysis")
     ap.add_argument("--csv", metavar="FILE", help="also write results to a CSV file")
     ap.add_argument("-v", "--verbose", action="store_true")
     args = ap.parse_args(argv)
@@ -34,7 +35,7 @@ def main(argv=None) -> None:
 
     rows = []
     print(f"{'pos':>4}  {'BPM':>6}  {'key':>4}  {'status':<9}  track")
-    for r in Pipeline(analyze=not args.no_analyze, refresh=args.refresh).run(args.url):
+    for r in Pipeline(analyze=not args.no_analyze, refresh=args.refresh, reanalyze=args.reanalyze).run(args.url):
         t = r.track
         bpm = f"{r.bpm:.1f}" if r.bpm else "-"
         print(f"{t.position:>4}  {bpm:>6}  {r.camelot or '-':>4}  {r.status:<9}  "

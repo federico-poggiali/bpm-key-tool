@@ -1,0 +1,595 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Spin Count</title>
+<style>
+:root {
+  --case: #ebe8e1;
+  --ink: #1b1a17;
+  --ink-2: #5f5b52;
+  --ink-3: #8f8a7e;
+  --line: rgba(27,26,23,.11);
+  --glass: rgba(255,253,248,.66);
+  --glass-edge: rgba(255,255,255,.85);
+  --shadow: 0 1px 1px rgba(27,26,23,.05), 0 14px 36px -14px rgba(27,26,23,.22);
+  --orange: #ff4f12;
+  --on-orange: #1b1a17;
+  --lcd: #cdd5bf;
+  --lcd-ink: #1f2619;
+  --lcd-dim: rgba(31,38,25,.16);
+  --lcd-glow: transparent;
+  --seg-l: .93; --seg-c: .03; --seg-on-l: .8; --seg-on-c: .15;
+  --chip-l: .92; --chip-c: .06; --chip-ink-l: .34; --chip-ink-c: .11;
+  --spring: linear(0, .35 8%, .79 18%, 1.06 30%, 1.07 38%, .99 52%, 1.01 66%, 1);
+  --serif: ui-serif, "New York", "Iowan Old Style", Georgia, serif;
+  --round: ui-rounded, "SF Pro Rounded", system-ui, -apple-system, sans-serif;
+  --sans: system-ui, -apple-system, "SF Pro Text", sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --case: #171614; --ink: #f1eee7; --ink-2: #aaa59a; --ink-3: #75716a;
+    --line: rgba(255,255,255,.1);
+    --glass: rgba(255,255,255,.055); --glass-edge: rgba(255,255,255,.1);
+    --shadow: 0 1px 1px rgba(0,0,0,.4), 0 14px 36px -14px rgba(0,0,0,.65);
+    --lcd: #222a1c; --lcd-ink: #c9f08c; --lcd-dim: rgba(201,240,140,.14); --lcd-glow: rgba(201,240,140,.35);
+    --seg-l: .27; --seg-c: .03; --seg-on-l: .72; --seg-on-c: .15;
+    --chip-l: .34; --chip-c: .08; --chip-ink-l: .92; --chip-ink-c: .08;
+  }
+}
+@media (prefers-reduced-transparency: reduce) { :root { --glass: var(--case); } }
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; min-height: 100vh; background: var(--case); color: var(--ink);
+  font: 400 1rem/1.5 var(--sans); -webkit-font-smoothing: antialiased;
+}
+button, input { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; border-radius: 10px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.micro { font: 500 .6875rem/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
+
+.shell { max-width: 1120px; margin: 0 auto; padding: 0 16px 64px; }
+
+/* ---------- top bar ---------- */
+.top { display: flex; align-items: center; justify-content: space-between; padding: 18px 0 0; }
+.brand { display: flex; align-items: center; gap: 10px; font: 600 .9375rem var(--round); letter-spacing: -.01em; }
+.led { width: 9px; height: 9px; border-radius: 50%; background: var(--ink-3); transition: background .3s, box-shadow .3s; }
+.led.busy { background: var(--orange); box-shadow: 0 0 0 4px rgba(255,79,18,.18); animation: pulse 1s ease-in-out infinite; }
+.led.ok { background: #3fbf6a; box-shadow: 0 0 0 4px rgba(63,191,106,.18); }
+@keyframes pulse { 50% { box-shadow: 0 0 0 8px rgba(255,79,18,0); } }
+
+/* ---------- hero ---------- */
+.hero { padding: clamp(36px, 8vh, 84px) 0 24px; transition: padding .55s var(--spring); }
+.started .hero { padding: 14px 0 14px; }
+h1 {
+  margin: 0; font: 500 clamp(2.7rem, 8vw, 5.4rem)/.98 var(--serif);
+  letter-spacing: -.035em; max-width: 11ch;
+}
+.started h1 { font-size: 1.5rem; letter-spacing: -.02em; max-width: none; line-height: 1.1; }
+.sub { margin: 16px 0 0; color: var(--ink-2); font-size: 1.125rem; letter-spacing: -.01em; max-width: 34ch; }
+.started .sub, .started .hint, .started .chase { display: none; }
+
+form { margin-top: 28px; display: flex; gap: 10px; max-width: 660px; }
+.started form { margin-top: 12px; }
+.field {
+  flex: 1; min-width: 0; display: flex; align-items: center; height: 54px; padding: 0 20px;
+  background: var(--glass); border: 1px solid var(--glass-edge); border-radius: 27px;
+  backdrop-filter: blur(22px) saturate(170%); -webkit-backdrop-filter: blur(22px) saturate(170%);
+  box-shadow: var(--shadow); transition: box-shadow .25s, transform .25s var(--spring);
+}
+.field:focus-within { outline: 2px solid var(--orange); outline-offset: 2px; transform: translateY(-1px); }
+.field input { flex: 1; min-width: 0; border: 0; background: transparent; outline: none; font-size: 1rem; }
+.field input::placeholder { color: var(--ink-3); }
+.go {
+  position: relative; height: 54px; padding: 0 26px; border: 0; border-radius: 27px;
+  background: var(--orange); color: var(--on-orange); font-weight: 700; letter-spacing: -.01em;
+  box-shadow: inset 0 -3px 0 rgba(0,0,0,.18), 0 8px 20px -8px rgba(255,79,18,.7);
+  transition: transform .1s ease-out, box-shadow .1s ease-out, filter .2s;
+  overflow: hidden;
+}
+.go:hover { filter: brightness(1.05); }
+.go:active { transform: translateY(2px) scale(.98); box-shadow: inset 0 -1px 0 rgba(0,0,0,.18), 0 3px 8px -4px rgba(255,79,18,.7); }
+.go[disabled] { cursor: progress; filter: saturate(.7); }
+.go[disabled]::after {
+  content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 30%, rgba(255,255,255,.45) 50%, transparent 70%);
+  transform: translateX(-100%); animation: sweep 1.2s linear infinite;
+}
+@keyframes sweep { to { transform: translateX(100%); } }
+.hint { margin: 12px 6px 0; color: var(--ink-3); font-size: .875rem; }
+.error { margin: 12px 6px 0; color: oklch(.5 .18 28); font-size: .9375rem; max-width: 640px; }
+@media (prefers-color-scheme: dark) { .error { color: oklch(.78 .13 28); } }
+
+.chase { display: flex; gap: 6px; margin-top: 36px; }
+.chase i { width: 22px; height: 8px; border-radius: 3px; background: var(--line); animation: chase 2.4s infinite; }
+.chase i:nth-child(4n+1) { height: 12px; margin-top: -2px; }
+@keyframes chase { 0%, 70%, 100% { background: var(--line); } 8% { background: var(--orange); } }
+
+/* ---------- layout ---------- */
+main { display: none; }
+.started main { display: grid; gap: 28px; grid-template-columns: 1fr; }
+@media (min-width: 920px) { .started main { grid-template-columns: minmax(0, 1fr) 430px; align-items: start; } }
+.device { order: -1; display: grid; gap: 14px; }
+@media (min-width: 920px) { .device { order: 0; position: sticky; top: 20px; } }
+
+.release { display: flex; gap: 16px; align-items: center; margin-bottom: 18px; min-height: 72px; }
+.cover { width: 72px; height: 72px; border-radius: 10px; flex: none; background: var(--line); object-fit: cover; box-shadow: var(--shadow); }
+.release h2 { margin: 0; font: 500 1.75rem/1.1 var(--serif); letter-spacing: -.025em; }
+.release p { margin: 4px 0 0; color: var(--ink-2); }
+
+/* ---------- LCD ---------- */
+.lcd {
+  position: relative; border-radius: 22px; padding: 16px 18px 14px; background: var(--lcd); color: var(--lcd-ink);
+  box-shadow: inset 0 2px 6px rgba(0,0,0,.18), inset 0 -1px 0 rgba(255,255,255,.35), var(--shadow);
+  border: 1px solid rgba(0,0,0,.12); overflow: hidden;
+}
+.lcd::before { /* faint scanlines */
+  content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .5;
+  background: repeating-linear-gradient(0deg, rgba(0,0,0,.05) 0 1px, transparent 1px 3px);
+}
+.lcd .micro { color: var(--lcd-ink); opacity: .6; }
+.lcd-top { display: flex; justify-content: space-between; align-items: center; }
+.lcd-main { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; margin: 10px 0 12px; min-height: 92px; }
+.big {
+  font: 700 clamp(4rem, 15vw, 5.6rem)/.9 var(--round); letter-spacing: -.05em;
+  font-variant-numeric: tabular-nums; text-shadow: 0 0 14px var(--lcd-glow);
+}
+.big small { font-size: .38em; letter-spacing: -.02em; opacity: .65; }
+.lcd-key {
+  font: 700 1.5rem/1 var(--round); padding: 8px 12px; border-radius: 12px; align-self: flex-start;
+  background: var(--lcd-ink); color: var(--lcd); letter-spacing: -.02em; font-variant-numeric: tabular-nums;
+  transition: transform .5s var(--spring);
+}
+.lcd-key.pop { animation: pop .5s var(--spring); }
+@keyframes pop { from { transform: scale(.6); opacity: 0; } }
+.lcd-title { font: 600 .9375rem/1.25 var(--round); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lcd-sub { font-size: .8125rem; opacity: .65; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.steps { display: grid; grid-template-columns: repeat(16, 1fr); gap: 4px; margin-top: 12px; }
+.steps i { height: 8px; border-radius: 2px; background: var(--lcd-dim); transition: background .08s, transform .12s; }
+.steps i:nth-child(4n+1) { height: 12px; margin-top: -4px; }
+.steps i.on { background: var(--lcd-ink); box-shadow: 0 0 8px var(--lcd-glow); transform: scaleY(1.25); }
+.steps i.on:nth-child(4n+1) { background: var(--orange); box-shadow: 0 0 10px rgba(255,79,18,.8); }
+.lcd-actions { display: flex; justify-content: space-between; align-items: center; margin-top: 14px; }
+.hear {
+  height: 34px; padding: 0 14px; border-radius: 17px; border: 1.5px solid var(--lcd-ink); background: transparent;
+  color: var(--lcd-ink); font: 600 .8125rem var(--round); transition: transform .1s ease-out, background .2s, color .2s;
+}
+.hear:active { transform: scale(.95); }
+.hear[aria-pressed="true"] { background: var(--lcd-ink); color: var(--lcd); }
+.hear[disabled] { opacity: .35; cursor: default; }
+.lcd.scan .big, .lcd.scan .lcd-key { opacity: .35; }
+.lcd.scan::after {
+  content: ""; position: absolute; left: 0; right: 0; height: 40px; top: -40px; pointer-events: none;
+  background: linear-gradient(180deg, transparent, var(--lcd-glow, rgba(255,255,255,.4)), transparent);
+  background-color: rgba(255,255,255,.12); animation: scan 1.6s ease-in-out infinite;
+}
+@keyframes scan { to { top: 100%; } }
+
+/* ---------- dial ---------- */
+.dial {
+  background: var(--glass); border: 1px solid var(--glass-edge); border-radius: 28px; box-shadow: var(--shadow);
+  backdrop-filter: blur(24px) saturate(170%); -webkit-backdrop-filter: blur(24px) saturate(170%); padding: 10px 12px 6px;
+}
+svg { display: block; width: 100%; height: auto; overflow: visible; }
+.seg { fill: oklch(var(--seg-l) var(--seg-c) var(--h)); stroke: var(--case); stroke-width: 2.5; transition: fill .3s; cursor: pointer; }
+.seg:hover { fill: oklch(calc(var(--seg-l) - .06) calc(var(--seg-c) + .04) var(--h)); }
+.seg.on { fill: oklch(var(--seg-on-l) var(--seg-on-c) var(--h)); }
+.lab { font: 600 10.5px var(--round); fill: var(--ink-2); text-anchor: middle; dominant-baseline: central; pointer-events: none; }
+.lab.on { fill: var(--ink); }
+.dot { transition: transform .65s var(--spring); cursor: pointer; }
+.dot circle { fill: oklch(.55 .17 var(--h)); stroke: var(--case); stroke-width: 2.5; transition: r .35s var(--spring); }
+.dot.sel circle { r: 10; stroke: var(--ink); }
+.needle { transform-origin: 0 0; transition: transform .8s var(--spring); }
+.needle line { stroke: var(--orange); stroke-width: 3; stroke-linecap: round; }
+.needle circle { fill: var(--orange); }
+.hub { fill: var(--case); stroke: var(--line); }
+.dial-note { margin: 0 12px 10px; color: var(--ink-3); font-size: .8125rem; text-align: center; }
+
+/* ---------- tracklist ---------- */
+ol { list-style: none; margin: 0; padding: 0; }
+.row { border-top: 1px solid var(--line); }
+.row:last-child { border-bottom: 1px solid var(--line); }
+.row > button {
+  width: 100%; display: grid; grid-template-columns: 10px 2.4rem minmax(0, 1fr) auto auto; gap: 4px 14px;
+  align-items: center; padding: 14px 8px; background: none; border: 0; text-align: left; border-radius: 14px;
+  transition: transform .14s var(--spring), background .2s;
+}
+.row > button:hover { background: var(--glass); transform: translateX(3px); }
+.row > button:active { transform: scale(.985); }
+.row.open > button { background: var(--glass); }
+.pad { width: 10px; height: 10px; border-radius: 50%; background: var(--line); transition: background .4s, box-shadow .4s; }
+.row:not(.pending):not(.working) .pad { background: oklch(.62 .17 var(--h, 250)); box-shadow: 0 0 0 4px oklch(.62 .17 var(--h, 250) / .18); }
+.row.none .pad { background: var(--ink-3); box-shadow: none; }
+.row.working .pad { background: var(--orange); animation: pulse 1s infinite; }
+.pos { color: var(--ink-3); font: 500 .8125rem var(--mono); }
+.name { min-width: 0; }
+.name b { display: block; font-weight: 600; letter-spacing: -.01em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.name span { display: flex; align-items: center; gap: 8px; color: var(--ink-2); font-size: .875rem; overflow: hidden; white-space: nowrap; }
+.pending .name span { color: var(--ink-3); }
+.eq { display: none; gap: 2px; height: 12px; align-items: flex-end; }
+.working .eq { display: inline-flex; }
+.eq i { width: 3px; background: var(--orange); border-radius: 1px; animation: eq 0.9s ease-in-out infinite; }
+.eq i:nth-child(2) { animation-delay: -.3s; } .eq i:nth-child(3) { animation-delay: -.6s; } .eq i:nth-child(4) { animation-delay: -.15s; }
+@keyframes eq { 0%, 100% { height: 3px; } 50% { height: 12px; } }
+.bpm { font: 700 1.75rem/1 var(--round); letter-spacing: -.035em; font-variant-numeric: tabular-nums; min-width: 4.8rem; text-align: right; }
+.bpm small { font-size: .72rem; font-weight: 500; color: var(--ink-3); letter-spacing: 0; margin-left: 2px; }
+.key {
+  min-width: 3.4rem; text-align: center; padding: 6px 10px; border-radius: 999px; font: 700 .9375rem/1 var(--round);
+  background: oklch(var(--chip-l) var(--chip-c) var(--h, 250)); color: oklch(var(--chip-ink-l) var(--chip-ink-c) var(--h, 250));
+}
+.key.empty { background: var(--line); color: var(--ink-3); }
+.pending .bpm, .pending .key { opacity: .45; }
+.fresh { animation: land .7s var(--spring); }
+@keyframes land { from { transform: translateY(8px) scale(.99); opacity: 0; } }
+.skel { height: 66px; border-top: 1px solid var(--line); position: relative; overflow: hidden; }
+.skel::after { content: ""; position: absolute; inset: 14px 8px; border-radius: 12px;
+  background: linear-gradient(100deg, var(--line) 30%, rgba(255,255,255,.35) 50%, var(--line) 70%); background-size: 250% 100%; animation: shimmer 1.4s linear infinite; }
+@keyframes shimmer { from { background-position: 100% 0; } to { background-position: -100% 0; } }
+
+.detail { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .4s var(--spring); }
+.row.open .detail { grid-template-rows: 1fr; }
+.detail > div { overflow: hidden; }
+.detail ul { list-style: none; margin: 0; padding: 0 8px 16px 4.4rem; display: grid; gap: 6px; font-size: .875rem; color: var(--ink-2); }
+.detail li { display: flex; gap: 12px; }
+.detail li b { color: var(--ink); font-weight: 600; min-width: 9rem; }
+.detail li span { font-variant-numeric: tabular-nums; }
+
+.summary { margin: 24px 6px 0; color: var(--ink-2); font-size: 1.0625rem; letter-spacing: -.01em; min-height: 1.6em; }
+.actions { margin-top: 14px; display: flex; gap: 8px; flex-wrap: wrap; }
+.ghost {
+  height: 40px; padding: 0 18px; border-radius: 20px; border: 1px solid var(--line); background: var(--glass);
+  font-weight: 600; transition: transform .1s ease-out;
+}
+.ghost:active { transform: scale(.96); }
+.ghost[hidden] { display: none; }
+
+footer { margin-top: 56px; color: var(--ink-3); font-size: .8125rem; max-width: 60ch; }
+footer a { color: var(--ink-2); }
+
+.rise { animation: rise .8s var(--spring) both; }
+.rise:nth-child(2) { animation-delay: .07s; } .rise:nth-child(3) { animation-delay: .14s; } .rise:nth-child(4) { animation-delay: .21s; }
+@keyframes rise { from { transform: translateY(14px); opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  .chase i { animation: none; }
+}
+</style>
+</head>
+<body>
+<div class="shell" id="shell">
+  <div class="top">
+    <div class="brand"><span class="led" id="led"></span>Spin Count</div>
+    <span class="micro" id="state">ready</span>
+  </div>
+
+  <section class="hero">
+    <h1 class="rise">Paste a record. Get its BPM and key.</h1>
+    <p class="sub rise">The sleeve never says. Your ears are busy.</p>
+    <form id="form" autocomplete="off" class="rise">
+      <label class="field"><span class="sr">Discogs link</span>
+        <input id="url" type="url" inputmode="url" placeholder="discogs.com/release/…" required>
+      </label>
+      <button class="go" id="go" type="submit">Analyze</button>
+    </form>
+    <p class="hint">Release or master links both work. Yes, even the Italian ones.</p>
+    <p class="error" id="error" role="alert" hidden></p>
+    <div class="chase" aria-hidden="true"></div>
+  </section>
+
+  <main>
+    <section>
+      <div class="release" id="release"></div>
+      <ol id="tracks" aria-label="Tracks"></ol>
+      <p class="summary" id="summary" aria-live="polite"></p>
+      <div class="actions">
+        <button class="ghost" id="copy" hidden>Copy list</button>
+        <button class="ghost" id="csv" hidden>Download CSV</button>
+      </div>
+    </section>
+
+    <aside class="device">
+      <div class="lcd scan" id="lcd">
+        <div class="lcd-top"><span class="micro">tempo</span><span class="micro" id="lcdTag">scanning</span></div>
+        <div class="lcd-main">
+          <div class="big" id="bigBpm" aria-live="polite">---</div>
+          <div class="lcd-key" id="lcdKey" hidden></div>
+        </div>
+        <div class="lcd-title" id="lcdTitle">Reading the sleeve…</div>
+        <div class="lcd-sub" id="lcdSub">&nbsp;</div>
+        <div class="steps" id="steps" aria-hidden="true"></div>
+        <div class="lcd-actions">
+          <span class="micro" id="lcdHint">pick a track</span>
+          <button class="hear" id="hear" type="button" aria-pressed="false" disabled>Hear the tempo</button>
+        </div>
+      </div>
+      <div class="dial">
+        <svg id="wheel" viewBox="-210 -210 420 420" role="img" aria-label="Camelot wheel showing where each track sits"></svg>
+        <p class="dial-note">Neighbours on the wheel mix cleanly. Everything else is a gamble.</p>
+      </div>
+    </aside>
+  </main>
+
+  <footer>
+    BPM and key data provided by <a href="https://getsongbpm.com">GetSongBPM</a>, plus Deezer, AcousticBrainz
+    and, when they all shrug, our own ears. Releases from Discogs.
+  </footer>
+</div>
+
+<script>
+const $ = (s) => document.querySelector(s);
+const NS = "http://www.w3.org/2000/svg";
+const hue = (n) => Math.round((170 - (n - 1) * 32.7 + 360) % 360);
+const keyParts = (k) => ({ n: parseInt(k, 10), l: k.slice(-1) });
+const STATUS = {
+  agreed: "Sources agree. Rare, enjoy it.", analyzed: "Heard it ourselves", single: "One opinion, no second",
+  conflict: "Sources disagree", none: "No idea. Honestly."
+};
+const fmtDur = (s) => s ? `${Math.floor(s / 60)}:${String(s % 60).padStart(2, "0")}` : "";
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+let tracks = [], results = [], dots = [], selected = -1, es = null;
+
+/* idle chase decoration */
+$(".chase").innerHTML = Array.from({ length: 16 }, (_, i) => `<i style="animation-delay:${(i * 0.15).toFixed(2)}s"></i>`).join("");
+
+/* ---------- LCD: steps, tempo pulse, number roll, metronome ---------- */
+const stepEls = [];
+$("#steps").innerHTML = "<i></i>".repeat(16);
+document.querySelectorAll("#steps i").forEach((e) => stepEls.push(e));
+
+let tempo = 0, t0 = 0, lastStep = -1, rafId = 0, audio = null, audioOn = false, nextClick = 0, clickTimer = 0;
+function setTempo(bpm) {
+  tempo = bpm || 0; t0 = performance.now(); lastStep = -1;
+  stepEls.forEach((e) => e.classList.remove("on"));
+  cancelAnimationFrame(rafId);
+  if (tempo && !reduce) rafId = requestAnimationFrame(tick);
+  if (audioOn) scheduleStart();
+  $("#hear").disabled = !tempo;
+}
+function tick(now) {
+  const stepMs = 60000 / tempo / 4, s = Math.floor((now - t0) / stepMs) % 16;
+  if (s !== lastStep) { stepEls.forEach((e, i) => e.classList.toggle("on", i === s)); lastStep = s; }
+  rafId = requestAnimationFrame(tick);
+}
+let shown = 0;
+function rollTo(target) {
+  const from = shown, start = performance.now(), dur = reduce ? 0 : 650;
+  const ease = (x) => x === 1 ? 1 : 1 - Math.pow(2, -10 * x);
+  const step = (now) => {
+    const x = dur ? Math.min(1, (now - start) / dur) : 1, v = from + (target - from) * ease(x);
+    shown = v; const t = v.toFixed(1), [a, b] = t.split(".");
+    $("#bigBpm").innerHTML = `${a}<small>.${b}</small>`;
+    if (x < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+function showLcd(r, meta) {
+  const lcd = $("#lcd"); lcd.classList.remove("scan");
+  if (!r) { $("#bigBpm").textContent = "---"; shown = 0; $("#lcdKey").hidden = true; setTempo(0); return; }
+  $("#lcdTitle").textContent = r.title;
+  $("#lcdSub").textContent = meta || r.artist;
+  if (r.bpm) rollTo(r.bpm); else { $("#bigBpm").textContent = "---"; shown = 0; }
+  const k = $("#lcdKey");
+  if (r.camelot) { k.hidden = false; k.textContent = r.camelot; k.classList.remove("pop"); void k.offsetWidth; k.classList.add("pop"); }
+  else k.hidden = true;
+  $("#lcdHint").textContent = r.status ? (STATUS[r.status] || r.status) : "waiting";
+  setTempo(r.bpm || 0);
+}
+function scheduleStart() {
+  if (!audio) return;
+  clearInterval(clickTimer); nextClick = audio.currentTime + 0.05;
+  const beat = 60 / tempo;
+  clickTimer = setInterval(() => {
+    while (nextClick < audio.currentTime + 0.15) {
+      const o = audio.createOscillator(), g = audio.createGain();
+      o.frequency.value = Math.round((nextClick - audio.currentTime + 1000) % 4) === 0 ? 1500 : 1000;
+      g.gain.setValueAtTime(0.0001, nextClick); g.gain.exponentialRampToValueAtTime(0.25, nextClick + 0.002);
+      g.gain.exponentialRampToValueAtTime(0.0001, nextClick + 0.05);
+      o.connect(g).connect(audio.destination); o.start(nextClick); o.stop(nextClick + 0.06);
+      nextClick += beat;
+    }
+  }, 25);
+}
+$("#hear").addEventListener("click", () => {
+  audioOn = !audioOn; $("#hear").setAttribute("aria-pressed", audioOn);
+  $("#hear").textContent = audioOn ? "Make it stop" : "Hear the tempo";
+  if (audioOn) { audio = audio || new (window.AudioContext || window.webkitAudioContext)(); audio.resume(); t0 = performance.now(); lastStep = -1; scheduleStart(); }
+  else clearInterval(clickTimer);
+});
+
+/* ---------- dial ---------- */
+const R = { B: [150, 200], A: [100, 146] };
+const pol = (r, deg) => { const a = deg * Math.PI / 180; return [r * Math.sin(a), -r * Math.cos(a)]; };
+const centreDeg = (n) => (n - 12) * 30;
+function sector(r0, r1, a0, a1) {
+  const [x0, y0] = pol(r1, a0), [x1, y1] = pol(r1, a1), [x2, y2] = pol(r0, a1), [x3, y3] = pol(r0, a0);
+  return `M${x0} ${y0}A${r1} ${r1} 0 0 1 ${x1} ${y1}L${x2} ${y2}A${r0} ${r0} 0 0 0 ${x3} ${y3}Z`;
+}
+const el = (name, attrs = {}, parent) => {
+  const e = document.createElementNS(NS, name);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  parent && parent.appendChild(e); return e;
+};
+const wheel = $("#wheel"), segs = {};
+let needleAngle = 0, needle;
+function buildWheel() {
+  for (const L of ["B", "A"]) for (let n = 1; n <= 12; n++) {
+    const c = centreDeg(n), [r0, r1] = R[L], key = n + L;
+    const p = el("path", { d: sector(r0, r1, c - 15, c + 15), class: "seg" }, wheel);
+    p.style.setProperty("--h", hue(n));
+    const [lx, ly] = pol((r0 + r1) / 2, c);
+    const t = el("text", { x: lx, y: ly, class: "lab" }, wheel); t.textContent = key;
+    p.addEventListener("click", () => { const i = results.findIndex((r) => r && r.camelot === key); if (i >= 0) select(i); });
+    segs[key] = { path: p, label: t };
+  }
+  el("circle", { r: 92, class: "hub" }, wheel);
+  el("g", { id: "dotlayer" }, wheel);
+  needle = el("g", { class: "needle" }, wheel);
+  el("line", { x1: 0, y1: 0, x2: 0, y2: -92 }, needle); el("circle", { r: 7 }, needle);
+  needle.style.opacity = 0;
+}
+function aim(key) {
+  if (!key) { needle.style.opacity = 0; return; }
+  const target = centreDeg(keyParts(key).n);
+  needleAngle += ((target - needleAngle + 540) % 360) - 180;          // shortest way round
+  needle.style.opacity = 1; needle.style.transform = `rotate(${needleAngle}deg)`;
+}
+function layoutDots() {
+  const byKey = {};
+  results.forEach((r, i) => { if (r && r.camelot) (byKey[r.camelot] ||= []).push(i); });
+  for (const key in byKey) {
+    const { n, l } = keyParts(key), [r0, r1] = R[l], mid = (r0 + r1) / 2, list = byKey[key];
+    list.forEach((i, j) => {
+      const off = (j - (list.length - 1) / 2) * Math.min(9, 22 / list.length + 3);
+      const [x, y] = pol(mid + 12, centreDeg(n) + off);
+      dots[i].style.transform = `translate(${x}px, ${y}px)`;
+    });
+  }
+}
+function ensureDot(i) {
+  if (dots[i]) return dots[i];
+  const g = el("g", { class: "dot" }, $("#dotlayer"));
+  const hh = keyParts(results[i].camelot).n; g.style.setProperty("--h", hue(hh));
+  g.style.transform = "translate(0px,0px) scale(0)";
+  el("circle", { r: 7 }, g);
+  g.addEventListener("click", () => select(i));
+  dots[i] = g; return g;
+}
+function select(i) {
+  selected = i;
+  document.querySelectorAll(".row").forEach((r, j) => r.classList.toggle("open", j === i && !!results[j]));
+  document.querySelectorAll(".row > button").forEach((b, j) => b.setAttribute("aria-expanded", j === i && !!results[j]));
+  dots.forEach((d, j) => d && d.classList.toggle("sel", j === i));
+  const r = results[i];
+  for (const k in segs) { const on = r && r.camelot === k; segs[k].path.classList.toggle("on", !!on); segs[k].label.classList.toggle("on", !!on); }
+  aim(r && r.camelot);
+  if (r) showLcd(r, [r.artist, fmtDur(r.duration)].filter(Boolean).join("  "));
+  else if (tracks[i]) { $("#lcdTitle").textContent = tracks[i].title; $("#lcdSub").textContent = "still listening…"; $("#lcdHint").textContent = "waiting"; }
+}
+
+/* ---------- list ---------- */
+function skeleton() { $("#tracks").innerHTML = '<li class="skel"></li>'.repeat(5); }
+function renderRows() {
+  const ol = $("#tracks"); ol.innerHTML = "";
+  tracks.forEach((t, i) => {
+    const li = document.createElement("li");
+    li.className = "row pending";
+    li.innerHTML = `<button type="button" aria-expanded="false">
+        <span class="pad"></span><span class="pos"></span>
+        <span class="name"><b></b><span><i class="eq"><i></i><i></i><i></i><i></i></i><em style="font-style:normal">Waiting its turn</em></span></span>
+        <span class="bpm">–</span><span class="key empty">–</span></button>
+      <div class="detail"><div><ul></ul></div></div>`;
+    li.querySelector(".pos").textContent = t.position;
+    li.querySelector("b").textContent = t.title;
+    li.querySelector("button").addEventListener("click", () => select(selected === i ? -1 : i));
+    ol.appendChild(li);
+  });
+}
+const rowEl = (i) => document.querySelectorAll(".row")[i];
+function markWorking(i) {
+  const row = rowEl(i); if (!row) return;
+  row.classList.remove("pending"); row.classList.add("working");
+  row.querySelector("em").textContent = `${tracks[i].artist}, asking around`;
+  if (selected === -1) { $("#lcdTitle").textContent = tracks[i].title; $("#lcdSub").textContent = tracks[i].artist; $("#lcdHint").textContent = "listening"; $("#lcdTag").textContent = `track ${i + 1} of ${tracks.length}`; }
+}
+function fillRow(r) {
+  const row = rowEl(r.index); if (!row) return;
+  row.classList.remove("pending", "working"); row.classList.add("fresh");
+  if (r.status === "none") row.classList.add("none");
+  row.querySelector("em").textContent = [tracks[r.index].artist, fmtDur(tracks[r.index].duration)].filter(Boolean).join("  ");
+  row.querySelector(".bpm").innerHTML = r.bpm ? `${r.bpm.toFixed(1)}<small>bpm</small>` : "–";
+  const k = row.querySelector(".key");
+  if (r.camelot) {
+    const h = hue(keyParts(r.camelot).n);
+    k.textContent = r.camelot; k.classList.remove("empty"); k.style.setProperty("--h", h); row.style.setProperty("--h", h);
+  } else k.textContent = "–";
+  const ul = row.querySelector("ul");
+  const li = (a, b) => { const e = document.createElement("li"); e.innerHTML = "<b></b><span></span>"; e.firstChild.textContent = a; e.lastChild.textContent = b; ul.appendChild(e); };
+  li("Verdict", STATUS[r.status] || r.status);
+  r.measurements.forEach((m) => li(m.origin.replace("essentia:", "our ears via "),
+    [m.bpm ? m.bpm.toFixed(1) + " bpm" : null, m.camelot ? m.camelot + (m.raw_key ? ` (${m.raw_key})` : "") : null].filter(Boolean).join("   ")));
+  if (!r.measurements.length) li("Sources", "Nobody had anything.");
+  if (r.note) li("Note", r.note);
+}
+
+/* ---------- run ---------- */
+function setError(msg) { const e = $("#error"); e.hidden = !msg; e.textContent = msg || ""; }
+function status(txt, mode) { $("#state").textContent = txt; $("#led").className = "led" + (mode ? " " + mode : ""); }
+function summary(c, total) {
+  const a = c.agreed || 0, h = c.analyzed || 0, none = c.none || 0;
+  let s = `${total} tracks. `;
+  if (a) s += `${a} where the sources actually agreed. `;
+  if (h) s += `${h} that needed a proper listen. `;
+  if (none) s += `${none} nobody could place.`;
+  $("#summary").textContent = s.trim();
+}
+function start(url) {
+  if (es) es.close();
+  setError(""); tracks = []; results = []; dots = []; selected = -1; setTempo(0); shown = 0;
+  $("#dotlayer") && ($("#dotlayer").innerHTML = ""); aim(null);
+  $("#summary").textContent = ""; $("#release").innerHTML = ""; skeleton();
+  $("#copy").hidden = $("#csv").hidden = true;
+  Object.values(segs).forEach((s) => { s.path.classList.remove("on"); s.label.classList.remove("on"); });
+  $("#lcd").classList.add("scan"); $("#bigBpm").textContent = "---"; $("#lcdKey").hidden = true;
+  $("#lcdTitle").textContent = "Reading the sleeve…"; $("#lcdSub").innerHTML = "&nbsp;"; $("#lcdTag").textContent = "scanning"; $("#lcdHint").textContent = "hang on";
+  $("#go").disabled = true; $("#go").textContent = "Listening…"; status("working", "busy");
+  $("#shell").classList.add("started");
+
+  es = new EventSource("/api/analyze?url=" + encodeURIComponent(url));
+  const on = (n, f) => es.addEventListener(n, (e) => f(JSON.parse(e.data)));
+  on("release", (d) => {
+    tracks = d.tracks; results = new Array(tracks.length).fill(null);
+    $("#release").innerHTML = `${d.cover ? '<img class="cover" alt="" referrerpolicy="no-referrer">' : ""}<div><h2></h2><p></p></div>`;
+    if (d.cover) { const im = $("#release img"); im.src = d.cover; im.onerror = () => im.remove(); }
+    $("#release h2").textContent = d.title; $("#release p").textContent = [d.artist, d.year].filter(Boolean).join("  ");
+    document.title = `${d.title}: Spin Count`;
+    renderRows(); $("#lcdTag").textContent = `${tracks.length} tracks`;
+  });
+  on("working", (d) => markWorking(d.index));
+  on("track", (r) => {
+    results[r.index] = r; fillRow(r);
+    if (r.camelot) { ensureDot(r.index); layoutDots(); requestAnimationFrame(() => { const d = dots[r.index]; d.style.transform = d.style.transform.replace(/ scale\([^)]*\)/, "") + " scale(1)"; }); }
+    if (selected === -1 || selected === r.index) select(r.index);
+  });
+  on("done", (d) => {
+    es.close(); es = null; finish(); status("done", "ok"); summary(d.counts, d.total);
+    $("#copy").hidden = $("#csv").hidden = false; $("#lcdTag").textContent = "done";
+  });
+  on("fail", (d) => {
+    es && es.close(); es = null; finish(); status("error", "");
+    $("#tracks").innerHTML = ""; $("#lcd").classList.remove("scan"); $("#lcdTitle").textContent = "Nothing to show"; $("#lcdTag").textContent = "error";
+    if (d.kind === "url") { $("#shell").classList.remove("started"); setError("That doesn't look like a Discogs release or master link. It needs /release/ or /master/ and a number in it."); }
+    else if (d.kind === "discogs") setError("Discogs wouldn't hand it over (rate limit, or the release doesn't exist). Give it a minute and try again.");
+    else setError("Something broke on our side: " + (d.detail || "unknown error") + ".");
+  });
+  es.onerror = () => { if (es) { es.close(); es = null; finish(); status("offline", ""); if (!tracks.length) { $("#tracks").innerHTML = ""; setError("Lost the connection to the local server. Is it still running?"); } } };
+}
+function finish() { $("#go").disabled = false; $("#go").textContent = "Analyze"; }
+
+$("#form").addEventListener("submit", (e) => { e.preventDefault(); let u = $("#url").value.trim(); if (!/^https?:/i.test(u)) u = "https://" + u; start(u); });
+
+/* ---------- export ---------- */
+function rowsText() { return results.map((r, i) => r && `${tracks[i].position}\t${r.bpm ? r.bpm.toFixed(1) : "-"}\t${r.camelot || "-"}\t${tracks[i].artist} - ${tracks[i].title}`).filter(Boolean).join("\n"); }
+$("#copy").addEventListener("click", async () => {
+  try { await navigator.clipboard.writeText(rowsText()); $("#copy").textContent = "Copied. Go mix something."; }
+  catch { $("#copy").textContent = "Clipboard said no."; }
+  setTimeout(() => ($("#copy").textContent = "Copy list"), 2200);
+});
+$("#csv").addEventListener("click", () => {
+  const q = (s) => `"${String(s ?? "").replace(/"/g, '""')}"`;
+  const lines = ["position,artist,title,bpm,camelot,status"].concat(results.map((r, i) => r && [tracks[i].position, tracks[i].artist, tracks[i].title, r.bpm ?? "", r.camelot ?? "", r.status].map(q).join(",")).filter(Boolean));
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([lines.join("\n")], { type: "text/csv" }));
+  a.download = "spin-count.csv"; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+});
+
+buildWheel();
+</script>
+</body>
+</html>

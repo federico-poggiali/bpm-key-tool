@@ -1,8 +1,10 @@
 from .bandcamp import Bandcamp
 from .itunes import ITunes
+from .soundcloud import SoundCloud
 from .youtube import YouTube
 
 
-def finders_for(discogs_videos=None):
-    """Priority order: YouTube, Bandcamp (known URLs only), Apple preview."""
-    return [YouTube(discogs_videos), Bandcamp(), ITunes()]
+def finders_for(release: dict | None = None, discogs=None):
+    """Full-length audio first (YouTube, Bandcamp, SoundCloud); 30 s iTunes preview last."""
+    release = release or {}
+    return [YouTube(release.get("videos")), Bandcamp(release, discogs), SoundCloud(), ITunes()]

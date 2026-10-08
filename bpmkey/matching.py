@@ -14,7 +14,10 @@ def similarity(a: str, b: str) -> float:
 
 
 def is_match(artist: str, title: str, c_artist: str, c_title: str, threshold: float = 0.8) -> bool:
-    return similarity(artist, c_artist) >= threshold and similarity(title, c_title) >= threshold
+    """Same artist, same title, and not a different version (remix/live/...) of it."""
+    return (similarity(artist, c_artist) >= threshold
+            and similarity(title, c_title) >= threshold
+            and version_penalty(title, c_title) == 0)
 
 
 def token_containment(needle: str, hay: str) -> float:
@@ -23,14 +26,16 @@ def token_containment(needle: str, hay: str) -> float:
     return len(n & h) / len(n) if n else 0.0
 
 
-_VERSION_WORDS = {"remix", "live", "cover", "mix", "edit", "instrumental", "acapella", "karaoke", "reprise"}
+_VERSION_WORDS = {"remix", "live", "cover", "mix", "instrumental", "acapella", "karaoke", "reprise", "dub"}
+# Labels that don't change tempo or key
+_HARMLESS = re.compile(r"original mix|original version|radio edit|radio mix|album version|single version|\bedit\b|\boriginal\b|\bremaster(ed)?( \d{4})?\b")
 
 
 def version_penalty(track_title: str, cand_title: str) -> float:
     """Penalty when the candidate is a different version (remix/live/...) than the track."""
     # Keep bracketed text here: "(Remix)" is exactly what we're looking for
-    t = set(re.findall(r"[a-z0-9]+", track_title.lower()))
-    c = set(re.findall(r"[a-z0-9]+", cand_title.lower()))
+    t = set(re.findall(r"[a-z0-9]+", _HARMLESS.sub(" ", track_title.lower())))
+    c = set(re.findall(r"[a-z0-9]+", _HARMLESS.sub(" ", cand_title.lower())))
     return 0.4 if (c & _VERSION_WORDS) - t else 0.0
 
 
@@ -48,3 +53,6 @@ def score_candidate(artist: str, title: str, duration, c_title: str, c_extra: st
     hay = f"{c_title} {c_extra}"
     s = 0.65 * token_containment(title, hay) + 0.35 * token_containment(artist, hay)
     return max(0.0, s - version_penalty(title, c_title))
+
+
+MIN_ALBUM_SCORE = 0.6

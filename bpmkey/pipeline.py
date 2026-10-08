@@ -16,16 +16,20 @@ MAX_ATTEMPTS = 3  # audio sources tried per track before giving up
 
 
 class Pipeline:
-    def __init__(self, analyze: bool = True, refresh: bool = False, cache: Cache | None = None):
+    def __init__(self, analyze: bool = True, refresh: bool = False, reanalyze: bool = False,
+                 cache: Cache | None = None):
         self.analyze = analyze
-        self.refresh = refresh
+        self.refresh = refresh or reanalyze
+        self.reanalyze = reanalyze
         self.cache = cache or Cache()
 
     def _lookup(self, track: Track) -> None:
-        cached = None if self.refresh else self.cache.get(track)
-        if cached is not None:
+        cached = self.cache.get(track)
+        if cached is not None and not self.refresh:
             track.measurements = cached
             return
+        if cached and not self.reanalyze:  # refresh online data, keep the expensive audio analysis
+            track.measurements = [m for m in cached if is_analysis(m)]
         for p in PROVIDERS:
             try:
                 m = p.query(track)
@@ -60,8 +64,12 @@ class Pipeline:
         return "no audio source found" if tried == 0 else "no usable audio source"
 
     def run(self, url: str) -> Iterator[Result]:
-        _, tracks, videos = DiscogsClient().tracks(url)
-        finders = finders_for(videos)
+        client = DiscogsClient()
+        release, tracks, _ = client.tracks(url)
+        return self.run_tracks(tracks, release, client)
+
+    def run_tracks(self, tracks: list[Track], release: dict, discogs=None) -> Iterator[Result]:
+        finders = finders_for(release, discogs)
         for track in tracks:
             self._lookup(track)
             result = reconcile(track)

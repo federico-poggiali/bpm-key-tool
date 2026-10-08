@@ -19,6 +19,7 @@ class Measurement:
     camelot: Optional[str] = None
     raw_key: Optional[str] = None
     confidence: Optional[float] = None
+    key_scores: Optional[list] = None  # 24 log-probabilities (0-11 major, 12-23 minor) from audio
 
 
 @dataclass

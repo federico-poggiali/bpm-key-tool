@@ -1,82 +1,116 @@
 from __future__ import annotations
 
-import html
 import json
 import re
+import time
 
-from ..lookup.base import session
-from ..matching import score_candidate
+from ..matching import MIN_ALBUM_SCORE, norm, score_candidate, similarity
 from ..models import AudioSource, Track
 from .base import MIN_SCORE, SourceFinder
 
-_RESULT = re.compile(r'<li class="searchresult[^"]*">(.*?)</li>', re.S)
-_HREF = re.compile(r'<div class="heading">\s*<a href="([^"]+)"[^>]*>\s*(.*?)\s*</a>', re.S)
-_BY = re.compile(r'by\s+([^<\n]+)')
-_TRALBUM = re.compile(r'data-tralbum="([^"]+)"')
+_BC_HOST = re.compile(r"https?://([a-z0-9-]+)\.bandcamp\.com", re.I)
+MAX_DOMAINS = 2
+MAX_ALBUMS = 3
+PAUSE = 1.5  # seconds between Bandcamp requests: be gentle
 
 
-def _text(s: str) -> str:
-    return html.unescape(re.sub(r"<[^>]+>", " ", s)).strip()
+def _slug_guesses(name: str) -> list[str]:
+    base = re.sub(r"[^a-z0-9 ]+", "", norm(name))
+    return list(dict.fromkeys(g for g in (base.replace(" ", ""), base.replace(" ", "-")) if g))
+
+
+def _ytdl(flat: bool):
+    import yt_dlp
+
+    return yt_dlp.YoutubeDL({"quiet": True, "no_warnings": True, "noprogress": True,
+                             "extract_flat": flat, "playlistend": 40})
 
 
 class Bandcamp(SourceFinder):
-    """Stream URL from a Bandcamp track page's data-tralbum JSON.
+    """Full-length Bandcamp streams, found through the artist's or label's own page.
 
-    Bandcamp's search page now sits behind a JS bot challenge, so searching is off by
-    default. `find` works for tracks whose Bandcamp URL is already known.
+    Bandcamp's search sits behind a bot challenge, so instead we follow links Discogs
+    already has (artist/label profiles, release notes), plus a name-based guess, and
+    read the pages with yt-dlp's Bandcamp extractors.
     """
 
     name = "bandcamp"
 
-    def __init__(self, urls: dict[str, str] | None = None, search: bool = False):
-        self.urls = urls or {}  # track position -> bandcamp track page URL
-        self.search = search
+    def __init__(self, release: dict | None = None, discogs=None):
+        self.release = release or {}
+        self.discogs = discogs
+        self._domains: list[str] | None = None
+        self._albums: dict[str, list[dict]] = {}
+        self.blocked = False  # set on the first 429 / challenge: stop asking
 
-    def _get(self, url: str, **kw) -> str | None:
+    # --- discovery -------------------------------------------------------------------
+    def domains(self, track: Track) -> list[str]:
+        if self._domains is None:
+            found = [m.lower() for m in _BC_HOST.findall(json.dumps(self.release))]
+            for kind in ("labels", "artists"):
+                for item in (self.release.get(kind) or [])[:3]:
+                    try:
+                        profile = self.discogs._get(item["resource_url"].replace("https://api.discogs.com", "")) if self.discogs else {}
+                    except Exception:
+                        continue
+                    found += [m.lower() for u in profile.get("urls", []) for m in _BC_HOST.findall(u)]
+            self._domains = list(dict.fromkeys(found))
+        guesses = _slug_guesses(track.artist)
+        return list(dict.fromkeys(self._domains + guesses))[:MAX_DOMAINS + 2]
+
+    def _guard(self, e: Exception) -> None:
+        if "429" in str(e) or "challenge" in str(e).lower():
+            self.blocked = True
+
+    def _list(self, domain: str) -> list[dict]:
+        if domain not in self._albums:
+            if self.blocked:
+                return []
+            time.sleep(PAUSE)
+            try:
+                with _ytdl(True) as y:
+                    info = y.extract_info(f"https://{domain}.bandcamp.com/music", download=False)
+                self._albums[domain] = [e for e in (info or {}).get("entries", []) if e and e.get("url")]
+            except Exception as e:
+                self._guard(e)
+                self._albums[domain] = []
+        return self._albums[domain]
+
+    def _tracks_of(self, url: str) -> list[dict]:
+        if self.blocked:
+            return []
+        time.sleep(PAUSE)
         try:
-            r = session.get(url, timeout=15, **kw)
-            r.raise_for_status()
-            return r.text
-        except Exception:
-            return None
+            with _ytdl(False) as y:
+                info = y.extract_info(url, download=False)
+        except Exception as e:
+            self._guard(e)
+            return []
+        return (info or {}).get("entries") or [info] if info else []
 
+    # --- matching --------------------------------------------------------------------
     def find(self, track: Track) -> list[AudioSource]:
-        if track.position in self.urls:
-            src = self._stream(self.urls[track.position], track)
-            return [src] if src else []
-        if not self.search:
-            return []
-        page = self._get("https://bandcamp.com/search",
-                         params={"q": f"{track.artist} {track.title}", "item_type": "t"})
-        if not page:
-            return []
+        rel_title = self.release.get("title", "")
         out: list[AudioSource] = []
-        for block in _RESULT.findall(page)[:5]:
-            m = _HREF.search(block)
-            if not m:
+        for domain in self.domains(track):
+            if self.blocked:
+                break
+            items = self._list(domain)
+            if not items:
                 continue
-            url, title = m.group(1).split("?")[0], _text(m.group(2))
-            by = _BY.search(_text(block))
-            if score_candidate(track.artist, track.title, None, title, by.group(1) if by else "") < MIN_SCORE:
-                continue
-            src = self._stream(url, track)
-            if src:
-                out.append(src)
+            # Albums whose slug resembles the Discogs release title come first
+            def album_rank(e):
+                slug = e["url"].rsplit("/", 1)[-1].replace("-", " ")
+                return -max(similarity(rel_title, slug), similarity(track.title, slug))
+            for e in sorted(items, key=album_rank)[:MAX_ALBUMS]:
+                for t in self._tracks_of(e["url"]):
+                    title = t.get("track") or t.get("title") or ""
+                    sc = score_candidate(track.artist, track.title, track.duration,
+                                         title, t.get("artist") or t.get("uploader") or track.artist,
+                                         round(t["duration"]) if t.get("duration") else None)
+                    url = t.get("webpage_url") or t.get("url")
+                    if sc >= MIN_SCORE and url:
+                        out.append(AudioSource("bandcamp", url, round(t["duration"]) if t.get("duration") else None, sc))
+                if out:
+                    return sorted(out, key=lambda s: -s.match_score)
         return sorted(out, key=lambda s: -s.match_score)
-
-    def _stream(self, page_url: str, track: Track) -> AudioSource | None:
-        page = self._get(page_url)
-        m = _TRALBUM.search(page or "")
-        if not m:
-            return None
-        try:
-            info = json.loads(html.unescape(m.group(1)))["trackinfo"][0]
-            mp3 = (info.get("file") or {}).get("mp3-128")
-        except (ValueError, KeyError, IndexError):
-            return None
-        if not mp3:
-            return None
-        dur = round(info["duration"]) if info.get("duration") else None
-        sc = score_candidate(track.artist, track.title, track.duration,
-                             info.get("title", ""), page_url, dur)
-        return AudioSource("bandcamp", mp3, dur, max(sc, 0.0)) if sc >= MIN_SCORE else None

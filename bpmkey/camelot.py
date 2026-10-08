@@ -52,3 +52,16 @@ def open_key_to_camelot(ok) -> Optional[str]:
         return None
     n = (int(m.group(1)) + 6) % 12 + 1
     return f"{n}{'B' if m.group(2).lower() == 'd' else 'A'}"
+
+
+def key_index_to_camelot(i: int) -> str:
+    """Class index (0-11 major, 12-23 minor, by pitch class) -> Camelot."""
+    return f"{_MAJOR[i]}B" if i < 12 else f"{_MINOR[i - 12]}A"
+
+
+def camelot_to_key_index(code: str) -> Optional[int]:
+    m = re.fullmatch(r"(1[0-2]|[1-9])([AB])", str(code or ""))
+    if not m:
+        return None
+    n, table, off = int(m.group(1)), (_MAJOR if m.group(2) == "B" else _MINOR), (0 if m.group(2) == "B" else 12)
+    return next(pc for pc, num in table.items() if num == n) + off
