@@ -93,6 +93,8 @@ MIN_ALBUM_SCORE = 0.6
 DISCOGS_MIN_THRESHOLD = 0.55
 DISCOGS_MAX_THRESHOLD = 0.95
 SIMILAR_TITLES = 0.75  # mean title similarity at or above which the strict threshold applies
+UNRELATED_TITLES = 0.40  # at or below this, titles count as completely different (even unrelated
+                         # English titles share letters, so character similarity never reaches 0)
 
 
 def title_similarity(titles: list[str]) -> float:
@@ -103,5 +105,6 @@ def title_similarity(titles: list[str]) -> float:
 
 def dynamic_threshold(titles: list[str]) -> float:
     """55% for unrelated titles rising linearly to 95% once they are 75% similar."""
-    ramp = min(1.0, title_similarity(titles) / SIMILAR_TITLES)
+    ramp = (title_similarity(titles) - UNRELATED_TITLES) / (SIMILAR_TITLES - UNRELATED_TITLES)
+    ramp = min(1.0, max(0.0, ramp))
     return DISCOGS_MIN_THRESHOLD + (DISCOGS_MAX_THRESHOLD - DISCOGS_MIN_THRESHOLD) * ramp

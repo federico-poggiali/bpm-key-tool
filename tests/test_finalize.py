@@ -1,3 +1,5 @@
+import pytest
+
 from bpmkey.models import Measurement, Track
 from bpmkey.reconcile import finalize
 
@@ -44,3 +46,10 @@ def test_confident_audio_beats_a_database_vote():
     r = finalize(mk(Measurement("getsongbpm", 122, "10B"),
                     Measurement("essentia:youtube", 122.5, "8A", key_scores=scores.tolist())))
     assert r.camelot == "8A" and "outvoted" in r.note
+
+
+def test_dynamic_threshold_for_discogs_videos():
+    from bpmkey.matching import dynamic_threshold
+    assert dynamic_threshold(["Rodney King (Da Falcon Mix)", "Live In The World"]) == pytest.approx(0.55, abs=0.08)
+    assert dynamic_threshold(["Song (Original Mix)", "Song (Dub Mix)"]) == pytest.approx(0.95)
+    assert dynamic_threshold(["Only Track"]) == pytest.approx(0.55)

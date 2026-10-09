@@ -36,16 +36,19 @@ Tracks are marked `agreed` when sources agree, `analyzed` when the audio analysi
 
 ## Accuracy
 
-Measured against human-labelled electronic music (GiantSteps-MTG, Beatport previews; not included in this repo):
+Measured against human-labelled electronic music (Beatport previews; audio not included in this repo):
 
 | | result |
 |---|---|
-| BPM, within ±4% of the Beatport BPM | 94.8% (885 clips) |
-| Key, exact match, learned model (5-fold cross-validation, 1,156 clips) | about 62% |
-| Key, exact match, Essentia default EDM profile on the same clips | 54% |
-| Key, exact match, Essentia `bgate` profile on the same clips | 58% |
+| BPM, within ±4% of the Beatport BPM (GiantSteps-MTG, 885 clips) | 94.8% |
+| Key, exact match, Essentia `edmm` profile, the shipped detector (GiantSteps Key, 604 clips) | 65% (weighted MIREX score 0.70) |
+| Key, exact match, Essentia `bgate` profile, the backup (same clips) | 61% (0.68) |
+| Key, exact match, Essentia `edma` profile (same clips) | 58% (0.65) |
+| Key, exact match, classical Krumhansl profile (same clips) | 49% (0.59) |
 
-Key detection by audio alone is the weak spot: published methods top out around the same level on this benchmark, so the database votes matter. A 90% exact-key target is not realistic for any current method; roughly 80% of the learned model's answers are at least mix-compatible with the true key (same, relative, or one step on the Camelot wheel).
+Key detection uses `edmm`, with `bgate` as backup if `edmm` fails. When `edmm` is unsure (about 1 clip in 5, where it is right only about a third of the time) its confidence is lowered, so the database votes can outvote it. Switching to `bgate` in that case did not help on GiantSteps. The benchmark scripts and reports are in `benchmark/` (`report_giantsteps.md`, `segments_report.md`).
+
+Key detection by audio alone is the weak spot, so the database votes matter. A 90% exact-key target is not realistic for any current method.
 
 ## Known limitations
 

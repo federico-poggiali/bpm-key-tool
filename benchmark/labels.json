@@ -1,0 +1,1069 @@
+{
+ "10102359:1": {
+  "release": "Arca",
+  "release_id": 10102359,
+  "position": "1",
+  "artist": "Arca",
+  "title": "Piel",
+  "duration": 248,
+  "db_keys": {
+   "acousticbrainz": "7B"
+  },
+  "label": null,
+  "weak_label": "7B",
+  "audio": "audio/10102359_1.webm",
+  "audio_kind": "youtube"
+ },
+ "10102359:2": {
+  "release": "Arca",
+  "release_id": 10102359,
+  "position": "2",
+  "artist": "Arca",
+  "title": "Anoche",
+  "duration": 217,
+  "db_keys": {
+   "acousticbrainz": "3A"
+  },
+  "label": null,
+  "weak_label": "3A",
+  "audio": "audio/10102359_2.webm",
+  "audio_kind": "youtube"
+ },
+ "10102359:3": {
+  "release": "Arca",
+  "release_id": 10102359,
+  "position": "3",
+  "artist": "Arca",
+  "title": "Saunter",
+  "duration": 129,
+  "db_keys": {
+   "acousticbrainz": "11A"
+  },
+  "label": null,
+  "weak_label": "11A",
+  "audio": "audio/10102359_3.webm",
+  "audio_kind": "youtube"
+ },
+ "10102359:4": {
+  "release": "Arca",
+  "release_id": 10102359,
+  "position": "4",
+  "artist": "Arca",
+  "title": "Urchin",
+  "duration": 240,
+  "db_keys": {
+   "acousticbrainz": "4A"
+  },
+  "label": null,
+  "weak_label": "4A",
+  "audio": "audio/10102359_4.webm",
+  "audio_kind": "youtube"
+ },
+ "10102359:5": {
+  "release": "Arca",
+  "release_id": 10102359,
+  "position": "5",
+  "artist": "Arca",
+  "title": "Reverie",
+  "duration": 193,
+  "db_keys": {
+   "acousticbrainz": "8A"
+  },
+  "label": null,
+  "weak_label": "8A",
+  "audio": "audio/10102359_5.m4a",
+  "audio_kind": "itunes"
+ },
+ "10102359:6": {
+  "release": "Arca",
+  "release_id": 10102359,
+  "position": "6",
+  "artist": "Arca",
+  "title": "Castration",
+  "duration": 201,
+  "db_keys": {
+   "acousticbrainz": "12A"
+  },
+  "label": null,
+  "weak_label": "12A",
+  "audio": "audio/10102359_6.webm",
+  "audio_kind": "youtube"
+ },
+ "10102359:7": {
+  "release": "Arca",
+  "release_id": 10102359,
+  "position": "7",
+  "artist": "Arca",
+  "title": "Sin Rumbo",
+  "duration": 216,
+  "db_keys": {
+   "acousticbrainz": "7A"
+  },
+  "label": null,
+  "weak_label": "7A",
+  "audio": "audio/10102359_7.webm",
+  "audio_kind": "youtube"
+ },
+ "10102359:8": {
+  "release": "Arca",
+  "release_id": 10102359,
+  "position": "8",
+  "artist": "Arca",
+  "title": "Coraje",
+  "duration": 272,
+  "db_keys": {
+   "acousticbrainz": "4A"
+  },
+  "label": null,
+  "weak_label": "4A",
+  "audio": "audio/10102359_8.webm",
+  "audio_kind": "youtube"
+ },
+ "10102359:9": {
+  "release": "Arca",
+  "release_id": 10102359,
+  "position": "9",
+  "artist": "Arca",
+  "title": "Whip",
+  "duration": 81,
+  "db_keys": {
+   "acousticbrainz": "6B"
+  },
+  "label": null,
+  "weak_label": "6B",
+  "audio": "audio/10102359_9.webm",
+  "audio_kind": "youtube"
+ },
+ "10102359:10": {
+  "release": "Arca",
+  "release_id": 10102359,
+  "position": "10",
+  "artist": "Arca",
+  "title": "Desaf\u00edo",
+  "duration": 233,
+  "db_keys": {
+   "acousticbrainz": "11B"
+  },
+  "label": null,
+  "weak_label": "11B",
+  "audio": "audio/10102359_10.m4a",
+  "audio_kind": "itunes"
+ },
+ "10102359:11": {
+  "release": "Arca",
+  "release_id": 10102359,
+  "position": "11",
+  "artist": "Arca",
+  "title": "Fugaces",
+  "duration": 187,
+  "db_keys": {
+   "acousticbrainz": "3A"
+  },
+  "label": null,
+  "weak_label": "3A",
+  "audio": "audio/10102359_11.webm",
+  "audio_kind": "youtube"
+ },
+ "10102359:12": {
+  "release": "Arca",
+  "release_id": 10102359,
+  "position": "12",
+  "artist": "Arca",
+  "title": "Miel",
+  "duration": 176,
+  "db_keys": {
+   "acousticbrainz": "4B"
+  },
+  "label": null,
+  "weak_label": "4B",
+  "audio": "audio/10102359_12.webm",
+  "audio_kind": "youtube"
+ },
+ "10102359:13": {
+  "release": "Arca",
+  "release_id": 10102359,
+  "position": "13",
+  "artist": "Arca",
+  "title": "Child",
+  "duration": 203,
+  "db_keys": {
+   "acousticbrainz": "4B"
+  },
+  "label": null,
+  "weak_label": "4B",
+  "audio": "audio/10102359_13.webm",
+  "audio_kind": "youtube"
+ },
+ "126085:A1": {
+  "release": "Charly",
+  "release_id": 126085,
+  "position": "A1",
+  "artist": "The Prodigy",
+  "title": "Charly (Alley Cat Mix)",
+  "duration": 327,
+  "db_keys": {
+   "acousticbrainz": "4B"
+  },
+  "label": null,
+  "weak_label": "4B",
+  "audio": "audio/126085_A1.m4a",
+  "audio_kind": "itunes"
+ },
+ "126085:A2": {
+  "release": "Charly",
+  "release_id": 126085,
+  "position": "A2",
+  "artist": "The Prodigy",
+  "title": "Pandemonium",
+  "duration": 265,
+  "db_keys": {
+   "acousticbrainz": "1A"
+  },
+  "label": null,
+  "weak_label": "1A",
+  "audio": "audio/126085_A2.m4a",
+  "audio_kind": "itunes"
+ },
+ "126085:AA1": {
+  "release": "Charly",
+  "release_id": 126085,
+  "position": "AA1",
+  "artist": "The Prodigy",
+  "title": "Your Love",
+  "duration": 360,
+  "db_keys": {},
+  "label": null,
+  "weak_label": null
+ },
+ "126085:AA2": {
+  "release": "Charly",
+  "release_id": 126085,
+  "position": "AA2",
+  "artist": "The Prodigy",
+  "title": "Charly (Original Mix)",
+  "duration": 236,
+  "db_keys": {
+   "acousticbrainz": "9A"
+  },
+  "label": null,
+  "weak_label": "9A",
+  "audio": "audio/126085_AA2.webm",
+  "audio_kind": "youtube"
+ },
+ "11524:A1": {
+  "release": "Out Of Space",
+  "release_id": 11524,
+  "position": "A1",
+  "artist": "The Prodigy",
+  "title": "Out Of Space (Original Mix)",
+  "duration": 307,
+  "db_keys": {
+   "acousticbrainz": "5A"
+  },
+  "label": null,
+  "weak_label": "5A",
+  "audio": "audio/11524_A1.webm",
+  "audio_kind": "youtube"
+ },
+ "11524:A2": {
+  "release": "Out Of Space",
+  "release_id": 11524,
+  "position": "A2",
+  "artist": "The Prodigy",
+  "title": "Out Of Space (Techno Underworld Remix)",
+  "duration": 288,
+  "db_keys": {
+   "acousticbrainz": "12A"
+  },
+  "label": null,
+  "weak_label": "12A",
+  "audio": "audio/11524_A2.webm",
+  "audio_kind": "youtube"
+ },
+ "11524:AA1": {
+  "release": "Out Of Space",
+  "release_id": 11524,
+  "position": "AA1",
+  "artist": "The Prodigy",
+  "title": "Ruff In The Jungle Bizness (Uplifting Vibes Remix)",
+  "duration": 260,
+  "db_keys": {
+   "acousticbrainz": "2A"
+  },
+  "label": null,
+  "weak_label": "2A",
+  "audio": "audio/11524_AA1.webm",
+  "audio_kind": "youtube"
+ },
+ "11524:AA2": {
+  "release": "Out Of Space",
+  "release_id": 11524,
+  "position": "AA2",
+  "artist": "The Prodigy",
+  "title": "Music Reach (1,2,3,4) (Live)",
+  "duration": 261,
+  "db_keys": {},
+  "label": null,
+  "weak_label": null
+ },
+ "667:1": {
+  "release": "Moby",
+  "release_id": 667,
+  "position": "1",
+  "artist": "Moby",
+  "title": "Drop A Beat",
+  "duration": 260,
+  "db_keys": {
+   "getsongbpm": "12A",
+   "acousticbrainz": "7B"
+  },
+  "label": null,
+  "weak_label": null
+ },
+ "667:2": {
+  "release": "Moby",
+  "release_id": 667,
+  "position": "2",
+  "artist": "Moby",
+  "title": "Everything",
+  "duration": 292,
+  "db_keys": {
+   "getsongbpm": "10A",
+   "acousticbrainz": "6B"
+  },
+  "label": null,
+  "weak_label": null
+ },
+ "667:3": {
+  "release": "Moby",
+  "release_id": 667,
+  "position": "3",
+  "artist": "Moby",
+  "title": "Yeah",
+  "duration": 348,
+  "db_keys": {
+   "getsongbpm": "12B",
+   "acousticbrainz": "8A"
+  },
+  "label": null,
+  "weak_label": null
+ },
+ "667:4": {
+  "release": "Moby",
+  "release_id": 667,
+  "position": "4",
+  "artist": "Moby",
+  "title": "Electricity",
+  "duration": 209,
+  "db_keys": {
+   "getsongbpm": "8B",
+   "acousticbrainz": "8A"
+  },
+  "label": null,
+  "weak_label": null
+ },
+ "667:5": {
+  "release": "Moby",
+  "release_id": 667,
+  "position": "5",
+  "artist": "Moby",
+  "title": "Next Is The E",
+  "duration": 282,
+  "db_keys": {
+   "getsongbpm": "9B",
+   "acousticbrainz": "8A"
+  },
+  "label": null,
+  "weak_label": null
+ },
+ "667:6": {
+  "release": "Moby",
+  "release_id": 667,
+  "position": "6",
+  "artist": "Moby",
+  "title": "Mercy",
+  "duration": 344,
+  "db_keys": {
+   "getsongbpm": "10A",
+   "acousticbrainz": "8A"
+  },
+  "label": null,
+  "weak_label": null
+ },
+ "667:7": {
+  "release": "Moby",
+  "release_id": 667,
+  "position": "7",
+  "artist": "Moby",
+  "title": "Go",
+  "duration": 217,
+  "db_keys": {
+   "getsongbpm": "10B"
+  },
+  "label": null,
+  "weak_label": "10B",
+  "audio": "audio/667_7.webm",
+  "audio_kind": "youtube"
+ },
+ "667:8": {
+  "release": "Moby",
+  "release_id": 667,
+  "position": "8",
+  "artist": "Moby",
+  "title": "Help Me To Believe",
+  "duration": 392,
+  "db_keys": {
+   "getsongbpm": "8B"
+  },
+  "label": null,
+  "weak_label": "8B",
+  "audio": "audio/667_8.webm",
+  "audio_kind": "youtube"
+ },
+ "667:9": {
+  "release": "Moby",
+  "release_id": 667,
+  "position": "9",
+  "artist": "Moby",
+  "title": "Have You Seen My Baby",
+  "duration": 249,
+  "db_keys": {
+   "getsongbpm": "3A",
+   "acousticbrainz": "6B"
+  },
+  "label": null,
+  "weak_label": null
+ },
+ "667:10": {
+  "release": "Moby",
+  "release_id": 667,
+  "position": "10",
+  "artist": "Moby",
+  "title": "Ah Ah",
+  "duration": 226,
+  "db_keys": {
+   "getsongbpm": "6A",
+   "acousticbrainz": "6B"
+  },
+  "label": null,
+  "weak_label": null
+ },
+ "667:11": {
+  "release": "Moby",
+  "release_id": 667,
+  "position": "11",
+  "artist": "Moby",
+  "title": "Slight Return",
+  "duration": 269,
+  "db_keys": {
+   "getsongbpm": "9B",
+   "acousticbrainz": "12A"
+  },
+  "label": null,
+  "weak_label": null
+ },
+ "667:12": {
+  "release": "Moby",
+  "release_id": 667,
+  "position": "12",
+  "artist": "Moby",
+  "title": "Stream",
+  "duration": 189,
+  "db_keys": {
+   "getsongbpm": "9A",
+   "acousticbrainz": "8A"
+  },
+  "label": null,
+  "weak_label": null
+ },
+ "147688:A1": {
+  "release": "Dream 2 Science",
+  "release_id": 147688,
+  "position": "A1",
+  "artist": "Dream 2 Science",
+  "title": "My Love Turns To Liquid",
+  "duration": null,
+  "db_keys": {
+   "getsongbpm": "2B"
+  },
+  "label": null,
+  "weak_label": "2B",
+  "audio": "audio/147688_A1.webm",
+  "audio_kind": "youtube"
+ },
+ "147688:A2": {
+  "release": "Dream 2 Science",
+  "release_id": 147688,
+  "position": "A2",
+  "artist": "Dream 2 Science",
+  "title": "Breathe Deep",
+  "duration": null,
+  "db_keys": {
+   "getsongbpm": "10A",
+   "acousticbrainz": "2B"
+  },
+  "label": null,
+  "weak_label": null
+ },
+ "147688:A3": {
+  "release": "Dream 2 Science",
+  "release_id": 147688,
+  "position": "A3",
+  "artist": "Dream 2 Science",
+  "title": "Mystery Of Love",
+  "duration": null,
+  "db_keys": {
+   "getsongbpm": "10B",
+   "acousticbrainz": "7A"
+  },
+  "label": null,
+  "weak_label": null
+ },
+ "147688:B1": {
+  "release": "Dream 2 Science",
+  "release_id": 147688,
+  "position": "B1",
+  "artist": "Dream 2 Science",
+  "title": "How Do I Love Thee",
+  "duration": null,
+  "db_keys": {
+   "getsongbpm": "8B",
+   "acousticbrainz": "6B"
+  },
+  "label": null,
+  "weak_label": null
+ },
+ "147688:B2": {
+  "release": "Dream 2 Science",
+  "release_id": 147688,
+  "position": "B2",
+  "artist": "Dream 2 Science",
+  "title": "Liquid",
+  "duration": null,
+  "db_keys": {
+   "getsongbpm": "2B",
+   "acousticbrainz": "3A"
+  },
+  "label": null,
+  "weak_label": null
+ },
+ "147688:B3": {
+  "release": "Dream 2 Science",
+  "release_id": 147688,
+  "position": "B3",
+  "artist": "Dream 2 Science",
+  "title": "Dream 2 Science",
+  "duration": null,
+  "db_keys": {
+   "getsongbpm": "2B",
+   "acousticbrainz": "3B"
+  },
+  "label": null,
+  "weak_label": null
+ },
+ "576:A1": {
+  "release": "I'm Your Brother",
+  "release_id": 576,
+  "position": "A1",
+  "artist": "Round One",
+  "title": "I'm Your Brother (Club Version)",
+  "duration": 436,
+  "db_keys": {},
+  "label": null,
+  "weak_label": null
+ },
+ "576:A2": {
+  "release": "I'm Your Brother",
+  "release_id": 576,
+  "position": "A2",
+  "artist": "Round One",
+  "title": "I'm Your Brother (Edit)",
+  "duration": 299,
+  "db_keys": {},
+  "label": null,
+  "weak_label": null
+ },
+ "576:B": {
+  "release": "I'm Your Brother",
+  "release_id": 576,
+  "position": "B",
+  "artist": "Round One",
+  "title": "I'm Your Brother (Chicago's Twisted Mix)",
+  "duration": 427,
+  "db_keys": {
+   "acousticbrainz": "8A"
+  },
+  "label": null,
+  "weak_label": "8A",
+  "audio": "audio/576_B.webm",
+  "audio_kind": "youtube"
+ },
+ "3395216:A1": {
+  "release": "New For U",
+  "release_id": 3395216,
+  "position": "A1",
+  "artist": "Andr\u00e9s",
+  "title": "New For U",
+  "duration": 342,
+  "db_keys": {
+   "acousticbrainz": "7A"
+  },
+  "label": null,
+  "weak_label": "7A",
+  "audio": "audio/3395216_A1.webm",
+  "audio_kind": "youtube"
+ },
+ "3395216:A2": {
+  "release": "New For U",
+  "release_id": 3395216,
+  "position": "A2",
+  "artist": "Andr\u00e9s",
+  "title": "Drama Around The Corner",
+  "duration": 276,
+  "db_keys": {
+   "acousticbrainz": "6A"
+  },
+  "label": null,
+  "weak_label": "6A",
+  "audio": "audio/3395216_A2.webm",
+  "audio_kind": "youtube"
+ },
+ "3395216:B": {
+  "release": "New For U",
+  "release_id": 3395216,
+  "position": "B",
+  "artist": "Andr\u00e9s",
+  "title": "Jazz Dance",
+  "duration": 444,
+  "db_keys": {
+   "acousticbrainz": "5A"
+  },
+  "label": null,
+  "weak_label": "5A",
+  "audio": "audio/3395216_B.webm",
+  "audio_kind": "youtube"
+ },
+ "1433650:A": {
+  "release": "\"Live\" Goes On",
+  "release_id": 1433650,
+  "position": "A",
+  "artist": "Sound Stream",
+  "title": "\"Live\" Goes On",
+  "duration": 521,
+  "db_keys": {
+   "acousticbrainz": "8A"
+  },
+  "label": null,
+  "weak_label": "8A",
+  "audio": "audio/1433650_A.webm",
+  "audio_kind": "youtube"
+ },
+ "1433650:B1": {
+  "release": "\"Live\" Goes On",
+  "release_id": 1433650,
+  "position": "B1",
+  "artist": "Sound Stream",
+  "title": "Rainmaker",
+  "duration": 315,
+  "db_keys": {
+   "acousticbrainz": "4A"
+  },
+  "label": null,
+  "weak_label": "4A",
+  "audio": "audio/1433650_B1.webm",
+  "audio_kind": "youtube"
+ },
+ "1433650:B2": {
+  "release": "\"Live\" Goes On",
+  "release_id": 1433650,
+  "position": "B2",
+  "artist": "Sound Stream",
+  "title": "Dance With Me",
+  "duration": 453,
+  "db_keys": {
+   "acousticbrainz": "4B"
+  },
+  "label": null,
+  "weak_label": "4B",
+  "audio": "audio/1433650_B2.webm",
+  "audio_kind": "youtube"
+ },
+ "2680201:A1": {
+  "release": "Space Is Only Noise",
+  "release_id": 2680201,
+  "position": "A1",
+  "artist": "Nicolas Jaar",
+  "title": "\u00catre",
+  "duration": null,
+  "db_keys": {
+   "getsongbpm": "5A",
+   "acousticbrainz": "5A"
+  },
+  "label": "5A",
+  "audio": "audio/2680201_A1.webm",
+  "audio_kind": "youtube",
+  "weak_label": null
+ },
+ "2680201:A2": {
+  "release": "Space Is Only Noise",
+  "release_id": 2680201,
+  "position": "A2",
+  "artist": "Nicolas Jaar",
+  "title": "Colomb",
+  "duration": null,
+  "db_keys": {
+   "getsongbpm": "5A",
+   "acousticbrainz": "5A"
+  },
+  "label": "5A",
+  "audio": "audio/2680201_A2.webm",
+  "audio_kind": "youtube",
+  "weak_label": null
+ },
+ "2680201:A3": {
+  "release": "Space Is Only Noise",
+  "release_id": 2680201,
+  "position": "A3",
+  "artist": "Nicolas Jaar",
+  "title": "Sunflower",
+  "duration": null,
+  "db_keys": {
+   "getsongbpm": "4A",
+   "acousticbrainz": "5A"
+  },
+  "label": null,
+  "weak_label": null
+ },
+ "2680201:A4": {
+  "release": "Space Is Only Noise",
+  "release_id": 2680201,
+  "position": "A4",
+  "artist": "Nicolas Jaar",
+  "title": "Too Many Kids Finding Rain In The Dust",
+  "duration": null,
+  "db_keys": {
+   "getsongbpm": "9A",
+   "acousticbrainz": "7A"
+  },
+  "label": null,
+  "weak_label": null
+ },
+ "2680201:A5": {
+  "release": "Space Is Only Noise",
+  "release_id": 2680201,
+  "position": "A5",
+  "artist": "Nicolas Jaar",
+  "title": "Keep Me There",
+  "duration": null,
+  "db_keys": {
+   "getsongbpm": "10B",
+   "acousticbrainz": "6B"
+  },
+  "label": null,
+  "weak_label": null
+ },
+ "2680201:A6": {
+  "release": "Space Is Only Noise",
+  "release_id": 2680201,
+  "position": "A6",
+  "artist": "Nicolas Jaar",
+  "title": "I Got A",
+  "duration": null,
+  "db_keys": {
+   "acousticbrainz": "4A"
+  },
+  "label": null,
+  "weak_label": "4A",
+  "audio": "audio/2680201_A6.webm",
+  "audio_kind": "youtube"
+ },
+ "2680201:B1": {
+  "release": "Space Is Only Noise",
+  "release_id": 2680201,
+  "position": "B1",
+  "artist": "Nicolas Jaar",
+  "title": "Problems With The Sun",
+  "duration": null,
+  "db_keys": {
+   "acousticbrainz": "1A"
+  },
+  "label": null,
+  "weak_label": "1A",
+  "audio": "audio/2680201_B1.webm",
+  "audio_kind": "youtube"
+ },
+ "2680201:B2": {
+  "release": "Space Is Only Noise",
+  "release_id": 2680201,
+  "position": "B2",
+  "artist": "Nicolas Jaar",
+  "title": "Space Is Only Noise If You Can See",
+  "duration": null,
+  "db_keys": {
+   "getsongbpm": "9B",
+   "acousticbrainz": "8A"
+  },
+  "label": null,
+  "weak_label": null
+ },
+ "2680201:B3": {
+  "release": "Space Is Only Noise",
+  "release_id": 2680201,
+  "position": "B3",
+  "artist": "Nicolas Jaar",
+  "title": "Almost Fell",
+  "duration": null,
+  "db_keys": {
+   "getsongbpm": "5A",
+   "acousticbrainz": "5A"
+  },
+  "label": "5A",
+  "audio": "audio/2680201_B3.webm",
+  "audio_kind": "youtube",
+  "weak_label": null
+ },
+ "2680201:B4": {
+  "release": "Space Is Only Noise",
+  "release_id": 2680201,
+  "position": "B4",
+  "artist": "Nicolas Jaar",
+  "title": "Balance Her In Between Your Eyes",
+  "duration": null,
+  "db_keys": {
+   "getsongbpm": "9A",
+   "acousticbrainz": "9A"
+  },
+  "label": "9A",
+  "audio": "audio/2680201_B4.webm",
+  "audio_kind": "youtube",
+  "weak_label": null
+ },
+ "2680201:B5": {
+  "release": "Space Is Only Noise",
+  "release_id": 2680201,
+  "position": "B5",
+  "artist": "Nicolas Jaar",
+  "title": "Specters Of The Future",
+  "duration": null,
+  "db_keys": {
+   "getsongbpm": "6A",
+   "acousticbrainz": "7A"
+  },
+  "label": null,
+  "weak_label": null
+ },
+ "2680201:B6": {
+  "release": "Space Is Only Noise",
+  "release_id": 2680201,
+  "position": "B6",
+  "artist": "Nicolas Jaar",
+  "title": "Trace",
+  "duration": null,
+  "db_keys": {
+   "getsongbpm": "2B",
+   "acousticbrainz": "8A"
+  },
+  "label": null,
+  "weak_label": null
+ },
+ "2680201:B7": {
+  "release": "Space Is Only Noise",
+  "release_id": 2680201,
+  "position": "B7",
+  "artist": "Nicolas Jaar",
+  "title": "Variations",
+  "duration": null,
+  "db_keys": {
+   "getsongbpm": "3B",
+   "acousticbrainz": "3A"
+  },
+  "label": null,
+  "weak_label": null
+ },
+ "2680201:B8": {
+  "release": "Space Is Only Noise",
+  "release_id": 2680201,
+  "position": "B8",
+  "artist": "Nicolas Jaar",
+  "title": "^tre",
+  "duration": null,
+  "db_keys": {
+   "getsongbpm": "4B",
+   "acousticbrainz": "5A"
+  },
+  "label": null,
+  "weak_label": null
+ },
+ "30693364:A1": {
+  "release": "The Prophecies",
+  "release_id": 30693364,
+  "position": "A1",
+  "artist": "Peru",
+  "title": "666 (The Beast)",
+  "duration": null,
+  "db_keys": {
+   "acousticbrainz": "6A"
+  },
+  "label": null,
+  "weak_label": "6A",
+  "audio": "audio/30693364_A1.m4a",
+  "audio_kind": "soundcloud"
+ },
+ "30693364:A2": {
+  "release": "The Prophecies",
+  "release_id": 30693364,
+  "position": "A2",
+  "artist": "Peru",
+  "title": "Guru",
+  "duration": null,
+  "db_keys": {
+   "acousticbrainz": "3A"
+  },
+  "label": null,
+  "weak_label": "3A",
+  "audio": "audio/30693364_A2.m4a",
+  "audio_kind": "soundcloud"
+ },
+ "30693364:B1": {
+  "release": "The Prophecies",
+  "release_id": 30693364,
+  "position": "B1",
+  "artist": "Peru",
+  "title": "Nostradamus",
+  "duration": null,
+  "db_keys": {
+   "acousticbrainz": "8A"
+  },
+  "label": null,
+  "weak_label": "8A",
+  "audio": "audio/30693364_B1.m4a",
+  "audio_kind": "soundcloud"
+ },
+ "30693364:B2": {
+  "release": "The Prophecies",
+  "release_id": 30693364,
+  "position": "B2",
+  "artist": "Peru",
+  "title": "Not Consequent",
+  "duration": null,
+  "db_keys": {
+   "acousticbrainz": "5A"
+  },
+  "label": null,
+  "weak_label": "5A",
+  "audio": "audio/30693364_B2.m4a",
+  "audio_kind": "soundcloud"
+ },
+ "30839085:A": {
+  "release": "Nope / Abbadia",
+  "release_id": 30839085,
+  "position": "A",
+  "artist": "Hiss Is Bliss",
+  "title": "Nope",
+  "duration": null,
+  "db_keys": {},
+  "label": null,
+  "weak_label": null
+ },
+ "30839085:B": {
+  "release": "Nope / Abbadia",
+  "release_id": 30839085,
+  "position": "B",
+  "artist": "Hiss Is Bliss",
+  "title": "Abbadia",
+  "duration": null,
+  "db_keys": {},
+  "label": null,
+  "weak_label": null
+ },
+ "30563278:A": {
+  "release": "808 The Bassqueen",
+  "release_id": 30563278,
+  "position": "A",
+  "artist": "Ricardo Villalobos",
+  "title": "808 The Bassqueen (Queen Of Bass Mix)",
+  "duration": 731,
+  "db_keys": {
+   "acousticbrainz": "1B"
+  },
+  "label": null,
+  "weak_label": "1B",
+  "audio": "audio/30563278_A.webm",
+  "audio_kind": "youtube"
+ },
+ "30563278:B1": {
+  "release": "808 The Bassqueen",
+  "release_id": 30563278,
+  "position": "B1",
+  "artist": "Ricardo Villalobos",
+  "title": "808 The Bassqueen (Extended Loop)",
+  "duration": 592,
+  "db_keys": {
+   "acousticbrainz": "10A"
+  },
+  "label": null,
+  "weak_label": "10A",
+  "audio": "audio/30563278_B1.webm",
+  "audio_kind": "youtube"
+ },
+ "30563278:B2": {
+  "release": "808 The Bassqueen",
+  "release_id": 30563278,
+  "position": "B2",
+  "artist": "Ricardo Villalobos",
+  "title": "808 The Bassqueen (Dubstar'z Shorthack)",
+  "duration": 305,
+  "db_keys": {
+   "acousticbrainz": "1B"
+  },
+  "label": null,
+  "weak_label": "1B",
+  "audio": "audio/30563278_B2.webm",
+  "audio_kind": "youtube"
+ },
+ "2173444:A1": {
+  "release": "Residual EP",
+  "release_id": 2173444,
+  "position": "A1",
+  "artist": "Boo Williams",
+  "title": "Mortal Trance",
+  "duration": null,
+  "db_keys": {
+   "acousticbrainz": "3B"
+  },
+  "label": null,
+  "weak_label": "3B",
+  "audio": "audio/2173444_A1.webm",
+  "audio_kind": "youtube"
+ },
+ "2173444:A2": {
+  "release": "Residual EP",
+  "release_id": 2173444,
+  "position": "A2",
+  "artist": "Mandrake",
+  "title": "Eternal Mind",
+  "duration": null,
+  "db_keys": {},
+  "label": null
+ },
+ "2173444:B1": {
+  "release": "Residual EP",
+  "release_id": 2173444,
+  "position": "B1",
+  "artist": "Boo Williams",
+  "title": "Day And Night",
+  "duration": null,
+  "db_keys": {},
+  "label": null
+ },
+ "2173444:B2": {
+  "release": "Residual EP",
+  "release_id": 2173444,
+  "position": "B2",
+  "artist": "Boo Williams",
+  "title": "Teckno Drome",
+  "duration": null,
+  "db_keys": {},
+  "label": null
+ }
+}

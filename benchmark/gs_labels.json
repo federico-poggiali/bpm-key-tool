@@ -1,0 +1,4230 @@
+{
+ "1004923.LOFI": {
+  "artist": "",
+  "title": "1004923.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1004923.LOFI.mp3"
+ },
+ "1007941.LOFI": {
+  "artist": "",
+  "title": "1007941.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1007941.LOFI.mp3"
+ },
+ "10089.LOFI": {
+  "artist": "",
+  "title": "10089.LOFI",
+  "label": "10B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/10089.LOFI.mp3"
+ },
+ "1009960.LOFI": {
+  "artist": "",
+  "title": "1009960.LOFI",
+  "label": "2A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1009960.LOFI.mp3"
+ },
+ "101069.LOFI": {
+  "artist": "",
+  "title": "101069.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/101069.LOFI.mp3"
+ },
+ "1017921.LOFI": {
+  "artist": "",
+  "title": "1017921.LOFI",
+  "label": "1B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1017921.LOFI.mp3"
+ },
+ "1026478.LOFI": {
+  "artist": "",
+  "title": "1026478.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1026478.LOFI.mp3"
+ },
+ "1033148.LOFI": {
+  "artist": "",
+  "title": "1033148.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1033148.LOFI.mp3"
+ },
+ "1034795.LOFI": {
+  "artist": "",
+  "title": "1034795.LOFI",
+  "label": "10A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1034795.LOFI.mp3"
+ },
+ "1037507.LOFI": {
+  "artist": "",
+  "title": "1037507.LOFI",
+  "label": "9B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1037507.LOFI.mp3"
+ },
+ "1041574.LOFI": {
+  "artist": "",
+  "title": "1041574.LOFI",
+  "label": "4B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1041574.LOFI.mp3"
+ },
+ "1043194.LOFI": {
+  "artist": "",
+  "title": "1043194.LOFI",
+  "label": "12A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1043194.LOFI.mp3"
+ },
+ "1052744.LOFI": {
+  "artist": "",
+  "title": "1052744.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1052744.LOFI.mp3"
+ },
+ "1056896.LOFI": {
+  "artist": "",
+  "title": "1056896.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1056896.LOFI.mp3"
+ },
+ "1074548.LOFI": {
+  "artist": "",
+  "title": "1074548.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1074548.LOFI.mp3"
+ },
+ "1075123.LOFI": {
+  "artist": "",
+  "title": "1075123.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1075123.LOFI.mp3"
+ },
+ "1092676.LOFI": {
+  "artist": "",
+  "title": "1092676.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1092676.LOFI.mp3"
+ },
+ "1103512.LOFI": {
+  "artist": "",
+  "title": "1103512.LOFI",
+  "label": "3A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1103512.LOFI.mp3"
+ },
+ "1105632.LOFI": {
+  "artist": "",
+  "title": "1105632.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1105632.LOFI.mp3"
+ },
+ "1140027.LOFI": {
+  "artist": "",
+  "title": "1140027.LOFI",
+  "label": "12A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1140027.LOFI.mp3"
+ },
+ "1149778.LOFI": {
+  "artist": "",
+  "title": "1149778.LOFI",
+  "label": "11A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1149778.LOFI.mp3"
+ },
+ "1161234.LOFI": {
+  "artist": "",
+  "title": "1161234.LOFI",
+  "label": "8B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1161234.LOFI.mp3"
+ },
+ "1161249.LOFI": {
+  "artist": "",
+  "title": "1161249.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1161249.LOFI.mp3"
+ },
+ "1164898.LOFI": {
+  "artist": "",
+  "title": "1164898.LOFI",
+  "label": "8B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1164898.LOFI.mp3"
+ },
+ "1178656.LOFI": {
+  "artist": "",
+  "title": "1178656.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1178656.LOFI.mp3"
+ },
+ "1193612.LOFI": {
+  "artist": "",
+  "title": "1193612.LOFI",
+  "label": "11A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1193612.LOFI.mp3"
+ },
+ "1194720.LOFI": {
+  "artist": "",
+  "title": "1194720.LOFI",
+  "label": "7A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1194720.LOFI.mp3"
+ },
+ "1198688.LOFI": {
+  "artist": "",
+  "title": "1198688.LOFI",
+  "label": "7A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1198688.LOFI.mp3"
+ },
+ "1206025.LOFI": {
+  "artist": "",
+  "title": "1206025.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1206025.LOFI.mp3"
+ },
+ "1209745.LOFI": {
+  "artist": "",
+  "title": "1209745.LOFI",
+  "label": "6B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1209745.LOFI.mp3"
+ },
+ "1224698.LOFI": {
+  "artist": "",
+  "title": "1224698.LOFI",
+  "label": "9B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1224698.LOFI.mp3"
+ },
+ "1234668.LOFI": {
+  "artist": "",
+  "title": "1234668.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1234668.LOFI.mp3"
+ },
+ "1234669.LOFI": {
+  "artist": "",
+  "title": "1234669.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1234669.LOFI.mp3"
+ },
+ "1234670.LOFI": {
+  "artist": "",
+  "title": "1234670.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1234670.LOFI.mp3"
+ },
+ "1234748.LOFI": {
+  "artist": "",
+  "title": "1234748.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1234748.LOFI.mp3"
+ },
+ "1234749.LOFI": {
+  "artist": "",
+  "title": "1234749.LOFI",
+  "label": "6B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1234749.LOFI.mp3"
+ },
+ "1234750.LOFI": {
+  "artist": "",
+  "title": "1234750.LOFI",
+  "label": "7A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1234750.LOFI.mp3"
+ },
+ "1234751.LOFI": {
+  "artist": "",
+  "title": "1234751.LOFI",
+  "label": "6B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1234751.LOFI.mp3"
+ },
+ "1234752.LOFI": {
+  "artist": "",
+  "title": "1234752.LOFI",
+  "label": "10A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1234752.LOFI.mp3"
+ },
+ "1257593.LOFI": {
+  "artist": "",
+  "title": "1257593.LOFI",
+  "label": "10A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1257593.LOFI.mp3"
+ },
+ "1298595.LOFI": {
+  "artist": "",
+  "title": "1298595.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1298595.LOFI.mp3"
+ },
+ "1316308.LOFI": {
+  "artist": "",
+  "title": "1316308.LOFI",
+  "label": "9B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1316308.LOFI.mp3"
+ },
+ "1353830.LOFI": {
+  "artist": "",
+  "title": "1353830.LOFI",
+  "label": "7A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1353830.LOFI.mp3"
+ },
+ "1356281.LOFI": {
+  "artist": "",
+  "title": "1356281.LOFI",
+  "label": "5B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1356281.LOFI.mp3"
+ },
+ "1389887.LOFI": {
+  "artist": "",
+  "title": "1389887.LOFI",
+  "label": "1A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1389887.LOFI.mp3"
+ },
+ "1406309.LOFI": {
+  "artist": "",
+  "title": "1406309.LOFI",
+  "label": "10A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1406309.LOFI.mp3"
+ },
+ "1415239.LOFI": {
+  "artist": "",
+  "title": "1415239.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1415239.LOFI.mp3"
+ },
+ "1442809.LOFI": {
+  "artist": "",
+  "title": "1442809.LOFI",
+  "label": "12A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1442809.LOFI.mp3"
+ },
+ "1468437.LOFI": {
+  "artist": "",
+  "title": "1468437.LOFI",
+  "label": "10A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1468437.LOFI.mp3"
+ },
+ "1474122.LOFI": {
+  "artist": "",
+  "title": "1474122.LOFI",
+  "label": "4B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1474122.LOFI.mp3"
+ },
+ "1486770.LOFI": {
+  "artist": "",
+  "title": "1486770.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1486770.LOFI.mp3"
+ },
+ "1494159.LOFI": {
+  "artist": "",
+  "title": "1494159.LOFI",
+  "label": "2A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1494159.LOFI.mp3"
+ },
+ "1549964.LOFI": {
+  "artist": "",
+  "title": "1549964.LOFI",
+  "label": "12A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1549964.LOFI.mp3"
+ },
+ "1568217.LOFI": {
+  "artist": "",
+  "title": "1568217.LOFI",
+  "label": "7B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1568217.LOFI.mp3"
+ },
+ "1574723.LOFI": {
+  "artist": "",
+  "title": "1574723.LOFI",
+  "label": "7A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1574723.LOFI.mp3"
+ },
+ "1575015.LOFI": {
+  "artist": "",
+  "title": "1575015.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1575015.LOFI.mp3"
+ },
+ "1611446.LOFI": {
+  "artist": "",
+  "title": "1611446.LOFI",
+  "label": "1A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1611446.LOFI.mp3"
+ },
+ "1614715.LOFI": {
+  "artist": "",
+  "title": "1614715.LOFI",
+  "label": "11A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1614715.LOFI.mp3"
+ },
+ "1626779.LOFI": {
+  "artist": "",
+  "title": "1626779.LOFI",
+  "label": "3A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1626779.LOFI.mp3"
+ },
+ "1650933.LOFI": {
+  "artist": "",
+  "title": "1650933.LOFI",
+  "label": "2A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1650933.LOFI.mp3"
+ },
+ "1650934.LOFI": {
+  "artist": "",
+  "title": "1650934.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1650934.LOFI.mp3"
+ },
+ "1652412.LOFI": {
+  "artist": "",
+  "title": "1652412.LOFI",
+  "label": "7A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1652412.LOFI.mp3"
+ },
+ "1669939.LOFI": {
+  "artist": "",
+  "title": "1669939.LOFI",
+  "label": "12B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1669939.LOFI.mp3"
+ },
+ "1673811.LOFI": {
+  "artist": "",
+  "title": "1673811.LOFI",
+  "label": "10B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1673811.LOFI.mp3"
+ },
+ "1678455.LOFI": {
+  "artist": "",
+  "title": "1678455.LOFI",
+  "label": "11A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1678455.LOFI.mp3"
+ },
+ "1681074.LOFI": {
+  "artist": "",
+  "title": "1681074.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1681074.LOFI.mp3"
+ },
+ "1681077.LOFI": {
+  "artist": "",
+  "title": "1681077.LOFI",
+  "label": "1A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1681077.LOFI.mp3"
+ },
+ "1681085.LOFI": {
+  "artist": "",
+  "title": "1681085.LOFI",
+  "label": "7B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1681085.LOFI.mp3"
+ },
+ "1682815.LOFI": {
+  "artist": "",
+  "title": "1682815.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1682815.LOFI.mp3"
+ },
+ "1690921.LOFI": {
+  "artist": "",
+  "title": "1690921.LOFI",
+  "label": "7A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1690921.LOFI.mp3"
+ },
+ "1695408.LOFI": {
+  "artist": "",
+  "title": "1695408.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1695408.LOFI.mp3"
+ },
+ "1706844.LOFI": {
+  "artist": "",
+  "title": "1706844.LOFI",
+  "label": "5B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1706844.LOFI.mp3"
+ },
+ "1725800.LOFI": {
+  "artist": "",
+  "title": "1725800.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1725800.LOFI.mp3"
+ },
+ "1757071.LOFI": {
+  "artist": "",
+  "title": "1757071.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1757071.LOFI.mp3"
+ },
+ "1763782.LOFI": {
+  "artist": "",
+  "title": "1763782.LOFI",
+  "label": "11A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1763782.LOFI.mp3"
+ },
+ "1771576.LOFI": {
+  "artist": "",
+  "title": "1771576.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1771576.LOFI.mp3"
+ },
+ "1771577.LOFI": {
+  "artist": "",
+  "title": "1771577.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1771577.LOFI.mp3"
+ },
+ "1776378.LOFI": {
+  "artist": "",
+  "title": "1776378.LOFI",
+  "label": "1A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1776378.LOFI.mp3"
+ },
+ "1781139.LOFI": {
+  "artist": "",
+  "title": "1781139.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1781139.LOFI.mp3"
+ },
+ "1785226.LOFI": {
+  "artist": "",
+  "title": "1785226.LOFI",
+  "label": "11A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1785226.LOFI.mp3"
+ },
+ "1787061.LOFI": {
+  "artist": "",
+  "title": "1787061.LOFI",
+  "label": "11A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1787061.LOFI.mp3"
+ },
+ "1792026.LOFI": {
+  "artist": "",
+  "title": "1792026.LOFI",
+  "label": "7A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1792026.LOFI.mp3"
+ },
+ "1792100.LOFI": {
+  "artist": "",
+  "title": "1792100.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1792100.LOFI.mp3"
+ },
+ "1792506.LOFI": {
+  "artist": "",
+  "title": "1792506.LOFI",
+  "label": "7A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1792506.LOFI.mp3"
+ },
+ "1795653.LOFI": {
+  "artist": "",
+  "title": "1795653.LOFI",
+  "label": "2A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1795653.LOFI.mp3"
+ },
+ "1796518.LOFI": {
+  "artist": "",
+  "title": "1796518.LOFI",
+  "label": "12A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1796518.LOFI.mp3"
+ },
+ "1803909.LOFI": {
+  "artist": "",
+  "title": "1803909.LOFI",
+  "label": "10A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1803909.LOFI.mp3"
+ },
+ "1808022.LOFI": {
+  "artist": "",
+  "title": "1808022.LOFI",
+  "label": "3A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1808022.LOFI.mp3"
+ },
+ "1809174.LOFI": {
+  "artist": "",
+  "title": "1809174.LOFI",
+  "label": "11B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1809174.LOFI.mp3"
+ },
+ "1814469.LOFI": {
+  "artist": "",
+  "title": "1814469.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1814469.LOFI.mp3"
+ },
+ "1822087.LOFI": {
+  "artist": "",
+  "title": "1822087.LOFI",
+  "label": "10A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1822087.LOFI.mp3"
+ },
+ "1822502.LOFI": {
+  "artist": "",
+  "title": "1822502.LOFI",
+  "label": "7A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1822502.LOFI.mp3"
+ },
+ "1837440.LOFI": {
+  "artist": "",
+  "title": "1837440.LOFI",
+  "label": "10A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1837440.LOFI.mp3"
+ },
+ "1850984.LOFI": {
+  "artist": "",
+  "title": "1850984.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1850984.LOFI.mp3"
+ },
+ "1856889.LOFI": {
+  "artist": "",
+  "title": "1856889.LOFI",
+  "label": "11A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1856889.LOFI.mp3"
+ },
+ "1864037.LOFI": {
+  "artist": "",
+  "title": "1864037.LOFI",
+  "label": "12A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1864037.LOFI.mp3"
+ },
+ "1880732.LOFI": {
+  "artist": "",
+  "title": "1880732.LOFI",
+  "label": "2A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1880732.LOFI.mp3"
+ },
+ "1904501.LOFI": {
+  "artist": "",
+  "title": "1904501.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1904501.LOFI.mp3"
+ },
+ "190477.LOFI": {
+  "artist": "",
+  "title": "190477.LOFI",
+  "label": "7A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/190477.LOFI.mp3"
+ },
+ "191347.LOFI": {
+  "artist": "",
+  "title": "191347.LOFI",
+  "label": "2A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/191347.LOFI.mp3"
+ },
+ "1922470.LOFI": {
+  "artist": "",
+  "title": "1922470.LOFI",
+  "label": "2A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1922470.LOFI.mp3"
+ },
+ "1927655.LOFI": {
+  "artist": "",
+  "title": "1927655.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1927655.LOFI.mp3"
+ },
+ "1939732.LOFI": {
+  "artist": "",
+  "title": "1939732.LOFI",
+  "label": "2A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1939732.LOFI.mp3"
+ },
+ "1944125.LOFI": {
+  "artist": "",
+  "title": "1944125.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1944125.LOFI.mp3"
+ },
+ "1948785.LOFI": {
+  "artist": "",
+  "title": "1948785.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1948785.LOFI.mp3"
+ },
+ "1949099.LOFI": {
+  "artist": "",
+  "title": "1949099.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1949099.LOFI.mp3"
+ },
+ "1950170.LOFI": {
+  "artist": "",
+  "title": "1950170.LOFI",
+  "label": "3A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1950170.LOFI.mp3"
+ },
+ "1960032.LOFI": {
+  "artist": "",
+  "title": "1960032.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1960032.LOFI.mp3"
+ },
+ "1964905.LOFI": {
+  "artist": "",
+  "title": "1964905.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1964905.LOFI.mp3"
+ },
+ "1970992.LOFI": {
+  "artist": "",
+  "title": "1970992.LOFI",
+  "label": "1A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1970992.LOFI.mp3"
+ },
+ "1978917.LOFI": {
+  "artist": "",
+  "title": "1978917.LOFI",
+  "label": "7A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1978917.LOFI.mp3"
+ },
+ "1981501.LOFI": {
+  "artist": "",
+  "title": "1981501.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1981501.LOFI.mp3"
+ },
+ "1982269.LOFI": {
+  "artist": "",
+  "title": "1982269.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1982269.LOFI.mp3"
+ },
+ "1983975.LOFI": {
+  "artist": "",
+  "title": "1983975.LOFI",
+  "label": "11A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1983975.LOFI.mp3"
+ },
+ "1984204.LOFI": {
+  "artist": "",
+  "title": "1984204.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1984204.LOFI.mp3"
+ },
+ "1986370.LOFI": {
+  "artist": "",
+  "title": "1986370.LOFI",
+  "label": "2A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1986370.LOFI.mp3"
+ },
+ "1990297.LOFI": {
+  "artist": "",
+  "title": "1990297.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1990297.LOFI.mp3"
+ },
+ "1991458.LOFI": {
+  "artist": "",
+  "title": "1991458.LOFI",
+  "label": "10A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/1991458.LOFI.mp3"
+ },
+ "2006103.LOFI": {
+  "artist": "",
+  "title": "2006103.LOFI",
+  "label": "12A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2006103.LOFI.mp3"
+ },
+ "2007977.LOFI": {
+  "artist": "",
+  "title": "2007977.LOFI",
+  "label": "12A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2007977.LOFI.mp3"
+ },
+ "2014445.LOFI": {
+  "artist": "",
+  "title": "2014445.LOFI",
+  "label": "2A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2014445.LOFI.mp3"
+ },
+ "2018991.LOFI": {
+  "artist": "",
+  "title": "2018991.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2018991.LOFI.mp3"
+ },
+ "2024026.LOFI": {
+  "artist": "",
+  "title": "2024026.LOFI",
+  "label": "9B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2024026.LOFI.mp3"
+ },
+ "2025670.LOFI": {
+  "artist": "",
+  "title": "2025670.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2025670.LOFI.mp3"
+ },
+ "2026524.LOFI": {
+  "artist": "",
+  "title": "2026524.LOFI",
+  "label": "2A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2026524.LOFI.mp3"
+ },
+ "2029598.LOFI": {
+  "artist": "",
+  "title": "2029598.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2029598.LOFI.mp3"
+ },
+ "2031094.LOFI": {
+  "artist": "",
+  "title": "2031094.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2031094.LOFI.mp3"
+ },
+ "2031096.LOFI": {
+  "artist": "",
+  "title": "2031096.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2031096.LOFI.mp3"
+ },
+ "203493.LOFI": {
+  "artist": "",
+  "title": "203493.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/203493.LOFI.mp3"
+ },
+ "2046342.LOFI": {
+  "artist": "",
+  "title": "2046342.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2046342.LOFI.mp3"
+ },
+ "2047796.LOFI": {
+  "artist": "",
+  "title": "2047796.LOFI",
+  "label": "7A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2047796.LOFI.mp3"
+ },
+ "2048054.LOFI": {
+  "artist": "",
+  "title": "2048054.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2048054.LOFI.mp3"
+ },
+ "2048940.LOFI": {
+  "artist": "",
+  "title": "2048940.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2048940.LOFI.mp3"
+ },
+ "2049680.LOFI": {
+  "artist": "",
+  "title": "2049680.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2049680.LOFI.mp3"
+ },
+ "2051166.LOFI": {
+  "artist": "",
+  "title": "2051166.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2051166.LOFI.mp3"
+ },
+ "2052966.LOFI": {
+  "artist": "",
+  "title": "2052966.LOFI",
+  "label": "3A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2052966.LOFI.mp3"
+ },
+ "2053495.LOFI": {
+  "artist": "",
+  "title": "2053495.LOFI",
+  "label": "10A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2053495.LOFI.mp3"
+ },
+ "2054968.LOFI": {
+  "artist": "",
+  "title": "2054968.LOFI",
+  "label": "8B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2054968.LOFI.mp3"
+ },
+ "205597.LOFI": {
+  "artist": "",
+  "title": "205597.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/205597.LOFI.mp3"
+ },
+ "2059625.LOFI": {
+  "artist": "",
+  "title": "2059625.LOFI",
+  "label": "11A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2059625.LOFI.mp3"
+ },
+ "2069519.LOFI": {
+  "artist": "",
+  "title": "2069519.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2069519.LOFI.mp3"
+ },
+ "2070773.LOFI": {
+  "artist": "",
+  "title": "2070773.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2070773.LOFI.mp3"
+ },
+ "2075331.LOFI": {
+  "artist": "",
+  "title": "2075331.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2075331.LOFI.mp3"
+ },
+ "208158.LOFI": {
+  "artist": "",
+  "title": "208158.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/208158.LOFI.mp3"
+ },
+ "2081732.LOFI": {
+  "artist": "",
+  "title": "2081732.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2081732.LOFI.mp3"
+ },
+ "209206.LOFI": {
+  "artist": "",
+  "title": "209206.LOFI",
+  "label": "9B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/209206.LOFI.mp3"
+ },
+ "2434664.LOFI": {
+  "artist": "",
+  "title": "2434664.LOFI",
+  "label": "8B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2434664.LOFI.mp3"
+ },
+ "2435861.LOFI": {
+  "artist": "",
+  "title": "2435861.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2435861.LOFI.mp3"
+ },
+ "2436276.LOFI": {
+  "artist": "",
+  "title": "2436276.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2436276.LOFI.mp3"
+ },
+ "2436729.LOFI": {
+  "artist": "",
+  "title": "2436729.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2436729.LOFI.mp3"
+ },
+ "2438899.LOFI": {
+  "artist": "",
+  "title": "2438899.LOFI",
+  "label": "3A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2438899.LOFI.mp3"
+ },
+ "2440193.LOFI": {
+  "artist": "",
+  "title": "2440193.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2440193.LOFI.mp3"
+ },
+ "2447748.LOFI": {
+  "artist": "",
+  "title": "2447748.LOFI",
+  "label": "1A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2447748.LOFI.mp3"
+ },
+ "2448121.LOFI": {
+  "artist": "",
+  "title": "2448121.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2448121.LOFI.mp3"
+ },
+ "2666332.LOFI": {
+  "artist": "",
+  "title": "2666332.LOFI",
+  "label": "11B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2666332.LOFI.mp3"
+ },
+ "2666528.LOFI": {
+  "artist": "",
+  "title": "2666528.LOFI",
+  "label": "12A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2666528.LOFI.mp3"
+ },
+ "2667501.LOFI": {
+  "artist": "",
+  "title": "2667501.LOFI",
+  "label": "10A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2667501.LOFI.mp3"
+ },
+ "2673157.LOFI": {
+  "artist": "",
+  "title": "2673157.LOFI",
+  "label": "10A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2673157.LOFI.mp3"
+ },
+ "2673251.LOFI": {
+  "artist": "",
+  "title": "2673251.LOFI",
+  "label": "2A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2673251.LOFI.mp3"
+ },
+ "2673252.LOFI": {
+  "artist": "",
+  "title": "2673252.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2673252.LOFI.mp3"
+ },
+ "2673254.LOFI": {
+  "artist": "",
+  "title": "2673254.LOFI",
+  "label": "7A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2673254.LOFI.mp3"
+ },
+ "2676506.LOFI": {
+  "artist": "",
+  "title": "2676506.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2676506.LOFI.mp3"
+ },
+ "2680040.LOFI": {
+  "artist": "",
+  "title": "2680040.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2680040.LOFI.mp3"
+ },
+ "2725284.LOFI": {
+  "artist": "",
+  "title": "2725284.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2725284.LOFI.mp3"
+ },
+ "2725286.LOFI": {
+  "artist": "",
+  "title": "2725286.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2725286.LOFI.mp3"
+ },
+ "2725289.LOFI": {
+  "artist": "",
+  "title": "2725289.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2725289.LOFI.mp3"
+ },
+ "2725290.LOFI": {
+  "artist": "",
+  "title": "2725290.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2725290.LOFI.mp3"
+ },
+ "272788.LOFI": {
+  "artist": "",
+  "title": "272788.LOFI",
+  "label": "6B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/272788.LOFI.mp3"
+ },
+ "2741219.LOFI": {
+  "artist": "",
+  "title": "2741219.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2741219.LOFI.mp3"
+ },
+ "2760321.LOFI": {
+  "artist": "",
+  "title": "2760321.LOFI",
+  "label": "8B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2760321.LOFI.mp3"
+ },
+ "2996293.LOFI": {
+  "artist": "",
+  "title": "2996293.LOFI",
+  "label": "10B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/2996293.LOFI.mp3"
+ },
+ "3003894.LOFI": {
+  "artist": "",
+  "title": "3003894.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3003894.LOFI.mp3"
+ },
+ "3005030.LOFI": {
+  "artist": "",
+  "title": "3005030.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3005030.LOFI.mp3"
+ },
+ "3014118.LOFI": {
+  "artist": "",
+  "title": "3014118.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3014118.LOFI.mp3"
+ },
+ "3015217.LOFI": {
+  "artist": "",
+  "title": "3015217.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3015217.LOFI.mp3"
+ },
+ "3024384.LOFI": {
+  "artist": "",
+  "title": "3024384.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3024384.LOFI.mp3"
+ },
+ "3033991.LOFI": {
+  "artist": "",
+  "title": "3033991.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3033991.LOFI.mp3"
+ },
+ "305771.LOFI": {
+  "artist": "",
+  "title": "305771.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/305771.LOFI.mp3"
+ },
+ "3069201.LOFI": {
+  "artist": "",
+  "title": "3069201.LOFI",
+  "label": "8B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3069201.LOFI.mp3"
+ },
+ "3070298.LOFI": {
+  "artist": "",
+  "title": "3070298.LOFI",
+  "label": "7A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3070298.LOFI.mp3"
+ },
+ "3076768.LOFI": {
+  "artist": "",
+  "title": "3076768.LOFI",
+  "label": "11B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3076768.LOFI.mp3"
+ },
+ "3093661.LOFI": {
+  "artist": "",
+  "title": "3093661.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3093661.LOFI.mp3"
+ },
+ "3095708.LOFI": {
+  "artist": "",
+  "title": "3095708.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3095708.LOFI.mp3"
+ },
+ "3114501.LOFI": {
+  "artist": "",
+  "title": "3114501.LOFI",
+  "label": "3A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3114501.LOFI.mp3"
+ },
+ "3116329.LOFI": {
+  "artist": "",
+  "title": "3116329.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3116329.LOFI.mp3"
+ },
+ "3129757.LOFI": {
+  "artist": "",
+  "title": "3129757.LOFI",
+  "label": "12A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3129757.LOFI.mp3"
+ },
+ "3133794.LOFI": {
+  "artist": "",
+  "title": "3133794.LOFI",
+  "label": "1A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3133794.LOFI.mp3"
+ },
+ "3137686.LOFI": {
+  "artist": "",
+  "title": "3137686.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3137686.LOFI.mp3"
+ },
+ "3150078.LOFI": {
+  "artist": "",
+  "title": "3150078.LOFI",
+  "label": "10B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3150078.LOFI.mp3"
+ },
+ "3151513.LOFI": {
+  "artist": "",
+  "title": "3151513.LOFI",
+  "label": "7A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3151513.LOFI.mp3"
+ },
+ "3165770.LOFI": {
+  "artist": "",
+  "title": "3165770.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3165770.LOFI.mp3"
+ },
+ "3172588.LOFI": {
+  "artist": "",
+  "title": "3172588.LOFI",
+  "label": "10A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3172588.LOFI.mp3"
+ },
+ "3178147.LOFI": {
+  "artist": "",
+  "title": "3178147.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3178147.LOFI.mp3"
+ },
+ "3178155.LOFI": {
+  "artist": "",
+  "title": "3178155.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3178155.LOFI.mp3"
+ },
+ "3186615.LOFI": {
+  "artist": "",
+  "title": "3186615.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3186615.LOFI.mp3"
+ },
+ "3211603.LOFI": {
+  "artist": "",
+  "title": "3211603.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3211603.LOFI.mp3"
+ },
+ "3211733.LOFI": {
+  "artist": "",
+  "title": "3211733.LOFI",
+  "label": "7A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3211733.LOFI.mp3"
+ },
+ "3228297.LOFI": {
+  "artist": "",
+  "title": "3228297.LOFI",
+  "label": "10A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3228297.LOFI.mp3"
+ },
+ "3228649.LOFI": {
+  "artist": "",
+  "title": "3228649.LOFI",
+  "label": "1A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3228649.LOFI.mp3"
+ },
+ "3228698.LOFI": {
+  "artist": "",
+  "title": "3228698.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3228698.LOFI.mp3"
+ },
+ "3229038.LOFI": {
+  "artist": "",
+  "title": "3229038.LOFI",
+  "label": "5B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3229038.LOFI.mp3"
+ },
+ "3232851.LOFI": {
+  "artist": "",
+  "title": "3232851.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3232851.LOFI.mp3"
+ },
+ "3233653.LOFI": {
+  "artist": "",
+  "title": "3233653.LOFI",
+  "label": "7B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3233653.LOFI.mp3"
+ },
+ "3246151.LOFI": {
+  "artist": "",
+  "title": "3246151.LOFI",
+  "label": "3A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3246151.LOFI.mp3"
+ },
+ "3249708.LOFI": {
+  "artist": "",
+  "title": "3249708.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3249708.LOFI.mp3"
+ },
+ "3250632.LOFI": {
+  "artist": "",
+  "title": "3250632.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3250632.LOFI.mp3"
+ },
+ "3257231.LOFI": {
+  "artist": "",
+  "title": "3257231.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3257231.LOFI.mp3"
+ },
+ "3260121.LOFI": {
+  "artist": "",
+  "title": "3260121.LOFI",
+  "label": "1A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3260121.LOFI.mp3"
+ },
+ "3262951.LOFI": {
+  "artist": "",
+  "title": "3262951.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3262951.LOFI.mp3"
+ },
+ "3270413.LOFI": {
+  "artist": "",
+  "title": "3270413.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3270413.LOFI.mp3"
+ },
+ "3271514.LOFI": {
+  "artist": "",
+  "title": "3271514.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3271514.LOFI.mp3"
+ },
+ "3272873.LOFI": {
+  "artist": "",
+  "title": "3272873.LOFI",
+  "label": "10A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3272873.LOFI.mp3"
+ },
+ "3274260.LOFI": {
+  "artist": "",
+  "title": "3274260.LOFI",
+  "label": "7A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3274260.LOFI.mp3"
+ },
+ "3275147.LOFI": {
+  "artist": "",
+  "title": "3275147.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3275147.LOFI.mp3"
+ },
+ "3284384.LOFI": {
+  "artist": "",
+  "title": "3284384.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3284384.LOFI.mp3"
+ },
+ "3288636.LOFI": {
+  "artist": "",
+  "title": "3288636.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3288636.LOFI.mp3"
+ },
+ "3298344.LOFI": {
+  "artist": "",
+  "title": "3298344.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3298344.LOFI.mp3"
+ },
+ "3302298.LOFI": {
+  "artist": "",
+  "title": "3302298.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3302298.LOFI.mp3"
+ },
+ "3302451.LOFI": {
+  "artist": "",
+  "title": "3302451.LOFI",
+  "label": "10A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3302451.LOFI.mp3"
+ },
+ "3313070.LOFI": {
+  "artist": "",
+  "title": "3313070.LOFI",
+  "label": "10A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3313070.LOFI.mp3"
+ },
+ "3313145.LOFI": {
+  "artist": "",
+  "title": "3313145.LOFI",
+  "label": "12B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3313145.LOFI.mp3"
+ },
+ "3317232.LOFI": {
+  "artist": "",
+  "title": "3317232.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3317232.LOFI.mp3"
+ },
+ "3317417.LOFI": {
+  "artist": "",
+  "title": "3317417.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3317417.LOFI.mp3"
+ },
+ "3319290.LOFI": {
+  "artist": "",
+  "title": "3319290.LOFI",
+  "label": "7B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3319290.LOFI.mp3"
+ },
+ "3319589.LOFI": {
+  "artist": "",
+  "title": "3319589.LOFI",
+  "label": "11A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3319589.LOFI.mp3"
+ },
+ "3324024.LOFI": {
+  "artist": "",
+  "title": "3324024.LOFI",
+  "label": "1A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3324024.LOFI.mp3"
+ },
+ "3334441.LOFI": {
+  "artist": "",
+  "title": "3334441.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3334441.LOFI.mp3"
+ },
+ "3334471.LOFI": {
+  "artist": "",
+  "title": "3334471.LOFI",
+  "label": "11A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3334471.LOFI.mp3"
+ },
+ "3338963.LOFI": {
+  "artist": "",
+  "title": "3338963.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3338963.LOFI.mp3"
+ },
+ "3339291.LOFI": {
+  "artist": "",
+  "title": "3339291.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3339291.LOFI.mp3"
+ },
+ "3344291.LOFI": {
+  "artist": "",
+  "title": "3344291.LOFI",
+  "label": "7A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3344291.LOFI.mp3"
+ },
+ "3345479.LOFI": {
+  "artist": "",
+  "title": "3345479.LOFI",
+  "label": "7A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3345479.LOFI.mp3"
+ },
+ "3349486.LOFI": {
+  "artist": "",
+  "title": "3349486.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3349486.LOFI.mp3"
+ },
+ "3349967.LOFI": {
+  "artist": "",
+  "title": "3349967.LOFI",
+  "label": "2A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3349967.LOFI.mp3"
+ },
+ "3354212.LOFI": {
+  "artist": "",
+  "title": "3354212.LOFI",
+  "label": "2B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3354212.LOFI.mp3"
+ },
+ "3356535.LOFI": {
+  "artist": "",
+  "title": "3356535.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3356535.LOFI.mp3"
+ },
+ "3361547.LOFI": {
+  "artist": "",
+  "title": "3361547.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3361547.LOFI.mp3"
+ },
+ "3361909.LOFI": {
+  "artist": "",
+  "title": "3361909.LOFI",
+  "label": "5B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3361909.LOFI.mp3"
+ },
+ "3363196.LOFI": {
+  "artist": "",
+  "title": "3363196.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3363196.LOFI.mp3"
+ },
+ "3363602.LOFI": {
+  "artist": "",
+  "title": "3363602.LOFI",
+  "label": "10A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3363602.LOFI.mp3"
+ },
+ "3364661.LOFI": {
+  "artist": "",
+  "title": "3364661.LOFI",
+  "label": "11B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3364661.LOFI.mp3"
+ },
+ "3367551.LOFI": {
+  "artist": "",
+  "title": "3367551.LOFI",
+  "label": "12A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3367551.LOFI.mp3"
+ },
+ "3367553.LOFI": {
+  "artist": "",
+  "title": "3367553.LOFI",
+  "label": "12A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3367553.LOFI.mp3"
+ },
+ "3367555.LOFI": {
+  "artist": "",
+  "title": "3367555.LOFI",
+  "label": "2A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3367555.LOFI.mp3"
+ },
+ "3368117.LOFI": {
+  "artist": "",
+  "title": "3368117.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3368117.LOFI.mp3"
+ },
+ "3372108.LOFI": {
+  "artist": "",
+  "title": "3372108.LOFI",
+  "label": "2A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3372108.LOFI.mp3"
+ },
+ "3377323.LOFI": {
+  "artist": "",
+  "title": "3377323.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3377323.LOFI.mp3"
+ },
+ "3379400.LOFI": {
+  "artist": "",
+  "title": "3379400.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3379400.LOFI.mp3"
+ },
+ "3383171.LOFI": {
+  "artist": "",
+  "title": "3383171.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3383171.LOFI.mp3"
+ },
+ "3387619.LOFI": {
+  "artist": "",
+  "title": "3387619.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3387619.LOFI.mp3"
+ },
+ "3389317.LOFI": {
+  "artist": "",
+  "title": "3389317.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3389317.LOFI.mp3"
+ },
+ "3390952.LOFI": {
+  "artist": "",
+  "title": "3390952.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3390952.LOFI.mp3"
+ },
+ "3395666.LOFI": {
+  "artist": "",
+  "title": "3395666.LOFI",
+  "label": "11A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3395666.LOFI.mp3"
+ },
+ "3397932.LOFI": {
+  "artist": "",
+  "title": "3397932.LOFI",
+  "label": "10A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3397932.LOFI.mp3"
+ },
+ "3400782.LOFI": {
+  "artist": "",
+  "title": "3400782.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3400782.LOFI.mp3"
+ },
+ "3402886.LOFI": {
+  "artist": "",
+  "title": "3402886.LOFI",
+  "label": "2B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3402886.LOFI.mp3"
+ },
+ "3402887.LOFI": {
+  "artist": "",
+  "title": "3402887.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3402887.LOFI.mp3"
+ },
+ "3402888.LOFI": {
+  "artist": "",
+  "title": "3402888.LOFI",
+  "label": "7A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3402888.LOFI.mp3"
+ },
+ "3409548.LOFI": {
+  "artist": "",
+  "title": "3409548.LOFI",
+  "label": "2A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3409548.LOFI.mp3"
+ },
+ "3415063.LOFI": {
+  "artist": "",
+  "title": "3415063.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3415063.LOFI.mp3"
+ },
+ "3415421.LOFI": {
+  "artist": "",
+  "title": "3415421.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3415421.LOFI.mp3"
+ },
+ "341832.LOFI": {
+  "artist": "",
+  "title": "341832.LOFI",
+  "label": "9B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/341832.LOFI.mp3"
+ },
+ "3424038.LOFI": {
+  "artist": "",
+  "title": "3424038.LOFI",
+  "label": "12A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3424038.LOFI.mp3"
+ },
+ "3426022.LOFI": {
+  "artist": "",
+  "title": "3426022.LOFI",
+  "label": "7A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3426022.LOFI.mp3"
+ },
+ "3426285.LOFI": {
+  "artist": "",
+  "title": "3426285.LOFI",
+  "label": "2A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3426285.LOFI.mp3"
+ },
+ "3428673.LOFI": {
+  "artist": "",
+  "title": "3428673.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3428673.LOFI.mp3"
+ },
+ "3432247.LOFI": {
+  "artist": "",
+  "title": "3432247.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3432247.LOFI.mp3"
+ },
+ "3434746.LOFI": {
+  "artist": "",
+  "title": "3434746.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3434746.LOFI.mp3"
+ },
+ "3443052.LOFI": {
+  "artist": "",
+  "title": "3443052.LOFI",
+  "label": "3A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3443052.LOFI.mp3"
+ },
+ "3450181.LOFI": {
+  "artist": "",
+  "title": "3450181.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3450181.LOFI.mp3"
+ },
+ "3467773.LOFI": {
+  "artist": "",
+  "title": "3467773.LOFI",
+  "label": "3A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3467773.LOFI.mp3"
+ },
+ "3478184.LOFI": {
+  "artist": "",
+  "title": "3478184.LOFI",
+  "label": "2A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3478184.LOFI.mp3"
+ },
+ "3479363.LOFI": {
+  "artist": "",
+  "title": "3479363.LOFI",
+  "label": "2A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3479363.LOFI.mp3"
+ },
+ "3480108.LOFI": {
+  "artist": "",
+  "title": "3480108.LOFI",
+  "label": "11A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3480108.LOFI.mp3"
+ },
+ "3482733.LOFI": {
+  "artist": "",
+  "title": "3482733.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3482733.LOFI.mp3"
+ },
+ "3516363.LOFI": {
+  "artist": "",
+  "title": "3516363.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3516363.LOFI.mp3"
+ },
+ "3517044.LOFI": {
+  "artist": "",
+  "title": "3517044.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3517044.LOFI.mp3"
+ },
+ "3518768.LOFI": {
+  "artist": "",
+  "title": "3518768.LOFI",
+  "label": "5B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3518768.LOFI.mp3"
+ },
+ "3518921.LOFI": {
+  "artist": "",
+  "title": "3518921.LOFI",
+  "label": "10A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3518921.LOFI.mp3"
+ },
+ "3519499.LOFI": {
+  "artist": "",
+  "title": "3519499.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3519499.LOFI.mp3"
+ },
+ "3523229.LOFI": {
+  "artist": "",
+  "title": "3523229.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3523229.LOFI.mp3"
+ },
+ "3524408.LOFI": {
+  "artist": "",
+  "title": "3524408.LOFI",
+  "label": "11A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3524408.LOFI.mp3"
+ },
+ "3526370.LOFI": {
+  "artist": "",
+  "title": "3526370.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3526370.LOFI.mp3"
+ },
+ "3533310.LOFI": {
+  "artist": "",
+  "title": "3533310.LOFI",
+  "label": "1B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3533310.LOFI.mp3"
+ },
+ "3533740.LOFI": {
+  "artist": "",
+  "title": "3533740.LOFI",
+  "label": "10A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3533740.LOFI.mp3"
+ },
+ "3533956.LOFI": {
+  "artist": "",
+  "title": "3533956.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3533956.LOFI.mp3"
+ },
+ "3535112.LOFI": {
+  "artist": "",
+  "title": "3535112.LOFI",
+  "label": "3A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3535112.LOFI.mp3"
+ },
+ "3542099.LOFI": {
+  "artist": "",
+  "title": "3542099.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3542099.LOFI.mp3"
+ },
+ "3545728.LOFI": {
+  "artist": "",
+  "title": "3545728.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3545728.LOFI.mp3"
+ },
+ "3561744.LOFI": {
+  "artist": "",
+  "title": "3561744.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3561744.LOFI.mp3"
+ },
+ "3568438.LOFI": {
+  "artist": "",
+  "title": "3568438.LOFI",
+  "label": "4B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3568438.LOFI.mp3"
+ },
+ "3568459.LOFI": {
+  "artist": "",
+  "title": "3568459.LOFI",
+  "label": "9B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3568459.LOFI.mp3"
+ },
+ "3568465.LOFI": {
+  "artist": "",
+  "title": "3568465.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3568465.LOFI.mp3"
+ },
+ "3571314.LOFI": {
+  "artist": "",
+  "title": "3571314.LOFI",
+  "label": "12A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3571314.LOFI.mp3"
+ },
+ "3572701.LOFI": {
+  "artist": "",
+  "title": "3572701.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3572701.LOFI.mp3"
+ },
+ "3572702.LOFI": {
+  "artist": "",
+  "title": "3572702.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3572702.LOFI.mp3"
+ },
+ "3574815.LOFI": {
+  "artist": "",
+  "title": "3574815.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3574815.LOFI.mp3"
+ },
+ "3589347.LOFI": {
+  "artist": "",
+  "title": "3589347.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3589347.LOFI.mp3"
+ },
+ "3590070.LOFI": {
+  "artist": "",
+  "title": "3590070.LOFI",
+  "label": "11A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3590070.LOFI.mp3"
+ },
+ "3596904.LOFI": {
+  "artist": "",
+  "title": "3596904.LOFI",
+  "label": "11B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3596904.LOFI.mp3"
+ },
+ "3602280.LOFI": {
+  "artist": "",
+  "title": "3602280.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3602280.LOFI.mp3"
+ },
+ "3602282.LOFI": {
+  "artist": "",
+  "title": "3602282.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3602282.LOFI.mp3"
+ },
+ "3625299.LOFI": {
+  "artist": "",
+  "title": "3625299.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3625299.LOFI.mp3"
+ },
+ "3625787.LOFI": {
+  "artist": "",
+  "title": "3625787.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3625787.LOFI.mp3"
+ },
+ "3625788.LOFI": {
+  "artist": "",
+  "title": "3625788.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3625788.LOFI.mp3"
+ },
+ "3628628.LOFI": {
+  "artist": "",
+  "title": "3628628.LOFI",
+  "label": "1B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3628628.LOFI.mp3"
+ },
+ "3629467.LOFI": {
+  "artist": "",
+  "title": "3629467.LOFI",
+  "label": "12A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3629467.LOFI.mp3"
+ },
+ "3629920.LOFI": {
+  "artist": "",
+  "title": "3629920.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3629920.LOFI.mp3"
+ },
+ "3633852.LOFI": {
+  "artist": "",
+  "title": "3633852.LOFI",
+  "label": "10A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3633852.LOFI.mp3"
+ },
+ "3638836.LOFI": {
+  "artist": "",
+  "title": "3638836.LOFI",
+  "label": "7B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3638836.LOFI.mp3"
+ },
+ "3641166.LOFI": {
+  "artist": "",
+  "title": "3641166.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3641166.LOFI.mp3"
+ },
+ "3642384.LOFI": {
+  "artist": "",
+  "title": "3642384.LOFI",
+  "label": "2A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3642384.LOFI.mp3"
+ },
+ "3642409.LOFI": {
+  "artist": "",
+  "title": "3642409.LOFI",
+  "label": "1A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3642409.LOFI.mp3"
+ },
+ "3648814.LOFI": {
+  "artist": "",
+  "title": "3648814.LOFI",
+  "label": "10A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3648814.LOFI.mp3"
+ },
+ "3661550.LOFI": {
+  "artist": "",
+  "title": "3661550.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3661550.LOFI.mp3"
+ },
+ "3667215.LOFI": {
+  "artist": "",
+  "title": "3667215.LOFI",
+  "label": "1A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3667215.LOFI.mp3"
+ },
+ "3667683.LOFI": {
+  "artist": "",
+  "title": "3667683.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3667683.LOFI.mp3"
+ },
+ "3668409.LOFI": {
+  "artist": "",
+  "title": "3668409.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3668409.LOFI.mp3"
+ },
+ "3681890.LOFI": {
+  "artist": "",
+  "title": "3681890.LOFI",
+  "label": "8B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3681890.LOFI.mp3"
+ },
+ "3686302.LOFI": {
+  "artist": "",
+  "title": "3686302.LOFI",
+  "label": "7A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3686302.LOFI.mp3"
+ },
+ "3687442.LOFI": {
+  "artist": "",
+  "title": "3687442.LOFI",
+  "label": "1A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3687442.LOFI.mp3"
+ },
+ "3695262.LOFI": {
+  "artist": "",
+  "title": "3695262.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3695262.LOFI.mp3"
+ },
+ "3696226.LOFI": {
+  "artist": "",
+  "title": "3696226.LOFI",
+  "label": "1A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3696226.LOFI.mp3"
+ },
+ "3701975.LOFI": {
+  "artist": "",
+  "title": "3701975.LOFI",
+  "label": "7B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3701975.LOFI.mp3"
+ },
+ "3703893.LOFI": {
+  "artist": "",
+  "title": "3703893.LOFI",
+  "label": "12B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3703893.LOFI.mp3"
+ },
+ "3706570.LOFI": {
+  "artist": "",
+  "title": "3706570.LOFI",
+  "label": "2A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3706570.LOFI.mp3"
+ },
+ "3713557.LOFI": {
+  "artist": "",
+  "title": "3713557.LOFI",
+  "label": "3A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3713557.LOFI.mp3"
+ },
+ "3725440.LOFI": {
+  "artist": "",
+  "title": "3725440.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3725440.LOFI.mp3"
+ },
+ "3740062.LOFI": {
+  "artist": "",
+  "title": "3740062.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3740062.LOFI.mp3"
+ },
+ "3753635.LOFI": {
+  "artist": "",
+  "title": "3753635.LOFI",
+  "label": "7B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3753635.LOFI.mp3"
+ },
+ "3757006.LOFI": {
+  "artist": "",
+  "title": "3757006.LOFI",
+  "label": "5B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3757006.LOFI.mp3"
+ },
+ "3759800.LOFI": {
+  "artist": "",
+  "title": "3759800.LOFI",
+  "label": "10A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3759800.LOFI.mp3"
+ },
+ "376240.LOFI": {
+  "artist": "",
+  "title": "376240.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/376240.LOFI.mp3"
+ },
+ "3767408.LOFI": {
+  "artist": "",
+  "title": "3767408.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3767408.LOFI.mp3"
+ },
+ "3772753.LOFI": {
+  "artist": "",
+  "title": "3772753.LOFI",
+  "label": "7A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3772753.LOFI.mp3"
+ },
+ "3773561.LOFI": {
+  "artist": "",
+  "title": "3773561.LOFI",
+  "label": "7A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3773561.LOFI.mp3"
+ },
+ "3776015.LOFI": {
+  "artist": "",
+  "title": "3776015.LOFI",
+  "label": "1A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3776015.LOFI.mp3"
+ },
+ "3789116.LOFI": {
+  "artist": "",
+  "title": "3789116.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3789116.LOFI.mp3"
+ },
+ "3789117.LOFI": {
+  "artist": "",
+  "title": "3789117.LOFI",
+  "label": "3A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3789117.LOFI.mp3"
+ },
+ "3792959.LOFI": {
+  "artist": "",
+  "title": "3792959.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3792959.LOFI.mp3"
+ },
+ "3794008.LOFI": {
+  "artist": "",
+  "title": "3794008.LOFI",
+  "label": "12A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3794008.LOFI.mp3"
+ },
+ "3813682.LOFI": {
+  "artist": "",
+  "title": "3813682.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3813682.LOFI.mp3"
+ },
+ "3822226.LOFI": {
+  "artist": "",
+  "title": "3822226.LOFI",
+  "label": "1A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3822226.LOFI.mp3"
+ },
+ "3826491.LOFI": {
+  "artist": "",
+  "title": "3826491.LOFI",
+  "label": "7A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3826491.LOFI.mp3"
+ },
+ "3829561.LOFI": {
+  "artist": "",
+  "title": "3829561.LOFI",
+  "label": "3A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3829561.LOFI.mp3"
+ },
+ "3833050.LOFI": {
+  "artist": "",
+  "title": "3833050.LOFI",
+  "label": "3B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3833050.LOFI.mp3"
+ },
+ "3836490.LOFI": {
+  "artist": "",
+  "title": "3836490.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3836490.LOFI.mp3"
+ },
+ "3841927.LOFI": {
+  "artist": "",
+  "title": "3841927.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3841927.LOFI.mp3"
+ },
+ "3858289.LOFI": {
+  "artist": "",
+  "title": "3858289.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3858289.LOFI.mp3"
+ },
+ "3858324.LOFI": {
+  "artist": "",
+  "title": "3858324.LOFI",
+  "label": "10A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3858324.LOFI.mp3"
+ },
+ "3858331.LOFI": {
+  "artist": "",
+  "title": "3858331.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3858331.LOFI.mp3"
+ },
+ "3873733.LOFI": {
+  "artist": "",
+  "title": "3873733.LOFI",
+  "label": "2A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3873733.LOFI.mp3"
+ },
+ "3892740.LOFI": {
+  "artist": "",
+  "title": "3892740.LOFI",
+  "label": "10B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3892740.LOFI.mp3"
+ },
+ "3914630.LOFI": {
+  "artist": "",
+  "title": "3914630.LOFI",
+  "label": "2B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3914630.LOFI.mp3"
+ },
+ "3930672.LOFI": {
+  "artist": "",
+  "title": "3930672.LOFI",
+  "label": "7A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3930672.LOFI.mp3"
+ },
+ "3935095.LOFI": {
+  "artist": "",
+  "title": "3935095.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3935095.LOFI.mp3"
+ },
+ "3938837.LOFI": {
+  "artist": "",
+  "title": "3938837.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3938837.LOFI.mp3"
+ },
+ "3939148.LOFI": {
+  "artist": "",
+  "title": "3939148.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3939148.LOFI.mp3"
+ },
+ "3949799.LOFI": {
+  "artist": "",
+  "title": "3949799.LOFI",
+  "label": "11B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3949799.LOFI.mp3"
+ },
+ "3954078.LOFI": {
+  "artist": "",
+  "title": "3954078.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3954078.LOFI.mp3"
+ },
+ "3954191.LOFI": {
+  "artist": "",
+  "title": "3954191.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3954191.LOFI.mp3"
+ },
+ "3958396.LOFI": {
+  "artist": "",
+  "title": "3958396.LOFI",
+  "label": "11B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3958396.LOFI.mp3"
+ },
+ "3958397.LOFI": {
+  "artist": "",
+  "title": "3958397.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3958397.LOFI.mp3"
+ },
+ "3958398.LOFI": {
+  "artist": "",
+  "title": "3958398.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3958398.LOFI.mp3"
+ },
+ "3958755.LOFI": {
+  "artist": "",
+  "title": "3958755.LOFI",
+  "label": "2A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3958755.LOFI.mp3"
+ },
+ "3958861.LOFI": {
+  "artist": "",
+  "title": "3958861.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3958861.LOFI.mp3"
+ },
+ "3963180.LOFI": {
+  "artist": "",
+  "title": "3963180.LOFI",
+  "label": "11A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3963180.LOFI.mp3"
+ },
+ "3967462.LOFI": {
+  "artist": "",
+  "title": "3967462.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3967462.LOFI.mp3"
+ },
+ "3969868.LOFI": {
+  "artist": "",
+  "title": "3969868.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3969868.LOFI.mp3"
+ },
+ "3971416.LOFI": {
+  "artist": "",
+  "title": "3971416.LOFI",
+  "label": "7A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3971416.LOFI.mp3"
+ },
+ "3979989.LOFI": {
+  "artist": "",
+  "title": "3979989.LOFI",
+  "label": "2A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3979989.LOFI.mp3"
+ },
+ "3980001.LOFI": {
+  "artist": "",
+  "title": "3980001.LOFI",
+  "label": "7A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3980001.LOFI.mp3"
+ },
+ "398124.LOFI": {
+  "artist": "",
+  "title": "398124.LOFI",
+  "label": "10B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/398124.LOFI.mp3"
+ },
+ "3986537.LOFI": {
+  "artist": "",
+  "title": "3986537.LOFI",
+  "label": "11A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3986537.LOFI.mp3"
+ },
+ "3992511.LOFI": {
+  "artist": "",
+  "title": "3992511.LOFI",
+  "label": "2A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3992511.LOFI.mp3"
+ },
+ "3995054.LOFI": {
+  "artist": "",
+  "title": "3995054.LOFI",
+  "label": "8B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3995054.LOFI.mp3"
+ },
+ "3997722.LOFI": {
+  "artist": "",
+  "title": "3997722.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/3997722.LOFI.mp3"
+ },
+ "4002242.LOFI": {
+  "artist": "",
+  "title": "4002242.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4002242.LOFI.mp3"
+ },
+ "400259.LOFI": {
+  "artist": "",
+  "title": "400259.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/400259.LOFI.mp3"
+ },
+ "4014747.LOFI": {
+  "artist": "",
+  "title": "4014747.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4014747.LOFI.mp3"
+ },
+ "4014749.LOFI": {
+  "artist": "",
+  "title": "4014749.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4014749.LOFI.mp3"
+ },
+ "4018247.LOFI": {
+  "artist": "",
+  "title": "4018247.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4018247.LOFI.mp3"
+ },
+ "4021075.LOFI": {
+  "artist": "",
+  "title": "4021075.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4021075.LOFI.mp3"
+ },
+ "4045225.LOFI": {
+  "artist": "",
+  "title": "4045225.LOFI",
+  "label": "12A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4045225.LOFI.mp3"
+ },
+ "4048367.LOFI": {
+  "artist": "",
+  "title": "4048367.LOFI",
+  "label": "10A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4048367.LOFI.mp3"
+ },
+ "4049579.LOFI": {
+  "artist": "",
+  "title": "4049579.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4049579.LOFI.mp3"
+ },
+ "4060751.LOFI": {
+  "artist": "",
+  "title": "4060751.LOFI",
+  "label": "2A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4060751.LOFI.mp3"
+ },
+ "4062807.LOFI": {
+  "artist": "",
+  "title": "4062807.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4062807.LOFI.mp3"
+ },
+ "4066359.LOFI": {
+  "artist": "",
+  "title": "4066359.LOFI",
+  "label": "5B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4066359.LOFI.mp3"
+ },
+ "4066435.LOFI": {
+  "artist": "",
+  "title": "4066435.LOFI",
+  "label": "3A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4066435.LOFI.mp3"
+ },
+ "4086909.LOFI": {
+  "artist": "",
+  "title": "4086909.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4086909.LOFI.mp3"
+ },
+ "4088665.LOFI": {
+  "artist": "",
+  "title": "4088665.LOFI",
+  "label": "7A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4088665.LOFI.mp3"
+ },
+ "4091478.LOFI": {
+  "artist": "",
+  "title": "4091478.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4091478.LOFI.mp3"
+ },
+ "4093657.LOFI": {
+  "artist": "",
+  "title": "4093657.LOFI",
+  "label": "12A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4093657.LOFI.mp3"
+ },
+ "4093908.LOFI": {
+  "artist": "",
+  "title": "4093908.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4093908.LOFI.mp3"
+ },
+ "4098993.LOFI": {
+  "artist": "",
+  "title": "4098993.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4098993.LOFI.mp3"
+ },
+ "4104235.LOFI": {
+  "artist": "",
+  "title": "4104235.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4104235.LOFI.mp3"
+ },
+ "4107957.LOFI": {
+  "artist": "",
+  "title": "4107957.LOFI",
+  "label": "12A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4107957.LOFI.mp3"
+ },
+ "4125044.LOFI": {
+  "artist": "",
+  "title": "4125044.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4125044.LOFI.mp3"
+ },
+ "4153238.LOFI": {
+  "artist": "",
+  "title": "4153238.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4153238.LOFI.mp3"
+ },
+ "4162405.LOFI": {
+  "artist": "",
+  "title": "4162405.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4162405.LOFI.mp3"
+ },
+ "4166222.LOFI": {
+  "artist": "",
+  "title": "4166222.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4166222.LOFI.mp3"
+ },
+ "4167325.LOFI": {
+  "artist": "",
+  "title": "4167325.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4167325.LOFI.mp3"
+ },
+ "4173942.LOFI": {
+  "artist": "",
+  "title": "4173942.LOFI",
+  "label": "8B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4173942.LOFI.mp3"
+ },
+ "4186982.LOFI": {
+  "artist": "",
+  "title": "4186982.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4186982.LOFI.mp3"
+ },
+ "4188100.LOFI": {
+  "artist": "",
+  "title": "4188100.LOFI",
+  "label": "3A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4188100.LOFI.mp3"
+ },
+ "4191993.LOFI": {
+  "artist": "",
+  "title": "4191993.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4191993.LOFI.mp3"
+ },
+ "4200490.LOFI": {
+  "artist": "",
+  "title": "4200490.LOFI",
+  "label": "11A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4200490.LOFI.mp3"
+ },
+ "4202763.LOFI": {
+  "artist": "",
+  "title": "4202763.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4202763.LOFI.mp3"
+ },
+ "4206954.LOFI": {
+  "artist": "",
+  "title": "4206954.LOFI",
+  "label": "7A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4206954.LOFI.mp3"
+ },
+ "4207145.LOFI": {
+  "artist": "",
+  "title": "4207145.LOFI",
+  "label": "2A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4207145.LOFI.mp3"
+ },
+ "423054.LOFI": {
+  "artist": "",
+  "title": "423054.LOFI",
+  "label": "7A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/423054.LOFI.mp3"
+ },
+ "4231980.LOFI": {
+  "artist": "",
+  "title": "4231980.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4231980.LOFI.mp3"
+ },
+ "4234612.LOFI": {
+  "artist": "",
+  "title": "4234612.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4234612.LOFI.mp3"
+ },
+ "4254573.LOFI": {
+  "artist": "",
+  "title": "4254573.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4254573.LOFI.mp3"
+ },
+ "4262569.LOFI": {
+  "artist": "",
+  "title": "4262569.LOFI",
+  "label": "2A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4262569.LOFI.mp3"
+ },
+ "4275052.LOFI": {
+  "artist": "",
+  "title": "4275052.LOFI",
+  "label": "10B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4275052.LOFI.mp3"
+ },
+ "4277742.LOFI": {
+  "artist": "",
+  "title": "4277742.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4277742.LOFI.mp3"
+ },
+ "4284574.LOFI": {
+  "artist": "",
+  "title": "4284574.LOFI",
+  "label": "9B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4284574.LOFI.mp3"
+ },
+ "4293025.LOFI": {
+  "artist": "",
+  "title": "4293025.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4293025.LOFI.mp3"
+ },
+ "4297635.LOFI": {
+  "artist": "",
+  "title": "4297635.LOFI",
+  "label": "10A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4297635.LOFI.mp3"
+ },
+ "4302974.LOFI": {
+  "artist": "",
+  "title": "4302974.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4302974.LOFI.mp3"
+ },
+ "4315749.LOFI": {
+  "artist": "",
+  "title": "4315749.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4315749.LOFI.mp3"
+ },
+ "4320199.LOFI": {
+  "artist": "",
+  "title": "4320199.LOFI",
+  "label": "2A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4320199.LOFI.mp3"
+ },
+ "4325645.LOFI": {
+  "artist": "",
+  "title": "4325645.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4325645.LOFI.mp3"
+ },
+ "4325646.LOFI": {
+  "artist": "",
+  "title": "4325646.LOFI",
+  "label": "11A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4325646.LOFI.mp3"
+ },
+ "4327665.LOFI": {
+  "artist": "",
+  "title": "4327665.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4327665.LOFI.mp3"
+ },
+ "4328155.LOFI": {
+  "artist": "",
+  "title": "4328155.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4328155.LOFI.mp3"
+ },
+ "4328388.LOFI": {
+  "artist": "",
+  "title": "4328388.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4328388.LOFI.mp3"
+ },
+ "435443.LOFI": {
+  "artist": "",
+  "title": "435443.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/435443.LOFI.mp3"
+ },
+ "4359736.LOFI": {
+  "artist": "",
+  "title": "4359736.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4359736.LOFI.mp3"
+ },
+ "4360488.LOFI": {
+  "artist": "",
+  "title": "4360488.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4360488.LOFI.mp3"
+ },
+ "4361260.LOFI": {
+  "artist": "",
+  "title": "4361260.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4361260.LOFI.mp3"
+ },
+ "4364668.LOFI": {
+  "artist": "",
+  "title": "4364668.LOFI",
+  "label": "1A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4364668.LOFI.mp3"
+ },
+ "4366506.LOFI": {
+  "artist": "",
+  "title": "4366506.LOFI",
+  "label": "2A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4366506.LOFI.mp3"
+ },
+ "4371042.LOFI": {
+  "artist": "",
+  "title": "4371042.LOFI",
+  "label": "7A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4371042.LOFI.mp3"
+ },
+ "4399289.LOFI": {
+  "artist": "",
+  "title": "4399289.LOFI",
+  "label": "8B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4399289.LOFI.mp3"
+ },
+ "4424988.LOFI": {
+  "artist": "",
+  "title": "4424988.LOFI",
+  "label": "1A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4424988.LOFI.mp3"
+ },
+ "4433083.LOFI": {
+  "artist": "",
+  "title": "4433083.LOFI",
+  "label": "3A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4433083.LOFI.mp3"
+ },
+ "4440292.LOFI": {
+  "artist": "",
+  "title": "4440292.LOFI",
+  "label": "1A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4440292.LOFI.mp3"
+ },
+ "4450726.LOFI": {
+  "artist": "",
+  "title": "4450726.LOFI",
+  "label": "12B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4450726.LOFI.mp3"
+ },
+ "4452003.LOFI": {
+  "artist": "",
+  "title": "4452003.LOFI",
+  "label": "11A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4452003.LOFI.mp3"
+ },
+ "4452122.LOFI": {
+  "artist": "",
+  "title": "4452122.LOFI",
+  "label": "3A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4452122.LOFI.mp3"
+ },
+ "4453556.LOFI": {
+  "artist": "",
+  "title": "4453556.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4453556.LOFI.mp3"
+ },
+ "4476610.LOFI": {
+  "artist": "",
+  "title": "4476610.LOFI",
+  "label": "2A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4476610.LOFI.mp3"
+ },
+ "4483817.LOFI": {
+  "artist": "",
+  "title": "4483817.LOFI",
+  "label": "1A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4483817.LOFI.mp3"
+ },
+ "4485436.LOFI": {
+  "artist": "",
+  "title": "4485436.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4485436.LOFI.mp3"
+ },
+ "4498388.LOFI": {
+  "artist": "",
+  "title": "4498388.LOFI",
+  "label": "7A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4498388.LOFI.mp3"
+ },
+ "4505122.LOFI": {
+  "artist": "",
+  "title": "4505122.LOFI",
+  "label": "5B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4505122.LOFI.mp3"
+ },
+ "4508323.LOFI": {
+  "artist": "",
+  "title": "4508323.LOFI",
+  "label": "10A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4508323.LOFI.mp3"
+ },
+ "4540971.LOFI": {
+  "artist": "",
+  "title": "4540971.LOFI",
+  "label": "3A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4540971.LOFI.mp3"
+ },
+ "4566667.LOFI": {
+  "artist": "",
+  "title": "4566667.LOFI",
+  "label": "11A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4566667.LOFI.mp3"
+ },
+ "4573655.LOFI": {
+  "artist": "",
+  "title": "4573655.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4573655.LOFI.mp3"
+ },
+ "4596347.LOFI": {
+  "artist": "",
+  "title": "4596347.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4596347.LOFI.mp3"
+ },
+ "4609349.LOFI": {
+  "artist": "",
+  "title": "4609349.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4609349.LOFI.mp3"
+ },
+ "4615188.LOFI": {
+  "artist": "",
+  "title": "4615188.LOFI",
+  "label": "1A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4615188.LOFI.mp3"
+ },
+ "4657878.LOFI": {
+  "artist": "",
+  "title": "4657878.LOFI",
+  "label": "11A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4657878.LOFI.mp3"
+ },
+ "4661735.LOFI": {
+  "artist": "",
+  "title": "4661735.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4661735.LOFI.mp3"
+ },
+ "4666231.LOFI": {
+  "artist": "",
+  "title": "4666231.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4666231.LOFI.mp3"
+ },
+ "4666417.LOFI": {
+  "artist": "",
+  "title": "4666417.LOFI",
+  "label": "11B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4666417.LOFI.mp3"
+ },
+ "4688833.LOFI": {
+  "artist": "",
+  "title": "4688833.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4688833.LOFI.mp3"
+ },
+ "4693198.LOFI": {
+  "artist": "",
+  "title": "4693198.LOFI",
+  "label": "12B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4693198.LOFI.mp3"
+ },
+ "4702235.LOFI": {
+  "artist": "",
+  "title": "4702235.LOFI",
+  "label": "10B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4702235.LOFI.mp3"
+ },
+ "4723905.LOFI": {
+  "artist": "",
+  "title": "4723905.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4723905.LOFI.mp3"
+ },
+ "472626.LOFI": {
+  "artist": "",
+  "title": "472626.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/472626.LOFI.mp3"
+ },
+ "4735775.LOFI": {
+  "artist": "",
+  "title": "4735775.LOFI",
+  "label": "2A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4735775.LOFI.mp3"
+ },
+ "4755348.LOFI": {
+  "artist": "",
+  "title": "4755348.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4755348.LOFI.mp3"
+ },
+ "4758620.LOFI": {
+  "artist": "",
+  "title": "4758620.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4758620.LOFI.mp3"
+ },
+ "4779657.LOFI": {
+  "artist": "",
+  "title": "4779657.LOFI",
+  "label": "6B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4779657.LOFI.mp3"
+ },
+ "4786362.LOFI": {
+  "artist": "",
+  "title": "4786362.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4786362.LOFI.mp3"
+ },
+ "4802314.LOFI": {
+  "artist": "",
+  "title": "4802314.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4802314.LOFI.mp3"
+ },
+ "4815758.LOFI": {
+  "artist": "",
+  "title": "4815758.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4815758.LOFI.mp3"
+ },
+ "4817706.LOFI": {
+  "artist": "",
+  "title": "4817706.LOFI",
+  "label": "12A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4817706.LOFI.mp3"
+ },
+ "4823611.LOFI": {
+  "artist": "",
+  "title": "4823611.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4823611.LOFI.mp3"
+ },
+ "4824580.LOFI": {
+  "artist": "",
+  "title": "4824580.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4824580.LOFI.mp3"
+ },
+ "4827420.LOFI": {
+  "artist": "",
+  "title": "4827420.LOFI",
+  "label": "11A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4827420.LOFI.mp3"
+ },
+ "4834156.LOFI": {
+  "artist": "",
+  "title": "4834156.LOFI",
+  "label": "7A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4834156.LOFI.mp3"
+ },
+ "4840289.LOFI": {
+  "artist": "",
+  "title": "4840289.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4840289.LOFI.mp3"
+ },
+ "4842349.LOFI": {
+  "artist": "",
+  "title": "4842349.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4842349.LOFI.mp3"
+ },
+ "4846004.LOFI": {
+  "artist": "",
+  "title": "4846004.LOFI",
+  "label": "10A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4846004.LOFI.mp3"
+ },
+ "4846007.LOFI": {
+  "artist": "",
+  "title": "4846007.LOFI",
+  "label": "1A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4846007.LOFI.mp3"
+ },
+ "4857650.LOFI": {
+  "artist": "",
+  "title": "4857650.LOFI",
+  "label": "3A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4857650.LOFI.mp3"
+ },
+ "4863806.LOFI": {
+  "artist": "",
+  "title": "4863806.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4863806.LOFI.mp3"
+ },
+ "4868146.LOFI": {
+  "artist": "",
+  "title": "4868146.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4868146.LOFI.mp3"
+ },
+ "4873286.LOFI": {
+  "artist": "",
+  "title": "4873286.LOFI",
+  "label": "2B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4873286.LOFI.mp3"
+ },
+ "4877006.LOFI": {
+  "artist": "",
+  "title": "4877006.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4877006.LOFI.mp3"
+ },
+ "4898445.LOFI": {
+  "artist": "",
+  "title": "4898445.LOFI",
+  "label": "1A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4898445.LOFI.mp3"
+ },
+ "4898455.LOFI": {
+  "artist": "",
+  "title": "4898455.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4898455.LOFI.mp3"
+ },
+ "4900482.LOFI": {
+  "artist": "",
+  "title": "4900482.LOFI",
+  "label": "11A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4900482.LOFI.mp3"
+ },
+ "4917941.LOFI": {
+  "artist": "",
+  "title": "4917941.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4917941.LOFI.mp3"
+ },
+ "4920936.LOFI": {
+  "artist": "",
+  "title": "4920936.LOFI",
+  "label": "12A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4920936.LOFI.mp3"
+ },
+ "4926785.LOFI": {
+  "artist": "",
+  "title": "4926785.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4926785.LOFI.mp3"
+ },
+ "4927548.LOFI": {
+  "artist": "",
+  "title": "4927548.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4927548.LOFI.mp3"
+ },
+ "4927724.LOFI": {
+  "artist": "",
+  "title": "4927724.LOFI",
+  "label": "4B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4927724.LOFI.mp3"
+ },
+ "4927725.LOFI": {
+  "artist": "",
+  "title": "4927725.LOFI",
+  "label": "2A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4927725.LOFI.mp3"
+ },
+ "4928111.LOFI": {
+  "artist": "",
+  "title": "4928111.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4928111.LOFI.mp3"
+ },
+ "4934196.LOFI": {
+  "artist": "",
+  "title": "4934196.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4934196.LOFI.mp3"
+ },
+ "4934251.LOFI": {
+  "artist": "",
+  "title": "4934251.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4934251.LOFI.mp3"
+ },
+ "4935536.LOFI": {
+  "artist": "",
+  "title": "4935536.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4935536.LOFI.mp3"
+ },
+ "4939812.LOFI": {
+  "artist": "",
+  "title": "4939812.LOFI",
+  "label": "3A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4939812.LOFI.mp3"
+ },
+ "4941208.LOFI": {
+  "artist": "",
+  "title": "4941208.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4941208.LOFI.mp3"
+ },
+ "4945105.LOFI": {
+  "artist": "",
+  "title": "4945105.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4945105.LOFI.mp3"
+ },
+ "4950604.LOFI": {
+  "artist": "",
+  "title": "4950604.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4950604.LOFI.mp3"
+ },
+ "4950614.LOFI": {
+  "artist": "",
+  "title": "4950614.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4950614.LOFI.mp3"
+ },
+ "4953926.LOFI": {
+  "artist": "",
+  "title": "4953926.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4953926.LOFI.mp3"
+ },
+ "4955428.LOFI": {
+  "artist": "",
+  "title": "4955428.LOFI",
+  "label": "3A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4955428.LOFI.mp3"
+ },
+ "4955940.LOFI": {
+  "artist": "",
+  "title": "4955940.LOFI",
+  "label": "1A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4955940.LOFI.mp3"
+ },
+ "4956417.LOFI": {
+  "artist": "",
+  "title": "4956417.LOFI",
+  "label": "2A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4956417.LOFI.mp3"
+ },
+ "4957129.LOFI": {
+  "artist": "",
+  "title": "4957129.LOFI",
+  "label": "7A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4957129.LOFI.mp3"
+ },
+ "495905.LOFI": {
+  "artist": "",
+  "title": "495905.LOFI",
+  "label": "3A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/495905.LOFI.mp3"
+ },
+ "4960012.LOFI": {
+  "artist": "",
+  "title": "4960012.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4960012.LOFI.mp3"
+ },
+ "4965571.LOFI": {
+  "artist": "",
+  "title": "4965571.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4965571.LOFI.mp3"
+ },
+ "4969568.LOFI": {
+  "artist": "",
+  "title": "4969568.LOFI",
+  "label": "10A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4969568.LOFI.mp3"
+ },
+ "4970082.LOFI": {
+  "artist": "",
+  "title": "4970082.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4970082.LOFI.mp3"
+ },
+ "4981539.LOFI": {
+  "artist": "",
+  "title": "4981539.LOFI",
+  "label": "11A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4981539.LOFI.mp3"
+ },
+ "4981541.LOFI": {
+  "artist": "",
+  "title": "4981541.LOFI",
+  "label": "3A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4981541.LOFI.mp3"
+ },
+ "4983645.LOFI": {
+  "artist": "",
+  "title": "4983645.LOFI",
+  "label": "7A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4983645.LOFI.mp3"
+ },
+ "4983728.LOFI": {
+  "artist": "",
+  "title": "4983728.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4983728.LOFI.mp3"
+ },
+ "4992190.LOFI": {
+  "artist": "",
+  "title": "4992190.LOFI",
+  "label": "12A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4992190.LOFI.mp3"
+ },
+ "4995394.LOFI": {
+  "artist": "",
+  "title": "4995394.LOFI",
+  "label": "11A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4995394.LOFI.mp3"
+ },
+ "4995597.LOFI": {
+  "artist": "",
+  "title": "4995597.LOFI",
+  "label": "8B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4995597.LOFI.mp3"
+ },
+ "4996031.LOFI": {
+  "artist": "",
+  "title": "4996031.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4996031.LOFI.mp3"
+ },
+ "4996389.LOFI": {
+  "artist": "",
+  "title": "4996389.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4996389.LOFI.mp3"
+ },
+ "4997194.LOFI": {
+  "artist": "",
+  "title": "4997194.LOFI",
+  "label": "1A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4997194.LOFI.mp3"
+ },
+ "4997222.LOFI": {
+  "artist": "",
+  "title": "4997222.LOFI",
+  "label": "12A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/4997222.LOFI.mp3"
+ },
+ "5005412.LOFI": {
+  "artist": "",
+  "title": "5005412.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/5005412.LOFI.mp3"
+ },
+ "5009084.LOFI": {
+  "artist": "",
+  "title": "5009084.LOFI",
+  "label": "3A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/5009084.LOFI.mp3"
+ },
+ "5013063.LOFI": {
+  "artist": "",
+  "title": "5013063.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/5013063.LOFI.mp3"
+ },
+ "5013910.LOFI": {
+  "artist": "",
+  "title": "5013910.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/5013910.LOFI.mp3"
+ },
+ "5015793.LOFI": {
+  "artist": "",
+  "title": "5015793.LOFI",
+  "label": "8B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/5015793.LOFI.mp3"
+ },
+ "5026646.LOFI": {
+  "artist": "",
+  "title": "5026646.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/5026646.LOFI.mp3"
+ },
+ "5030517.LOFI": {
+  "artist": "",
+  "title": "5030517.LOFI",
+  "label": "11A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/5030517.LOFI.mp3"
+ },
+ "5035524.LOFI": {
+  "artist": "",
+  "title": "5035524.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/5035524.LOFI.mp3"
+ },
+ "5036476.LOFI": {
+  "artist": "",
+  "title": "5036476.LOFI",
+  "label": "11A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/5036476.LOFI.mp3"
+ },
+ "5039015.LOFI": {
+  "artist": "",
+  "title": "5039015.LOFI",
+  "label": "12A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/5039015.LOFI.mp3"
+ },
+ "5039016.LOFI": {
+  "artist": "",
+  "title": "5039016.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/5039016.LOFI.mp3"
+ },
+ "5048249.LOFI": {
+  "artist": "",
+  "title": "5048249.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/5048249.LOFI.mp3"
+ },
+ "5048263.LOFI": {
+  "artist": "",
+  "title": "5048263.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/5048263.LOFI.mp3"
+ },
+ "5049808.LOFI": {
+  "artist": "",
+  "title": "5049808.LOFI",
+  "label": "1A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/5049808.LOFI.mp3"
+ },
+ "5070608.LOFI": {
+  "artist": "",
+  "title": "5070608.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/5070608.LOFI.mp3"
+ },
+ "5073839.LOFI": {
+  "artist": "",
+  "title": "5073839.LOFI",
+  "label": "1B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/5073839.LOFI.mp3"
+ },
+ "5078640.LOFI": {
+  "artist": "",
+  "title": "5078640.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/5078640.LOFI.mp3"
+ },
+ "5079918.LOFI": {
+  "artist": "",
+  "title": "5079918.LOFI",
+  "label": "1A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/5079918.LOFI.mp3"
+ },
+ "5081990.LOFI": {
+  "artist": "",
+  "title": "5081990.LOFI",
+  "label": "11A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/5081990.LOFI.mp3"
+ },
+ "5085261.LOFI": {
+  "artist": "",
+  "title": "5085261.LOFI",
+  "label": "11B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/5085261.LOFI.mp3"
+ },
+ "5103693.LOFI": {
+  "artist": "",
+  "title": "5103693.LOFI",
+  "label": "7B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/5103693.LOFI.mp3"
+ },
+ "511348.LOFI": {
+  "artist": "",
+  "title": "511348.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/511348.LOFI.mp3"
+ },
+ "5120298.LOFI": {
+  "artist": "",
+  "title": "5120298.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/5120298.LOFI.mp3"
+ },
+ "5159593.LOFI": {
+  "artist": "",
+  "title": "5159593.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/5159593.LOFI.mp3"
+ },
+ "5171396.LOFI": {
+  "artist": "",
+  "title": "5171396.LOFI",
+  "label": "4B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/5171396.LOFI.mp3"
+ },
+ "5263098.LOFI": {
+  "artist": "",
+  "title": "5263098.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/5263098.LOFI.mp3"
+ },
+ "5264038.LOFI": {
+  "artist": "",
+  "title": "5264038.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/5264038.LOFI.mp3"
+ },
+ "5276059.LOFI": {
+  "artist": "",
+  "title": "5276059.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/5276059.LOFI.mp3"
+ },
+ "5302340.LOFI": {
+  "artist": "",
+  "title": "5302340.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/5302340.LOFI.mp3"
+ },
+ "5304804.LOFI": {
+  "artist": "",
+  "title": "5304804.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/5304804.LOFI.mp3"
+ },
+ "5308082.LOFI": {
+  "artist": "",
+  "title": "5308082.LOFI",
+  "label": "12A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/5308082.LOFI.mp3"
+ },
+ "5362946.LOFI": {
+  "artist": "",
+  "title": "5362946.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/5362946.LOFI.mp3"
+ },
+ "5417860.LOFI": {
+  "artist": "",
+  "title": "5417860.LOFI",
+  "label": "1A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/5417860.LOFI.mp3"
+ },
+ "5431709.LOFI": {
+  "artist": "",
+  "title": "5431709.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/5431709.LOFI.mp3"
+ },
+ "5450838.LOFI": {
+  "artist": "",
+  "title": "5450838.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/5450838.LOFI.mp3"
+ },
+ "571009.LOFI": {
+  "artist": "",
+  "title": "571009.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/571009.LOFI.mp3"
+ },
+ "5740146.LOFI": {
+  "artist": "",
+  "title": "5740146.LOFI",
+  "label": "2A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/5740146.LOFI.mp3"
+ },
+ "582991.LOFI": {
+  "artist": "",
+  "title": "582991.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/582991.LOFI.mp3"
+ },
+ "611797.LOFI": {
+  "artist": "",
+  "title": "611797.LOFI",
+  "label": "11B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/611797.LOFI.mp3"
+ },
+ "61415.LOFI": {
+  "artist": "",
+  "title": "61415.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/61415.LOFI.mp3"
+ },
+ "631240.LOFI": {
+  "artist": "",
+  "title": "631240.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/631240.LOFI.mp3"
+ },
+ "631883.LOFI": {
+  "artist": "",
+  "title": "631883.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/631883.LOFI.mp3"
+ },
+ "634032.LOFI": {
+  "artist": "",
+  "title": "634032.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/634032.LOFI.mp3"
+ },
+ "667508.LOFI": {
+  "artist": "",
+  "title": "667508.LOFI",
+  "label": "7A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/667508.LOFI.mp3"
+ },
+ "671546.LOFI": {
+  "artist": "",
+  "title": "671546.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/671546.LOFI.mp3"
+ },
+ "677299.LOFI": {
+  "artist": "",
+  "title": "677299.LOFI",
+  "label": "2B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/677299.LOFI.mp3"
+ },
+ "678406.LOFI": {
+  "artist": "",
+  "title": "678406.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/678406.LOFI.mp3"
+ },
+ "682724.LOFI": {
+  "artist": "",
+  "title": "682724.LOFI",
+  "label": "8B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/682724.LOFI.mp3"
+ },
+ "74982.LOFI": {
+  "artist": "",
+  "title": "74982.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/74982.LOFI.mp3"
+ },
+ "774871.LOFI": {
+  "artist": "",
+  "title": "774871.LOFI",
+  "label": "1B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/774871.LOFI.mp3"
+ },
+ "774874.LOFI": {
+  "artist": "",
+  "title": "774874.LOFI",
+  "label": "10A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/774874.LOFI.mp3"
+ },
+ "774875.LOFI": {
+  "artist": "",
+  "title": "774875.LOFI",
+  "label": "11A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/774875.LOFI.mp3"
+ },
+ "781373.LOFI": {
+  "artist": "",
+  "title": "781373.LOFI",
+  "label": "12B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/781373.LOFI.mp3"
+ },
+ "781995.LOFI": {
+  "artist": "",
+  "title": "781995.LOFI",
+  "label": "8B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/781995.LOFI.mp3"
+ },
+ "796860.LOFI": {
+  "artist": "",
+  "title": "796860.LOFI",
+  "label": "1A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/796860.LOFI.mp3"
+ },
+ "814290.LOFI": {
+  "artist": "",
+  "title": "814290.LOFI",
+  "label": "12B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/814290.LOFI.mp3"
+ },
+ "814505.LOFI": {
+  "artist": "",
+  "title": "814505.LOFI",
+  "label": "11B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/814505.LOFI.mp3"
+ },
+ "822664.LOFI": {
+  "artist": "",
+  "title": "822664.LOFI",
+  "label": "3A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/822664.LOFI.mp3"
+ },
+ "835903.LOFI": {
+  "artist": "",
+  "title": "835903.LOFI",
+  "label": "10B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/835903.LOFI.mp3"
+ },
+ "839886.LOFI": {
+  "artist": "",
+  "title": "839886.LOFI",
+  "label": "7A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/839886.LOFI.mp3"
+ },
+ "846900.LOFI": {
+  "artist": "",
+  "title": "846900.LOFI",
+  "label": "12B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/846900.LOFI.mp3"
+ },
+ "847422.LOFI": {
+  "artist": "",
+  "title": "847422.LOFI",
+  "label": "8A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/847422.LOFI.mp3"
+ },
+ "853834.LOFI": {
+  "artist": "",
+  "title": "853834.LOFI",
+  "label": "12B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/853834.LOFI.mp3"
+ },
+ "873455.LOFI": {
+  "artist": "",
+  "title": "873455.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/873455.LOFI.mp3"
+ },
+ "877345.LOFI": {
+  "artist": "",
+  "title": "877345.LOFI",
+  "label": "5B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/877345.LOFI.mp3"
+ },
+ "883724.LOFI": {
+  "artist": "",
+  "title": "883724.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/883724.LOFI.mp3"
+ },
+ "890568.LOFI": {
+  "artist": "",
+  "title": "890568.LOFI",
+  "label": "9A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/890568.LOFI.mp3"
+ },
+ "891993.LOFI": {
+  "artist": "",
+  "title": "891993.LOFI",
+  "label": "10B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/891993.LOFI.mp3"
+ },
+ "896478.LOFI": {
+  "artist": "",
+  "title": "896478.LOFI",
+  "label": "10A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/896478.LOFI.mp3"
+ },
+ "903963.LOFI": {
+  "artist": "",
+  "title": "903963.LOFI",
+  "label": "7B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/903963.LOFI.mp3"
+ },
+ "907837.LOFI": {
+  "artist": "",
+  "title": "907837.LOFI",
+  "label": "6A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/907837.LOFI.mp3"
+ },
+ "923397.LOFI": {
+  "artist": "",
+  "title": "923397.LOFI",
+  "label": "3A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/923397.LOFI.mp3"
+ },
+ "945256.LOFI": {
+  "artist": "",
+  "title": "945256.LOFI",
+  "label": "2A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/945256.LOFI.mp3"
+ },
+ "973819.LOFI": {
+  "artist": "",
+  "title": "973819.LOFI",
+  "label": "4A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/973819.LOFI.mp3"
+ },
+ "975137.LOFI": {
+  "artist": "",
+  "title": "975137.LOFI",
+  "label": "5A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/975137.LOFI.mp3"
+ },
+ "975138.LOFI": {
+  "artist": "",
+  "title": "975138.LOFI",
+  "label": "7A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/975138.LOFI.mp3"
+ },
+ "981591.LOFI": {
+  "artist": "",
+  "title": "981591.LOFI",
+  "label": "3A",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/981591.LOFI.mp3"
+ },
+ "992081.LOFI": {
+  "artist": "",
+  "title": "992081.LOFI",
+  "label": "12B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/992081.LOFI.mp3"
+ },
+ "997308.LOFI": {
+  "artist": "",
+  "title": "997308.LOFI",
+  "label": "8B",
+  "weak_label": null,
+  "audio": "gs/giantsteps-key-dataset/audio/997308.LOFI.mp3"
+ }
+}

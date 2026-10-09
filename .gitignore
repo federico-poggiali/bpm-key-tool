@@ -3,3 +3,8 @@ __pycache__/
 *.pyc
 cache.sqlite
 .venv/
+benchmark/audio/
+benchmark/gs/
+benchmark/cache/
+benchmark/seg_cache/
+benchmark/*.log

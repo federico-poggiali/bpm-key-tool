@@ -4,9 +4,7 @@ import tempfile
 from pathlib import Path
 from typing import Optional
 
-import numpy as np
-
-from . import keymodel
+from . import keydetect
 from .camelot import key_index_to_camelot
 from .models import Measurement
 
@@ -58,7 +56,7 @@ def download_audio(url: str, dest: Path) -> Path:
 
 
 def analyze_file(path: Path | str) -> Measurement:
-    """BPM from the whole track; key from sparse excerpts plus an Essentia vote."""
+    """BPM and key (EDM profile, with a backup profile) from the whole track."""
     import essentia.standard as es
 
     audio = es.MonoLoader(filename=str(path), sampleRate=SAMPLE_RATE)()
@@ -70,24 +68,10 @@ def analyze_file(path: Path | str) -> Measurement:
     bpm, _, _, _, _ = es.RhythmExtractor2013(method="multifeature")(audio)
     bpm = clamp_bpm(float(bpm))
 
-    bkey, bscale, _ = es.KeyExtractor(profileType="bgate")(audio)
-    bgate_idx = _name_to_index(bkey, bscale)
-    try:
-        y = es.MonoLoader(filename=str(path), sampleRate=keymodel.SR)()
-        scores = keymodel.fuse(keymodel.log_probs(y), bgate_idx)
-    except ImportError:  # librosa/scipy missing: fall back to the Essentia vote alone
-        scores = np.full(24, -10.0)
-        scores[bgate_idx] = 0.0
-    best = int(np.argmax(scores))
-    name, mode = keymodel.index_to_key(best)
-    return Measurement("essentia", round(bpm, 1), key_index_to_camelot(best), f"{name} {mode}",
-                       round(float(np.exp(scores[best])), 2), [round(float(v), 3) for v in scores])
-
-
-def _name_to_index(key: str, scale: str) -> int:
-    pc = {"C": 0, "C#": 1, "Db": 1, "D": 2, "D#": 3, "Eb": 3, "E": 4, "F": 5, "F#": 6, "Gb": 6,
-          "G": 7, "G#": 8, "Ab": 8, "A": 9, "A#": 10, "Bb": 10, "B": 11}[key]
-    return pc + (12 if scale == "minor" else 0)
+    est = keydetect.detect(audio)
+    name, mode = keydetect.NAMES[est.index % 12], "minor" if est.index >= 12 else "major"
+    return Measurement("essentia", round(bpm, 1), key_index_to_camelot(est.index), f"{name} {mode}",
+                       round(est.confidence, 2), [round(float(v), 3) for v in est.scores])
 
 
 def analyze_url(url: str) -> Measurement:
