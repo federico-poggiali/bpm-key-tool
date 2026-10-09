@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from ..matching import score_candidate
 from ..models import AudioSource, Track
-from .base import MIN_SCORE, SourceFinder
+from .base import SourceFinder
 
 
 class SoundCloud(SourceFinder):
@@ -25,6 +25,6 @@ class SoundCloud(SourceFinder):
                 continue
             sc = score_candidate(track.artist, track.title, track.duration, e.get("title", ""),
                                  e.get("uploader") or "", e.get("duration"))
-            if sc >= MIN_SCORE:
+            if sc >= self.threshold:
                 out.append(AudioSource("soundcloud", e["url"], round(e["duration"]) if e.get("duration") else None, sc))
         return sorted(out, key=lambda s: -s.match_score)

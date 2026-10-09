@@ -53,3 +53,14 @@ def test_dynamic_threshold_for_discogs_videos():
     assert dynamic_threshold(["Rodney King (Da Falcon Mix)", "Live In The World"]) == pytest.approx(0.55, abs=0.08)
     assert dynamic_threshold(["Song (Original Mix)", "Song (Dub Mix)"]) == pytest.approx(0.95)
     assert dynamic_threshold(["Only Track"]) == pytest.approx(0.55)
+
+
+def test_finders_share_the_release_threshold():
+    from bpmkey.sources import finders_for
+    unrelated = {"tracklist": [{"title": "Rodney King"}, {"title": "Live In The World"}]}
+    remixes = {"tracklist": [{"title": "Song (Original Mix)"}, {"title": "Song (Dub Mix)"}]}
+    yt, _, sc, itunes = finders_for(unrelated)
+    assert yt.threshold == sc.threshold < 0.6
+    assert itunes.threshold == 0.75  # previews keep the strict bar
+    yt, _, sc, _ = finders_for(remixes)
+    assert yt.threshold == sc.threshold == pytest.approx(0.95)

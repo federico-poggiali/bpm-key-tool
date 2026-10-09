@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from ..matching import dynamic_threshold, score_candidate
 from ..models import AudioSource, Track
-from .base import MIN_SCORE, SourceFinder
+from .base import SourceFinder
 
 
 class YouTube(SourceFinder):
@@ -13,9 +13,9 @@ class YouTube(SourceFinder):
     def __init__(self, discogs_videos: list[dict] | None = None, search: bool = True,
                  track_titles: list[str] | None = None):
         self.videos = discogs_videos or []
-        # Videos are linked by the release itself, so the artist often differs ("L.P.C" vs
-        # "Lucky People Center") and the bar depends on how alike the release's titles are.
-        self.video_threshold = dynamic_threshold(track_titles or [])
+        # The bar depends on how alike the release's titles are; artist names often differ
+        # between Discogs and YouTube ("L.P.C" vs "Lucky People Center").
+        self.threshold = dynamic_threshold(track_titles or [])
         self.search = search
 
     def _from_discogs(self, track: Track) -> list[AudioSource]:
@@ -23,7 +23,7 @@ class YouTube(SourceFinder):
         for v in self.videos:
             sc = score_candidate(track.artist, track.title, track.duration,
                                  v.get("title", ""), "", v.get("duration"))
-            if sc >= self.video_threshold:
+            if sc >= self.threshold:
                 out.append(AudioSource("youtube", v["uri"], v.get("duration"), sc))
         # Follow the most similar linked video; keep others only if they are about as good
         best = max((s.match_score for s in out), default=0.0)
@@ -45,7 +45,7 @@ class YouTube(SourceFinder):
                 continue
             sc = score_candidate(track.artist, track.title, track.duration, e.get("title", ""),
                                  e.get("channel") or e.get("uploader") or "", e.get("duration"))
-            if sc >= MIN_SCORE:
+            if sc >= self.threshold:
                 out.append(AudioSource("youtube", e.get("url") or e.get("webpage_url"),
                                        e.get("duration"), sc))
         return out

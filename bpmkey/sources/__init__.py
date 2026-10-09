@@ -1,3 +1,4 @@
+from ..matching import dynamic_threshold
 from .bandcamp import Bandcamp
 from .itunes import ITunes
 from .soundcloud import SoundCloud
@@ -8,4 +9,6 @@ def finders_for(release: dict | None = None, discogs=None):
     """Full-length audio first (YouTube, Bandcamp, SoundCloud); 30 s iTunes preview last."""
     release = release or {}
     titles = [t["title"] for t in release.get("tracklist", []) if t.get("type_", "track") == "track"]
-    return [YouTube(release.get("videos"), track_titles=titles), Bandcamp(release, discogs), SoundCloud(), ITunes()]
+    soundcloud = SoundCloud()
+    soundcloud.threshold = dynamic_threshold(titles)  # same bar as YouTube
+    return [YouTube(release.get("videos"), track_titles=titles), Bandcamp(release, discogs), soundcloud, ITunes()]
