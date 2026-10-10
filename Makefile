@@ -20,7 +20,7 @@ $(PY):
 
 .nodeenv/bin/node:
 	@command -v conda >/dev/null || [ -x /opt/anaconda3/bin/conda ] || { echo "Node 22 is needed: install it, or install conda."; exit 1; }
-	$$(command -v conda || echo /opt/anaconda3/bin/conda) create -y -q -p ./.nodeenv -c conda-forge --override-channels nodejs=22
+	$$(command -v conda || echo /opt/anaconda3/bin/conda) create -y -q --copy -p ./.nodeenv -c conda-forge --override-channels nodejs=22
 
 frontend/node_modules: frontend/package-lock.json .nodeenv/bin/node
 	cd frontend && npm ci --silent
