@@ -8,3 +8,11 @@ benchmark/gs/
 benchmark/cache/
 benchmark/seg_cache/
 benchmark/*.log
+
+# Vinyl Second-Brain
+audio/*
+!audio/.gitkeep
+vault/*
+!vault/.gitkeep
+*.db
+node_modules/
