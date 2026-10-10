@@ -18,8 +18,11 @@ class JobRunner:
     which is what the tests use.
     """
 
-    def __init__(self, handlers: dict[str, Handler], connect_fn: Callable[[], sqlite3.Connection] = connect):
+    def __init__(self, handlers: dict[str, Handler],
+                 connect_fn: Callable[[], sqlite3.Connection] = connect,
+                 on_done: Callable[[], None] | None = None):
         self.handlers = handlers
+        self._on_done = on_done  # called after every job, e.g. to refresh the vault
         self._connect = connect_fn
         self._queue: queue.Queue[int | None] = queue.Queue()
         self._thread: threading.Thread | None = None
@@ -50,6 +53,8 @@ class JobRunner:
                 jobs.set_status(conn, job_id, "done", result=result)
         finally:
             conn.close()
+            if self._on_done:
+                self._on_done()
 
     def run_pending(self) -> None:
         conn = self._connect()

@@ -2,7 +2,7 @@ import pytest
 
 from app.db import connect, notes, records, tracks
 from app.embeddings import service
-from app.embeddings.provider import DIMENSIONS, EmbeddingError, FakeProvider, OpenAIProvider
+from app.embeddings.provider import DIMENSIONS, EmbeddingError, FakeProvider
 
 
 @pytest.fixture
@@ -89,12 +89,10 @@ def test_admin_reembed_rebuilds_everything(client, rec, db_path):
     assert embedded(db_path, nid)
 
 
-def test_no_openai_key_means_notes_save_but_search_is_unavailable(db_path, monkeypatch):
+def test_no_provider_means_notes_save_but_search_is_unavailable(db_path):
     from fastapi.testclient import TestClient
 
-    from app import config
     from app.main import app
-    monkeypatch.setattr(config, "OPENAI_API_KEY", "")
     client = TestClient(app)
     conn = connect(db_path)
     rid = records.create(conn, artist="A", title="B")
@@ -102,7 +100,7 @@ def test_no_openai_key_means_notes_save_but_search_is_unavailable(db_path, monke
     note = client.post("/api/notes", json={"type": "prose", "body": "kept", "record_id": rid})
     assert note.status_code == 201 and not embedded(db_path, note.json()["id"])
     resp = client.get("/api/search/semantic", params={"q": "kept"})
-    assert resp.status_code == 503 and "OPENAI_API_KEY" in resp.json()["error"]["message"]
+    assert resp.status_code == 503 and "no embedding provider" in resp.json()["error"]["message"]
 
 
 def test_provider_failure_does_not_lose_the_note(db_path, rec):
@@ -122,19 +120,3 @@ def test_fake_provider_is_deterministic_and_unit_length():
     a, b = FakeProvider().embed(["banging track", "banging track"])
     assert a == b and len(a) == DIMENSIONS
     assert abs(sum(v * v for v in a) - 1.0) < 1e-9
-
-
-def test_openai_provider_request_shape():
-    import httpx
-    seen = {}
-
-    def handler(request):
-        seen["auth"] = request.headers["authorization"]
-        seen["body"] = request.read()
-        return httpx.Response(200, json={"data": [{"index": 1, "embedding": [2.0]}, {"index": 0, "embedding": [1.0]}]})
-
-    provider = OpenAIProvider("sk-test", client=httpx.Client(transport=httpx.MockTransport(handler)))
-    assert provider.embed(["a", "b"]) == [[1.0], [2.0]]  # restored to input order
-    assert seen["auth"] == "Bearer sk-test" and b"text-embedding-3-small" in seen["body"]
-    with pytest.raises(EmbeddingError):
-        OpenAIProvider("")

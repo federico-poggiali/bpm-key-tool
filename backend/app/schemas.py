@@ -146,3 +146,37 @@ class SemanticHit(BaseModel):
     note: NoteOut
     record: RecordRef
     track: TrackOut | None = None
+
+
+class AudioMatchedFile(BaseModel):
+    track_id: int
+    position: str
+    file: str
+    method: Literal["position", "title"]
+    score: float
+
+
+class UnmatchedFile(BaseModel):
+    file: str
+    reason: str
+
+
+class UnmatchedTrack(BaseModel):
+    track_id: int
+    position: str
+    title: str
+
+
+class AudioMatchReport(BaseModel):
+    folder: str | None
+    matched: list[AudioMatchedFile]
+    unmatched_files: list[UnmatchedFile]
+    unmatched_tracks: list[UnmatchedTrack]
+
+
+class ReembedOut(BaseModel):
+    embedded: int
+
+
+class TagList(BaseModel):
+    items: list[TagCount]

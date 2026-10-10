@@ -31,6 +31,6 @@ DB_PATH = _path("DB_PATH", BACKEND_DIR / "data" / "vinyl.db")
 AUDIO_DIR = _path("AUDIO_DIR", REPO_ROOT / "audio")
 VAULT_DIR = _path("VAULT_DIR", REPO_ROOT / "vault")
 DISCOGS_TOKEN = os.environ.get("DISCOGS_TOKEN", "")
-OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "")
-EMBEDDING_MODEL = os.environ.get("EMBEDDING_MODEL", "text-embedding-3-small")
 USER_AGENT = f"VinylSecondBrain/0.1 ( {os.environ.get('CONTACT_EMAIL', '')} )"
+CORS_ORIGINS = [o.strip() for o in os.environ.get(
+    "CORS_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173").split(",") if o.strip()]

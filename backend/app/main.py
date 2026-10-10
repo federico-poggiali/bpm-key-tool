@@ -1,13 +1,21 @@
+import logging
+import time
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.routing import APIRoute
 
 from app import config, errors, sync
 from app.analysis import job as analysis_job
 from app.db import connect, migrate
 from app.discogs import DiscogsClient
 from app.jobs.runner import JobRunner
-from app.routes import jobs, notes, records, search, tags, tracks
+from app.logging_config import configure as configure_logging
+from app.routes import admin, jobs, notes, records, search, tags, tracks
+from app.vault import VaultSyncer
+
+log = logging.getLogger("app.request")
 
 
 def _discogs() -> DiscogsClient:
@@ -16,22 +24,52 @@ def _discogs() -> DiscogsClient:
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    configure_logging()
     conn = connect()
     migrate(conn)
     conn.close()
+    syncer = app.state.vault_syncer = VaultSyncer(config.VAULT_DIR)
     app.state.runner = JobRunner({
         analysis_job.JOB_TYPE: analysis_job.make_handler(_discogs),
         sync.JOB_TYPE: sync.make_handler(_discogs),
-    })
+    }, on_done=syncer.request)
     app.state.runner.start()
+    syncer.request()  # bring the vault up to date at startup
     yield
     app.state.runner.stop()
+    syncer.stop()
 
 
-app = FastAPI(title="Vinyl Second-Brain", lifespan=lifespan)
+def _operation_id(route: APIRoute) -> str:
+    return route.name  # readable names for the generated TypeScript client
+
+
+app = FastAPI(title="Vinyl Second-Brain", lifespan=lifespan, generate_unique_id_function=_operation_id)
+app.add_middleware(CORSMiddleware, allow_origins=config.CORS_ORIGINS, allow_methods=["*"],
+                   allow_headers=["*"])
 errors.install(app)
-for module in (records, tracks, notes, tags, search, jobs):
+for module in (records, tracks, notes, tags, search, jobs, admin):
     app.include_router(module.router)
+
+
+@app.middleware("http")
+async def log_requests(request: Request, call_next):
+    start = time.perf_counter()
+    response = await call_next(request)
+    log.info("request", extra={"method": request.method, "path": request.url.path,
+                               "status": response.status_code,
+                               "ms": round((time.perf_counter() - start) * 1000, 1)})
+    return response
+
+
+@app.middleware("http")
+async def refresh_vault_after_writes(request: Request, call_next):
+    response = await call_next(request)
+    syncer = getattr(request.app.state, "vault_syncer", None)
+    if (syncer and request.method in ("POST", "PATCH", "PUT", "DELETE")
+            and response.status_code < 400 and not request.url.path.endswith("/sync-vault")):
+        syncer.request()
+    return response
 
 
 @app.get("/health")

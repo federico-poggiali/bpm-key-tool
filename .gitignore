@@ -15,4 +15,7 @@ audio/*
 vault/*
 !vault/.gitkeep
 *.db
+*.db-wal
+*.db-shm
+backend/backups/
 node_modules/

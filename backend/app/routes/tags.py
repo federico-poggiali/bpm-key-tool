@@ -4,13 +4,13 @@ from fastapi import APIRouter, Depends, HTTPException
 
 from app.db import records, tags, tracks
 from app.deps import get_db
-from app.schemas import TagCount, TagIn
+from app.schemas import TagCount, TagIn, TagList
 
 router = APIRouter(prefix="/api", tags=["tags"])
 
 
-@router.get("/tags")
-def list_tags(conn: sqlite3.Connection = Depends(get_db)) -> dict[str, list[TagCount]]:
+@router.get("/tags", response_model=TagList)
+def list_tags(conn: sqlite3.Connection = Depends(get_db)) -> dict:
     return {"items": [TagCount(**t) for t in tags.list_with_counts(conn)]}
 
 
@@ -39,6 +39,6 @@ def _remove(kind: str):
 
 for _kind, _plural in (("record", "records"), ("track", "tracks")):
     router.add_api_route(f"/{_plural}/{{item_id}}/tags", _add(_kind), methods=["POST"],
-                         status_code=201, name=f"add_{_kind}_tag")
+                         status_code=201, name=f"add_{_kind}_tag", response_model=list[str])
     router.add_api_route(f"/{_plural}/{{item_id}}/tags/{{name}}", _remove(_kind), methods=["DELETE"],
-                         name=f"remove_{_kind}_tag")
+                         name=f"remove_{_kind}_tag", response_model=list[str])

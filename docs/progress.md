@@ -38,8 +38,21 @@
 - Moving a record to `owned` queues the Discogs sync (never removes anything from Discogs); deleting a record leaves Discogs untouched.
 - One error format `{"error": {"code", "message", "details"?}}` and one list envelope `{items, total, limit, offset}`; pydantic response models for the new endpoints (`app/schemas.py`).
 
-## Step 7: Semantic search (done, real model untested)
-- `embeddings/`: provider interface, OpenAI `text-embedding-3-small` (1536 dims) and a deterministic fake for tests. Vectors are normalised; the score is cosine similarity.
+## Step 7: Semantic search (plumbing done; no real provider yet)
+- `embeddings/`: provider interface (1536 dims) and a deterministic fake for tests. **The OpenAI provider and its config were removed on request; to be revisited later** (a local or hosted model plugs in at `deps.get_embedder`). Vectors are normalised; the score is cosine similarity.
 - Only `prose` notes are embedded: on create, re-embedded on edit, removed on delete, on a type change away from prose, and when a record or track is deleted (cascades do not reach the vec table). A provider failure or a missing key never loses a note.
-- `GET /api/search/semantic?q=&limit=` returns notes with their record/track and score; `POST /api/admin/reembed` rebuilds everything. Both return 503 until `OPENAI_API_KEY` is set in `.env`.
-- Not done yet: the manual synonym query against the real model (needs a key).
+- `GET /api/search/semantic?q=&limit=` returns notes with their record/track and score; `POST /api/admin/reembed` rebuilds everything. Both return 503 until a provider is configured.
+- Not done yet: any real model, so no synonym search ('banging' finds 'huge energy') until one is chosen.
+
+## Step 8: Obsidian vault generator (done)
+- `app/vault.py` (CLI: `make sync-vault`, API: `POST /api/admin/sync-vault`, status: `GET /api/admin/vault-status`): one file per record in `vault/Records/<Artist> - <Title> (<release_id>).md`, fully regenerated from the DB. Frontmatter: discogs_id, artist, title, label, year, format, status, tags, bpm_min/max, keys, camelot_keys; a do-not-edit banner; tracklist table (manual values marked); record notes; track notes under their track. Wantlist/considering get their own files with `status` in the frontmatter.
+- Writes are atomic and skipped when unchanged. Stale files are deleted, but only ones carrying the `generated_by: vinyl-second-brain` marker, so your own notes in `Records/` are safe.
+- `vault/Dataview Examples.md` has four queries (BPM range, key, tag, wantlist).
+- Sync is debounced (2 s) after any successful write request and after every background job, and runs once at startup. Snapshot test: `tests/fixtures/vault_expected.md`.
+- Not verified by me: opening `vault/` in Obsidian with the Dataview plugin and checking that the queries render.
+
+## Step 9: Backend hardening (done)
+- JSON request/app logs (`LOG_LEVEL`), a global handler for unexpected errors in the standard error format, CORS for `http://localhost:5173` and `http://127.0.0.1:5173` (`CORS_ORIGINS`), SQLite in WAL mode with a 10 s busy timeout (the job worker and the API write concurrently).
+- OpenAPI: every endpoint has a documented success schema and a readable `operationId` (tests enforce it); `docs/openapi.json` is exported with `make openapi` and a test fails if it goes stale.
+- `make backup` writes a timestamped consistent copy to `backend/backups/` (git-ignored).
+- 95 tests, stable over 4 consecutive runs; coverage 94% (`make coverage`).

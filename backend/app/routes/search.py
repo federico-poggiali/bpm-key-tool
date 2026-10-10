@@ -6,7 +6,7 @@ from fastapi import APIRouter, Depends, HTTPException, Query
 from app.deps import get_db, require_embedder
 from app.embeddings import service
 from app.embeddings.provider import EmbeddingError, EmbeddingProvider
-from app.schemas import SemanticHit
+from app.schemas import ReembedOut, SemanticHit
 
 router = APIRouter(prefix="/api", tags=["search"])
 
@@ -21,7 +21,7 @@ def semantic(q: Annotated[str, Query(min_length=1)], limit: Annotated[int, Query
         raise HTTPException(502, str(exc)) from exc
 
 
-@router.post("/admin/reembed")
+@router.post("/admin/reembed", response_model=ReembedOut)
 def reembed(conn: sqlite3.Connection = Depends(get_db),
             embedder: EmbeddingProvider = Depends(require_embedder)) -> dict[str, int]:
     try:

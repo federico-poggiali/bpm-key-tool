@@ -12,7 +12,16 @@ from app.db import queries, records
 from app.deps import get_db, get_discogs, get_runner
 from app.discogs import DiscogsClient, DiscogsError, DiscogsNotFound
 from app.jobs.runner import JobRunner
-from app.schemas import IntakeResponse, JobStarted, Page, RecordDetail, RecordPatch, RecordSummary, Status
+from app.schemas import (
+    AudioMatchReport,
+    IntakeResponse,
+    JobStarted,
+    Page,
+    RecordDetail,
+    RecordPatch,
+    RecordSummary,
+    Status,
+)
 
 router = APIRouter(prefix="/api/records", tags=["records"])
 
@@ -110,7 +119,7 @@ def delete_record(record_id: int, conn: sqlite3.Connection = Depends(get_db)) ->
     return Response(status_code=204)
 
 
-@router.get("/{record_id}/audio-match")
+@router.get("/{record_id}/audio-match", response_model=AudioMatchReport)
 def audio_match(record_id: int, conn: sqlite3.Connection = Depends(get_db)) -> dict:
     require_record(conn, record_id)
     return analysis_job.match_report(conn, record_id)
