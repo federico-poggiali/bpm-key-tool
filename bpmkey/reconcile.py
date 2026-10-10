@@ -5,12 +5,26 @@ from typing import Optional
 import numpy as np
 
 from .camelot import camelot_to_key_index, key_index_to_camelot
+from .keycommittee import relations
 from .models import Measurement, Result, Track
 
 BPM_TOLERANCE = 1.5
-# Evidence (in nats) each validated online key adds to the audio's own log-probabilities.
-# GetSongBPM is matched on artist+title and agreed with audio most often; AcousticBrainz is noisier.
-KEY_VOTE_WEIGHT = {"getsongbpm": 1.0, "acousticbrainz": 0.5}
+# Chance that a database's exact key is right. Estimated from how often GetSongBPM, AcousticBrainz and
+# the audio agree on the same tracks (small sample, non-EDM library), then rounded down because their
+# errors are not fully independent of the audio's.
+DB_RELIABILITY = {"getsongbpm": 0.5, "acousticbrainz": 0.35}
+DEFAULT_RELIABILITY = 0.35
+# A wrong database key is usually a neighbour of the truth (relative, parallel, fifth); the rest is spread evenly.
+NEIGHBOUR_SHARE = 0.5
+
+
+def db_log_likelihood(key_index: int, reliability: float) -> np.ndarray:
+    """log P(database says key_index | true key k) for each of the 24 keys k."""
+    near = relations(key_index)[2:].sum(axis=0)  # relative, parallel and the two fifths: 4 keys
+    wrong = (1 - NEIGHBOUR_SHARE) / 23 + NEIGHBOUR_SHARE / 4 * near
+    lik = (1 - reliability) * wrong
+    lik[key_index] = reliability
+    return np.log(lik)
 
 
 def fold_bpm(bpm: float, ref: float) -> float:
@@ -80,7 +94,7 @@ def finalize(track: Track) -> Result:
         for m in online.measurements:
             idx = camelot_to_key_index(m.camelot)
             if idx is not None:
-                scores[idx] += KEY_VOTE_WEIGHT.get(m.origin, 0.5)
+                scores += db_log_likelihood(idx, DB_RELIABILITY.get(m.origin, DEFAULT_RELIABILITY))
         key = key_index_to_camelot(int(scores.argmax()))
     key_ok = key in online_keys
     if key_ok:

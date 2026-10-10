@@ -1,23 +1,34 @@
-"""Key detection: Essentia KeyExtractor with the EDM profile `edmm`, `bgate` as backup.
+"""Key detection: a small committee model over Essentia's `edmm` and `bgate` profiles plus chroma.
 
-Benchmarked on GiantSteps Key (604 human-labelled Beatport clips): `edmm` 65% exact key,
-weighted score 0.70; `bgate` 61% / 0.68. Switching to `bgate` when `edmm` is unsure never
-helped on that set (even where `edmm` is weak, `bgate` is no better), so the backup is used
-when `edmm` fails, and otherwise only to share probability mass when `edmm` is in doubt.
+`edmm` is the most accurate profile on GiantSteps Key (65% exact) but it can only answer minor,
+so on its own it is blind to every major key (15% of that set, and probably more of a general
+record collection). The committee instead scores all 24 keys from: each profile's key and strength
+(and which keys are its relative / parallel / fifth), plus the mean chroma read against each
+candidate tonic (a data-fitted key profile that sees the 3rd, 6th and 7th directly). The weights
+come from `benchmark/keymodel_fit.py` (conditional logit, cross-validated on GiantSteps).
+
+Cross-validated on GiantSteps: log-loss 1.59 -> 1.31, mode AUC 0.72 -> 0.78, exact 65% -> 66%.
+MODE_PRIOR_SHIFT corrects for GiantSteps being 85% minor; see the README for the trade-off.
 """
 from __future__ import annotations
 
+import json
 from dataclasses import dataclass
+from pathlib import Path
 
 import numpy as np
 
-PRIMARY, BACKUP = "edmm", "bgate"
+from . import keychroma, keycommittee
+
 NAMES = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
-# edmm exact-key accuracy per KeyExtractor strength on GiantSteps (bucket midpoint -> accuracy)
-_STRENGTH = [0.65, 0.76, 0.84, 0.895, 0.95]
-_ACCURACY = [0.31, 0.50, 0.73, 0.83, 0.87]
-DOUBT_BELOW = 0.71  # strength under which edmm was right less than ~1 time in 3
-BACKUP_SHARE = 0.5  # share of the remaining probability given to the backup's key
+_FLAT = {"Db": "C#", "Eb": "D#", "Gb": "F#", "Ab": "G#", "Bb": "A#"}
+_MODEL = json.loads((Path(__file__).parent / "data" / "key_committee.json").read_text())
+PROFILES = tuple(_MODEL["profiles"])
+THETA = np.array(_MODEL["theta"])
+# Extra log-odds on major keys. 0 keeps GiantSteps' own 85% minor prior; +1.0 assumes ~1 in 3 tracks
+# is major, which roughly doubles major recall there (23% -> 43%) for ~3 points of exact accuracy.
+MODE_PRIOR_SHIFT = 1.0
+DOUBT_BELOW = 0.45  # top-key probability under which the estimate is a coin flip between neighbours
 
 
 @dataclass
@@ -25,7 +36,7 @@ class KeyEstimate:
     index: int  # 0-11 major, 12-23 minor, by pitch class
     scores: np.ndarray  # 24 log-probabilities
     confidence: float
-    source: str  # "edmm" | "bgate"
+    source: str  # profiles that contributed, e.g. "edmm+bgate"
     in_doubt: bool
 
 
@@ -33,36 +44,37 @@ def _run(profile: str, audio: np.ndarray) -> tuple[int, float]:
     import essentia.standard as es
 
     key, scale, strength = es.KeyExtractor(profileType=profile)(audio)
-    flat = {"Db": "C#", "Eb": "D#", "Gb": "F#", "Ab": "G#", "Bb": "A#"}
-    idx = NAMES.index(flat.get(key, key)) + (12 if scale == "minor" else 0)
+    idx = NAMES.index(_FLAT.get(key, key)) + (12 if scale == "minor" else 0)
     if not np.isfinite(strength):
         raise ValueError("no key strength")
     return idx, float(strength)
 
 
-def accuracy_at(strength: float) -> float:
-    """Calibrated probability that edmm is right at this KeyExtractor strength."""
-    return float(np.interp(strength, _STRENGTH, _ACCURACY))
+def posterior(votes: dict[str, tuple[int, float]], chroma: np.ndarray | None,
+              prior_shift: float = MODE_PRIOR_SHIFT) -> np.ndarray:
+    """24 probabilities from the profiles' votes and the mean chroma."""
+    if chroma is None:  # the template block is zeros; its weights then contribute nothing
+        chroma = np.full(12, 1 / 12)
+    z = keycommittee.features(votes, PROFILES, chroma) @ THETA
+    z[:12] += prior_shift
+    z -= z.max()
+    p = np.exp(z)
+    return p / p.sum()
 
 
 def detect(audio: np.ndarray) -> KeyEstimate:
-    try:
-        idx, strength = _run(PRIMARY, audio)
-        source = PRIMARY
-    except Exception:  # primary failed: fall back to the backup profile
-        idx, strength = _run(BACKUP, audio)
-        source = BACKUP
-    p = accuracy_at(strength)
-    in_doubt = strength < DOUBT_BELOW
-    probs = np.full(24, (1 - p) / 23)
-    probs[idx] = p
-    if in_doubt and source == PRIMARY:  # let the backup's opinion carry weight, without overruling
+    votes = {}
+    for profile in PROFILES:
         try:
-            b_idx, _ = _run(BACKUP, audio)
-        except Exception:
-            b_idx = idx
-        if b_idx != idx:
-            probs[b_idx] = min((1 - p) * BACKUP_SHARE, 0.8 * p)
-    probs /= probs.sum()
-    scores = np.log(probs)
-    return KeyEstimate(idx, scores, float(probs[idx]), source, in_doubt)
+            votes[profile] = _run(profile, audio)
+        except Exception:  # a failing profile just drops out of the committee
+            pass
+    if not votes:
+        raise ValueError("no key profile could analyse this audio")
+    try:
+        chroma = keychroma.mean_chroma(audio)
+    except Exception:
+        chroma = None
+    p = posterior(votes, chroma)
+    idx = int(p.argmax())
+    return KeyEstimate(idx, np.log(p), float(p[idx]), "+".join(votes), float(p[idx]) < DOUBT_BELOW)

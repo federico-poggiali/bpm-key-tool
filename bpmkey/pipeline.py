@@ -64,12 +64,11 @@ class Pipeline:
         return "no audio source found" if tried == 0 else "no usable audio source"
 
     def run(self, url: str) -> Iterator[Result]:
-        client = DiscogsClient()
-        release, tracks, _ = client.tracks(url)
-        return self.run_tracks(tracks, release, client)
+        release, tracks, _ = DiscogsClient().tracks(url)
+        return self.run_tracks(tracks, release)
 
-    def run_tracks(self, tracks: list[Track], release: dict, discogs=None) -> Iterator[Result]:
-        finders = finders_for(release, discogs)
+    def run_tracks(self, tracks: list[Track], release: dict) -> Iterator[Result]:
+        finders = finders_for(release)
         for track in tracks:
             self._lookup(track)
             result = reconcile(track)

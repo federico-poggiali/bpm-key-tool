@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import tempfile
 from pathlib import Path
-from typing import Optional
 
 from . import keydetect
 from .camelot import key_index_to_camelot
@@ -28,7 +27,7 @@ def clamp_bpm(bpm: float, lo: float = BPM_RANGE[0], hi: float = BPM_RANGE[1]) ->
 
 
 def download_audio(url: str, dest: Path) -> Path:
-    """Download the native audio stream (no ffmpeg needed). `url` may be 'ytsearch1:...'."""
+    """Download the native audio stream (no ffmpeg needed)."""
     import yt_dlp
 
     opts = {
@@ -74,14 +73,8 @@ def analyze_file(path: Path | str) -> Measurement:
                        round(est.confidence, 2), [round(float(v), 3) for v in est.scores])
 
 
-def analyze_url(url: str) -> Measurement:
-    """Download -> analyze -> delete. Works for YouTube URLs, other yt-dlp sites, or ytsearch1:."""
-    with tempfile.TemporaryDirectory(prefix="bpmkey_") as tmp:
-        return analyze_file(download_audio(url, Path(tmp)))
-
-
 def download_direct(url: str, dest: Path) -> Path:
-    """Plain HTTP download for direct media URLs (Bandcamp streams, iTunes previews)."""
+    """Plain HTTP download for direct media URLs (iTunes previews)."""
     import requests
 
     ext = Path(url.split("?")[0]).suffix or ".mp3"
@@ -101,7 +94,7 @@ def analyze_source(source) -> Measurement:
     """Analyze an AudioSource of any kind; temp files are always removed."""
     with tempfile.TemporaryDirectory(prefix="bpmkey_") as tmp:
         d = Path(tmp)
-        # yt-dlp handles page URLs (YouTube, Bandcamp, SoundCloud); iTunes gives a raw preview file
+        # yt-dlp handles page URLs (YouTube, SoundCloud); iTunes gives a raw preview file
         path = download_direct(source.url, d) if source.kind == "itunes" else download_audio(source.url, d)
         m = analyze_file(path)
         m.origin = f"essentia:{source.kind}"

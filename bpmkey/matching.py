@@ -83,9 +83,6 @@ def score_candidate(artist: str, title: str, duration, c_title: str, c_extra: st
     return max(0.0, s - version_penalty(title, c_title) - bracket_penalty(title, c_title))
 
 
-MIN_ALBUM_SCORE = 0.6
-
-
 # Dynamic threshold for videos linked on the Discogs release itself.
 # When the release's titles are all alike (one song in several mixes) a video is easy to pair
 # with the wrong track, so demand a near-exact match; when the titles are unrelated, any

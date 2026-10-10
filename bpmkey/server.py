@@ -78,8 +78,7 @@ class Handler(BaseHTTPRequestHandler):
             if not URL_RE.match(url):
                 return self._send("fail", {"kind": "url"})
             try:
-                client = DiscogsClient()
-                release, tracks, _ = client.tracks(url)
+                release, tracks, _ = DiscogsClient().tracks(url)
             except Exception as e:
                 return self._send("fail", {"kind": "discogs", "detail": str(e)[:200]})
             self._send("release", release_payload(release, tracks))
@@ -87,7 +86,7 @@ class Handler(BaseHTTPRequestHandler):
                             refresh=(q.get("refresh", ["0"])[0] == "1"))
             counts: dict[str, int] = {}
             self._send("working", {"index": 0})
-            for i, r in enumerate(pipe.run_tracks(tracks, release, client)):
+            for i, r in enumerate(pipe.run_tracks(tracks, release)):
                 counts[r.status] = counts.get(r.status, 0) + 1
                 self._send("track", result_payload(i, r))
                 if i + 1 < len(tracks):

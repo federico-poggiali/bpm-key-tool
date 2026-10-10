@@ -6,7 +6,7 @@ from typing import Optional
 
 @dataclass
 class AudioSource:
-    kind: str  # youtube | bandcamp | itunes
+    kind: str  # youtube | soundcloud | itunes
     url: str
     duration: Optional[int] = None  # seconds
     match_score: float = 0.0
@@ -29,7 +29,6 @@ class Track:
     artist: str
     title: str
     duration: Optional[int] = None  # seconds
-    audio_sources: list[AudioSource] = field(default_factory=list)
     measurements: list[Measurement] = field(default_factory=list)
 
 
