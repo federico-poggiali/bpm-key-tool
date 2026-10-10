@@ -32,4 +32,5 @@ AUDIO_DIR = _path("AUDIO_DIR", REPO_ROOT / "audio")
 VAULT_DIR = _path("VAULT_DIR", REPO_ROOT / "vault")
 DISCOGS_TOKEN = os.environ.get("DISCOGS_TOKEN", "")
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "")
+EMBEDDING_MODEL = os.environ.get("EMBEDDING_MODEL", "text-embedding-3-small")
 USER_AGENT = f"VinylSecondBrain/0.1 ( {os.environ.get('CONTACT_EMAIL', '')} )"

@@ -81,3 +81,20 @@ def has_embedding(conn: sqlite3.Connection, note_id: int) -> bool:
     return conn.execute(
         "SELECT 1 FROM note_embeddings WHERE note_id = ?", (note_id,)
     ).fetchone() is not None
+
+
+def delete_embeddings_for_record(conn: sqlite3.Connection, record_id: int) -> None:
+    """Cascade deletes do not reach the vec0 table, so clear it before removing a record."""
+    conn.execute(
+        "DELETE FROM note_embeddings WHERE note_id IN ("
+        "SELECT id FROM notes WHERE record_id = ? "
+        "OR track_id IN (SELECT id FROM tracks WHERE record_id = ?))",
+        (record_id, record_id),
+    )
+
+
+def delete_embeddings_for_track(conn: sqlite3.Connection, track_id: int) -> None:
+    conn.execute(
+        "DELETE FROM note_embeddings WHERE note_id IN (SELECT id FROM notes WHERE track_id = ?)",
+        (track_id,),
+    )

@@ -1,7 +1,7 @@
 import sqlite3
 from dataclasses import dataclass
 
-from app.db import records, tracks
+from app.db import queries, records, tracks
 from app.discogs import DiscogsClient, release_to_record, release_to_tracks
 
 
@@ -13,7 +13,7 @@ class IntakeResult:
 
 
 def record_with_tracks(conn: sqlite3.Connection, record_id: int) -> dict:
-    return {**records.get(conn, record_id), "tracks": tracks.list_for_record(conn, record_id)}
+    return queries.record_detail(conn, record_id)
 
 
 def intake(conn: sqlite3.Connection, discogs: DiscogsClient, url: str,

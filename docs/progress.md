@@ -28,3 +28,18 @@
 - Intake now enqueues two independent jobs and returns their ids in `jobs` (`discogs_sync` is null for wantlist/considering; nothing is queued for an already-existing record).
 - **Analysis no longer needs audio.** The job fetches the release and runs the bpmkey pipeline (online databases, then audio bpmkey finds itself). Files in `audio/<release_id>/` are optional and override the lookup for the tracks they match. `confidence` is the audio key confidence when audio was analysed, else null; the reconciliation status (`agreed`/`analyzed`/`single`/`conflict`) is in `analysis_raw`.
 - Live check: release 9261843 (3 tracks) got BPM and key for all tracks from the link alone in about 66 s. A very obscure release (46673) returns nothing, the same as the bpmkey CLI.
+
+## Step 6: Notes and tags API (done)
+- Records: `GET /api/records` (filters `bpm_min`, `bpm_max`, `key` musical or Camelot, repeatable `tag`, `status`, `q`, `limit`/`offset`), `GET/PATCH/DELETE /api/records/{id}`. The detail response nests tags, record notes and per-track notes.
+- BPM and key filters must match on the same track; the response lists `matched_track_ids`. A tag matches the record or any of its tracks (all given tags required). `q` searches artist/title/label and note bodies (record and track notes).
+- Tracks: `GET /api/tracks` with the same filters (a tag also matches via the parent record; `q` also matches track title/artist), `GET /api/tracks/{id}`, `PATCH` for manual BPM/key.
+- **Manual input is always possible and wins:** setting `bpm` or `key` locks that field (`bpm_manual`/`key_manual`); re-analysis then only records its own result in `analysis_raw`. `unlock: ["bpm"|"key"]` hands a field back to analysis. Keys accept musical or Camelot input (migration 0003).
+- Notes: `POST/PATCH/DELETE /api/notes` (exactly one of `record_id`/`track_id`). Tags: `GET /api/tags` (counts), add/remove on records and tracks.
+- Moving a record to `owned` queues the Discogs sync (never removes anything from Discogs); deleting a record leaves Discogs untouched.
+- One error format `{"error": {"code", "message", "details"?}}` and one list envelope `{items, total, limit, offset}`; pydantic response models for the new endpoints (`app/schemas.py`).
+
+## Step 7: Semantic search (done, real model untested)
+- `embeddings/`: provider interface, OpenAI `text-embedding-3-small` (1536 dims) and a deterministic fake for tests. Vectors are normalised; the score is cosine similarity.
+- Only `prose` notes are embedded: on create, re-embedded on edit, removed on delete, on a type change away from prose, and when a record or track is deleted (cascades do not reach the vec table). A provider failure or a missing key never loses a note.
+- `GET /api/search/semantic?q=&limit=` returns notes with their record/track and score; `POST /api/admin/reembed` rebuilds everything. Both return 503 until `OPENAI_API_KEY` is set in `.env`.
+- Not done yet: the manual synonym query against the real model (needs a key).

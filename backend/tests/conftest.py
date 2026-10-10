@@ -10,8 +10,9 @@ from fastapi.testclient import TestClient
 
 from app import config
 from app.db import connect, migrate
-from app.deps import get_discogs
+from app.deps import get_discogs, get_embedder, require_embedder
 from app.discogs import DiscogsClient
+from app.embeddings.provider import FakeProvider
 from app.jobs.runner import JobRunner
 from app.main import app
 
@@ -117,6 +118,9 @@ def make_discogs(calls=None, collection=None, fail_collection=False) -> DiscogsC
 @pytest.fixture
 def client(db_path, audio_dir, discogs_calls, collection):
     app.dependency_overrides[get_discogs] = lambda: make_discogs(discogs_calls, collection)
+    fake = FakeProvider()
+    app.dependency_overrides[get_embedder] = lambda: fake
+    app.dependency_overrides[require_embedder] = lambda: fake
     app.state.runner = JobRunner({})
     yield TestClient(app)
     app.dependency_overrides.clear()

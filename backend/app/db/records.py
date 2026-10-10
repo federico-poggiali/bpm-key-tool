@@ -1,6 +1,6 @@
 import sqlite3
 
-from app.db import _util
+from app.db import _util, notes
 
 _COLUMNS = {"discogs_release_id", "artist", "title", "label", "year", "format", "cover_url",
             "status", "discogs_collection_synced"}
@@ -30,6 +30,7 @@ def update(conn: sqlite3.Connection, record_id: int, **values) -> None:
 
 
 def delete(conn: sqlite3.Connection, record_id: int) -> bool:
+    notes.delete_embeddings_for_record(conn, record_id)
     return _util.delete(conn, "records", record_id)
 
 

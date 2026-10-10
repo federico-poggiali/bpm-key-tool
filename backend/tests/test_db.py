@@ -3,6 +3,7 @@ import sqlite3
 import pytest
 
 from app.db import connect, migrate, notes, records, tags, tracks
+from app.db.migrate import MIGRATIONS_DIR
 
 
 @pytest.fixture
@@ -23,8 +24,9 @@ def record(conn):
 
 
 def test_migrate_is_idempotent(conn):
-    assert migrate(conn) == 2
-    assert conn.execute("SELECT count(*) FROM schema_version").fetchone()[0] == 2
+    latest = len(list(MIGRATIONS_DIR.glob("*.sql")))
+    assert migrate(conn) == latest
+    assert conn.execute("SELECT count(*) FROM schema_version").fetchone()[0] == latest
 
 
 def test_record_and_tracks_crud(conn, record):

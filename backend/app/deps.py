@@ -6,6 +6,7 @@ from fastapi import HTTPException, Request
 from app import config
 from app.db import connect
 from app.discogs import DiscogsClient, DiscogsError
+from app.embeddings.provider import EmbeddingProvider, OpenAIProvider
 from app.jobs.runner import JobRunner
 
 
@@ -26,3 +27,17 @@ def get_discogs() -> DiscogsClient:
 
 def get_runner(request: Request) -> JobRunner:
     return request.app.state.runner
+
+
+def get_embedder() -> EmbeddingProvider | None:
+    """None when no OpenAI key is configured: notes still save, they just are not embedded."""
+    if not config.OPENAI_API_KEY:
+        return None
+    return OpenAIProvider(config.OPENAI_API_KEY, config.EMBEDDING_MODEL)
+
+
+def require_embedder() -> EmbeddingProvider:
+    embedder = get_embedder()
+    if embedder is None:
+        raise HTTPException(503, "semantic search needs OPENAI_API_KEY in .env")
+    return embedder

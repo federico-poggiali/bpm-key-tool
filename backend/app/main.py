@@ -2,12 +2,12 @@ from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
 
-from app import config, sync
+from app import config, errors, sync
 from app.analysis import job as analysis_job
 from app.db import connect, migrate
 from app.discogs import DiscogsClient
 from app.jobs.runner import JobRunner
-from app.routes import jobs, records
+from app.routes import jobs, notes, records, search, tags, tracks
 
 
 def _discogs() -> DiscogsClient:
@@ -29,8 +29,9 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(title="Vinyl Second-Brain", lifespan=lifespan)
-app.include_router(records.router)
-app.include_router(jobs.router)
+errors.install(app)
+for module in (records, tracks, notes, tags, search, jobs):
+    app.include_router(module.router)
 
 
 @app.get("/health")

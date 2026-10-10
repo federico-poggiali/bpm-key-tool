@@ -1,10 +1,10 @@
 import json
 import sqlite3
 
-from app.db import _util
+from app.db import _util, notes
 
 _COLUMNS = {"position", "artist", "title", "duration_sec", "bpm", "key", "camelot_key", "confidence",
-            "analysis_raw", "audio_path", "analyzed_at"}
+            "analysis_raw", "audio_path", "analyzed_at", "bpm_manual", "key_manual"}
 
 
 def _prepare(values: dict) -> dict:
@@ -41,4 +41,5 @@ def update(conn: sqlite3.Connection, track_id: int, **values) -> None:
 
 
 def delete(conn: sqlite3.Connection, track_id: int) -> bool:
+    notes.delete_embeddings_for_track(conn, track_id)
     return _util.delete(conn, "tracks", track_id)

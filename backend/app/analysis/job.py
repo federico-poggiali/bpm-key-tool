@@ -28,9 +28,16 @@ def match_report(conn: sqlite3.Connection, record_id: int, audio_dir: Path | Non
 
 
 def _store(conn: sqlite3.Connection, track_id: int, result: dict, audio_path: Path | None) -> None:
-    values = {"bpm": result["bpm"], "key": result["key"], "camelot_key": result["camelot_key"],
-              "confidence": result["confidence"], "analysis_raw": result["raw"],
+    """Save an analysis result, leaving any field the user entered by hand untouched."""
+    current = tracks.get(conn, track_id)
+    values = {"confidence": result["confidence"], "analysis_raw": result["raw"],
               "analyzed_at": datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ")}
+    if not current["bpm_manual"]:
+        values["bpm"] = result["bpm"]
+    if not current["key_manual"]:
+        values.update(key=result["key"], camelot_key=result["camelot_key"])
+    else:
+        del values["confidence"]  # it describes the analysed key, which is not the one in use
     if audio_path:
         values["audio_path"] = str(audio_path)
     tracks.update(conn, track_id, **values)
