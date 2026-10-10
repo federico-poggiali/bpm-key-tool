@@ -1,0 +1,235 @@
+{
+ "id": 9261843,
+ "status": "Accepted",
+ "year": 2016,
+ "resource_url": "https://api.discogs.com/releases/9261843",
+ "uri": "https://www.discogs.com/release/9261843-Truncate-7_1-12-inch-Mixes",
+ "artists": [
+  {
+   "name": "Truncate",
+   "anv": "",
+   "join": "",
+   "role": "",
+   "tracks": "",
+   "id": 2035635,
+   "resource_url": "https://api.discogs.com/artists/2035635",
+   "thumbnail_url": "https://i.discogs.com/RzQGkvKH6qvAPJa4H-gLxFvLSST9HsCbVufzby8usiE/rs:fit/g:sm/q:90/h:390/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9BLTIwMzU2/MzUtMTY0NzEwNDA2/NC0yNTc5LmpwZWc.jpeg"
+  }
+ ],
+ "artists_sort": "Truncate",
+ "labels": [
+  {
+   "name": "Truncate",
+   "catno": "TRUNCATE14",
+   "entity_type": "1",
+   "entity_type_name": "Label",
+   "id": 237441,
+   "resource_url": "https://api.discogs.com/labels/237441",
+   "thumbnail_url": "https://i.discogs.com/9P3o_PYDzTq2VDW2T3IHpAhtVByFUni4r7KhDfqxg3k/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9MLTIzNzQ0/MS0xNzAzNTM3Mzk1/LTIwMDAuanBlZw.jpeg"
+  }
+ ],
+ "series": [],
+ "companies": [],
+ "formats": [
+  {
+   "name": "Vinyl",
+   "qty": "1",
+   "descriptions": [
+    "12\"",
+    "White Label"
+   ]
+  }
+ ],
+ "data_quality": "Needs Vote",
+ "community": {
+  "have": 175,
+  "want": 111,
+  "rating": {
+   "count": 21,
+   "average": 4.67
+  },
+  "submitter": {
+   "username": "fusionaudio",
+   "resource_url": "https://api.discogs.com/users/fusionaudio"
+  },
+  "contributors": [
+   {
+    "username": "fusionaudio",
+    "resource_url": "https://api.discogs.com/users/fusionaudio"
+   },
+   {
+    "username": "trnct",
+    "resource_url": "https://api.discogs.com/users/trnct"
+   },
+   {
+    "username": "zykotik",
+    "resource_url": "https://api.discogs.com/users/zykotik"
+   },
+   {
+    "username": "hitechfunk",
+    "resource_url": "https://api.discogs.com/users/hitechfunk"
+   }
+  ],
+  "data_quality": "Needs Vote",
+  "status": "Accepted"
+ },
+ "format_quantity": 1,
+ "date_added": "2016-10-27T05:06:20-07:00",
+ "date_changed": "2020-05-05T00:31:20-07:00",
+ "num_for_sale": 3,
+ "lowest_price": 7.0,
+ "master_id": 1101820,
+ "master_url": "https://api.discogs.com/masters/1101820",
+ "title": "7_1 12-inch Mixes",
+ "country": "US",
+ "released": "2016",
+ "released_formatted": "2016",
+ "identifiers": [],
+ "videos": [
+  {
+   "uri": "https://www.youtube.com/watch?v=6ac8wd3uP8g",
+   "title": "Truncate - 7_1 (12 inch Mix) [TRUNCATE14]",
+   "description": "Bought @http://www.juno.co.uk/products/truncate-7-1-remixes/629736-01/\nBUY ALSO HERE:\nhttp://www.decks.de/t/truncate_ambivalent_silent_servant-71_12-inch_mixes/c8c-j9\n\nTRUNCATE - 7_1 (remixes)\nTruncate US\nFormat: hand-stamped 12\" \nCat: TRUNCATE 14 \nReleas",
+   "duration": 332,
+   "embed": true
+  },
+  {
+   "uri": "https://www.youtube.com/watch?v=B-hRRxP4Cg0",
+   "title": "Truncate - 7_1 (Ambivalent Remix) [TRUNCATE14]",
+   "description": "Bought @http://www.juno.co.uk/products/truncate-7-1-remixes/629736-01/\nBUY ALSO HERE:\nhttp://www.decks.de/t/truncate_ambivalent_silent_servant-71_12-inch_mixes/c8c-j9\n\nTRUNCATE - 7_1 (remixes)\nTruncate US\nFormat: hand-stamped 12\" \nCat: TRUNCATE 14 \nReleas",
+   "duration": 367,
+   "embed": true
+  },
+  {
+   "uri": "https://www.youtube.com/watch?v=GYbas_Nk1Ic",
+   "title": "Truncate - 7_1 (Silent Servant Version I) [TRUNCATE14]",
+   "description": "Bought @http://www.juno.co.uk/products/truncate-7-1-remixes/629736-01/\nBUY ALSO HERE:\nhttp://www.decks.de/t/truncate_ambivalent_silent_servant-71_12-inch_mixes/c8c-j9\n\nTRUNCATE - 7_1 (remixes)\nTruncate US\nFormat: hand-stamped 12\" \nCat: TRUNCATE 14 \nReleas",
+   "duration": 322,
+   "embed": true
+  },
+  {
+   "uri": "https://www.youtube.com/watch?v=6ac8wd3uP8g",
+   "title": "Truncate - 7_1 (12 inch Mix) [TRUNCATE14]",
+   "description": "Bought @http://www.juno.co.uk/products/truncate-7-1-remixes/629736-01/\nBUY ALSO HERE:\nhttp://www.decks.de/t/truncate_ambivalent_silent_servant-71_12-inch_mixes/c8c-j9\n\nTRUNCATE - 7_1 (remixes)\nTruncate US\nFormat: hand-stamped 12\" \nCat: TRUNCATE 14 \nReleas",
+   "duration": 332,
+   "embed": true
+  },
+  {
+   "uri": "https://www.youtube.com/watch?v=B-hRRxP4Cg0",
+   "title": "Truncate - 7_1 (Ambivalent Remix) [TRUNCATE14]",
+   "description": "Bought @http://www.juno.co.uk/products/truncate-7-1-remixes/629736-01/\nBUY ALSO HERE:\nhttp://www.decks.de/t/truncate_ambivalent_silent_servant-71_12-inch_mixes/c8c-j9\n\nTRUNCATE - 7_1 (remixes)\nTruncate US\nFormat: hand-stamped 12\" \nCat: TRUNCATE 14 \nReleas",
+   "duration": 367,
+   "embed": true
+  },
+  {
+   "uri": "https://www.youtube.com/watch?v=GYbas_Nk1Ic",
+   "title": "Truncate - 7_1 (Silent Servant Version I) [TRUNCATE14]",
+   "description": "Bought @http://www.juno.co.uk/products/truncate-7-1-remixes/629736-01/\nBUY ALSO HERE:\nhttp://www.decks.de/t/truncate_ambivalent_silent_servant-71_12-inch_mixes/c8c-j9\n\nTRUNCATE - 7_1 (remixes)\nTruncate US\nFormat: hand-stamped 12\" \nCat: TRUNCATE 14 \nReleas",
+   "duration": 322,
+   "embed": true
+  },
+  {
+   "uri": "https://www.youtube.com/watch?v=B-hRRxP4Cg0",
+   "title": "Truncate - 7_1 (Ambivalent Remix) [TRUNCATE14]",
+   "description": "Bought @http://www.juno.co.uk/products/truncate-7-1-remixes/629736-01/\nBUY ALSO HERE:\nhttp://www.decks.de/t/truncate_ambivalent_silent_servant-71_12-inch_mixes/c8c-j9\n\nTRUNCATE - 7_1 (remixes)\nTruncate US\nFormat: hand-stamped 12\" \nCat: TRUNCATE 14 \nReleas",
+   "duration": 367,
+   "embed": true
+  },
+  {
+   "uri": "https://www.youtube.com/watch?v=GYbas_Nk1Ic",
+   "title": "Truncate - 7_1 (Silent Servant Version I) [TRUNCATE14]",
+   "description": "Bought @http://www.juno.co.uk/products/truncate-7-1-remixes/629736-01/\nBUY ALSO HERE:\nhttp://www.decks.de/t/truncate_ambivalent_silent_servant-71_12-inch_mixes/c8c-j9\n\nTRUNCATE - 7_1 (remixes)\nTruncate US\nFormat: hand-stamped 12\" \nCat: TRUNCATE 14 \nReleas",
+   "duration": 322,
+   "embed": true
+  },
+  {
+   "uri": "https://www.youtube.com/watch?v=6ac8wd3uP8g",
+   "title": "Truncate - 7_1 (12 inch Mix) [TRUNCATE14]",
+   "description": "Bought @http://www.juno.co.uk/products/truncate-7-1-remixes/629736-01/\nBUY ALSO HERE:\nhttp://www.decks.de/t/truncate_ambivalent_silent_servant-71_12-inch_mixes/c8c-j9\n\nTRUNCATE - 7_1 (remixes)\nTruncate US\nFormat: hand-stamped 12\" \nCat: TRUNCATE 14 \nReleas",
+   "duration": 332,
+   "embed": true
+  }
+ ],
+ "genres": [
+  "Electronic"
+ ],
+ "styles": [
+  "Acid",
+  "Techno"
+ ],
+ "tracklist": [
+  {
+   "position": "A1",
+   "type_": "track",
+   "title": "7_1 (Ambivalent Remix)",
+   "extraartists": [
+    {
+     "name": "Ambivalent",
+     "anv": "",
+     "join": "",
+     "role": "Remix",
+     "tracks": "",
+     "id": 660203,
+     "resource_url": "https://api.discogs.com/artists/660203"
+    }
+   ],
+   "duration": ""
+  },
+  {
+   "position": "A2",
+   "type_": "track",
+   "title": "7_1 (Silent Servant Version I)",
+   "extraartists": [
+    {
+     "name": "Silent Servant",
+     "anv": "",
+     "join": "",
+     "role": "Remix",
+     "tracks": "",
+     "id": 651504,
+     "resource_url": "https://api.discogs.com/artists/651504"
+    }
+   ],
+   "duration": ""
+  },
+  {
+   "position": "B",
+   "type_": "track",
+   "title": "7_1 (12-inch Mix)",
+   "extraartists": [
+    {
+     "name": "Truncate",
+     "anv": "",
+     "join": "",
+     "role": "Remix",
+     "tracks": "",
+     "id": 2035635,
+     "resource_url": "https://api.discogs.com/artists/2035635"
+    }
+   ],
+   "duration": ""
+  }
+ ],
+ "images": [
+  {
+   "type": "primary",
+   "uri": "https://i.discogs.com/Az_SOq6fAgCLH3nfv_54W_-Sq2q6O9YstiFF0pqBslU/rs:fit/g:sm/q:90/h:599/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTkyNjE4/NDMtMTQ3ODAyNTQ2/NS05MDk5LmpwZWc.jpeg",
+   "resource_url": "https://i.discogs.com/Az_SOq6fAgCLH3nfv_54W_-Sq2q6O9YstiFF0pqBslU/rs:fit/g:sm/q:90/h:599/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTkyNjE4/NDMtMTQ3ODAyNTQ2/NS05MDk5LmpwZWc.jpeg",
+   "uri150": "https://i.discogs.com/yA_2U9fqFTnVMw05seY74uiP1wsNWePyKSHhvuAgACw/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTkyNjE4/NDMtMTQ3ODAyNTQ2/NS05MDk5LmpwZWc.jpeg",
+   "width": 600,
+   "height": 599
+  },
+  {
+   "type": "secondary",
+   "uri": "https://i.discogs.com/70KfK2kRuN2EAIhymJssCYo_eSR_k8Uqb9Wfe7Gx0Uo/rs:fit/g:sm/q:90/h:215/w:214/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTkyNjE4/NDMtMTQ3NzU3MDM4/OS04NzgyLmpwZWc.jpeg",
+   "resource_url": "https://i.discogs.com/70KfK2kRuN2EAIhymJssCYo_eSR_k8Uqb9Wfe7Gx0Uo/rs:fit/g:sm/q:90/h:215/w:214/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTkyNjE4/NDMtMTQ3NzU3MDM4/OS04NzgyLmpwZWc.jpeg",
+   "uri150": "https://i.discogs.com/8g1LWLACsJkwVUqGdVx5kYbCNGk-QUBYVTlicSuDt3Y/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTkyNjE4/NDMtMTQ3NzU3MDM4/OS04NzgyLmpwZWc.jpeg",
+   "width": 214,
+   "height": 215
+  }
+ ],
+ "thumb": "https://i.discogs.com/yA_2U9fqFTnVMw05seY74uiP1wsNWePyKSHhvuAgACw/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTkyNjE4/NDMtMTQ3ODAyNTQ2/NS05MDk5LmpwZWc.jpeg",
+ "estimated_weight": 230,
+ "blocked_from_sale": false,
+ "is_offensive": false
+}

@@ -1,0 +1,687 @@
+{
+ "id": 13095339,
+ "status": "Accepted",
+ "year": 2018,
+ "resource_url": "https://api.discogs.com/releases/13095339",
+ "uri": "https://www.discogs.com/release/13095339-Various-12-Inches-X-12-Songs-Techno-Pop",
+ "artists": [
+  {
+   "name": "Various",
+   "anv": "",
+   "join": "",
+   "role": "",
+   "tracks": "",
+   "id": 194,
+   "resource_url": "https://api.discogs.com/artists/194"
+  }
+ ],
+ "artists_sort": "Various",
+ "labels": [
+  {
+   "name": "Larvin Music Rights",
+   "catno": "LV2311",
+   "entity_type": "1",
+   "entity_type_name": "Label",
+   "id": 1517277,
+   "resource_url": "https://api.discogs.com/labels/1517277",
+   "thumbnail_url": "https://i.discogs.com/qpS8q4Tk_117N8K6OO1h2TvIg-5_AX_gftSiuGhDsh4/rs:fit/g:sm/q:90/h:429/w:597/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9MLTE1MTcy/NzctMTUzNjMzNjYz/OC04ODU5LmpwZWc.jpeg"
+  }
+ ],
+ "series": [],
+ "companies": [
+  {
+   "name": "Larvin Music Rights",
+   "catno": "",
+   "entity_type": "13",
+   "entity_type_name": "Phonographic Copyright (p)",
+   "id": 1517277,
+   "resource_url": "https://api.discogs.com/labels/1517277",
+   "thumbnail_url": "https://i.discogs.com/qpS8q4Tk_117N8K6OO1h2TvIg-5_AX_gftSiuGhDsh4/rs:fit/g:sm/q:90/h:429/w:597/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9MLTE1MTcy/NzctMTUzNjMzNjYz/OC04ODU5LmpwZWc.jpeg"
+  },
+  {
+   "name": "Larvin Music Rights",
+   "catno": "",
+   "entity_type": "14",
+   "entity_type_name": "Copyright (c)",
+   "id": 1517277,
+   "resource_url": "https://api.discogs.com/labels/1517277",
+   "thumbnail_url": "https://i.discogs.com/qpS8q4Tk_117N8K6OO1h2TvIg-5_AX_gftSiuGhDsh4/rs:fit/g:sm/q:90/h:429/w:597/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9MLTE1MTcy/NzctMTUzNjMzNjYz/OC04ODU5LmpwZWc.jpeg"
+  }
+ ],
+ "formats": [
+  {
+   "name": "Vinyl",
+   "qty": "2",
+   "descriptions": [
+    "LP",
+    "Compilation"
+   ],
+   "text": "Gatefold, 180g, Clear"
+  }
+ ],
+ "data_quality": "Needs Vote",
+ "community": {
+  "have": 145,
+  "want": 81,
+  "rating": {
+   "count": 14,
+   "average": 4.71
+  },
+  "submitter": {
+   "username": "garyfacio",
+   "resource_url": "https://api.discogs.com/users/garyfacio"
+  },
+  "contributors": [
+   {
+    "username": "garyfacio",
+    "resource_url": "https://api.discogs.com/users/garyfacio"
+   },
+   {
+    "username": "blueneon81",
+    "resource_url": "https://api.discogs.com/users/blueneon81"
+   },
+   {
+    "username": "JohnRevelator",
+    "resource_url": "https://api.discogs.com/users/JohnRevelator"
+   }
+  ],
+  "data_quality": "Needs Vote",
+  "status": "Accepted"
+ },
+ "format_quantity": 2,
+ "date_added": "2019-01-20T02:21:27-08:00",
+ "date_changed": "2022-01-15T07:18:02-08:00",
+ "num_for_sale": 3,
+ "lowest_price": 29.99,
+ "title": "12 Inches X 12 Songs Techno Pop",
+ "country": "Spain",
+ "released": "2018",
+ "notes": "Only For Dj",
+ "released_formatted": "2018",
+ "identifiers": [
+  {
+   "type": "Dep\u00f3sito Legal",
+   "value": "M-16825-2018"
+  },
+  {
+   "type": "Barcode",
+   "value": "8 437018 223114",
+   "description": "Text"
+  },
+  {
+   "type": "Matrix / Runout",
+   "value": "0296368-A-1",
+   "description": "Runout side A, etched"
+  },
+  {
+   "type": "Matrix / Runout",
+   "value": "0296368-B-1",
+   "description": "Runout side B, etched"
+  },
+  {
+   "type": "Matrix / Runout",
+   "value": "0296368-C-1",
+   "description": "Runout side C, etched"
+  },
+  {
+   "type": "Matrix / Runout",
+   "value": "0296368-D-1",
+   "description": "Runout side D, etched"
+  }
+ ],
+ "videos": [],
+ "genres": [
+  "Electronic",
+  "Rock"
+ ],
+ "styles": [
+  "Pop Rock",
+  "Synth-pop"
+ ],
+ "tracklist": [
+  {
+   "position": "A1",
+   "type_": "track",
+   "artists": [
+    {
+     "name": "Soft Cell",
+     "anv": "",
+     "join": "",
+     "role": "",
+     "tracks": "",
+     "id": 12196,
+     "resource_url": "https://api.discogs.com/artists/12196"
+    }
+   ],
+   "title": "Tainted Love (Where Did Our Love Go 12'' Long Version)",
+   "extraartists": [
+    {
+     "name": "Ed Cobb",
+     "anv": "",
+     "join": "",
+     "role": "Written-By",
+     "tracks": "",
+     "id": 262947,
+     "resource_url": "https://api.discogs.com/artists/262947"
+    },
+    {
+     "name": "Holland-Dozier-Holland",
+     "anv": "Holland/Dozier",
+     "join": "",
+     "role": "Written-By",
+     "tracks": "",
+     "id": 476910,
+     "resource_url": "https://api.discogs.com/artists/476910"
+    }
+   ],
+   "duration": ""
+  },
+  {
+   "position": "A2",
+   "type_": "track",
+   "artists": [
+    {
+     "name": "Tears For Fears",
+     "anv": "",
+     "join": "",
+     "role": "",
+     "tracks": "",
+     "id": 19814,
+     "resource_url": "https://api.discogs.com/artists/19814"
+    }
+   ],
+   "title": "Change (Extended Version)",
+   "extraartists": [
+    {
+     "name": "Roland Orzabal",
+     "anv": "R. Orzabal",
+     "join": "",
+     "role": "Written-By",
+     "tracks": "",
+     "id": 164295,
+     "resource_url": "https://api.discogs.com/artists/164295"
+    }
+   ],
+   "duration": ""
+  },
+  {
+   "position": "A3",
+   "type_": "track",
+   "artists": [
+    {
+     "name": "The Human League",
+     "anv": "",
+     "join": "",
+     "role": "",
+     "tracks": "",
+     "id": 10383,
+     "resource_url": "https://api.discogs.com/artists/10383"
+    }
+   ],
+   "title": "Love Action",
+   "extraartists": [
+    {
+     "name": "Ian Burden",
+     "anv": "Burden",
+     "join": "",
+     "role": "Written-By",
+     "tracks": "",
+     "id": 466320,
+     "resource_url": "https://api.discogs.com/artists/466320"
+    },
+    {
+     "name": "Philip Oakey",
+     "anv": "Oakey",
+     "join": "",
+     "role": "Written-By",
+     "tracks": "",
+     "id": 210705,
+     "resource_url": "https://api.discogs.com/artists/210705"
+    }
+   ],
+   "duration": ""
+  },
+  {
+   "position": "B1",
+   "type_": "track",
+   "artists": [
+    {
+     "name": "Heaven 17",
+     "anv": "",
+     "join": "",
+     "role": "",
+     "tracks": "",
+     "id": 12340,
+     "resource_url": "https://api.discogs.com/artists/12340"
+    }
+   ],
+   "title": "Penthouse And Pavement",
+   "extraartists": [
+    {
+     "name": "Glenn Gregory",
+     "anv": "Gregory",
+     "join": "",
+     "role": "Written-By",
+     "tracks": "",
+     "id": 24227,
+     "resource_url": "https://api.discogs.com/artists/24227"
+    },
+    {
+     "name": "Ian Craig Marsh",
+     "anv": "Marsh",
+     "join": "",
+     "role": "Written-By",
+     "tracks": "",
+     "id": 143890,
+     "resource_url": "https://api.discogs.com/artists/143890"
+    },
+    {
+     "name": "Martyn Ware",
+     "anv": "Ware",
+     "join": "",
+     "role": "Written-By",
+     "tracks": "",
+     "id": 27335,
+     "resource_url": "https://api.discogs.com/artists/27335"
+    }
+   ],
+   "duration": ""
+  },
+  {
+   "position": "B2",
+   "type_": "track",
+   "artists": [
+    {
+     "name": "Orchestral Manoeuvres In The Dark",
+     "anv": "",
+     "join": "",
+     "role": "",
+     "tracks": "",
+     "id": 9462,
+     "resource_url": "https://api.discogs.com/artists/9462"
+    }
+   ],
+   "title": "Locomotion (Extended Mix)",
+   "extraartists": [
+    {
+     "name": "Orchestral Manoeuvres In The Dark",
+     "anv": "",
+     "join": "",
+     "role": "Written-By",
+     "tracks": "",
+     "id": 9462,
+     "resource_url": "https://api.discogs.com/artists/9462"
+    }
+   ],
+   "duration": ""
+  },
+  {
+   "position": "B3",
+   "type_": "track",
+   "artists": [
+    {
+     "name": "China Crisis",
+     "anv": "",
+     "join": "",
+     "role": "",
+     "tracks": "",
+     "id": 27500,
+     "resource_url": "https://api.discogs.com/artists/27500"
+    }
+   ],
+   "title": "Working With Fire And Steel",
+   "extraartists": [
+    {
+     "name": "Eddie Lundon",
+     "anv": "E.Lundon",
+     "join": "",
+     "role": "Written-By",
+     "tracks": "",
+     "id": 418623,
+     "resource_url": "https://api.discogs.com/artists/418623"
+    },
+    {
+     "name": "Gary Daly",
+     "anv": "G.Dale",
+     "join": "",
+     "role": "Written-By",
+     "tracks": "",
+     "id": 418622,
+     "resource_url": "https://api.discogs.com/artists/418622"
+    }
+   ],
+   "duration": ""
+  },
+  {
+   "position": "C1",
+   "type_": "track",
+   "artists": [
+    {
+     "name": "Peter Schilling",
+     "anv": "",
+     "join": "",
+     "role": "",
+     "tracks": "",
+     "id": 108338,
+     "resource_url": "https://api.discogs.com/artists/108338"
+    }
+   ],
+   "title": "Terra Titanic",
+   "extraartists": [
+    {
+     "name": "Pierre Schilling",
+     "anv": "",
+     "join": "",
+     "role": "Written-By",
+     "tracks": "",
+     "id": 2543954,
+     "resource_url": "https://api.discogs.com/artists/2543954"
+    },
+    {
+     "name": "Ulf Kr\u00fcger",
+     "anv": "U.Kr\u00fcger",
+     "join": "",
+     "role": "Written-By",
+     "tracks": "",
+     "id": 364421,
+     "resource_url": "https://api.discogs.com/artists/364421"
+    }
+   ],
+   "duration": ""
+  },
+  {
+   "position": "C2",
+   "type_": "track",
+   "artists": [
+    {
+     "name": "Rheingold",
+     "anv": "",
+     "join": "",
+     "role": "",
+     "tracks": "",
+     "id": 81398,
+     "resource_url": "https://api.discogs.com/artists/81398"
+    }
+   ],
+   "title": "Dreiklangsdimensionenh",
+   "extraartists": [
+    {
+     "name": "Bodo Staiger",
+     "anv": "B.Staiger",
+     "join": "",
+     "role": "Written-By",
+     "tracks": "",
+     "id": 277033,
+     "resource_url": "https://api.discogs.com/artists/277033"
+    },
+    {
+     "name": "Lothar Manteuffel",
+     "anv": "L.Manteuffel",
+     "join": "",
+     "role": "Written-By",
+     "tracks": "",
+     "id": 49182,
+     "resource_url": "https://api.discogs.com/artists/49182"
+    }
+   ],
+   "duration": ""
+  },
+  {
+   "position": "C3",
+   "type_": "track",
+   "artists": [
+    {
+     "name": "New Order",
+     "anv": "",
+     "join": "",
+     "role": "",
+     "tracks": "",
+     "id": 3909,
+     "resource_url": "https://api.discogs.com/artists/3909"
+    }
+   ],
+   "title": "Bizarre Love Triangle (Extended Dance mix)",
+   "extraartists": [
+    {
+     "name": "New Order",
+     "anv": "",
+     "join": "",
+     "role": "Written-By",
+     "tracks": "",
+     "id": 3909,
+     "resource_url": "https://api.discogs.com/artists/3909"
+    }
+   ],
+   "duration": ""
+  },
+  {
+   "position": "D1",
+   "type_": "track",
+   "artists": [
+    {
+     "name": "Russ Ballard",
+     "anv": "",
+     "join": "",
+     "role": "",
+     "tracks": "",
+     "id": 140041,
+     "resource_url": "https://api.discogs.com/artists/140041"
+    }
+   ],
+   "title": "Voices",
+   "extraartists": [
+    {
+     "name": "Stefan Rambow",
+     "anv": "",
+     "join": "",
+     "role": "Written-By",
+     "tracks": "",
+     "id": 345177,
+     "resource_url": "https://api.discogs.com/artists/345177"
+    }
+   ],
+   "duration": ""
+  },
+  {
+   "position": "D2",
+   "type_": "track",
+   "artists": [
+    {
+     "name": "The B-52's",
+     "anv": "",
+     "join": "",
+     "role": "",
+     "tracks": "",
+     "id": 242415,
+     "resource_url": "https://api.discogs.com/artists/242415"
+    }
+   ],
+   "title": "Party Out Of Bounds Mix",
+   "extraartists": [
+    {
+     "name": "Cindy Wilson",
+     "anv": "C.Wilson",
+     "join": "",
+     "role": "Written-By",
+     "tracks": "",
+     "id": 303164,
+     "resource_url": "https://api.discogs.com/artists/303164"
+    },
+    {
+     "name": "Fred Schneider",
+     "anv": "F.Schneider",
+     "join": "",
+     "role": "Written-By",
+     "tracks": "",
+     "id": 252043,
+     "resource_url": "https://api.discogs.com/artists/252043"
+    },
+    {
+     "name": "Kate Pierson",
+     "anv": "K.Pierson",
+     "join": "",
+     "role": "Written-By",
+     "tracks": "",
+     "id": 261770,
+     "resource_url": "https://api.discogs.com/artists/261770"
+    },
+    {
+     "name": "Keith Strickland",
+     "anv": "K.Strickland",
+     "join": "",
+     "role": "Written-By",
+     "tracks": "",
+     "id": 422785,
+     "resource_url": "https://api.discogs.com/artists/422785"
+    },
+    {
+     "name": "Ricky Wilson (3)",
+     "anv": "R.Wilson",
+     "join": "",
+     "role": "Written-By",
+     "tracks": "",
+     "id": 492775,
+     "resource_url": "https://api.discogs.com/artists/492775"
+    }
+   ],
+   "duration": ""
+  },
+  {
+   "position": "D3",
+   "type_": "track",
+   "artists": [
+    {
+     "name": "Sigue Sigue Sputnik",
+     "anv": "",
+     "join": "",
+     "role": "",
+     "tracks": "",
+     "id": 37784,
+     "resource_url": "https://api.discogs.com/artists/37784"
+    }
+   ],
+   "title": "Love Missile F1-11 (Ultraviolence Mix)",
+   "extraartists": [
+    {
+     "name": "Laslo",
+     "anv": "",
+     "join": "",
+     "role": "Written-By",
+     "tracks": "",
+     "id": 286341,
+     "resource_url": "https://api.discogs.com/artists/286341"
+    },
+    {
+     "name": "Martin Degville",
+     "anv": "M.Degville",
+     "join": "",
+     "role": "Written-By",
+     "tracks": "",
+     "id": 435810,
+     "resource_url": "https://api.discogs.com/artists/435810"
+    },
+    {
+     "name": "Neal Whitmore",
+     "anv": "N.Whitmore",
+     "join": "",
+     "role": "Written-By",
+     "tracks": "",
+     "id": 296746,
+     "resource_url": "https://api.discogs.com/artists/296746"
+    },
+    {
+     "name": "Tony James",
+     "anv": "T.James",
+     "join": "",
+     "role": "Written-By",
+     "tracks": "",
+     "id": 255613,
+     "resource_url": "https://api.discogs.com/artists/255613"
+    }
+   ],
+   "duration": ""
+  }
+ ],
+ "extraartists": [
+  {
+   "name": "Quercus Publicidad",
+   "anv": "",
+   "join": "",
+   "role": "Design",
+   "tracks": "",
+   "id": 10617010,
+   "resource_url": "https://api.discogs.com/artists/10617010"
+  },
+  {
+   "name": "J. Velarde",
+   "anv": "",
+   "join": "",
+   "role": "Mastered By",
+   "tracks": "",
+   "id": 147514,
+   "resource_url": "https://api.discogs.com/artists/147514"
+  }
+ ],
+ "images": [
+  {
+   "type": "primary",
+   "uri": "https://i.discogs.com/5vghVDO0A59mIb1PbaHhF7CEOg-PpwPtvczwhrqMev8/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzMDk1/MzM5LTE1NDc5ODEw/NzQtOTYxNC5qcGVn.jpeg",
+   "resource_url": "https://i.discogs.com/5vghVDO0A59mIb1PbaHhF7CEOg-PpwPtvczwhrqMev8/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzMDk1/MzM5LTE1NDc5ODEw/NzQtOTYxNC5qcGVn.jpeg",
+   "uri150": "https://i.discogs.com/c975dmLw1zioYptas7DxRzJoqiNrBo-21g38BcvGF1c/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzMDk1/MzM5LTE1NDc5ODEw/NzQtOTYxNC5qcGVn.jpeg",
+   "width": 600,
+   "height": 600
+  },
+  {
+   "type": "secondary",
+   "uri": "https://i.discogs.com/X8rYQ1pbyRboYNgTuAPA7fJkIxg27E_Tn6Z1_BcSVYY/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzMDk1/MzM5LTE1NDc5ODEw/ODAtNTg3Mi5qcGVn.jpeg",
+   "resource_url": "https://i.discogs.com/X8rYQ1pbyRboYNgTuAPA7fJkIxg27E_Tn6Z1_BcSVYY/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzMDk1/MzM5LTE1NDc5ODEw/ODAtNTg3Mi5qcGVn.jpeg",
+   "uri150": "https://i.discogs.com/re4Tvk42jLkCcAEHbBzElqApFjM6ryMLPzZ9Pu88RZs/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzMDk1/MzM5LTE1NDc5ODEw/ODAtNTg3Mi5qcGVn.jpeg",
+   "width": 600,
+   "height": 600
+  },
+  {
+   "type": "secondary",
+   "uri": "https://i.discogs.com/mgRNnGRlEY7hYRI2cI7KuE-5KLEpdoVwgnEnJ1kJzRw/rs:fit/g:sm/q:90/h:293/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzMDk1/MzM5LTE1NDc5ODEw/NzktOTM2Ny5qcGVn.jpeg",
+   "resource_url": "https://i.discogs.com/mgRNnGRlEY7hYRI2cI7KuE-5KLEpdoVwgnEnJ1kJzRw/rs:fit/g:sm/q:90/h:293/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzMDk1/MzM5LTE1NDc5ODEw/NzktOTM2Ny5qcGVn.jpeg",
+   "uri150": "https://i.discogs.com/tW_P64M8MdmSGmuge16pNaT-cNt75m9S5xfbXbKV0-c/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzMDk1/MzM5LTE1NDc5ODEw/NzktOTM2Ny5qcGVn.jpeg",
+   "width": 600,
+   "height": 293
+  },
+  {
+   "type": "secondary",
+   "uri": "https://i.discogs.com/lKsEhJxGUObs2hijr9Z8RSlzeo2oEa-6sDj8DQXf2iM/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzMDk1/MzM5LTE1NDc5ODEw/NzQtNTMwOS5qcGVn.jpeg",
+   "resource_url": "https://i.discogs.com/lKsEhJxGUObs2hijr9Z8RSlzeo2oEa-6sDj8DQXf2iM/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzMDk1/MzM5LTE1NDc5ODEw/NzQtNTMwOS5qcGVn.jpeg",
+   "uri150": "https://i.discogs.com/WyGqCHKpmkWZQL4ZecNXqHkxhkwTQz63Rfg9QtD9oJw/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzMDk1/MzM5LTE1NDc5ODEw/NzQtNTMwOS5qcGVn.jpeg",
+   "width": 600,
+   "height": 600
+  },
+  {
+   "type": "secondary",
+   "uri": "https://i.discogs.com/VNbZHZwCYcGkWalnJFVmUHrSSyUSSFWn6ZmWACEuasQ/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzMDk1/MzM5LTE1NDc5ODEw/NzMtNTE5NC5qcGVn.jpeg",
+   "resource_url": "https://i.discogs.com/VNbZHZwCYcGkWalnJFVmUHrSSyUSSFWn6ZmWACEuasQ/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzMDk1/MzM5LTE1NDc5ODEw/NzMtNTE5NC5qcGVn.jpeg",
+   "uri150": "https://i.discogs.com/TbXcBMylmDEGDrMjNNAcu5fIk_ynyQZmo7G0C6W5OsE/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzMDk1/MzM5LTE1NDc5ODEw/NzMtNTE5NC5qcGVn.jpeg",
+   "width": 600,
+   "height": 600
+  },
+  {
+   "type": "secondary",
+   "uri": "https://i.discogs.com/IiMD6Y215KLs5LXtcrSHDmwI5yAkGEhaGB_mwO1bZUE/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzMDk1/MzM5LTE1NDc5ODEw/NzMtMTUyNC5qcGVn.jpeg",
+   "resource_url": "https://i.discogs.com/IiMD6Y215KLs5LXtcrSHDmwI5yAkGEhaGB_mwO1bZUE/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzMDk1/MzM5LTE1NDc5ODEw/NzMtMTUyNC5qcGVn.jpeg",
+   "uri150": "https://i.discogs.com/BCx17vQI4RlneETOwVdFOA9Jpbz_SIK95g0H-PoFdpI/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzMDk1/MzM5LTE1NDc5ODEw/NzMtMTUyNC5qcGVn.jpeg",
+   "width": 600,
+   "height": 600
+  },
+  {
+   "type": "secondary",
+   "uri": "https://i.discogs.com/-6as42KIg-1eb6MC9Rl51p42bup6TiHUUmmsBfbEPfQ/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzMDk1/MzM5LTE1NDc5ODEw/NzMtNjg4Mi5qcGVn.jpeg",
+   "resource_url": "https://i.discogs.com/-6as42KIg-1eb6MC9Rl51p42bup6TiHUUmmsBfbEPfQ/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzMDk1/MzM5LTE1NDc5ODEw/NzMtNjg4Mi5qcGVn.jpeg",
+   "uri150": "https://i.discogs.com/ISRUnM84Ed0gtzAWocMnHrsBTnA-eaSrhL51GQLYuU8/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzMDk1/MzM5LTE1NDc5ODEw/NzMtNjg4Mi5qcGVn.jpeg",
+   "width": 600,
+   "height": 600
+  }
+ ],
+ "thumb": "https://i.discogs.com/c975dmLw1zioYptas7DxRzJoqiNrBo-21g38BcvGF1c/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzMDk1/MzM5LTE1NDc5ODEw/NzQtOTYxNC5qcGVn.jpeg",
+ "estimated_weight": 460,
+ "blocked_from_sale": false,
+ "is_offensive": false
+}

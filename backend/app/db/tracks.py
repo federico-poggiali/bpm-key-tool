@@ -3,7 +3,7 @@ import sqlite3
 
 from app.db import _util
 
-_COLUMNS = {"position", "title", "duration_sec", "bpm", "key", "camelot_key", "confidence",
+_COLUMNS = {"position", "artist", "title", "duration_sec", "bpm", "key", "camelot_key", "confidence",
             "analysis_raw", "audio_path", "analyzed_at"}
 
 

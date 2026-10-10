@@ -1,0 +1,226 @@
+{
+ "id": 137924,
+ "main_release": 12472,
+ "most_recent_release": 2507931,
+ "resource_url": "https://api.discogs.com/masters/137924",
+ "uri": "https://www.discogs.com/master/137924-Model-500-Be-Brave",
+ "versions_url": "https://api.discogs.com/masters/137924/versions",
+ "main_release_url": "https://api.discogs.com/releases/12472",
+ "most_recent_release_url": "https://api.discogs.com/releases/2507931",
+ "num_for_sale": 192,
+ "lowest_price": 1.14,
+ "images": [
+  {
+   "type": "primary",
+   "uri": "https://i.discogs.com/BsqgiWojawF_a541wcOVaE_oJoL5kjI1DjdKnxMEOc8/rs:fit/g:sm/q:90/h:529/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyNDcy/LTEyNTg4MjEwNzQu/anBlZw.jpeg",
+   "resource_url": "https://i.discogs.com/BsqgiWojawF_a541wcOVaE_oJoL5kjI1DjdKnxMEOc8/rs:fit/g:sm/q:90/h:529/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyNDcy/LTEyNTg4MjEwNzQu/anBlZw.jpeg",
+   "uri150": "https://i.discogs.com/I_b19cu-DHdLd2OZ7EhkBRxHscFQ5SPHk_0WSywh4tg/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyNDcy/LTEyNTg4MjEwNzQu/anBlZw.jpeg",
+   "width": 600,
+   "height": 529
+  },
+  {
+   "type": "secondary",
+   "uri": "https://i.discogs.com/aa5IIj9xplzlGkpFIgAVSKG3yA53LlhE-R5egPQMA2c/rs:fit/g:sm/q:90/h:531/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyNDcy/LTEyNTg4MjAxOTYu/anBlZw.jpeg",
+   "resource_url": "https://i.discogs.com/aa5IIj9xplzlGkpFIgAVSKG3yA53LlhE-R5egPQMA2c/rs:fit/g:sm/q:90/h:531/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyNDcy/LTEyNTg4MjAxOTYu/anBlZw.jpeg",
+   "uri150": "https://i.discogs.com/NS_QLcZPLVZF_XvVzVb_73ylESxb1o1QumEUMloW4SY/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyNDcy/LTEyNTg4MjAxOTYu/anBlZw.jpeg",
+   "width": 600,
+   "height": 531
+  },
+  {
+   "type": "secondary",
+   "uri": "https://i.discogs.com/0UMJ126OWmMZFACOsaT_mmrq9e9sAr08-B-db8RqgAw/rs:fit/g:sm/q:90/h:526/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyNDcy/LTEyNTg4MjEwODku/anBlZw.jpeg",
+   "resource_url": "https://i.discogs.com/0UMJ126OWmMZFACOsaT_mmrq9e9sAr08-B-db8RqgAw/rs:fit/g:sm/q:90/h:526/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyNDcy/LTEyNTg4MjEwODku/anBlZw.jpeg",
+   "uri150": "https://i.discogs.com/LmLmVQy6kI0GQFoeLzMkqY3J629qmH8BmPeCVkO2Qvk/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyNDcy/LTEyNTg4MjEwODku/anBlZw.jpeg",
+   "width": 600,
+   "height": 526
+  },
+  {
+   "type": "secondary",
+   "uri": "https://i.discogs.com/OCpRZlQTXL2EyQfs1z7VxNMm5JA-7URjfS0vuQmgl1o/rs:fit/g:sm/q:90/h:600/w:594/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyNDcy/LTEyNTg4MjIxODAu/anBlZw.jpeg",
+   "resource_url": "https://i.discogs.com/OCpRZlQTXL2EyQfs1z7VxNMm5JA-7URjfS0vuQmgl1o/rs:fit/g:sm/q:90/h:600/w:594/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyNDcy/LTEyNTg4MjIxODAu/anBlZw.jpeg",
+   "uri150": "https://i.discogs.com/SY4QTXyeQtmy7TXMayVWDu0esXSaxTTXx62uM6w2DW0/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyNDcy/LTEyNTg4MjIxODAu/anBlZw.jpeg",
+   "width": 594,
+   "height": 600
+  }
+ ],
+ "genres": [
+  "Electronic"
+ ],
+ "styles": [
+  "Techno",
+  "Downtempo"
+ ],
+ "year": 1999,
+ "tracklist": [
+  {
+   "position": "1",
+   "type_": "track",
+   "title": "Be Brave (FK Radio Edit)",
+   "extraartists": [
+    {
+     "name": "Matthias Heilbronn",
+     "anv": "",
+     "join": "",
+     "role": "Drum Programming",
+     "tracks": "",
+     "id": 35146,
+     "resource_url": "https://api.discogs.com/artists/35146"
+    },
+    {
+     "name": "Rob Rives",
+     "anv": "",
+     "join": "",
+     "role": "Engineer",
+     "tracks": "",
+     "id": 5478,
+     "resource_url": "https://api.discogs.com/artists/5478"
+    },
+    {
+     "name": "Dick Beetham",
+     "anv": "",
+     "join": "",
+     "role": "Engineer [Editing]",
+     "tracks": "",
+     "id": 299375,
+     "resource_url": "https://api.discogs.com/artists/299375"
+    },
+    {
+     "name": "James Preston",
+     "anv": "",
+     "join": "",
+     "role": "Keyboards",
+     "tracks": "",
+     "id": 45973,
+     "resource_url": "https://api.discogs.com/artists/45973"
+    },
+    {
+     "name": "Fran\u00e7ois Kevorkian",
+     "anv": "Fran\u00e7ois K",
+     "join": "",
+     "role": "Remix, Producer [Additional Production], Edited By",
+     "tracks": "",
+     "id": 20662,
+     "resource_url": "https://api.discogs.com/artists/20662"
+    }
+   ],
+   "duration": "3:52"
+  },
+  {
+   "position": "2",
+   "type_": "track",
+   "title": "Be Brave (Original)",
+   "duration": "5:04"
+  },
+  {
+   "position": "3",
+   "type_": "track",
+   "title": "Be Brave (Gusgus Remix)",
+   "extraartists": [
+    {
+     "name": "\u00c1rni Kristj\u00e1nsson",
+     "anv": "Arni Kristjansson",
+     "join": "",
+     "role": "Guitar",
+     "tracks": "",
+     "id": 453172,
+     "resource_url": "https://api.discogs.com/artists/453172"
+    },
+    {
+     "name": "J\u00f3n \u00d3lafsson",
+     "anv": "Jon Olafsson",
+     "join": "",
+     "role": "Keyboards [Additional]",
+     "tracks": "",
+     "id": 453173,
+     "resource_url": "https://api.discogs.com/artists/453173"
+    },
+    {
+     "name": "Thor Baldursson",
+     "anv": "",
+     "join": "",
+     "role": "Keyboards [Additional]",
+     "tracks": "",
+     "id": 153524,
+     "resource_url": "https://api.discogs.com/artists/153524"
+    },
+    {
+     "name": "P\u00e1ll Borg",
+     "anv": "Pall Borg",
+     "join": "",
+     "role": "Mixed By",
+     "tracks": "",
+     "id": 293293,
+     "resource_url": "https://api.discogs.com/artists/293293"
+    },
+    {
+     "name": "Herb Legowitz",
+     "anv": "",
+     "join": "",
+     "role": "Remix, Producer [Additional Production]",
+     "tracks": "",
+     "id": 51044,
+     "resource_url": "https://api.discogs.com/artists/51044"
+    }
+   ],
+   "duration": "6:59"
+  }
+ ],
+ "artists": [
+  {
+   "name": "Model 500",
+   "anv": "",
+   "join": "",
+   "role": "",
+   "tracks": "",
+   "id": 1141,
+   "resource_url": "https://api.discogs.com/artists/1141",
+   "thumbnail_url": "https://i.discogs.com/BTpqDthwPzZPBXbi0ezD_mwIlpWQfpfCeFDvsF2NBFs/rs:fit/g:sm/q:90/h:400/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9BLTExNDEt/MTU1MjE2MTI4NS04/OTE5LmpwZWc.jpeg"
+  }
+ ],
+ "title": "Be Brave",
+ "data_quality": "Correct",
+ "videos": [
+  {
+   "uri": "https://www.youtube.com/watch?v=w4djpuoVg0Q",
+   "title": "Model 500  - Be Brave",
+   "description": "From the album \"Mind and Body\" on R&S..\nhttp://www.discogs.com/Model-500-Mind-And-Body/master/17774\nSupport the artists and labels and buy an original copy.",
+   "duration": 311,
+   "embed": true
+  },
+  {
+   "uri": "https://www.youtube.com/watch?v=Qfids7kCXoM",
+   "title": "Model 500 - Psychosomatic",
+   "description": "Mind And Body; R & S Records, Belgium 1999. RS 99145",
+   "duration": 379,
+   "embed": true
+  },
+  {
+   "uri": "https://www.youtube.com/watch?v=D2m2A3SVf6U",
+   "title": "Model 500 - Be Brave (Main Vocal Mix)",
+   "description": "Remix - Fran\u00e7ois K",
+   "duration": 560,
+   "embed": true
+  },
+  {
+   "uri": "https://www.youtube.com/watch?v=DJDI1SLewFA",
+   "title": "Model 500 Be Brave KMA I Think So Mix",
+   "description": "I don't think I've ever heard this played ever. Great remix by UK Garage dons KMA Productions. Apologies if the rip isn't the best.",
+   "duration": 384,
+   "embed": true
+  },
+  {
+   "uri": "https://www.youtube.com/watch?v=kQweEsEY7tc",
+   "title": "Model 500 - Be Brave (Gus Gus Remix)",
+   "description": ".\n\nhttp://www.discogs.com/Model-500-Be-Brave-12inch02/release/46673",
+   "duration": 413,
+   "embed": true
+  },
+  {
+   "uri": "https://www.youtube.com/watch?v=D2m2A3SVf6U",
+   "title": "Model 500 - Be Brave (Main Vocal Mix)",
+   "description": "Remix - Fran\u00e7ois K",
+   "duration": 560,
+   "embed": true
+  }
+ ]
+}

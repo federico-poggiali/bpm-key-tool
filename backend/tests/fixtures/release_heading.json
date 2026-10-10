@@ -1,0 +1,478 @@
+{
+ "id": 46673,
+ "status": "Accepted",
+ "year": 1999,
+ "resource_url": "https://api.discogs.com/releases/46673",
+ "uri": "https://www.discogs.com/release/46673-Model-500-Be-Brave-12inch02",
+ "artists": [
+  {
+   "name": "Model 500",
+   "anv": "",
+   "join": "",
+   "role": "",
+   "tracks": "",
+   "id": 1141,
+   "resource_url": "https://api.discogs.com/artists/1141",
+   "thumbnail_url": "https://i.discogs.com/BTpqDthwPzZPBXbi0ezD_mwIlpWQfpfCeFDvsF2NBFs/rs:fit/g:sm/q:90/h:400/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9BLTExNDEt/MTU1MjE2MTI4NS04/OTE5LmpwZWc.jpeg"
+  }
+ ],
+ "artists_sort": "Model 500",
+ "labels": [
+  {
+   "name": "R & S Records",
+   "catno": "RS 98135 X",
+   "entity_type": "1",
+   "entity_type_name": "Label",
+   "id": 245,
+   "resource_url": "https://api.discogs.com/labels/245",
+   "thumbnail_url": "https://i.discogs.com/_N2CVV8Zx5dgxcfBExsvfC7yHaXzr5KTnwwQSRTwJHQ/rs:fit/g:sm/q:90/h:600/w:382/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9MLTI0NS0x/NjEyNTM1NDYzLTI4/NjUuanBlZw.jpeg"
+  }
+ ],
+ "series": [],
+ "companies": [
+  {
+   "name": "R & S Records",
+   "catno": "",
+   "entity_type": "13",
+   "entity_type_name": "Phonographic Copyright (p)",
+   "id": 245,
+   "resource_url": "https://api.discogs.com/labels/245",
+   "thumbnail_url": "https://i.discogs.com/_N2CVV8Zx5dgxcfBExsvfC7yHaXzr5KTnwwQSRTwJHQ/rs:fit/g:sm/q:90/h:600/w:382/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9MLTI0NS0x/NjEyNTM1NDYzLTI4/NjUuanBlZw.jpeg"
+  },
+  {
+   "name": "R & S Records",
+   "catno": "",
+   "entity_type": "14",
+   "entity_type_name": "Copyright (c)",
+   "id": 245,
+   "resource_url": "https://api.discogs.com/labels/245",
+   "thumbnail_url": "https://i.discogs.com/_N2CVV8Zx5dgxcfBExsvfC7yHaXzr5KTnwwQSRTwJHQ/rs:fit/g:sm/q:90/h:600/w:382/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9MLTI0NS0x/NjEyNTM1NDYzLTI4/NjUuanBlZw.jpeg"
+  },
+  {
+   "name": "R & S Records",
+   "catno": "",
+   "entity_type": "10",
+   "entity_type_name": "Manufactured By",
+   "id": 245,
+   "resource_url": "https://api.discogs.com/labels/245",
+   "thumbnail_url": "https://i.discogs.com/_N2CVV8Zx5dgxcfBExsvfC7yHaXzr5KTnwwQSRTwJHQ/rs:fit/g:sm/q:90/h:600/w:382/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9MLTI0NS0x/NjEyNTM1NDYzLTI4/NjUuanBlZw.jpeg"
+  },
+  {
+   "name": "R & S Records",
+   "catno": "",
+   "entity_type": "8",
+   "entity_type_name": "Marketed By",
+   "id": 245,
+   "resource_url": "https://api.discogs.com/labels/245",
+   "thumbnail_url": "https://i.discogs.com/_N2CVV8Zx5dgxcfBExsvfC7yHaXzr5KTnwwQSRTwJHQ/rs:fit/g:sm/q:90/h:600/w:382/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9MLTI0NS0x/NjEyNTM1NDYzLTI4/NjUuanBlZw.jpeg"
+  },
+  {
+   "name": "R & S Records",
+   "catno": "",
+   "entity_type": "21",
+   "entity_type_name": "Published By",
+   "id": 245,
+   "resource_url": "https://api.discogs.com/labels/245",
+   "thumbnail_url": "https://i.discogs.com/_N2CVV8Zx5dgxcfBExsvfC7yHaXzr5KTnwwQSRTwJHQ/rs:fit/g:sm/q:90/h:600/w:382/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9MLTI0NS0x/NjEyNTM1NDYzLTI4/NjUuanBlZw.jpeg"
+  },
+  {
+   "name": "Gus Gus Productions",
+   "catno": "",
+   "entity_type": "37",
+   "entity_type_name": "Produced For",
+   "id": 635309,
+   "resource_url": "https://api.discogs.com/labels/635309"
+  },
+  {
+   "name": "Lego Hi-fi Enterprises",
+   "catno": "",
+   "entity_type": "37",
+   "entity_type_name": "Produced For",
+   "id": 2462947,
+   "resource_url": "https://api.discogs.com/labels/2462947"
+  },
+  {
+   "name": "Metroplex Studios",
+   "catno": "",
+   "entity_type": "23",
+   "entity_type_name": "Recorded At",
+   "id": 272507,
+   "resource_url": "https://api.discogs.com/labels/272507",
+   "thumbnail_url": "https://i.discogs.com/RT8XnMq0fun-F6_JjW_Qfptji482BynEanuxpXusb3Y/rs:fit/g:sm/q:90/h:236/w:350/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9MLTI3MjUw/Ny0xMzQ3Nzk0MDU3/LTg0MjkuZ2lm.jpeg"
+  },
+  {
+   "name": "Metroplex Studios",
+   "catno": "",
+   "entity_type": "27",
+   "entity_type_name": "Mixed At",
+   "id": 272507,
+   "resource_url": "https://api.discogs.com/labels/272507",
+   "thumbnail_url": "https://i.discogs.com/RT8XnMq0fun-F6_JjW_Qfptji482BynEanuxpXusb3Y/rs:fit/g:sm/q:90/h:236/w:350/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9MLTI3MjUw/Ny0xMzQ3Nzk0MDU3/LTg0MjkuZ2lm.jpeg"
+  },
+  {
+   "name": "The Green Room, Reykjavik",
+   "catno": "",
+   "entity_type": "27",
+   "entity_type_name": "Mixed At",
+   "id": 279217,
+   "resource_url": "https://api.discogs.com/labels/279217"
+  },
+  {
+   "name": "Dubplates & Mastering",
+   "catno": "",
+   "entity_type": "30",
+   "entity_type_name": "Lacquer Cut At",
+   "id": 264266,
+   "resource_url": "https://api.discogs.com/labels/264266",
+   "thumbnail_url": "https://i.discogs.com/u60bKcxzGDPPgmjEuEl2Ek1l3rGi9HcfO7xuNJCRlRI/rs:fit/g:sm/q:90/h:33/w:281/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9MLTI2NDI2/Ni0xMzE0Njg2NjQy/LmdpZg.jpeg"
+  }
+ ],
+ "formats": [
+  {
+   "name": "Vinyl",
+   "qty": "1",
+   "descriptions": [
+    "12\"",
+    "45 RPM"
+   ]
+  }
+ ],
+ "data_quality": "Needs Vote",
+ "community": {
+  "have": 464,
+  "want": 123,
+  "rating": {
+   "count": 61,
+   "average": 3.69
+  },
+  "submitter": {
+   "username": "superpanch",
+   "resource_url": "https://api.discogs.com/users/superpanch"
+  },
+  "contributors": [
+   {
+    "username": "superpanch",
+    "resource_url": "https://api.discogs.com/users/superpanch"
+   },
+   {
+    "username": "SXFuzz",
+    "resource_url": "https://api.discogs.com/users/SXFuzz"
+   },
+   {
+    "username": "mayday",
+    "resource_url": "https://api.discogs.com/users/mayday"
+   },
+   {
+    "username": "rv__",
+    "resource_url": "https://api.discogs.com/users/rv__"
+   },
+   {
+    "username": "buckmaster",
+    "resource_url": "https://api.discogs.com/users/buckmaster"
+   },
+   {
+    "username": "gazman21",
+    "resource_url": "https://api.discogs.com/users/gazman21"
+   },
+   {
+    "username": "ost",
+    "resource_url": "https://api.discogs.com/users/ost"
+   },
+   {
+    "username": "RetroCorner",
+    "resource_url": "https://api.discogs.com/users/RetroCorner"
+   },
+   {
+    "username": "kraftberg",
+    "resource_url": "https://api.discogs.com/users/kraftberg"
+   },
+   {
+    "username": "ppedzoni",
+    "resource_url": "https://api.discogs.com/users/ppedzoni"
+   }
+  ],
+  "data_quality": "Needs Vote",
+  "status": "Accepted"
+ },
+ "format_quantity": 1,
+ "date_added": "2002-08-26T07:10:49-07:00",
+ "date_changed": "2025-07-17T23:32:51-07:00",
+ "num_for_sale": 46,
+ "lowest_price": 1.76,
+ "master_id": 137924,
+ "master_url": "https://api.discogs.com/masters/137924",
+ "title": "Be Brave 12inch/02",
+ "country": "Belgium",
+ "released": "1999",
+ "notes": "Recorded and Mixed at Metroplex Soundlabs Detroit.\nTrack A remix and additional production for GusGus Productions and Lego Hi-fi Enterprises. Mixed at The Green Room, Reykjavik.\nManufactured and marketed by R & S Records/Belgium\nLabel: \u2117 1998 R & S Records \u00a9 1998 R & S Records\nCover: \u2117 1999 R & S Records \u00a9 1999 R & S Records\nMade in Belgium",
+ "released_formatted": "1999",
+ "identifiers": [
+  {
+   "type": "Barcode",
+   "value": "5411659013535"
+  },
+  {
+   "type": "Rights Society",
+   "value": "SABAM / BIEM"
+  },
+  {
+   "type": "Matrix / Runout",
+   "value": "A RS 98135X p at D+M",
+   "description": "Runout side A"
+  },
+  {
+   "type": "Matrix / Runout",
+   "value": "RS 98135X P\u0336R\u0336O\u0336M\u0336O\u0336   B1",
+   "description": "Runout side B"
+  }
+ ],
+ "videos": [
+  {
+   "uri": "https://www.youtube.com/watch?v=w4djpuoVg0Q",
+   "title": "Model 500  - Be Brave",
+   "description": "From the album \"Mind and Body\" on R&S..\nhttp://www.discogs.com/Model-500-Mind-And-Body/master/17774\nSupport the artists and labels and buy an original copy.",
+   "duration": 311,
+   "embed": true
+  },
+  {
+   "uri": "https://www.youtube.com/watch?v=Qfids7kCXoM",
+   "title": "Model 500 - Psychosomatic",
+   "description": "Mind And Body; R & S Records, Belgium 1999. RS 99145",
+   "duration": 379,
+   "embed": true
+  },
+  {
+   "uri": "https://www.youtube.com/watch?v=D2m2A3SVf6U",
+   "title": "Model 500 - Be Brave (Main Vocal Mix)",
+   "description": "Remix - Fran\u00e7ois K",
+   "duration": 560,
+   "embed": true
+  },
+  {
+   "uri": "https://www.youtube.com/watch?v=DJDI1SLewFA",
+   "title": "Model 500 Be Brave KMA I Think So Mix",
+   "description": "I don't think I've ever heard this played ever. Great remix by UK Garage dons KMA Productions. Apologies if the rip isn't the best.",
+   "duration": 384,
+   "embed": true
+  },
+  {
+   "uri": "https://www.youtube.com/watch?v=kQweEsEY7tc",
+   "title": "Model 500 - Be Brave (Gus Gus Remix)",
+   "description": ".\n\nhttp://www.discogs.com/Model-500-Be-Brave-12inch02/release/46673",
+   "duration": 413,
+   "embed": true
+  },
+  {
+   "uri": "https://www.youtube.com/watch?v=D2m2A3SVf6U",
+   "title": "Model 500 - Be Brave (Main Vocal Mix)",
+   "description": "Remix - Fran\u00e7ois K",
+   "duration": 560,
+   "embed": true
+  }
+ ],
+ "genres": [
+  "Electronic"
+ ],
+ "styles": [
+  "UK Garage",
+  "Techno"
+ ],
+ "tracklist": [
+  {
+   "position": "",
+   "type_": "heading",
+   "title": "Black Side",
+   "duration": ""
+  },
+  {
+   "position": "A",
+   "type_": "track",
+   "title": "Be Brave (Gus Gus Remix)",
+   "extraartists": [
+    {
+     "name": "\u00c1rni Kristj\u00e1nsson",
+     "anv": "Arni Kristjansson",
+     "join": "",
+     "role": "Guitar",
+     "tracks": "",
+     "id": 453172,
+     "resource_url": "https://api.discogs.com/artists/453172"
+    },
+    {
+     "name": "J\u00f3n \u00d3lafsson",
+     "anv": "Jon Olafsson",
+     "join": "",
+     "role": "Keyboards [Additional]",
+     "tracks": "",
+     "id": 453173,
+     "resource_url": "https://api.discogs.com/artists/453173"
+    },
+    {
+     "name": "Thor Baldursson",
+     "anv": "",
+     "join": "",
+     "role": "Keyboards [Additional]",
+     "tracks": "",
+     "id": 153524,
+     "resource_url": "https://api.discogs.com/artists/153524"
+    },
+    {
+     "name": "Herb Legowitz",
+     "anv": "",
+     "join": "",
+     "role": "Mixed By",
+     "tracks": "",
+     "id": 51044,
+     "resource_url": "https://api.discogs.com/artists/51044"
+    },
+    {
+     "name": "P\u00e1ll Borg",
+     "anv": "Pall Borg",
+     "join": "",
+     "role": "Mixed By",
+     "tracks": "",
+     "id": 293293,
+     "resource_url": "https://api.discogs.com/artists/293293"
+    },
+    {
+     "name": "GusGus",
+     "anv": "Gus Gus",
+     "join": "",
+     "role": "Remix",
+     "tracks": "",
+     "id": 231513,
+     "resource_url": "https://api.discogs.com/artists/231513"
+    },
+    {
+     "name": "Herb Legowitz",
+     "anv": "",
+     "join": "",
+     "role": "Remix, Producer [Additional Production]",
+     "tracks": "",
+     "id": 51044,
+     "resource_url": "https://api.discogs.com/artists/51044"
+    }
+   ],
+   "duration": "7:00"
+  },
+  {
+   "position": "",
+   "type_": "heading",
+   "title": "Silver Side",
+   "duration": ""
+  },
+  {
+   "position": "B",
+   "type_": "track",
+   "title": "Be Brave (I Think So Mix)",
+   "extraartists": [
+    {
+     "name": "KMA Productions",
+     "anv": "",
+     "join": "",
+     "role": "Remix",
+     "tracks": "",
+     "id": 95324,
+     "resource_url": "https://api.discogs.com/artists/95324"
+    }
+   ],
+   "duration": "5:33"
+  }
+ ],
+ "extraartists": [
+  {
+   "name": "The Designers Republic",
+   "anv": "mitdr",
+   "join": "",
+   "role": "Design",
+   "tracks": "",
+   "id": 445854,
+   "resource_url": "https://api.discogs.com/artists/445854"
+  },
+  {
+   "name": "Pole",
+   "anv": "P",
+   "join": "",
+   "role": "Lacquer Cut By",
+   "tracks": "",
+   "id": 611,
+   "resource_url": "https://api.discogs.com/artists/611"
+  },
+  {
+   "name": "Tar (3)",
+   "anv": "",
+   "join": "",
+   "role": "Photography By",
+   "tracks": "",
+   "id": 2261036,
+   "resource_url": "https://api.discogs.com/artists/2261036"
+  },
+  {
+   "name": "Juan Atkins",
+   "anv": "",
+   "join": "",
+   "role": "Producer",
+   "tracks": "",
+   "id": 1102,
+   "resource_url": "https://api.discogs.com/artists/1102"
+  },
+  {
+   "name": "Will Mills",
+   "anv": "",
+   "join": "",
+   "role": "Sleeve Notes [1998]",
+   "tracks": "",
+   "id": 380399,
+   "resource_url": "https://api.discogs.com/artists/380399"
+  },
+  {
+   "name": "Antoinette Cohill",
+   "anv": "",
+   "join": "",
+   "role": "Vocals",
+   "tracks": "",
+   "id": 212560,
+   "resource_url": "https://api.discogs.com/artists/212560"
+  },
+  {
+   "name": "Antoinette Cohill",
+   "anv": "",
+   "join": "",
+   "role": "Written-By",
+   "tracks": "",
+   "id": 212560,
+   "resource_url": "https://api.discogs.com/artists/212560"
+  },
+  {
+   "name": "Juan Atkins",
+   "anv": "",
+   "join": "",
+   "role": "Written-By",
+   "tracks": "",
+   "id": 1102,
+   "resource_url": "https://api.discogs.com/artists/1102"
+  }
+ ],
+ "images": [
+  {
+   "type": "primary",
+   "uri": "https://i.discogs.com/WUyHVOaTScWt2tQYPWx6Rd3rLAhWlHN-msn4deqeLac/rs:fit/g:sm/q:90/h:297/w:300/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQ2Njcz/LTAwMS5qcGc.jpeg",
+   "resource_url": "https://i.discogs.com/WUyHVOaTScWt2tQYPWx6Rd3rLAhWlHN-msn4deqeLac/rs:fit/g:sm/q:90/h:297/w:300/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQ2Njcz/LTAwMS5qcGc.jpeg",
+   "uri150": "https://i.discogs.com/rYVBIBLyxmygkVogMIPPXoDPRUBFypTzmtsZCV4YMv8/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQ2Njcz/LTAwMS5qcGc.jpeg",
+   "width": 300,
+   "height": 297
+  },
+  {
+   "type": "secondary",
+   "uri": "https://i.discogs.com/ogS8lbI6C7BNHjWZF4l4f896mamcQeEK56ZAr09zHaI/rs:fit/g:sm/q:90/h:594/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQ2Njcz/LTEzNjE2NjE0ODAt/MTUxOC5qcGVn.jpeg",
+   "resource_url": "https://i.discogs.com/ogS8lbI6C7BNHjWZF4l4f896mamcQeEK56ZAr09zHaI/rs:fit/g:sm/q:90/h:594/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQ2Njcz/LTEzNjE2NjE0ODAt/MTUxOC5qcGVn.jpeg",
+   "uri150": "https://i.discogs.com/q4-yPQ55GrQziC6Yw8JKkuFCG7H9KNu0wp2sCK9FB2U/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQ2Njcz/LTEzNjE2NjE0ODAt/MTUxOC5qcGVn.jpeg",
+   "width": 600,
+   "height": 594
+  }
+ ],
+ "thumb": "https://i.discogs.com/rYVBIBLyxmygkVogMIPPXoDPRUBFypTzmtsZCV4YMv8/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQ2Njcz/LTAwMS5qcGc.jpeg",
+ "estimated_weight": 230,
+ "blocked_from_sale": false,
+ "is_offensive": false
+}

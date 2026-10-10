@@ -23,8 +23,8 @@ def record(conn):
 
 
 def test_migrate_is_idempotent(conn):
-    assert migrate(conn) == 1
-    assert conn.execute("SELECT count(*) FROM schema_version").fetchone()[0] == 1
+    assert migrate(conn) == 2
+    assert conn.execute("SELECT count(*) FROM schema_version").fetchone()[0] == 2
 
 
 def test_record_and_tracks_crud(conn, record):
