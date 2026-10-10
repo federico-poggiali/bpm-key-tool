@@ -22,7 +22,9 @@ def load_fixture(name: str) -> dict:
     return json.loads((FIXTURES / name).read_text())
 
 
-def fake_discogs_transport(calls: list[str] | None = None) -> httpx.MockTransport:
+def fake_discogs_transport(calls: list[str] | None = None,
+                           collection: dict[int, list[int]] | None = None,
+                           fail_collection: bool = False) -> httpx.MockTransport:
     """Serves saved real responses. Master 137924 resolves to release 12472 (served as 'cd')."""
     releases = {
         9261843: load_fixture("release_simple.json"),
@@ -34,6 +36,24 @@ def fake_discogs_transport(calls: list[str] | None = None) -> httpx.MockTranspor
         if calls is not None:
             calls.append(request.url.path)
         parts = request.url.path.strip("/").split("/")
+        if request.url.path == "/oauth/identity":
+            return httpx.Response(200, json={"username": "tester"})
+        if parts[:3] == ["users", "tester", "collection"]:
+            if fail_collection:
+                return httpx.Response(500)
+            owned = collection if collection is not None else {}
+            if parts[3] == "releases":  # GET instances of one release
+                rid = int(parts[4])
+                instances = [{"instance_id": i} for i in owned.get(rid, [])]
+                return httpx.Response(200, json={"releases": instances})
+            rid = int(parts[6])
+            if request.method == "POST":
+                instance = 1000 + sum(len(v) for v in owned.values())
+                owned.setdefault(rid, []).append(instance)
+                return httpx.Response(201, json={"instance_id": instance})
+            if request.method == "DELETE":
+                owned[rid].remove(int(parts[8]))
+                return httpx.Response(204)
         if parts[0] == "releases" and int(parts[1]) in releases:
             return httpx.Response(200, json=releases[int(parts[1])])
         if parts[0] == "masters" and int(parts[1]) == 137924:
@@ -85,10 +105,18 @@ def discogs_calls():
 
 
 @pytest.fixture
-def client(db_path, audio_dir, discogs_calls):
-    transport = fake_discogs_transport(discogs_calls)
-    app.dependency_overrides[get_discogs] = lambda: DiscogsClient(
-        "test-token", client=httpx.Client(transport=transport), sleep=lambda s: None)
+def collection():
+    return {}
+
+
+def make_discogs(calls=None, collection=None, fail_collection=False) -> DiscogsClient:
+    transport = fake_discogs_transport(calls, collection, fail_collection)
+    return DiscogsClient("test-token", client=httpx.Client(transport=transport), sleep=lambda s: None)
+
+
+@pytest.fixture
+def client(db_path, audio_dir, discogs_calls, collection):
+    app.dependency_overrides[get_discogs] = lambda: make_discogs(discogs_calls, collection)
     app.state.runner = JobRunner({})
     yield TestClient(app)
     app.dependency_overrides.clear()

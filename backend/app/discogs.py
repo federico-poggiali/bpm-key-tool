@@ -8,6 +8,7 @@ from bpmkey.discogs import _join_artists, parse_tracklist, parse_url
 from app import config
 
 API = "https://api.discogs.com"
+DEFAULT_FOLDER = 1  # "Uncategorized"
 
 
 class DiscogsError(Exception):
@@ -27,6 +28,7 @@ class DiscogsClient:
         self._headers = {"User-Agent": config.USER_AGENT, "Authorization": f"Discogs token={token}"}
         self._sleep = sleep
         self._max_retries = max_retries
+        self._username: str | None = None
 
     def _request(self, method: str, path: str, **kwargs) -> httpx.Response:
         for attempt in range(self._max_retries + 1):
@@ -49,6 +51,30 @@ class DiscogsClient:
 
     def master_main_release(self, master_id: int) -> int:
         return self._request("GET", f"/masters/{master_id}").json()["main_release"]
+
+    @property
+    def username(self) -> str:
+        if self._username is None:
+            self._username = self._request("GET", "/oauth/identity").json()["username"]
+        return self._username
+
+    def collection_instances(self, release_id: int) -> list[int]:
+        """Instance ids of this release in the user's collection (any folder)."""
+        data = self._request("GET", f"/users/{self.username}/collection/releases/{release_id}").json()
+        return [r["instance_id"] for r in data.get("releases", [])]
+
+    def add_to_collection(self, release_id: int, folder_id: int = DEFAULT_FOLDER) -> tuple[int, bool]:
+        """Add a release unless it is already collected. Returns (instance_id, added)."""
+        existing = self.collection_instances(release_id)
+        if existing:
+            return existing[0], False
+        path = f"/users/{self.username}/collection/folders/{folder_id}/releases/{release_id}"
+        return self._request("POST", path).json()["instance_id"], True
+
+    def remove_from_collection(self, release_id: int, instance_id: int,
+                               folder_id: int = DEFAULT_FOLDER) -> None:
+        self._request("DELETE", f"/users/{self.username}/collection/folders/{folder_id}"
+                                f"/releases/{release_id}/instances/{instance_id}")
 
     def resolve(self, url: str) -> tuple[int, int | None]:
         """Return (release_id, master_id); master_id is set when the URL was a master."""
