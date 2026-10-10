@@ -19,3 +19,11 @@ vault/*
 *.db-shm
 backend/backups/
 node_modules/
+
+# Frontend
+frontend/dist/
+frontend/e2e/.run/
+frontend/test-results/
+frontend/playwright-report/
+frontend/.shots/
+.nodeenv/

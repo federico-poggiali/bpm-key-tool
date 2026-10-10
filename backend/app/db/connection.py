@@ -11,7 +11,9 @@ def connect(path: str | Path | None = None) -> sqlite3.Connection:
     target = str(path if path is not None else config.DB_PATH)
     if target != ":memory:":
         Path(target).parent.mkdir(parents=True, exist_ok=True)
-    conn = sqlite3.connect(target, timeout=10)  # the job worker and the API write concurrently
+    # The API writes while the job worker does; FastAPI may open and close a request's connection on
+    # different worker threads, which is safe because a connection is never shared between requests.
+    conn = sqlite3.connect(target, timeout=10, check_same_thread=False)
     conn.row_factory = sqlite3.Row
     conn.enable_load_extension(True)
     sqlite_vec.load(conn)

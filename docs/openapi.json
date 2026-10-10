@@ -1,6 +1,20 @@
 {
   "components": {
     "schemas": {
+      "AssignAudio": {
+        "properties": {
+          "file": {
+            "minLength": 1,
+            "title": "File",
+            "type": "string"
+          }
+        },
+        "required": [
+          "file"
+        ],
+        "title": "AssignAudio",
+        "type": "object"
+      },
       "AudioMatchReport": {
         "properties": {
           "folder": {
@@ -53,6 +67,7 @@
           },
           "method": {
             "enum": [
+              "assigned",
               "position",
               "title"
             ],
@@ -80,6 +95,61 @@
           "score"
         ],
         "title": "AudioMatchedFile",
+        "type": "object"
+      },
+      "ExactNoteHit": {
+        "properties": {
+          "note": {
+            "$ref": "#/components/schemas/NoteOut"
+          },
+          "record": {
+            "$ref": "#/components/schemas/RecordRef"
+          },
+          "snippet": {
+            "title": "Snippet",
+            "type": "string"
+          },
+          "track": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TrackOut"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "snippet",
+          "note",
+          "record"
+        ],
+        "title": "ExactNoteHit",
+        "type": "object"
+      },
+      "ExactResults": {
+        "properties": {
+          "notes": {
+            "items": {
+              "$ref": "#/components/schemas/ExactNoteHit"
+            },
+            "title": "Notes",
+            "type": "array"
+          },
+          "records": {
+            "items": {
+              "$ref": "#/components/schemas/RecordRef"
+            },
+            "title": "Records",
+            "type": "array"
+          }
+        },
+        "required": [
+          "notes",
+          "records"
+        ],
+        "title": "ExactResults",
         "type": "object"
       },
       "HTTPValidationError": {
@@ -502,6 +572,24 @@
         "title": "NotePatch",
         "type": "object"
       },
+      "OpenedPath": {
+        "properties": {
+          "opened": {
+            "title": "Opened",
+            "type": "boolean"
+          },
+          "path": {
+            "title": "Path",
+            "type": "string"
+          }
+        },
+        "required": [
+          "opened",
+          "path"
+        ],
+        "title": "OpenedPath",
+        "type": "object"
+      },
       "Page_RecordSummary_": {
         "properties": {
           "items": {
@@ -837,6 +925,36 @@
           "artist": {
             "title": "Artist",
             "type": "string"
+          },
+          "bpm_max": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bpm Max"
+          },
+          "bpm_min": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bpm Min"
+          },
+          "camelot_keys": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "title": "Camelot Keys",
+            "type": "array"
           },
           "cover_url": {
             "anyOf": [
@@ -1583,6 +1701,28 @@
   },
   "openapi": "3.1.0",
   "paths": {
+    "/api/admin/open-vault": {
+      "post": {
+        "description": "Reveal the Dataview examples file in Finder (macOS only; elsewhere just report the path).",
+        "operationId": "open_vault",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OpenedPath"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Open Vault",
+        "tags": [
+          "admin"
+        ]
+      }
+    },
     "/api/admin/reembed": {
       "post": {
         "operationId": "reembed",
@@ -2373,6 +2513,61 @@
         ]
       }
     },
+    "/api/search/exact": {
+      "get": {
+        "operationId": "exact",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "schema": {
+              "minLength": 1,
+              "title": "Q",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 20,
+              "maximum": 100,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExactResults"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Exact",
+        "tags": [
+          "search"
+        ]
+      }
+    },
     "/api/search/semantic": {
       "get": {
         "operationId": "semantic",
@@ -2807,6 +3002,99 @@
           }
         },
         "summary": "Patch Track",
+        "tags": [
+          "tracks"
+        ]
+      }
+    },
+    "/api/tracks/{track_id}/audio": {
+      "delete": {
+        "operationId": "unassign_audio",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "track_id",
+            "required": true,
+            "schema": {
+              "title": "Track Id",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TrackOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Unassign Audio",
+        "tags": [
+          "tracks"
+        ]
+      },
+      "post": {
+        "description": "Pin one file from the record's audio folder to this track (then run analysis again).",
+        "operationId": "assign_audio",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "track_id",
+            "required": true,
+            "schema": {
+              "title": "Track Id",
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AssignAudio"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TrackOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Assign Audio",
         "tags": [
           "tracks"
         ]

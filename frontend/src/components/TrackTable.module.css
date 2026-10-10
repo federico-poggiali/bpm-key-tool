@@ -1,0 +1,42 @@
+.table { width: 100%; border-collapse: collapse; }
+.table thead th { font: 500 0.6875rem/1 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); text-align: left; padding: 0 10px 10px; font-weight: 500; }
+.row > * { padding: 12px 10px; border-top: 1px solid var(--line); vertical-align: middle; }
+.row:hover > *, .open > * { background: var(--surface); }
+.pos { color: var(--ink-3); font: 500 0.75rem var(--mono); width: 3rem; }
+.name { text-align: left; font-weight: 400; min-width: 0; }
+.titleBtn { display: grid; gap: 2px; width: 100%; padding: 0; border: 0; background: none; text-align: left; }
+.titleBtn b { font-weight: 600; letter-spacing: -0.01em; }
+.titleBtn span { color: var(--ink-2); font-size: 0.8125rem; }
+.none .titleBtn b { color: var(--ink-2); }
+.working .pos::before { content: ""; display: inline-block; width: 8px; height: 8px; margin-right: 6px; border-radius: 2px; background: var(--signal); animation: pulse 1s infinite; }
+@keyframes pulse { 50% { opacity: 0.3; } }
+.num { text-align: right; white-space: nowrap; }
+.bpmWrap, .keyWrap { display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+.keyWrap { justify-content: flex-start; }
+.bpm { font: 600 1.25rem/1 var(--sans); letter-spacing: -0.04em; font-variant-numeric: tabular-nums; border: 0; background: none; padding: 4px 6px; border-radius: var(--r-s); min-width: 3rem; text-align: right; }
+button.bpm:hover { background: var(--raise); }
+.bpmInput { width: 92px; height: 34px; text-align: right; font: 600 1rem var(--sans); }
+.dash { color: var(--ink-3); font: 500 0.75rem var(--mono); font-weight: 500; letter-spacing: 0; }
+.key {
+  min-width: 3.4rem; text-align: center; padding: 6px 8px; border-radius: var(--r-s); font: 600 0.8125rem/1 var(--mono);
+  border: 1px solid var(--line-2); background: transparent; color: var(--ink); appearance: none;
+}
+.keyPick { position: relative; display: inline-flex; border-radius: var(--r-s); }
+.keyPick:has(select:focus-visible) { outline: 2px solid var(--signal); outline-offset: 3px; }
+.keySelect { position: absolute; inset: 0; width: 100%; opacity: 0; cursor: pointer; font-size: 16px; }
+.keyPick:hover .key { border-color: var(--ink); }
+.key.empty { border-color: var(--line); color: var(--ink-3); }
+.open .key:not(.empty) { background: var(--signal); border-color: var(--signal); color: var(--on-signal); }
+.open .key:not(.empty) option { background: var(--surface); color: var(--ink); }
+.manual { display: inline-flex; align-items: center; gap: 2px; font: 500 0.625rem/1 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-2); border: 1px solid var(--line-2); border-radius: var(--r-s); padding: 3px 3px 3px 6px; }
+.manual button { border: 0; background: none; color: var(--ink-3); font-size: 0.9rem; line-height: 1; padding: 0 3px; }
+.manual button:hover { color: var(--signal-ink); }
+.alt { border: 1px dashed var(--line-2); background: none; border-radius: var(--r-s); padding: 3px 7px; font: 500 0.6875rem/1 var(--mono); color: var(--ink-2); }
+.alt:hover { border-color: var(--ink); color: var(--ink); }
+.conf { font: 500 0.75rem var(--mono); color: var(--ink-2); white-space: nowrap; }
+.low { text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink); border-bottom: 2px solid var(--signal); font-weight: 600; margin-right: 2px; }
+.detailRow td { padding: 0 10px 16px; background: var(--surface); }
+.detail { display: grid; grid-template-columns: max-content 1fr; gap: 6px 18px; margin: 0; font-size: 0.875rem; color: var(--ink-2); }
+.detail dt { color: var(--ink); font-weight: 600; }
+.detail dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+@media (max-width: 640px) { .table thead th:last-child, .conf { display: none; } }

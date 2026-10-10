@@ -42,6 +42,17 @@ def match_files(files: list[Path], tracks: list[dict]) -> dict:
     free_tracks = {t["id"]: t for t in tracks}
     files_left: list[Path] = []
 
+    # 0. Files the user assigned to a track by hand (or earlier runs stored) stay put.
+    by_name = {f.name: f for f in files}
+    for t in tracks:
+        name = Path(t["audio_path"]).name if t.get("audio_path") else None
+        if name in by_name:
+            files = [f for f in files if f.name != name]
+            free_tracks.pop(t["id"], None)
+            matched.append({"track_id": t["id"], "position": t["position"], "file": name,
+                            "method": "assigned", "score": 1.0})
+            del by_name[name]
+
     # 1. By position in the filename ("A1 - Title.wav"); ambiguity on either side is skipped.
     by_position: dict[str, list[dict]] = {}
     for t in tracks:

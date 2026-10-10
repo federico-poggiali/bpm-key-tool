@@ -1,0 +1,8 @@
+.page { display: grid; gap: 22px; }
+.head { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; }
+.head h1 { font: 600 clamp(2rem, 5vw, 3.2rem)/1 var(--sans); letter-spacing: -0.045em; margin-top: 8px; }
+.count { color: var(--ink-3); font: 500 0.75rem var(--mono); }
+.stale { opacity: 0.55; transition: opacity 0.2s; }
+.empty { display: grid; gap: 10px; justify-items: start; padding: 48px 4px; color: var(--ink-2); }
+.empty h2 { font: 600 1.5rem var(--sans); letter-spacing: -0.03em; color: var(--ink); }
+.empty p { margin: 0; }

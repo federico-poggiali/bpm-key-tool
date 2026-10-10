@@ -1,0 +1,9 @@
+.wrap { display: grid; gap: 8px; }
+.filter { height: 30px; font-size: 0.8125rem; max-width: 200px; }
+.list { display: flex; flex-wrap: wrap; gap: 6px; max-height: 96px; overflow: auto; }
+.list button { display: inline-flex; align-items: center; gap: 7px; height: 28px; padding: 0 10px; border: 1px solid var(--line-2); border-radius: var(--r-s); background: none; font: 500 0.75rem var(--mono); }
+.list button span { color: var(--ink-3); }
+.list button:hover { background: var(--surface); }
+.list button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.list button[aria-pressed="true"] span { color: inherit; opacity: 0.7; }
+.empty { margin: 0; color: var(--ink-3); font-size: 0.8125rem; }

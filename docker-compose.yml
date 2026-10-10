@@ -1,0 +1,13 @@
+# UNTESTED: written without access to Docker. `make run` is the supported way to run the app.
+# The app has no login: only publish the port on a network you trust.
+services:
+  spincount:
+    build: .
+    ports:
+      - "127.0.0.1:8000:8000"
+    env_file: .env          # DISCOGS_TOKEN, GETSONGBPM_KEY, CONTACT_EMAIL
+    volumes:
+      - ./data:/data        # the SQLite database
+      - ./audio:/audio      # your own audio files (optional)
+      - ./vault:/vault      # generated Obsidian files
+    restart: unless-stopped

@@ -1,8 +1,12 @@
+import subprocess
+import sys
+
 from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel
 
 from app import config
-from app.vault import VaultSyncer
+from app.schemas import OpenedPath
+from app.vault import EXAMPLES_FILE, VaultSyncer
 
 router = APIRouter(prefix="/api/admin", tags=["admin"])
 
@@ -37,3 +41,13 @@ def vault_status(request: Request) -> dict:
     syncer = _syncer(request)
     return {"vault_dir": str(syncer.vault_dir or config.VAULT_DIR), "last_sync": syncer.last_result,
             "last_error": syncer.last_error}
+
+
+@router.post("/open-vault", response_model=OpenedPath)
+def open_vault() -> dict:
+    """Reveal the Dataview examples file in Finder (macOS only; elsewhere just report the path)."""
+    target = config.VAULT_DIR / EXAMPLES_FILE
+    if sys.platform != "darwin" or not target.exists():
+        return {"opened": False, "path": str(target)}
+    subprocess.run(["open", "-R", str(target)], check=False)
+    return {"opened": True, "path": str(target)}

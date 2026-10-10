@@ -1,0 +1,9 @@
+.stack { position: fixed; right: 16px; bottom: 16px; z-index: 50; display: grid; gap: 8px; max-width: min(420px, calc(100vw - 32px)); }
+.toast {
+  display: flex; gap: 12px; align-items: flex-start; justify-content: space-between; padding: 12px 14px;
+  border-radius: var(--r-m); background: var(--raise); border: 1px solid var(--line-2); box-shadow: var(--lift);
+  font-size: 0.875rem; animation: in 0.4s var(--ease);
+}
+.error { border-color: var(--signal); }
+.toast button { border: 0; background: none; font-size: 1.25rem; line-height: 1; color: var(--ink-2); padding: 0 2px; }
+@keyframes in { from { transform: translateY(8px); opacity: 0; } }

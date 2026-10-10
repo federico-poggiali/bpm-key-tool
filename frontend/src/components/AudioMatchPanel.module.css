@@ -1,0 +1,9 @@
+.panel { border: 1px solid var(--line-2); border-radius: var(--r-l); padding: 14px 16px; display: grid; gap: 12px; background: var(--surface); }
+.head { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.count { color: var(--ink-2); font-size: 0.8125rem; }
+.list { display: grid; gap: 10px; }
+.list li { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 220px) auto; gap: 10px; align-items: center; }
+.list b { display: block; font-weight: 600; overflow-wrap: anywhere; }
+.list small { color: var(--ink-3); }
+.note { margin: 0; color: var(--ink-2); font-size: 0.8125rem; }
+@media (max-width: 640px) { .list li { grid-template-columns: 1fr; } }

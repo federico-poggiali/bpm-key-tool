@@ -34,3 +34,4 @@ DISCOGS_TOKEN = os.environ.get("DISCOGS_TOKEN", "")
 USER_AGENT = f"VinylSecondBrain/0.1 ( {os.environ.get('CONTACT_EMAIL', '')} )"
 CORS_ORIGINS = [o.strip() for o in os.environ.get(
     "CORS_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173").split(",") if o.strip()]
+FRONTEND_DIST = _path("FRONTEND_DIST", REPO_ROOT / "frontend" / "dist")

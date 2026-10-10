@@ -1,0 +1,13 @@
+.venv
+.nodeenv
+.git
+frontend/node_modules
+frontend/dist
+frontend/e2e/.run
+benchmark
+audio
+vault
+backend/backups
+backend/data
+*.db
+.env

@@ -3,12 +3,19 @@ from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException, Query
 
+from app.db import queries
 from app.deps import get_db, require_embedder
 from app.embeddings import service
 from app.embeddings.provider import EmbeddingError, EmbeddingProvider
-from app.schemas import ReembedOut, SemanticHit
+from app.schemas import ExactResults, ReembedOut, SemanticHit
 
 router = APIRouter(prefix="/api", tags=["search"])
+
+
+@router.get("/search/exact", response_model=ExactResults)
+def exact(q: Annotated[str, Query(min_length=1)], limit: Annotated[int, Query(ge=1, le=100)] = 20,
+          conn: sqlite3.Connection = Depends(get_db)) -> dict:
+    return queries.exact_search(conn, q, limit)
 
 
 @router.get("/search/semantic", response_model=list[SemanticHit])

@@ -1,0 +1,7 @@
+.panel { display: grid; gap: 18px; }
+.title { font: 600 1.25rem var(--sans); letter-spacing: -0.03em; }
+.add { display: grid; gap: 12px; padding: 14px; border: 1px dashed var(--line-2); border-radius: var(--r-l); }
+.add label { display: grid; gap: 6px; min-width: 0; }
+.row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+.group { display: grid; gap: 10px; }
+.empty { margin: 0; color: var(--ink-3); }

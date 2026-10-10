@@ -1,0 +1,4 @@
+.cover { display: block; width: 100%; aspect-ratio: 1; border-radius: var(--r-m); background: var(--raise); object-fit: cover; box-shadow: 0 0 0 1px var(--line); flex: none; }
+.empty { display: flex; align-items: flex-end; justify-content: center; gap: 4px; padding-bottom: 28%; }
+.empty i { width: 12%; height: 22%; border-radius: 1px; background: var(--line-2); }
+.empty i:nth-child(2) { height: 38%; background: var(--ink-3); }

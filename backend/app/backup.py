@@ -9,9 +9,10 @@ from pathlib import Path
 from app import config
 
 BACKUP_DIR = config.BACKEND_DIR / "backups"
+KEEP = 14  # newest copies kept by the nightly run
 
 
-def backup(db_path: Path | None = None, dest_dir: Path | None = None) -> Path:
+def backup(db_path: Path | None = None, dest_dir: Path | None = None, keep: int | None = None) -> Path:
     source = Path(db_path or config.DB_PATH)
     if not source.exists():
         raise FileNotFoundError(f"no database at {source}")
@@ -25,11 +26,15 @@ def backup(db_path: Path | None = None, dest_dir: Path | None = None) -> Path:
     finally:
         dst.close()
         src.close()
+    if keep:
+        copies = sorted(dest_dir.glob(f"{source.stem}-*{source.suffix}"))
+        for old in copies[:-keep]:
+            old.unlink()
     return dest
 
 
 def main() -> None:
-    print(backup())
+    print(backup(keep=KEEP))
 
 
 if __name__ == "__main__":

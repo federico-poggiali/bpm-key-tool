@@ -1,14 +1,16 @@
 import sqlite3
+from pathlib import Path
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException, Query
 
+from app.analysis import job as analysis_job
 from app.analysis.camelot import to_camelot
 from app.analysis.lookup import key_name
-from app.db import queries, tracks
+from app.db import queries, records, tracks
 from app.deps import get_db
 from app.routes.records import filters_from_query
-from app.schemas import Page, Status, TrackHit, TrackOut, TrackPatch
+from app.schemas import AssignAudio, Page, Status, TrackHit, TrackOut, TrackPatch
 
 router = APIRouter(prefix="/api/tracks", tags=["tracks"])
 
@@ -57,4 +59,30 @@ def patch_track(track_id: int, body: TrackPatch, conn: sqlite3.Connection = Depe
     if "bpm" in body.unlock and body.bpm is not None or "key" in body.unlock and body.key is not None:
         raise HTTPException(422, "cannot set and unlock the same field in one request")
     tracks.update(conn, track_id, **changes)
+    return queries.track_detail(conn, track_id)
+
+
+@router.post("/{track_id}/audio", response_model=TrackOut)
+def assign_audio(track_id: int, body: AssignAudio, conn: sqlite3.Connection = Depends(get_db)) -> dict:
+    """Pin one file from the record's audio folder to this track (then run analysis again)."""
+    track = tracks.get(conn, track_id)
+    if track is None:
+        raise HTTPException(404, "track not found")
+    folder = analysis_job.audio_folder(records.get(conn, track["record_id"]))
+    if Path(body.file).name != body.file:
+        raise HTTPException(422, "file must be a plain file name from the record's audio folder")
+    if folder is None or not (folder / body.file).is_file():
+        raise HTTPException(404, f"no file '{body.file}' in the audio folder")
+    for other in tracks.list_for_record(conn, track["record_id"]):  # one file, one track
+        if other["id"] != track_id and other["audio_path"] and Path(other["audio_path"]).name == body.file:
+            tracks.update(conn, other["id"], audio_path=None)
+    tracks.update(conn, track_id, audio_path=str(folder / body.file))
+    return queries.track_detail(conn, track_id)
+
+
+@router.delete("/{track_id}/audio", response_model=TrackOut)
+def unassign_audio(track_id: int, conn: sqlite3.Connection = Depends(get_db)) -> dict:
+    if tracks.get(conn, track_id) is None:
+        raise HTTPException(404, "track not found")
+    tracks.update(conn, track_id, audio_path=None)
     return queries.track_detail(conn, track_id)

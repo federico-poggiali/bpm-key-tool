@@ -61,6 +61,9 @@ class RecordOut(BaseModel):
 
 class RecordSummary(RecordOut):
     track_count: int
+    bpm_min: float | None = None
+    bpm_max: float | None = None
+    camelot_keys: list[str] = []
     matched_track_ids: list[int] | None = None  # set when a BPM/key filter was used
 
 
@@ -152,7 +155,7 @@ class AudioMatchedFile(BaseModel):
     track_id: int
     position: str
     file: str
-    method: Literal["position", "title"]
+    method: Literal["assigned", "position", "title"]
     score: float
 
 
@@ -180,3 +183,24 @@ class ReembedOut(BaseModel):
 
 class TagList(BaseModel):
     items: list[TagCount]
+
+
+class AssignAudio(BaseModel):
+    file: str = Field(min_length=1)
+
+
+class ExactNoteHit(BaseModel):
+    snippet: str  # matches wrapped in \x02 ... \x03
+    note: NoteOut
+    record: RecordRef
+    track: TrackOut | None = None
+
+
+class ExactResults(BaseModel):
+    notes: list[ExactNoteHit]
+    records: list[RecordRef]
+
+
+class OpenedPath(BaseModel):
+    opened: bool
+    path: str

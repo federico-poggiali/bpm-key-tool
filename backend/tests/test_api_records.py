@@ -40,6 +40,13 @@ def test_list_envelope_and_pagination(client, library):
     assert client.get("/api/records?limit=0").status_code == 422
 
 
+def test_list_items_summarise_bpm_range_and_keys(client, library):
+    items = {i["id"]: i for i in client.get("/api/records").json()["items"]}
+    house = items[library["house"]]
+    assert (house["bpm_min"], house["bpm_max"], house["camelot_keys"]) == (123.0, 123.5, ["4A", "9A"])
+    assert items[library["want"]]["camelot_keys"] == ["9B"]
+
+
 def test_bpm_filter_reports_matching_tracks(client, library):
     resp = client.get("/api/records?bpm_min=123.2&bpm_max=124")
     assert ids(resp) == [library["house"]]

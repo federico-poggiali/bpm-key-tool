@@ -1,0 +1,6 @@
+.wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.tags { display: contents; }
+.tag { display: inline-flex; align-items: center; gap: 4px; height: 28px; padding: 0 4px 0 10px; border-radius: var(--r-s); border: 1px solid var(--line-2); font: 500 0.75rem var(--mono); }
+.tag button { border: 0; background: none; color: var(--ink-3); font-size: 1rem; line-height: 1; padding: 0 5px; border-radius: var(--r-s); }
+.tag button:hover { color: var(--signal-ink); }
+.input { height: 28px; width: 130px; font: 400 0.75rem var(--mono); }

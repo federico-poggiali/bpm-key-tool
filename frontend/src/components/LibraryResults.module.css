@@ -1,0 +1,26 @@
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 18px; }
+.card { display: grid; gap: 10px; text-decoration: none; padding: 10px; border-radius: var(--r-l); transition: background 0.2s var(--ease), transform 0.14s var(--ease); height: 100%; align-content: start; }
+.card:hover { background: var(--surface); }
+.card:active { transform: scale(0.99); }
+.body { display: grid; gap: 4px; min-width: 0; }
+.body b { font-weight: 600; letter-spacing: -0.01em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.body > span:not(.micro) { color: var(--ink-2); font-size: 0.875rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.chips { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; margin: 4px 0; }
+.chips i { font-style: normal; }
+.bpm { font: 600 1rem/1 var(--sans); letter-spacing: -0.04em; font-variant-numeric: tabular-nums; margin-right: 4px; }
+.bpm small { font: 500 0.625rem var(--mono); color: var(--ink-3); margin-left: 3px; letter-spacing: 0; }
+.key { font: 600 0.6875rem/1 var(--mono); padding: 4px 6px; border: 1px solid var(--line-2); border-radius: var(--r-s); }
+.more { color: var(--ink-3); font: 500 0.6875rem var(--mono); }
+.table { width: 100%; border-collapse: collapse; }
+.table thead th { font: 500 0.6875rem/1 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); text-align: left; padding: 0 10px 10px; }
+.table td, .table tbody th { padding: 8px 10px; border-top: 1px solid var(--line); text-align: left; font-weight: 400; vertical-align: middle; }
+.table tbody tr:hover > * { background: var(--surface); }
+.table tbody th a { font-weight: 600; letter-spacing: -0.01em; }
+.thumb { width: 52px; }
+.thumb > * { width: 36px; }
+.num { text-align: right !important; font-variant-numeric: tabular-nums; font-weight: 600; }
+.dim { color: var(--ink-2); }
+.mono { font: 600 0.75rem var(--mono); }
+.rec { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; color: var(--ink-2); }
+.rec > * { width: 28px; }
+@media (max-width: 760px) { .table th:nth-child(n+4), .table td:nth-child(n+4) { display: none; } .table th.num, .table td.num { display: table-cell; } }

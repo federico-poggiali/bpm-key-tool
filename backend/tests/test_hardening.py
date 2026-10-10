@@ -90,3 +90,34 @@ def test_file_databases_use_wal_and_wait_on_locks(db_path):
     conn = connect(db_path)
     assert conn.execute("PRAGMA journal_mode").fetchone()[0] == "wal"
     conn.close()
+
+
+def test_a_connection_can_be_closed_on_another_thread(db_path):
+    """FastAPI opens and closes a request's DB dependency on different worker threads."""
+    import threading
+    conn = connect(db_path)
+    errors = []
+
+    def close():
+        try:
+            conn.execute("SELECT 1")
+            conn.close()
+        except Exception as exc:  # noqa: BLE001
+            errors.append(exc)
+
+    thread = threading.Thread(target=close)
+    thread.start()
+    thread.join()
+    assert errors == []
+
+
+def test_backup_keeps_only_the_newest_copies(db_path, tmp_path):
+    dest = tmp_path / "b"
+    dest.mkdir()
+    for day in range(1, 6):  # five old copies
+        (dest / f"test-2026010{day}-030000.db").write_text("old")
+    (dest / "other-20260101-030000.db").write_text("someone else's file")
+    newest = backup_module.backup(db_path, dest, keep=3)
+    names = sorted(p.name for p in dest.iterdir())
+    assert len([n for n in names if n.startswith("test-")]) == 3 and newest.name in names
+    assert "test-20260101-030000.db" not in names and "other-20260101-030000.db" in names

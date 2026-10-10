@@ -1,0 +1,22 @@
+.page { display: grid; gap: 36px; }
+.head { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 24px; align-items: start; }
+.cover { width: 200px; }
+.meta { display: grid; gap: 10px; min-width: 0; }
+.topline { display: flex; justify-content: space-between; align-items: center; min-height: 1em; }
+.meta h1 { font: 600 clamp(1.8rem, 4vw, 2.8rem)/1 var(--sans); letter-spacing: -0.045em; overflow-wrap: anywhere; }
+.artist { margin: 0; font-size: 1.125rem; color: var(--ink-2); }
+.sub { margin: 0; color: var(--ink-3); font-size: 0.875rem; }
+.facts { display: flex; gap: 28px; flex-wrap: wrap; margin: 6px 0; }
+.facts div { display: grid; gap: 6px; }
+.facts dd { margin: 0; font: 600 1.25rem var(--sans); letter-spacing: -0.03em; }
+.facts select { height: 34px; font: 500 0.875rem var(--sans); letter-spacing: 0; }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.actions a { display: inline-flex; align-items: center; text-decoration: none; }
+.jobs { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.sectionHead { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.sectionHead h2 { font: 600 1.25rem var(--sans); letter-spacing: -0.03em; }
+.hint { margin: 10px 2px 0; color: var(--ink-3); font-size: 0.8125rem; }
+.missing { display: grid; gap: 12px; justify-items: start; padding-top: 10vh; }
+.missing h1 { font: 600 2rem/1.05 var(--sans); letter-spacing: -0.04em; }
+.missing a { text-decoration: none; display: inline-flex; align-items: center; }
+@media (max-width: 720px) { .head { grid-template-columns: 1fr; } .cover { width: 140px; } }

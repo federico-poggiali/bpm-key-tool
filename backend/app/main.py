@@ -2,9 +2,11 @@ import logging
 import time
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
 from fastapi.routing import APIRoute
+from fastapi.staticfiles import StaticFiles
 
 from app import config, errors, sync
 from app.analysis import job as analysis_job
@@ -75,3 +77,26 @@ async def refresh_vault_after_writes(request: Request, call_next):
 @app.get("/health")
 def health() -> dict[str, str]:
     return {"status": "ok"}
+
+
+def mount_frontend(application: FastAPI, dist) -> bool:
+    """Serve the built single-page app (and its client-side routes) from the same port as the API."""
+    index = dist / "index.html"
+    if not index.exists():
+        return False
+    if (dist / "assets").is_dir():
+        application.mount("/assets", StaticFiles(directory=dist / "assets"), name="assets")
+
+    @application.get("/{path:path}", include_in_schema=False)
+    def spa(path: str):
+        if path.startswith("api/"):
+            raise HTTPException(404, "not found")
+        candidate = (dist / path).resolve()
+        if path and candidate.is_file() and dist.resolve() in candidate.parents:
+            return FileResponse(candidate)
+        return FileResponse(index)
+
+    return True
+
+
+mount_frontend(app, config.FRONTEND_DIST)

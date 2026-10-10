@@ -1,0 +1,6 @@
+.wrap { display: grid; gap: 4px; }
+.row { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 4px; }
+.key { height: 30px; padding: 0; border: 1px solid var(--line-2); border-radius: var(--r-s); background: transparent; font: 600 0.6875rem var(--mono); letter-spacing: -0.02em; transition: background 0.2s var(--ease), color 0.2s var(--ease); }
+.key:hover { background: var(--surface); }
+.key[aria-pressed="true"] { background: var(--signal); border-color: var(--signal); color: var(--on-signal); }
+@media (max-width: 640px) { .row { grid-template-columns: repeat(6, minmax(0, 1fr)); } }

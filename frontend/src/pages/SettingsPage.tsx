@@ -1,0 +1,54 @@
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { api } from "../api/api";
+import { pushToast } from "../toast";
+import styles from "./SettingsPage.module.css";
+
+export default function SettingsPage() {
+  const client = useQueryClient();
+  const status = useQuery({ queryKey: ["vault-status"], queryFn: api.vaultStatus });
+  const sync = useMutation({
+    mutationFn: api.syncVault,
+    onSuccess: () => client.invalidateQueries({ queryKey: ["vault-status"] }),
+  });
+  const reveal = useMutation({
+    mutationFn: api.openVault,
+    onSuccess: (r) => pushToast(r.opened ? "Revealed in Finder." : `Not generated yet. It will be at ${r.path}`, "info"),
+  });
+  const last = sync.data ?? status.data?.last_sync ?? null;
+
+  return (
+    <div className={styles.page}>
+      <header>
+        <span className="micro">settings</span>
+        <h1>Obsidian vault</h1>
+      </header>
+
+      <p className={styles.warning} role="note">
+        <b>Edits made inside Obsidian are overwritten.</b> The vault is rebuilt from this app on every sync. Change a record, note
+        or tag here and it appears in Obsidian; the other way round never happens.
+      </p>
+
+      <dl className={styles.facts}>
+        <div>
+          <dt className="micro">vault folder</dt>
+          <dd className="mono" data-testid="vault-dir">{status.data?.vault_dir ?? "…"}</dd>
+        </div>
+        <div>
+          <dt className="micro">last sync</dt>
+          <dd data-testid="last-sync">{last ? last.synced_at.replace("T", " ").replace("Z", " UTC") : "not yet"}</dd>
+        </div>
+        <div>
+          <dt className="micro">last result</dt>
+          <dd data-testid="last-result">{last ? `${last.written} written · ${last.skipped} unchanged · ${last.deleted} deleted` : "·"}</dd>
+        </div>
+      </dl>
+      {status.data?.last_error && <p className={styles.error} role="alert">The last automatic sync failed: {status.data.last_error}</p>}
+
+      <div className={styles.actions}>
+        <button className="primary" onClick={() => sync.mutate()} disabled={sync.isPending}>{sync.isPending ? "Syncing…" : "Sync vault now"}</button>
+        <button className="ghost" onClick={() => reveal.mutate()} disabled={reveal.isPending}>Show Dataview examples in Finder</button>
+      </div>
+      <p className={styles.hint}>The vault also syncs by itself a couple of seconds after any change. The Dataview examples file shows ready-made queries by BPM, key and tag.</p>
+    </div>
+  );
+}

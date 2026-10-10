@@ -1,4 +1,91 @@
-# bpm-key-tool
+# Spin Count
+
+A personal vinyl library. Paste a Discogs link and the record, its tracklist, and every track's BPM and key
+(Camelot or musical) land in your library; add notes and tags, find records by tempo, key or tag, and read the
+whole collection in Obsidian. The BPM and key come from [bpmkey](#bpmkey-the-bpm-and-key-lookup-engine), below.
+
+```
+Discogs link ──> intake ──> SQLite (the only place anything is written)
+                   │            ├── analysis job: BPM + key via bpmkey      (no audio files needed)
+                   │            ├── Discogs job:  add to your collection    (owned records only)
+                   │            └── vault sync:   generated Obsidian files  (overwritten each sync)
+                   └──> web app (React) on the same port as the API (FastAPI)
+```
+
+## Run it
+
+You need Python 3.11 (Anaconda is fine) and, once, a [Discogs personal token](https://www.discogs.com/settings/developers)
+("Generate new token"). Then, in this folder:
+
+```bash
+make run          # first time: creates .env, the Python env (.venv), a Node env (.nodeenv), builds, serves
+```
+
+Put your token in `.env` (`DISCOGS_TOKEN=...`, and `CONTACT_EMAIL=...` for polite API headers), run `make run` again,
+and open <http://127.0.0.1:8000>. Press `n` to add a record, `/` to search. The server listens on localhost only and
+has no login, so do not expose the port.
+
+| Command | What it does |
+| --- | --- |
+| `make run` | build the app and serve it on port 8000 (`PORT=8100 make run` to change) |
+| `make dev` + `make frontend-dev` | API with auto-reload, and the Vite dev server on :5173 with live reload |
+| `make test-all` | backend tests, frontend component tests, browser tests (`make test`, `make test-frontend`, `make e2e`) |
+| `make lint`, `make coverage` | ruff, and a coverage report |
+| `make backup` | copy the database to `backend/backups/` now |
+| `make sync-vault` | rebuild the Obsidian files now (the app also does this a couple of seconds after any change) |
+| `make openapi`, `make types` | re-export `docs/openapi.json`, and regenerate the frontend's API types from it |
+
+Data lives in `backend/data/vinyl.db`, your audio in `audio/`, the Obsidian files in `vault/`. Paths and other settings
+are in `.env` (see `.env.example`).
+
+## Obsidian
+
+Open the `vault/` folder as a vault (Obsidian: *Open folder as vault*) and enable the **Dataview** community plugin.
+`Records/` holds one note per record with its BPM range, keys, tags, tracklist and notes in the frontmatter and body;
+`Dataview Examples.md` has ready-made queries by BPM, key and tag.
+
+The vault is **generated output**. Edits made in Obsidian are overwritten on the next sync, because the database is the
+only place anything is written. Your own notes in `Records/` are never deleted (only files the app generated are).
+To keep your own Obsidian notes, put them outside `Records/`, or point `VAULT_DIR` at a folder inside a bigger vault.
+
+## Audio files (optional)
+
+BPM and key do not need audio: bpmkey looks them up online and, when the databases disagree, finds and analyses the
+audio itself. If you have your own rips, drop them in `audio/<discogs release id>/` (the number in the Discogs URL),
+named like `A1 - Title.wav`. They are matched to tracks by position, then by title, and **override** the lookup for
+the tracks they match. Anything that does not match is listed on the record page, where you can assign it by hand.
+A BPM or key you enter by hand is marked *manual* and is never overwritten by re-analysis (the x unlocks it).
+
+## Backups
+
+`make backup` writes a consistent, timestamped copy of the database to `backend/backups/` (safe while the app runs).
+For a nightly backup at 03:00 on macOS (runs at wake-up if the Mac was asleep; keeps the newest 14):
+
+```bash
+deploy/install-nightly-backup.sh            # install
+deploy/install-nightly-backup.sh --remove   # uninstall
+```
+
+## Docker (untested)
+
+`Dockerfile` and `docker-compose.yml` are provided for running on a server or NAS. **They have never been built or run**:
+Docker was not available where this was developed. `make run` is the supported way.
+
+## Not built yet
+
+- Search **by meaning** (finding "banging track" from "huge energy"): the plumbing is in place, but no embedding model
+  is configured, so the Search page offers exact word search until one is plugged in (`backend/app/deps.py`).
+- Two-way Obsidian sync, playlist and set building by Camelot compatibility.
+
+## Layout
+
+`backend/` FastAPI app, SQLite schema and tests · `frontend/` React app, component and browser tests · `bpmkey/` the
+lookup engine · `benchmark/` how its accuracy was measured · `vault/` generated Obsidian files · `audio/` your files ·
+`docs/` progress notes and the exported OpenAPI schema · `building_plan/` the original plan.
+
+---
+
+# bpmkey (the BPM and key lookup engine)
 
 A personal tool that takes a [Discogs](https://www.discogs.com) release link and returns the **BPM** and **musical key (Camelot notation)** for every track.
 
@@ -65,7 +152,3 @@ Key detection by audio alone is the weak spot, so the database votes matter. A 9
 - Additional BPM data from [Deezer](https://developers.deezer.com) and [AcousticBrainz](https://acousticbrainz.org) via [MusicBrainz](https://musicbrainz.org).
 
 This is a personal project and is not affiliated with any of the services above.
-
-## Vinyl Second-Brain
-
-A vinyl library app (Discogs intake, BPM/key analysis, notes, semantic search, generated Obsidian vault). Layout: `backend/` (FastAPI), `frontend/` (React, later), `vault/` (generated), `audio/` (your files, git-ignored), `docs/`, with the build plan in `building_plan/`. Use the single Python 3.11 env at `.venv`; `make dev`, `make test`, `make lint`.

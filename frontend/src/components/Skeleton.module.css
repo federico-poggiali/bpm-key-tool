@@ -1,0 +1,10 @@
+.skel { border-top: 1px solid var(--line); position: relative; overflow: hidden; }
+.skel::after, .card::after {
+  content: ""; position: absolute; inset: 14px 10px; border-radius: var(--r-m);
+  background: linear-gradient(100deg, var(--line) 30%, var(--shine) 50%, var(--line) 70%); background-size: 250% 100%;
+  animation: shimmer 1.4s linear infinite;
+}
+.card { position: relative; overflow: hidden; aspect-ratio: 3 / 4; border-radius: var(--r-l); background: var(--surface); }
+.card::after { inset: 0; border-radius: inherit; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 16px; }
+@keyframes shimmer { from { background-position: 100% 0; } to { background-position: -100% 0; } }

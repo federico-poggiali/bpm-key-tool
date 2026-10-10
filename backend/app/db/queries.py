@@ -108,14 +108,20 @@ def list_records(conn: sqlite3.Connection, f: Filters) -> tuple[list[dict], int]
 
     ids = [r["id"] for r in rows]
     tags = _tags_for(conn, "record_tags", "record_id", ids)
-    counts = {}
+    stats = {}
     if ids:
         marks = ",".join("?" for _ in ids)
-        counts = {r[0]: r[1] for r in conn.execute(
-            f"SELECT record_id, count(*) FROM tracks WHERE record_id IN ({marks}) GROUP BY record_id", ids)}
+        stats = {r["record_id"]: dict(r) for r in conn.execute(
+            "SELECT record_id, count(*) AS n, min(bpm) AS bpm_min, max(bpm) AS bpm_max, "
+            "group_concat(DISTINCT camelot_key) AS keys "
+            f"FROM tracks WHERE record_id IN ({marks}) GROUP BY record_id", ids)}
     for r in rows:
         r["tags"] = tags.get(r["id"], [])
-        r["track_count"] = counts.get(r["id"], 0)
+        st = stats.get(r["id"], {})
+        r["track_count"] = st.get("n", 0)
+        r["bpm_min"], r["bpm_max"] = st.get("bpm_min"), st.get("bpm_max")
+        r["camelot_keys"] = sorted(filter(None, (st.get("keys") or "").split(",")),
+                                   key=lambda c: (int(c[:-1]), c[-1]))
         r["matched_track_ids"] = None
         if f.has_track_filter:
             conds, p = _track_conditions(f, "t")
@@ -213,3 +219,19 @@ def note_with_parents(conn: sqlite3.Connection, note: dict) -> dict:
     track = track_detail(conn, note["track_id"]) if note["track_id"] else None
     record = records_dal.get(conn, note["record_id"] if note["record_id"] else track["record_id"])
     return {"note": note, "record": _record_ref(record), "track": track}
+
+
+def exact_search(conn: sqlite3.Connection, q: str, limit: int = 20) -> dict:
+    """Full-text search: notes with a highlighted snippet, plus records matching artist/title/label."""
+    match = fts_query(q)
+    if match is None:
+        return {"notes": [], "records": []}
+    hits = []
+    for row in conn.execute(
+            "SELECT n.id, snippet(notes_fts, 0, char(2), char(3), '…', 16) AS snippet "
+            "FROM notes_fts JOIN notes n ON n.id = notes_fts.rowid WHERE notes_fts MATCH ? "
+            "ORDER BY rank LIMIT ?", (match, limit)):
+        hit = note_with_parents(conn, notes_dal.get(conn, row["id"]))
+        hits.append({"snippet": row["snippet"], **hit})
+    recs = [_record_ref(r) for r in records_dal.search(conn, match)[:limit]]
+    return {"notes": hits, "records": recs}
