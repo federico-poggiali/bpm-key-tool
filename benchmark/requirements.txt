@@ -1,0 +1,6 @@
+-r ../requirements.txt
+mir_eval
+pandas
+tabulate
+# scipy 1.15 ships a binary that macOS 15+ refuses to load; 1.14.x works
+scipy==1.14.1

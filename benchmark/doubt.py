@@ -21,7 +21,6 @@ def one(item):
 
 if __name__ == "__main__":
     from bpmkey.camelot import camelot_to_key_index
-    import mir_eval
     labels = list(json.loads((ROOT / "gs_labels.json").read_text()).values())
     with ProcessPoolExecutor(10) as ex:
         res = list(ex.map(one, [l["audio"] for l in labels], chunksize=8))

@@ -5,7 +5,6 @@ All methods share the signature  detect(path) -> "C#:minor"  style tuple (tonic 
 from __future__ import annotations
 
 import functools
-from pathlib import Path
 
 import numpy as np
 
@@ -119,19 +118,6 @@ def bass_treble(bass_weight: float, profile: str = "krumhansl"):
     return f
 
 
-# ---- current project detector (learned model fused with bgate) ------------------------------
-def bpmkey_current(path: str):
-    from bpmkey import keymodel
-    import essentia.standard as es
-    from bpmkey.analyze import _name_to_index
-    y = _trim(load(path))
-    bk, bs, _ = es.KeyExtractor(profileType="bgate")(y)
-    ym = load(path, keymodel.SR)
-    scores = keymodel.fuse(keymodel.log_probs(ym), _name_to_index(bk, bs))
-    name, mode = keymodel.index_to_key(int(np.argmax(scores)))
-    return _norm(name, mode)
-
-
 def registry() -> dict:
     r = {"M1 KS librosa chroma_cqt": m1_ks("cqt"), "M1 KS librosa chroma_stft": m1_ks("stft")}
     for p in ("krumhansl", "temperley", "shaath", "bgate"):
@@ -147,7 +133,6 @@ def registry() -> dict:
         r[f"M7 HPSS(margin={m}) + bgate"] = key_extractor("bgate", harmonic=m)
     for w in (0.3, 0.5, 0.7):
         r[f"M9 bass/treble chroma w={w}"] = bass_treble(w)
-    r["bpmkey current (learned+bgate)"] = bpmkey_current
     return r
 
 
