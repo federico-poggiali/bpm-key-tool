@@ -4,6 +4,26 @@
  */
 
 export interface paths {
+    "/api/admin/backfill-styles": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Backfill Styles
+         * @description Fetch styles for records that have none yet. Runs as a job (Discogs allows 60 calls a minute).
+         */
+        post: operations["backfill_styles"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/admin/open-vault": {
         parameters: {
             query?: never;
@@ -75,6 +95,143 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/crate": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get Crate
+         * @description The shelf: units, their cubes and sections with the records in each, and the unsorted
+         *     records with a suggested section.
+         */
+        get: operations["get_crate"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/crate/cubes/{cube_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        /** Update Cube */
+        patch: operations["update_cube"];
+        trace?: never;
+    };
+    "/api/crate/cubes/{cube_id}/sections": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Add Section
+         * @description Add a divider: a new section at the right end of the cube.
+         */
+        post: operations["add_section"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/crate/place": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /**
+         * Place
+         * @description Put records in a section, or back in unsorted with section_id null.
+         */
+        put: operations["place"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/crate/sections/{section_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /**
+         * Delete Section
+         * @description Remove a divider; its records merge into the neighbouring section.
+         */
+        delete: operations["delete_section"];
+        options?: never;
+        head?: never;
+        /** Update Section */
+        patch: operations["update_section"];
+        trace?: never;
+    };
+    "/api/crate/units": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Create Unit */
+        post: operations["create_unit"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/crate/units/{unit_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /**
+         * Delete Unit
+         * @description Its records go back to unsorted.
+         */
+        delete: operations["delete_unit"];
+        options?: never;
+        head?: never;
+        /** Update Unit */
+        patch: operations["update_unit"];
+        trace?: never;
+    };
     "/api/jobs/{job_id}": {
         parameters: {
             query?: never;
@@ -86,6 +243,47 @@ export interface paths {
         get: operations["get_job"];
         put?: never;
         post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/labels/from-discogs": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Label From Discogs
+         * @description Look a release up and describe it as a label. Nothing is stored; a record already in the
+         *     library brings its BPM, key, tags and notes along.
+         */
+        post: operations["label_from_discogs"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/labels/render": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Render Loose Label
+         * @description Draw a label that belongs to no record. Nothing is stored.
+         */
+        post: operations["render_loose_label"];
         delete?: never;
         options?: never;
         head?: never;
@@ -223,7 +421,10 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** Analyze */
+        /**
+         * Analyze
+         * @description Analyse the whole record, or only `track_ids` when given.
+         */
         post: operations["analyze"];
         delete?: never;
         options?: never;
@@ -248,6 +449,66 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/records/{record_id}/discard": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Discard
+         * @description Drop analysis proposals (all of them, or only `track_ids`) without touching the tracks.
+         */
+        post: operations["discard"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/records/{record_id}/label": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get Label
+         * @description The label as the database describes it: the starting point for the editor.
+         */
+        get: operations["get_label"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/records/{record_id}/label/render": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Render Label
+         * @description Draw the (possibly edited) label. Nothing is stored: edits apply to this print only.
+         */
+        post: operations["render_label"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/records/{record_id}/sync-discogs": {
         parameters: {
             query?: never;
@@ -259,6 +520,26 @@ export interface paths {
         put?: never;
         /** Sync Discogs */
         post: operations["sync_discogs"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/records/{record_id}/validate": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Validate
+         * @description Save the chosen tracks' analysis proposals onto them. Only records you own can be validated.
+         */
+        post: operations["validate"];
         delete?: never;
         options?: never;
         head?: never;
@@ -293,6 +574,97 @@ export interface paths {
         get: operations["semantic"];
         put?: never;
         post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/styles": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List Styles
+         * @description Every style in the library with its record count, for filter and editor pickers.
+         */
+        get: operations["list_styles"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/tag-defs/{tag_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** Delete Tag */
+        delete: operations["delete_tag"];
+        options?: never;
+        head?: never;
+        /** Update Tag */
+        patch: operations["update_tag"];
+        trace?: never;
+    };
+    "/api/tag-groups": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Groups */
+        get: operations["list_groups"];
+        put?: never;
+        /** Create Group */
+        post: operations["create_group"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/tag-groups/{group_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** Delete Group */
+        delete: operations["delete_group"];
+        options?: never;
+        head?: never;
+        /** Rename Group */
+        patch: operations["rename_group"];
+        trace?: never;
+    };
+    "/api/tag-groups/{group_id}/tags": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Create Tag */
+        post: operations["create_tag"];
         delete?: never;
         options?: never;
         head?: never;
@@ -427,6 +799,11 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /** AnalyzeRequest */
+        AnalyzeRequest: {
+            /** Track Ids */
+            track_ids?: number[] | null;
+        };
         /** AssignAudio */
         AssignAudio: {
             /** File */
@@ -459,6 +836,72 @@ export interface components {
             /** Track Id */
             track_id: number;
         };
+        /** CrateOut */
+        CrateOut: {
+            /** Units */
+            units: components["schemas"]["UnitOut"][];
+            /** Unsorted */
+            unsorted: components["schemas"]["UnsortedRecord"][];
+        };
+        /** CrateRecord */
+        CrateRecord: {
+            /** Artist */
+            artist: string;
+            /** Cover Url */
+            cover_url: string | null;
+            /** Id */
+            id: number;
+            /**
+             * Styles
+             * @default []
+             */
+            styles: string[];
+            /**
+             * Tags
+             * @default []
+             */
+            tags: string[];
+            /** Title */
+            title: string;
+            /** Year */
+            year: number | null;
+        };
+        /** CrateSuggestion */
+        CrateSuggestion: {
+            /** Reasons */
+            reasons: string[];
+            /** Score */
+            score: number;
+            /** Section Id */
+            section_id: number;
+        };
+        /** CubeOut */
+        CubeOut: {
+            /** Col */
+            col: number;
+            /** Description */
+            description: string;
+            /** Id */
+            id: number;
+            /** Name */
+            name: string;
+            /** Row */
+            row: number;
+            /** Sections */
+            sections: components["schemas"]["SectionOut"][];
+        };
+        /** CubePatch */
+        CubePatch: {
+            /** Description */
+            description?: string | null;
+            /** Name */
+            name?: string | null;
+        };
+        /** DiscardRequest */
+        DiscardRequest: {
+            /** Track Ids */
+            track_ids?: number[] | null;
+        };
         /** ExactNoteHit */
         ExactNoteHit: {
             note: components["schemas"]["NoteOut"];
@@ -473,6 +916,26 @@ export interface components {
             notes: components["schemas"]["ExactNoteHit"][];
             /** Records */
             records: components["schemas"]["RecordRef"][];
+        };
+        /** FromDiscogs */
+        FromDiscogs: {
+            /** Discogs Url */
+            discogs_url: string;
+        };
+        /** GroupIn */
+        GroupIn: {
+            /** Name */
+            name: string;
+        };
+        /** GroupList */
+        GroupList: {
+            /** Items */
+            items: components["schemas"]["TagGroup"][];
+        };
+        /** GroupRename */
+        GroupRename: {
+            /** Name */
+            name: string;
         };
         /** HTTPValidationError */
         HTTPValidationError: {
@@ -496,6 +959,8 @@ export interface components {
             added_at: string;
             /** Artist */
             artist: string;
+            /** Catno */
+            catno: string | null;
             /** Cover Url */
             cover_url: string | null;
             /** Discogs Collection Synced */
@@ -521,6 +986,13 @@ export interface components {
              * @enum {string}
              */
             status: "owned" | "wantlist" | "considering";
+            /**
+             * Styles
+             * @default []
+             */
+            styles: string[];
+            /** Styles Manual */
+            styles_manual: boolean;
             /**
              * Tags
              * @default []
@@ -564,6 +1036,96 @@ export interface components {
             /** Status */
             status: string;
         };
+        /** LabelData */
+        LabelData: {
+            /** Artist */
+            artist: string;
+            /** Catno */
+            catno?: string | null;
+            /**
+             * Country
+             * @description Not stored: type it in if you want it printed
+             */
+            country?: string | null;
+            /**
+             * Hidden
+             * @default []
+             */
+            hidden: ("label" | "catno" | "year" | "country" | "styles" | "note" | "qr")[];
+            /** Label */
+            label?: string | null;
+            /** Note */
+            note?: string | null;
+            /**
+             * Qr Url
+             * @description The Discogs page the QR code opens
+             */
+            qr_url?: string | null;
+            /**
+             * Styles
+             * @default []
+             */
+            styles: string[];
+            /** Title */
+            title: string;
+            /**
+             * Tracks
+             * @default []
+             */
+            tracks: components["schemas"]["LabelTrack"][];
+            /** Year */
+            year?: string | null;
+        };
+        /** LabelImage */
+        LabelImage: {
+            /** Height */
+            height: number;
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "main" | "tracks";
+            /** Name */
+            name: string;
+            /** Png Base64 */
+            png_base64: string;
+            /** Width */
+            width: number;
+        };
+        /** LabelRender */
+        LabelRender: {
+            /** Images */
+            images: components["schemas"]["LabelImage"][];
+            /** Warnings */
+            warnings: string[];
+        };
+        /** LabelTrack */
+        LabelTrack: {
+            /** Bpm */
+            bpm?: string | null;
+            /**
+             * Hidden
+             * @default []
+             */
+            hidden: ("bpm" | "key" | "tags" | "note")[];
+            /** Key */
+            key?: string | null;
+            /** Note */
+            note?: string | null;
+            /** Position */
+            position: string;
+            /**
+             * Skip
+             * @description Leave this track off the tracks label
+             * @default false
+             */
+            skip: boolean;
+            /**
+             * Tags
+             * @default []
+             */
+            tags: string[];
+        };
         /** NoteCreate */
         NoteCreate: {
             /** Body */
@@ -572,7 +1134,10 @@ export interface components {
             record_id?: number | null;
             /** Track Id */
             track_id?: number | null;
-            /** Type */
+            /**
+             * Type
+             * @default prose
+             */
             type: string;
         };
         /** NoteOut */
@@ -628,12 +1193,43 @@ export interface components {
             /** Total */
             total: number;
         };
+        /** PlaceIn */
+        PlaceIn: {
+            /** Record Ids */
+            record_ids: number[];
+            /** Section Id */
+            section_id: number | null;
+        };
+        /**
+         * ProposalOut
+         * @description An analysis result waiting to be validated onto its track.
+         */
+        ProposalOut: {
+            /** Analysis Raw */
+            analysis_raw: {
+                [key: string]: unknown;
+            } | null;
+            /** Audio Path */
+            audio_path: string | null;
+            /** Bpm */
+            bpm: number | null;
+            /** Camelot Key */
+            camelot_key: string | null;
+            /** Confidence */
+            confidence: number | null;
+            /** Key */
+            key: string | null;
+            /** Proposed At */
+            proposed_at: string;
+        };
         /** RecordDetail */
         RecordDetail: {
             /** Added At */
             added_at: string;
             /** Artist */
             artist: string;
+            /** Catno */
+            catno: string | null;
             /** Cover Url */
             cover_url: string | null;
             /** Discogs Collection Synced */
@@ -654,6 +1250,13 @@ export interface components {
              */
             status: "owned" | "wantlist" | "considering";
             /**
+             * Styles
+             * @default []
+             */
+            styles: string[];
+            /** Styles Manual */
+            styles_manual: boolean;
+            /**
              * Tags
              * @default []
              */
@@ -669,14 +1272,27 @@ export interface components {
         RecordPatch: {
             /** Artist */
             artist?: string | null;
+            /** Catno */
+            catno?: string | null;
             /** Cover Url */
             cover_url?: string | null;
             /** Format */
             format?: string | null;
             /** Label */
             label?: string | null;
+            /**
+             * Reset Styles
+             * @description Release the lock and re-fetch the styles from Discogs
+             * @default false
+             */
+            reset_styles: boolean;
             /** Status */
             status?: ("owned" | "wantlist" | "considering") | null;
+            /**
+             * Styles
+             * @description Replaces the whole list and locks it against Discogs re-fetches
+             */
+            styles?: string[] | null;
             /** Title */
             title?: string | null;
             /** Year */
@@ -713,6 +1329,8 @@ export interface components {
              * @default []
              */
             camelot_keys: string[];
+            /** Catno */
+            catno: string | null;
             /** Cover Url */
             cover_url: string | null;
             /** Discogs Collection Synced */
@@ -721,6 +1339,11 @@ export interface components {
             discogs_release_id: number | null;
             /** Format */
             format: string | null;
+            /**
+             * Has Note
+             * @default false
+             */
+            has_note: boolean;
             /** Id */
             id: number;
             /** Label */
@@ -732,6 +1355,13 @@ export interface components {
              * @enum {string}
              */
             status: "owned" | "wantlist" | "considering";
+            /**
+             * Styles
+             * @default []
+             */
+            styles: string[];
+            /** Styles Manual */
+            styles_manual: boolean;
             /**
              * Tags
              * @default []
@@ -749,6 +1379,25 @@ export interface components {
             /** Embedded */
             embedded: number;
         };
+        /** SectionIn */
+        SectionIn: {
+            /**
+             * Name
+             * @default
+             */
+            name: string;
+        };
+        /** SectionOut */
+        SectionOut: {
+            /** Id */
+            id: number;
+            /** Name */
+            name: string;
+            /** Position */
+            position: number;
+            /** Records */
+            records: components["schemas"]["CrateRecord"][];
+        };
         /** SemanticHit */
         SemanticHit: {
             note: components["schemas"]["NoteOut"];
@@ -757,14 +1406,62 @@ export interface components {
             score: number;
             track?: components["schemas"]["TrackOut"] | null;
         };
+        /** StyleCount */
+        StyleCount: {
+            /** Name */
+            name: string;
+            /** Record Count */
+            record_count: number;
+        };
+        /** StyleList */
+        StyleList: {
+            /** Items */
+            items: components["schemas"]["StyleCount"][];
+        };
         /** TagCount */
         TagCount: {
+            /** Group */
+            group: string;
             /** Name */
             name: string;
             /** Record Count */
             record_count: number;
             /** Track Count */
             track_count: number;
+        };
+        /** TagDef */
+        TagDef: {
+            /** Id */
+            id: number;
+            /** Name */
+            name: string;
+            /** Record Count */
+            record_count: number;
+            /** Track Count */
+            track_count: number;
+        };
+        /** TagDefIn */
+        TagDefIn: {
+            /** Name */
+            name: string;
+        };
+        /** TagDefUpdate */
+        TagDefUpdate: {
+            /** Group Id */
+            group_id?: number | null;
+            /** Name */
+            name?: string | null;
+        };
+        /** TagGroup */
+        TagGroup: {
+            /** Fixed */
+            fixed: boolean;
+            /** Id */
+            id: number;
+            /** Name */
+            name: string;
+            /** Tags */
+            tags: components["schemas"]["TagDef"][];
         };
         /** TagIn */
         TagIn: {
@@ -811,9 +1508,15 @@ export interface components {
             notes: components["schemas"]["NoteOut"][];
             /** Position */
             position: string;
+            proposal?: components["schemas"]["ProposalOut"] | null;
             record: components["schemas"]["RecordRef"];
             /** Record Id */
             record_id: number;
+            /**
+             * Styles
+             * @default []
+             */
+            styles: string[];
             /**
              * Tags
              * @default []
@@ -821,6 +1524,8 @@ export interface components {
             tags: string[];
             /** Title */
             title: string;
+            /** Year */
+            year?: number | null;
         };
         /** TrackOut */
         TrackOut: {
@@ -857,8 +1562,14 @@ export interface components {
             notes: components["schemas"]["NoteOut"][];
             /** Position */
             position: string;
+            proposal?: components["schemas"]["ProposalOut"] | null;
             /** Record Id */
             record_id: number;
+            /**
+             * Styles
+             * @default []
+             */
+            styles: string[];
             /**
              * Tags
              * @default []
@@ -866,6 +1577,8 @@ export interface components {
             tags: string[];
             /** Title */
             title: string;
+            /** Year */
+            year?: number | null;
         };
         /**
          * TrackPatch
@@ -885,6 +1598,58 @@ export interface components {
              */
             unlock: ("bpm" | "key")[];
         };
+        /** UnitCreate */
+        UnitCreate: {
+            /** Cols */
+            cols: number;
+            /** Name */
+            name: string;
+            /** Rows */
+            rows: number;
+            /**
+             * X
+             * @default 0
+             */
+            x: number;
+            /**
+             * Y
+             * @default 0
+             */
+            y: number;
+        };
+        /** UnitOut */
+        UnitOut: {
+            /** Cols */
+            cols: number;
+            /** Cubes */
+            cubes: components["schemas"]["CubeOut"][];
+            /** Id */
+            id: number;
+            /** Name */
+            name: string;
+            /** Rows */
+            rows: number;
+            /** X */
+            x: number;
+            /** Y */
+            y: number;
+        };
+        /**
+         * UnitPatch
+         * @description Shrinking a unit drops the cubes outside it; their records go back to unsorted.
+         */
+        UnitPatch: {
+            /** Cols */
+            cols?: number | null;
+            /** Name */
+            name?: string | null;
+            /** Rows */
+            rows?: number | null;
+            /** X */
+            x?: number | null;
+            /** Y */
+            y?: number | null;
+        };
         /** UnmatchedFile */
         UnmatchedFile: {
             /** File */
@@ -900,6 +1665,41 @@ export interface components {
             title: string;
             /** Track Id */
             track_id: number;
+        };
+        /** UnsortedRecord */
+        UnsortedRecord: {
+            /** Artist */
+            artist: string;
+            /** Cover Url */
+            cover_url: string | null;
+            /** Id */
+            id: number;
+            /**
+             * Styles
+             * @default []
+             */
+            styles: string[];
+            suggestion: components["schemas"]["CrateSuggestion"] | null;
+            /**
+             * Tags
+             * @default []
+             */
+            tags: string[];
+            /** Title */
+            title: string;
+            /** Year */
+            year: number | null;
+        };
+        /** ValidateRequest */
+        ValidateRequest: {
+            /**
+             * Overwrite Manual
+             * @description Replace hand-entered BPM/key too (and release their lock)
+             * @default false
+             */
+            overwrite_manual: boolean;
+            /** Track Ids */
+            track_ids: number[];
         };
         /** ValidationError */
         ValidationError: {
@@ -942,6 +1742,26 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
+    backfill_styles: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["JobStarted"];
+                };
+            };
+        };
+    };
     open_vault: {
         parameters: {
             query?: never;
@@ -1022,6 +1842,292 @@ export interface operations {
             };
         };
     };
+    get_crate: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CrateOut"];
+                };
+            };
+        };
+    };
+    update_cube: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                cube_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["CubePatch"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CrateOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    add_section: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                cube_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SectionIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CrateOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    place: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PlaceIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CrateOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_section: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                section_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CrateOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_section: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                section_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SectionIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CrateOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_unit: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UnitCreate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CrateOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_unit: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                unit_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_unit: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                unit_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UnitPatch"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CrateOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     get_job: {
         parameters: {
             query?: never;
@@ -1040,6 +2146,72 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["JobOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    label_from_discogs: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["FromDiscogs"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LabelData"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    render_loose_label: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["LabelData"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LabelRender"];
                 };
             };
             /** @description Validation Error */
@@ -1157,6 +2329,7 @@ export interface operations {
                 bpm_max?: number | null;
                 key?: string | null;
                 tag?: string[];
+                style?: string[];
                 status?: ("owned" | "wantlist" | "considering") | null;
                 q?: string | null;
                 limit?: number;
@@ -1392,7 +2565,11 @@ export interface operations {
             };
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["AnalyzeRequest"] | null;
+            };
+        };
         responses: {
             /** @description Successful Response */
             202: {
@@ -1445,6 +2622,107 @@ export interface operations {
             };
         };
     };
+    discard: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                record_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: {
+            content: {
+                "application/json": components["schemas"]["DiscardRequest"] | null;
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RecordDetail"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_label: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                record_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LabelData"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    render_label: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                record_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["LabelData"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["LabelRender"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     sync_discogs: {
         parameters: {
             query?: never;
@@ -1463,6 +2741,41 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["JobStarted"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    validate: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                record_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ValidateRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RecordDetail"];
                 };
             };
             /** @description Validation Error */
@@ -1540,6 +2853,246 @@ export interface operations {
             };
         };
     };
+    list_styles: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["StyleList"];
+                };
+            };
+        };
+    };
+    delete_tag: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                tag_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GroupList"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_tag: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                tag_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["TagDefUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GroupList"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_groups: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GroupList"];
+                };
+            };
+        };
+    };
+    create_group: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["GroupIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GroupList"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_group: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                group_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GroupList"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    rename_group: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                group_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["GroupRename"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GroupList"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_tag: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                group_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["TagDefIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GroupList"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     list_tags: {
         parameters: {
             query?: never;
@@ -1567,6 +3120,7 @@ export interface operations {
                 bpm_max?: number | null;
                 key?: string | null;
                 tag?: string[];
+                style?: string[];
                 status?: ("owned" | "wantlist" | "considering") | null;
                 q?: string | null;
                 limit?: number;

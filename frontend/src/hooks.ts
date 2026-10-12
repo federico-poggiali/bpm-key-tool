@@ -27,10 +27,14 @@ export function useTags() {
   return useQuery({ queryKey: ["tags"], queryFn: () => api.listTags().then((r) => r.items) });
 }
 
+export function useStyles() {
+  return useQuery({ queryKey: ["styles"], queryFn: () => api.listStyles().then((r) => r.items) });
+}
+
 /** A mutation that patches the cached record immediately and rolls back if the server refuses. */
-function useRecordMutation<V>(
+function useRecordMutation<V, R = unknown>(
   id: number,
-  mutationFn: (v: V) => Promise<unknown>,
+  mutationFn: (v: V) => Promise<R>,
   optimistic: (record: RecordDetail, v: V) => RecordDetail,
   alsoInvalidate: string[] = [],
 ) {
@@ -85,8 +89,20 @@ export function usePatchRecord(recordId: number) {
   );
 }
 
+/** Edit a record's styles (locks them against Discogs) or reset them to Discogs' own list. */
+export function useStyleMutations(recordId: number) {
+  const set = useRecordMutation(
+    recordId,
+    (styles: string[]) => api.patchRecord(recordId, { styles }),
+    (record, styles) => ({ ...record, styles, styles_manual: true, tracks: record.tracks.map((t) => ({ ...t, styles })) }),
+    ["records", "styles"],
+  );
+  const reset = useRecordMutation(recordId, () => api.patchRecord(recordId, { reset_styles: true }), (record) => record, ["records", "styles"]);
+  return { set, reset };
+}
+
 export function useNoteMutations(recordId: number) {
-  const create = useRecordMutation(recordId, (body: NoteCreate) => api.createNote(body), (r) => r);
+  const create = useRecordMutation(recordId, (body: NoteCreate) => api.createNote(body), (r) => r, ["records"]);
   const patch = useRecordMutation(
     recordId,
     ({ id, body }: { id: number; body: NotePatch }) => api.patchNote(id, body),
@@ -103,8 +119,13 @@ export function useNoteMutations(recordId: number) {
       notes: record.notes.filter((n) => n.id !== id),
       tracks: record.tracks.map((t) => ({ ...t, notes: t.notes.filter((n) => n.id !== id) })),
     }),
+    ["records"],
   );
   return { create, patch, remove };
+}
+
+export function useTagGroups() {
+  return useQuery({ queryKey: ["tag-groups"], queryFn: api.listTagGroups });
 }
 
 export function useTagMutations(recordId: number) {

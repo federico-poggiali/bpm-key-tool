@@ -6,6 +6,8 @@ import { ApiError } from "./api/api";
 import App from "./App";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { pushToast } from "./toast";
+import "@fontsource-variable/geist";
+import "@fontsource-variable/geist-mono";
 import "./styles/tokens.css";
 import "./styles/global.css";
 

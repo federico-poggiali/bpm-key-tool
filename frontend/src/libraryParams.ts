@@ -10,6 +10,7 @@ export type Filters = {
   bpmMax?: number;
   key?: string; // Camelot code
   tags: string[];
+  styles: string[]; // Discogs styles; the URL parameter is "style"
   status: Status | "all";
   view: View;
   page: number;
@@ -30,6 +31,7 @@ export function parseFilters(params: URLSearchParams, defaultStatus: Status): Fi
     bpmMax: num(params.get("bpm_max")),
     key: params.get("key") ?? undefined,
     tags: params.getAll("tag"),
+    styles: params.getAll("style"),
     status: status === "all" || status === "owned" || status === "wantlist" || status === "considering" ? status : defaultStatus,
     view: view === "table" || view === "tracks" ? view : "grid",
     page: Math.max(1, num(params.get("page")) ?? 1),
@@ -43,6 +45,7 @@ export function serializeFilters(f: Filters, defaultStatus: Status): URLSearchPa
   if (f.bpmMax != null) p.set("bpm_max", String(f.bpmMax));
   if (f.key) p.set("key", f.key);
   f.tags.forEach((t) => p.append("tag", t));
+  f.styles.forEach((s) => p.append("style", s));
   if (f.status !== defaultStatus) p.set("status", f.status);
   if (f.view !== "grid") p.set("view", f.view);
   if (f.page > 1) p.set("page", String(f.page));
@@ -50,6 +53,6 @@ export function serializeFilters(f: Filters, defaultStatus: Status): URLSearchPa
 }
 
 export const isFiltered = (f: Filters, defaultStatus: Status) =>
-  !!(f.q || f.bpmMin != null || f.bpmMax != null || f.key || f.tags.length || f.status !== defaultStatus);
+  !!(f.q || (f.view === "tracks" && (f.bpmMin != null || f.bpmMax != null || f.key)) || f.tags.length || f.styles.length || f.status !== defaultStatus);
 
 export const pageSize = (view: View) => (view === "grid" ? 24 : 50);

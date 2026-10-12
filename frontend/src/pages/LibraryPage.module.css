@@ -1,3 +1,5 @@
+.layout { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 24px; align-items: start; }
+@media (max-width: 900px) { .layout { grid-template-columns: 1fr; } }
 .page { display: grid; gap: 22px; }
 .head { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; }
 .head h1 { font: 600 clamp(2rem, 5vw, 3.2rem)/1 var(--sans); letter-spacing: -0.045em; margin-top: 8px; }

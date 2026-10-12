@@ -1,0 +1,17 @@
+.editor { display: grid; gap: 28px; min-width: 0; }
+.group { display: grid; gap: 10px; }
+.group h2 { font: 600 1.25rem var(--sans); letter-spacing: -0.03em; margin-bottom: 4px; }
+.field { display: grid; grid-template-columns: 96px minmax(0, 1fr) 22px; gap: 10px; align-items: center; }
+.field textarea { min-height: 64px; }
+.print { width: 18px; height: 18px; accent-color: var(--signal); cursor: pointer; }
+.qr { font: 400 0.8125rem var(--mono); color: var(--ink-3); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.empty { margin: 0; color: var(--ink-3); font-size: 0.875rem; }
+.track { margin: 0; padding: 10px 12px 12px; border: 1px solid var(--line-2); border-radius: var(--r-m); min-width: 0; }
+.track[data-skipped] .trackFields { opacity: 0.4; }
+.track legend { padding: 0 6px; }
+.include { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font-weight: 600; }
+.include input { accent-color: var(--signal); }
+.trackFields { display: grid; gap: 8px; }
+.trackFields .field { grid-template-columns: 72px minmax(0, 1fr) 22px; }
+.trackFields .field :global(.micro) { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+@media (max-width: 720px) { .field { grid-template-columns: 76px minmax(0, 1fr) 22px; } }

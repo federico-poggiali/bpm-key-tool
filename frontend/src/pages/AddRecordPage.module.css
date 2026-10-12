@@ -14,11 +14,9 @@
 .form :global(.primary) { height: 52px; }
 .status { display: flex; align-items: center; gap: 8px; border: 0; margin: 0; padding: 0; flex-wrap: wrap; }
 .status legend { float: left; padding: 0 8px 0 0; line-height: 34px; }
-.status label { display: inline-flex; align-items: center; height: 34px; padding: 0 14px; border-radius: var(--r-m); border: 1px solid var(--line-2); font-size: 0.875rem; cursor: pointer; transition: background 0.2s var(--ease); }
-.status label:hover { background: var(--surface); }
-.status label.on { background: var(--ink); color: var(--bg); border-color: var(--ink); }
-.status input { position: absolute; opacity: 0; width: 1px; height: 1px; }
-.status label:has(:focus-visible) { outline: 2px solid var(--signal); outline-offset: 3px; }
+.status button { display: inline-flex; align-items: center; height: 34px; padding: 0 14px; border-radius: var(--r-m); border: 1px solid var(--line-2); font-size: 0.875rem; cursor: pointer; transition: background 0.2s var(--ease); }
+.status button:hover { background: var(--surface); }
+.status button.on { background: var(--ink); color: var(--bg); border-color: var(--ink); }
 .hint { margin: 0; color: var(--ink-3); font-size: 0.875rem; }
 .error { margin: 0; color: var(--signal-ink); font-size: 0.9375rem; }
 .result { display: grid; gap: 18px; }

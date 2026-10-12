@@ -48,8 +48,13 @@ function HitCard({ hit, children, score }: { hit: Hit; children: React.ReactNode
   );
 }
 
-export default function SearchPage() {
-  const [params, setParams] = useSearchParams();
+export default function SearchPage({ embedded = false }: { embedded?: boolean }) {
+  // Embedded in the library popup it keeps its state locally, so it never touches the library's URL.
+  const [routeParams, setRouteParams] = useSearchParams();
+  const [localParams, setLocalParams] = useState(() => new URLSearchParams());
+  const params = embedded ? localParams : routeParams;
+  const setParams = (next: URLSearchParams, opts?: { replace?: boolean }) =>
+    embedded ? setLocalParams(new URLSearchParams(next)) : setRouteParams(next, opts);
   const mode: Mode = params.get("mode") === "exact" ? "exact" : "meaning";
   const urlQ = params.get("q") ?? "";
   const [text, setText] = useState(urlQ);
@@ -91,7 +96,7 @@ export default function SearchPage() {
     <div className={styles.page}>
       <header className={styles.head}>
         <span className="micro">search</span>
-        <h1>{mode === "meaning" ? "Search by meaning" : "Search exact words"}</h1>
+        <h1 className={embedded ? styles.compact : undefined}>{mode === "meaning" ? "Search by meaning" : "Search exact words"}</h1>
       </header>
       <div className={styles.controls}>
         <label className={styles.field}>
@@ -105,7 +110,7 @@ export default function SearchPage() {
         </div>
       </div>
 
-      {q === "" && <p className={styles.hint}>{mode === "meaning" ? "Describe what you remember. Notes of type “prose” are searched by what they mean, not the words they use." : "Matches whole words and word starts in every note, plus record artist, title and label."}</p>}
+      {q === "" && <p className={styles.hint}>{mode === "meaning" ? "Describe what you remember. Notes are searched by what they mean, not the words they use." : "Matches whole words and word starts in every note, plus record artist, title and label."}</p>}
       {q !== "" && active.isFetching && !active.data && <Skeleton rows={4} height={72} />}
 
       {mode === "meaning" && unavailable && (
@@ -117,7 +122,7 @@ export default function SearchPage() {
       )}
       {mode === "meaning" && semantic.data && (
         semantic.data.length === 0
-          ? <p className={styles.hint}>No prose notes are close to that.</p>
+          ? <p className={styles.hint}>No notes are close to that.</p>
           : <ul className={styles.results} aria-label="Results">
               {semantic.data.map((h) => <HitCard key={h.note.id} hit={h} score={h.score}>{h.note.body}</HitCard>)}
             </ul>

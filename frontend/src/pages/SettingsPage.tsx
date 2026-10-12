@@ -1,5 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useState } from "react";
 import { api } from "../api/api";
+import { JobChip } from "../components/JobChip";
 import { pushToast } from "../toast";
 import styles from "./SettingsPage.module.css";
 
@@ -14,6 +16,8 @@ export default function SettingsPage() {
     mutationFn: api.openVault,
     onSuccess: (r) => pushToast(r.opened ? "Revealed in Finder." : `Not generated yet. It will be at ${r.path}`, "info"),
   });
+  const [stylesJob, setStylesJob] = useState<number | null>(null);
+  const fetchStyles = useMutation({ mutationFn: api.backfillStyles, onSuccess: ({ job_id }) => setStylesJob(job_id) });
   const last = sync.data ?? status.data?.last_sync ?? null;
 
   return (
@@ -49,6 +53,22 @@ export default function SettingsPage() {
         <button className="ghost" onClick={() => reveal.mutate()} disabled={reveal.isPending}>Show Dataview examples in Finder</button>
       </div>
       <p className={styles.hint}>The vault also syncs by itself a couple of seconds after any change. The Dataview examples file shows ready-made queries by BPM, key and tag.</p>
+
+      <header>
+        <span className="micro">discogs</span>
+        <h2>Styles</h2>
+      </header>
+      <p className={styles.hint}>
+        Records added before styles were imported have none. This asks Discogs once per record (about one a second) and fills in
+        the style and catalogue number. Records whose styles you edited are never touched.
+      </p>
+      <div className={styles.actions}>
+        <button className="primary" onClick={() => fetchStyles.mutate()} disabled={fetchStyles.isPending}>Fetch styles for existing records</button>
+      </div>
+      {stylesJob != null && (
+        <JobChip label="Styles" jobId={stylesJob} onRetry={() => fetchStyles.mutate()} retrying={fetchStyles.isPending}
+          onSettled={() => { client.invalidateQueries({ queryKey: ["styles"] }); client.invalidateQueries({ queryKey: ["records"] }); }} />
+      )}
     </div>
   );
 }

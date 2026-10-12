@@ -28,3 +28,4 @@
 .recs a > :first-child { width: 40px; }
 .recs span { display: grid; min-width: 0; }
 .recs small { color: var(--ink-2); }
+.compact { font-size: 1.5rem; }

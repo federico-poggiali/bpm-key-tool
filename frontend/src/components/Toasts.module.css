@@ -1,4 +1,4 @@
-.stack { position: fixed; right: 16px; bottom: 16px; z-index: 50; display: grid; gap: 8px; max-width: min(420px, calc(100vw - 32px)); }
+.stack { position: fixed; right: 16px; bottom: 16px; z-index: var(--z-toast); display: grid; gap: 8px; max-width: min(420px, calc(100vw - 32px)); }
 .toast {
   display: flex; gap: 12px; align-items: flex-start; justify-content: space-between; padding: 12px 14px;
   border-radius: var(--r-m); background: var(--raise); border: 1px solid var(--line-2); box-shadow: var(--lift);

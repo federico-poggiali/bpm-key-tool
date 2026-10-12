@@ -4,3 +4,4 @@
 .tag button { border: 0; background: none; color: var(--ink-3); font-size: 1rem; line-height: 1; padding: 0 5px; border-radius: var(--r-s); }
 .tag button:hover { color: var(--signal-ink); }
 .input { height: 28px; width: 130px; font: 400 0.75rem var(--mono); }
+.empty { font: 400 0.75rem var(--mono); color: var(--ink-3); }

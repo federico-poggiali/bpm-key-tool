@@ -1,9 +1,9 @@
-.shell { display: grid; grid-template-columns: 208px minmax(0, 1fr); min-height: 100vh; }
+.shell { display: grid; grid-template-columns: 216px minmax(0, 1fr); min-height: 100vh; }
 .side {
   position: sticky; top: 0; height: 100vh; padding: 22px 14px 18px; display: flex; flex-direction: column; gap: 28px;
   border-right: 1px solid var(--line);
 }
-.brand { display: flex; align-items: center; gap: 10px; font: 600 0.9375rem var(--sans); letter-spacing: -0.01em; padding: 0 8px; }
+.brand { display: flex; align-items: center; gap: 10px; font: 600 0.9375rem var(--sans); letter-spacing: -0.02em; padding: 0 10px; }
 .led { width: 8px; height: 8px; border-radius: 2px; background: var(--ink-3); transition: background 0.3s var(--ease), box-shadow 0.3s var(--ease); }
 .led.ok { background: var(--ink); }
 .led.busy { background: var(--signal); box-shadow: 0 0 0 4px color-mix(in srgb, var(--signal) 22%, transparent); animation: pulse 1s ease-in-out infinite; }
@@ -15,9 +15,10 @@
 }
 .nav a:hover { background: var(--surface); color: var(--ink); }
 .nav a.active { background: var(--raise); color: var(--ink); box-shadow: inset 2px 0 0 var(--signal); }
+.nav a:active { transform: translateY(1px); }
 .foot { margin-top: auto; display: grid; gap: 8px; padding: 0 8px; }
 .main { min-width: 0; padding: 28px 28px 80px; max-width: 1180px; width: 100%; outline: none; }
-.skip { position: absolute; left: -999px; top: 8px; background: var(--signal); color: var(--on-signal); padding: 8px 12px; border-radius: var(--r-m); z-index: 60; }
+.skip { position: absolute; left: -999px; top: 8px; background: var(--signal); color: var(--on-signal); padding: 8px 12px; border-radius: var(--r-m); z-index: var(--z-skip); }
 .skip:focus { left: 8px; }
 
 @media (max-width: 760px) {
@@ -27,3 +28,14 @@
   .foot { margin: 0 0 0 auto; }
   .main { padding: 20px 16px 72px; }
 }
+
+.content { min-width: 0; }
+.topbar { display: flex; justify-content: flex-end; padding: 14px 28px 0; }
+.menu { position: relative; }
+.menuBtn { padding: 9px 14px; border: 1px solid var(--line-2); border-radius: var(--r-m); background: none; color: var(--ink-2); font-weight: 500; }
+.menuBtn:hover, .menuBtn.active { background: var(--raise); color: var(--ink); }
+.menuList { position: absolute; right: 0; top: calc(100% + 6px); min-width: 160px; display: grid; gap: 2px; padding: 6px; margin: 0; list-style: none; background: var(--raise); border: 1px solid var(--line-2); border-radius: var(--r-m); z-index: var(--z-menu, 20); }
+.menuList a { display: block; padding: 9px 10px; border-radius: var(--r-s); text-decoration: none; color: var(--ink-2); font-weight: 500; }
+.menuList a:hover { background: var(--surface); color: var(--ink); }
+.menuList a.active { background: var(--surface); color: var(--ink); box-shadow: inset 2px 0 0 var(--signal); }
+@media (max-width: 760px) { .topbar { padding: 12px 16px 0; } }

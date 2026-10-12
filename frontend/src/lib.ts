@@ -34,5 +34,4 @@ export function formatDuration(sec: number | null | undefined): string {
   return `${Math.floor(sec / 60)}:${String(sec % 60).padStart(2, "0")}`;
 }
 
-export const NOTE_TYPES = ["prose", "cue-points", "location", "purchase", "condition"];
 export const STATUSES = ["owned", "wantlist", "considering"] as const;

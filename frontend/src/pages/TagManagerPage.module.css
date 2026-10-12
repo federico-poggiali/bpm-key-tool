@@ -1,0 +1,19 @@
+.page { display: grid; gap: 28px; max-width: 760px; }
+.page h1 { font: 600 clamp(2rem, 5vw, 3.2rem)/1 var(--sans); letter-spacing: -0.045em; margin-top: 8px; }
+.hint { margin: 6px 0 0; color: var(--ink-3); font-size: 0.875rem; }
+.group { display: grid; gap: 12px; padding-top: 16px; border-top: 1px solid var(--line-2); }
+.groupHead { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 16px; }
+.groupHead h2 { font: 600 1.25rem var(--sans); letter-spacing: -0.02em; }
+.groupActions { display: flex; gap: 8px; flex-wrap: wrap; }
+.tags { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.tag { display: flex; align-items: center; gap: 10px; min-height: 36px; padding: 0 6px 0 12px; border: 1px solid var(--line-2); border-radius: var(--r-s); }
+.name { flex: 1; text-align: left; border: 0; background: none; padding: 6px 0; font: 500 0.8125rem var(--mono); color: inherit; }
+.name:hover { text-decoration: underline; text-underline-offset: 3px; }
+.rename { flex: 1; }
+.rename input { height: 28px; width: 100%; font: 500 0.8125rem var(--mono); }
+.move { height: 28px; max-width: 130px; border: 1px solid var(--line-2); border-radius: var(--r-s); background: none; color: var(--ink-2, inherit); font: 400 0.75rem var(--mono); }
+.x { border: 0; background: none; color: var(--ink-3); font-size: 1.1rem; padding: 4px 9px; border-radius: var(--r-s); }
+.x:hover { color: var(--signal-ink); }
+.add { display: flex; gap: 8px; }
+.add input { height: 32px; flex: 1; max-width: 260px; font: 400 0.8125rem var(--mono); }
+@media (max-width: 520px) { .move { display: none; } }

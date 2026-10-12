@@ -1,17 +1,35 @@
-.bar { display: grid; gap: 18px; padding: 16px; border: 1px solid var(--line); border-radius: var(--r-l); background: var(--surface); justify-items: start; }
-.bar > * { width: 100%; }
-.bar > button { width: auto; }
-.top { display: flex; gap: 12px; flex-wrap: wrap; }
-.search { flex: 1; min-width: 220px; display: flex; align-items: center; height: 44px; padding: 0 14px; background: var(--glass); border: 1px solid var(--line-2); border-radius: var(--r-m); transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease); }
+/* Floating rail: sticks beside the results; menu rows open their picker in a flyout to the right. */
+.bar { position: sticky; top: 16px; display: grid; gap: 14px; padding: 14px; border: 1px solid var(--line); border-radius: var(--r-l); background: var(--surface); box-shadow: 0 12px 32px -18px rgba(0, 0, 0, 0.45); align-content: start; z-index: 5; }
+.bar > button { justify-self: start; }
+
+.modes, .views { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--line-2); border-radius: var(--r-m); overflow: hidden; }
+.modes button, .views button { height: 36px; border: 0; background: none; font-weight: 600; color: var(--ink-2); }
+.views button { height: 32px; font-weight: 500; }
+.modes button[aria-pressed="true"], .views button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+
+.search { display: flex; align-items: center; height: 40px; padding: 0 12px; background: var(--glass); border: 1px solid var(--line-2); border-radius: var(--r-m); transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease); }
 .search:focus-within { border-color: var(--signal); box-shadow: 0 0 0 3px color-mix(in srgb, var(--signal) 28%, transparent); }
-.search input { flex: 1; min-width: 0; border: 0; background: transparent; outline: none; font: 400 0.9375rem var(--mono); }
-.views { display: inline-flex; border: 1px solid var(--line-2); border-radius: var(--r-m); overflow: hidden; height: 44px; }
-.views button { padding: 0 16px; border: 0; background: none; font-weight: 500; color: var(--ink-2); }
-.views button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
-.grid { display: grid; grid-template-columns: minmax(220px, 280px) 150px minmax(0, 1fr); gap: 22px; align-items: start; }
-.status { display: grid; gap: 8px; }
+.search input { flex: 1; min-width: 0; border: 0; background: transparent; outline: none; font: 400 0.875rem var(--mono); }
+
+.menu { display: grid; gap: 2px; border-top: 1px solid var(--line); padding-top: 10px; }
+.item { position: relative; }
+.trigger { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 10px; height: 38px; padding: 0 10px; border: 0; border-radius: var(--r-s); background: none; font-weight: 500; color: var(--ink); text-align: left; }
+.trigger::after { content: "›"; color: var(--ink-3); }
+.active { margin-left: auto; color: var(--ink-3); font: 500 0.6875rem var(--mono); max-width: 110px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.item:hover .trigger, .item:focus-within .trigger, .pinned .trigger { background: var(--glass); }
+
+.flyout { position: absolute; left: calc(100% + 14px); top: -8px; width: min(420px, 60vw); max-height: 70vh; overflow: auto; padding: 14px; border: 1px solid var(--line-2); border-radius: var(--r-l); background: var(--surface); box-shadow: 0 18px 40px -16px rgba(0, 0, 0, 0.5); opacity: 0; visibility: hidden; transform: translateX(-6px); transition: opacity 0.15s var(--ease), transform 0.15s var(--ease), visibility 0s 0.15s; }
+/* invisible bridge so the pointer can cross the gap without the flyout closing */
+.flyout::before { content: ""; position: absolute; left: -16px; top: 0; bottom: 0; width: 16px; }
+.item:hover .flyout, .item:focus-within .flyout, .pinned .flyout { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+.flyout :global(ul) { max-height: none; }
+
 .keys { display: grid; gap: 8px; min-width: 0; }
 .keysHead { display: flex; justify-content: space-between; align-items: center; }
-.tags { display: grid; gap: 8px; }
-@media (max-width: 900px) { .grid { grid-template-columns: 1fr 1fr; } .keys { grid-column: 1 / -1; } }
-@media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
+
+@media (prefers-reduced-motion: reduce) { .flyout { transition: none; } }
+@media (max-width: 900px) {
+  .bar { position: static; box-shadow: none; }
+  .flyout { position: static; width: auto; max-height: none; margin: 4px 0 8px; box-shadow: none; display: none; opacity: 1; visibility: visible; transform: none; }
+  .pinned .flyout { display: block; }
+}

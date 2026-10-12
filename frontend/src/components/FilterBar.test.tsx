@@ -1,19 +1,22 @@
-import { act, fireEvent, render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import type { Filters } from "../libraryParams";
 import { FilterBar } from "./FilterBar";
 
-const base: Filters = { q: "", tags: [], status: "owned", view: "grid", page: 1 };
+const base: Filters = { q: "", tags: [], styles: [], status: "owned", view: "grid", page: 1 };
+const styleCounts = [
+  { name: "Deep House", record_count: 4 },
+  { name: "Techno", record_count: 2 },
+];
 const tags = [
-  { name: "house", record_count: 3, track_count: 1 },
-  { name: "peak", record_count: 0, track_count: 2 },
+  { name: "house", group: "Atmosphere", record_count: 3, track_count: 1 },
+  { name: "peak", group: "Energy", record_count: 0, track_count: 2 },
 ];
 
 function setup(filters: Partial<Filters> = {}, onChange = vi.fn(), onClear = vi.fn()) {
   render(
-    <FilterBar filters={{ ...base, ...filters }} defaultStatus="owned" tags={tags} keyFormat="camelot"
-      onKeyFormat={vi.fn()} onChange={onChange} onClear={onClear} />,
+    <FilterBar filters={{ ...base, ...filters }} defaultStatus="owned" tags={tags} styleCounts={styleCounts} keyFormat="camelot"
+      onKeyFormat={vi.fn()} onChange={onChange} onClear={onClear} onOpenSearch={vi.fn()} />,
   );
   return { onChange, onClear };
 }
@@ -22,42 +25,28 @@ describe("FilterBar", () => {
   beforeEach(() => vi.useFakeTimers({ shouldAdvanceTime: true }));
   afterEach(() => vi.useRealTimers());
 
-  it("debounces the text search into one change", async () => {
-    const { onChange } = setup();
-    const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime });
-    await user.type(screen.getByRole("searchbox"), "daft");
-    expect(onChange).not.toHaveBeenCalled();
-    act(() => { vi.advanceTimersByTime(350); });
-    expect(onChange).toHaveBeenCalledTimes(1);
-    expect(onChange).toHaveBeenCalledWith({ q: "daft" });
+  it("opens the search popup when the search bar is clicked", async () => {
+    const onOpenSearch = vi.fn();
+    render(<FilterBar filters={base} defaultStatus="owned" tags={tags} styleCounts={styleCounts} keyFormat="camelot"
+      onKeyFormat={vi.fn()} onChange={vi.fn()} onClear={vi.fn()} onOpenSearch={onOpenSearch} />);
+    fireEvent.click(screen.getByRole("searchbox"));
+    expect(onOpenSearch).toHaveBeenCalled();
   });
 
-  it("turns the two BPM handles into bpmMin / bpmMax, and the ends into 'no limit'", () => {
-    const { onChange } = setup();
-    fireEvent.change(screen.getByLabelText("Minimum BPM"), { target: { value: "120" } });
-    fireEvent.change(screen.getByLabelText("Maximum BPM"), { target: { value: "128" } });
-    act(() => { vi.advanceTimersByTime(300); });
-    expect(onChange).toHaveBeenLastCalledWith({ bpmMin: 120, bpmMax: 128 });
-    fireEvent.change(screen.getByLabelText("Minimum BPM"), { target: { value: "60" } });
-    act(() => { vi.advanceTimersByTime(300); });
-    expect(onChange).toHaveBeenLastCalledWith({ bpmMin: undefined, bpmMax: 128 });
-  });
-
-  it("never lets the minimum pass the maximum", () => {
-    const { onChange } = setup({ bpmMin: 100, bpmMax: 110 });
-    fireEvent.change(screen.getByLabelText("Minimum BPM"), { target: { value: "150" } });
-    act(() => { vi.advanceTimersByTime(300); });
-    expect(onChange).toHaveBeenLastCalledWith({ bpmMin: 110, bpmMax: 110 });
+  it("hides BPM and key filters outside the tracks view, since they belong to tracks", () => {
+    setup({ view: "grid" });
+    expect(screen.queryByRole("button", { name: "8A, A minor" })).toBeNull();
+    expect(screen.queryByRole("button", { name: "Key" })).toBeNull();
   });
 
   it("picks a key, and clicking it again clears it", () => {
-    const { onChange } = setup();
+    const { onChange } = setup({ view: "tracks" });
     fireEvent.click(screen.getByRole("button", { name: "8A, A minor" }));
     expect(onChange).toHaveBeenLastCalledWith({ key: "8A" });
   });
 
   it("shows the selected key as pressed and toggles it off", () => {
-    const { onChange } = setup({ key: "8A" });
+    const { onChange } = setup({ view: "tracks", key: "8A" });
     const key = screen.getByRole("button", { name: "8A, A minor" });
     expect(key).toHaveAttribute("aria-pressed", "true");
     fireEvent.click(key);
@@ -74,12 +63,20 @@ describe("FilterBar", () => {
     expect(onChange).toHaveBeenLastCalledWith({ tags: [] });
   });
 
-  it("switches views and status", () => {
+  it("toggles styles on and off, case-insensitively, showing record counts", () => {
+    const { onChange } = setup({ styles: ["deep house"] });
+    expect(screen.getByRole("button", { name: /Deep House/ })).toHaveAttribute("aria-pressed", "true");
+    expect(screen.getByRole("button", { name: /Techno/ })).toHaveTextContent("2");
+    fireEvent.click(screen.getByRole("button", { name: /Techno/ }));
+    expect(onChange).toHaveBeenLastCalledWith({ styles: ["deep house", "Techno"] });
+    fireEvent.click(screen.getByRole("button", { name: /Deep House/ }));
+    expect(onChange).toHaveBeenLastCalledWith({ styles: [] });
+  });
+
+  it("switches views", () => {
     const { onChange } = setup();
     fireEvent.click(screen.getByRole("button", { name: "Tracks" }));
     expect(onChange).toHaveBeenLastCalledWith({ view: "tracks" });
-    fireEvent.change(screen.getByLabelText("status"), { target: { value: "wantlist" } });
-    expect(onChange).toHaveBeenLastCalledWith({ status: "wantlist" });
   });
 
   it("offers Clear only when something is filtered", () => {

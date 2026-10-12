@@ -2,7 +2,7 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
 // Runs last (file name) against the same throwaway server; seeds what it needs, so it also works alone.
-const pages = ["/", "/wantlist", "/add", "/search?mode=exact&q=floor", "/settings", "/record", "/?view=table", "/?view=tracks"];
+const pages = ["/", "/wantlist", "/crate", "/add", "/labels", "/tags", "/search?mode=exact&q=floor", "/settings", "/record", "/record/label", "/?view=table", "/?view=tracks"];
 
 for (const scheme of ["dark", "light"] as const) {
   test.describe(`accessibility (${scheme})`, () => {
@@ -16,7 +16,7 @@ for (const scheme of ["dark", "light"] as const) {
 
     for (const url of pages) {
       test(`no serious violations on ${url}`, async ({ page }) => {
-        await page.goto(url === "/record" ? `/records/${recordId}` : url);
+        await page.goto(url === "/record" ? `/records/${recordId}` : url === "/record/label" ? `/records/${recordId}/label` : url);
         await page.waitForLoadState("networkidle");
         if (url === "/record") await page.getByRole("button", { name: /Ambivalent/ }).first().click();
         const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();

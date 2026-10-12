@@ -11,7 +11,7 @@ const note: NoteOut = {
 function setup(props: Partial<React.ComponentProps<typeof NoteEditor>> = {}) {
   const onSave = vi.fn();
   const onDelete = vi.fn();
-  render(<NoteEditor note={note} target="Record" typeSuggestions={["prose", "location"]}
+  render(<NoteEditor note={note} target="Record"
     onSave={onSave} onDelete={onDelete} defaultEditing {...props} />);
   return { onSave, onDelete };
 }
@@ -22,7 +22,7 @@ describe("NoteEditor", () => {
 
   it("autosaves once, after typing stops, and says so", () => {
     const { onSave } = setup();
-    const body = screen.getByLabelText("Note text (markdown)");
+    const body = screen.getByLabelText("Note text");
     fireEvent.change(body, { target: { value: "huge energy, the floor erupted" } });
     act(() => { vi.advanceTimersByTime(300); });
     expect(onSave).not.toHaveBeenCalled();
@@ -34,16 +34,9 @@ describe("NoteEditor", () => {
     expect(screen.getByText("Saved")).toBeInTheDocument();
   });
 
-  it("saves a changed type separately from the body", () => {
-    const { onSave } = setup();
-    fireEvent.change(screen.getByLabelText("Note type"), { target: { value: "cue-points" } });
-    act(() => { vi.advanceTimersByTime(900); });
-    expect(onSave).toHaveBeenCalledWith({ type: "cue-points" });
-  });
-
   it("does not save when nothing changed, or when changed back", () => {
     const { onSave } = setup();
-    const body = screen.getByLabelText("Note text (markdown)");
+    const body = screen.getByLabelText("Note text");
     fireEvent.change(body, { target: { value: "x" } });
     fireEvent.change(body, { target: { value: "huge energy" } });
     act(() => { vi.advanceTimersByTime(2000); });
@@ -52,7 +45,7 @@ describe("NoteEditor", () => {
 
   it("flushes a pending edit immediately when you press Done", () => {
     const { onSave } = setup();
-    fireEvent.change(screen.getByLabelText("Note text (markdown)"), { target: { value: "quick" } });
+    fireEvent.change(screen.getByLabelText("Note text"), { target: { value: "quick" } });
     fireEvent.click(screen.getByRole("button", { name: "Done" }));
     expect(onSave).toHaveBeenCalledWith({ body: "quick" });
   });
