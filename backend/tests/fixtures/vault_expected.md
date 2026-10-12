@@ -4,9 +4,11 @@ discogs_id: 123
 artist: "Daft Punk"
 title: "Discovery"
 label: "Virgin"
+catno: "V2850"
 year: 2001
 format: "2xVinyl, LP"
 status: "owned"
+styles: ["French House", "Disco"]
 tags: ["french", "house"]
 bpm_min: 123.0
 bpm_max: 123.5

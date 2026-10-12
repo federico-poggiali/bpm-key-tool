@@ -1,5 +1,5 @@
 import sqlite3
-from collections.abc import Iterator
+from collections.abc import Callable, Iterator
 
 from fastapi import HTTPException, Request
 
@@ -23,6 +23,12 @@ def get_discogs() -> DiscogsClient:
         return DiscogsClient(config.DISCOGS_TOKEN)
     except DiscogsError as exc:
         raise HTTPException(503, str(exc)) from exc
+
+
+def get_discogs_lazy(request: Request) -> Callable[[], DiscogsClient]:
+    """The Discogs client factory, called only if a request needs Discogs (a missing token is
+    then a 503 for that request alone). Honours test overrides of get_discogs."""
+    return request.app.dependency_overrides.get(get_discogs, get_discogs)
 
 
 def get_runner(request: Request) -> JobRunner:

@@ -22,12 +22,13 @@ def list_tracks(
     bpm_max: Annotated[float | None, Query(ge=0)] = None,
     key: str | None = None,
     tag: Annotated[list[str], Query()] = [],  # noqa: B006 (FastAPI query default)
+    style: Annotated[list[str], Query()] = [],  # noqa: B006
     status: Status | None = None,
     q: str | None = None,
     limit: Annotated[int, Query(ge=1, le=200)] = 50,
     offset: Annotated[int, Query(ge=0)] = 0,
 ) -> dict:
-    f = filters_from_query(bpm_min, bpm_max, key, tag, status, q, limit, offset)
+    f = filters_from_query(bpm_min, bpm_max, key, tag, style, status, q, limit, offset)
     items, total = queries.list_tracks(conn, f)
     return {"items": items, "total": total, "limit": limit, "offset": offset}
 

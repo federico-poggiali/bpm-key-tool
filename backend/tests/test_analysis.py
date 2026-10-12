@@ -32,6 +32,13 @@ def fake_analyze(path):
             "raw": {"bpm_alt": 62.0}}
 
 
+def validate_all(client, rid, **extra):
+    pending = [t["id"] for t in client.get(f"/api/records/{rid}").json()["tracks"] if t["proposal"]]
+    resp = client.post(f"/api/records/{rid}/validate", json={"track_ids": pending, **extra})
+    assert resp.status_code == 200, resp.json()
+    return resp.json()
+
+
 def test_alternate_bpm():
     assert engine.alternate_bpm(128) == 64
     assert engine.alternate_bpm(80) == 160
@@ -55,6 +62,10 @@ def test_analysis_job_fills_matched_tracks_and_reports_mismatches(client, db_pat
     assert [f["file"] for f in job["result"]["audio_match"]["unmatched_files"]] == ["mystery.wav"]
     assert [t["track_id"] for t in job["result"]["audio_match"]["unmatched_tracks"]] == [t2]
     conn = connect(db_path)
+    assert tracks.get(conn, t1)["bpm"] is None  # nothing lands before validation
+    detail = client.get(f"/api/records/{rid}").json()
+    assert detail["tracks"][0]["proposal"]["bpm"] == 124.0 and detail["tracks"][1]["proposal"] is None
+    validate_all(client, rid)
     first, second = tracks.get(conn, t1), tracks.get(conn, t2)
     assert (first["bpm"], first["camelot_key"], first["confidence"]) == (124.0, "8A", 0.7)
     assert first["analysis_raw"] == {"bpm_alt": 62.0} and first["analyzed_at"]
@@ -78,6 +89,7 @@ def test_lookup_from_discogs_link_needs_no_audio(client, db_path, audio_dir):
     assert job["status"] == "done"
     assert job["result"]["looked_up_track_ids"] == [t1]
     assert job["result"]["no_data_track_ids"] == [t2]
+    validate_all(client, rid)
     conn = connect(db_path)
     first = tracks.get(conn, t1)
     assert (first["bpm"], first["camelot_key"], first["audio_path"]) == (126.0, "5A", None)
@@ -94,6 +106,7 @@ def test_local_audio_overrides_lookup(client, db_path, audio_dir):
     job_id = client.post(f"/api/records/{rid}/analyze").json()["job_id"]
     runner.run_pending()
     assert client.get(f"/api/jobs/{job_id}").json()["status"] == "done"
+    validate_all(client, rid)
     conn = connect(db_path)
     assert tracks.get(conn, t1)["bpm"] == 124.0 and tracks.get(conn, t1)["audio_path"]
     assert tracks.get(conn, t2)["bpm"] == 100.0  # no file for A2: lookup stands
@@ -155,6 +168,7 @@ def test_real_engine_on_short_audio(client, db_path, audio_dir):
     job = client.get(f"/api/jobs/{job_id}").json()
     assert job["status"] == "done", job
     assert [f["file"] for f in job["result"]["audio_match"]["unmatched_files"]] == ["stray.wav"]
+    validate_all(client, rid)
     conn = connect(db_path)
     for tid in (t1, t2):
         t = tracks.get(conn, tid)
@@ -163,6 +177,46 @@ def test_real_engine_on_short_audio(client, db_path, audio_dir):
         assert 0 <= t["confidence"] <= 1
         assert t["analysis_raw"]["bpm_alt"] and t["audio_path"]
     conn.close()
+
+
+def run_lookup(client, rid, results):
+    runner = JobRunner({"analysis": handler(lookup_fn=lambda *a: results)})
+    client.app.state.runner = runner
+    client.post(f"/api/records/{rid}/analyze")
+    runner.run_pending()
+
+
+LOOKED = {"bpm": 126.0, "key": "C minor", "camelot_key": "5A", "confidence": None, "raw": {}}
+
+
+def test_validate_only_chosen_tracks_and_discard_the_rest(client, db_path, audio_dir):
+    rid, t1, t2, _ = setup_record(db_path, audio_dir)
+    run_lookup(client, rid, {t1: LOOKED, t2: LOOKED})
+    detail = client.post(f"/api/records/{rid}/validate", json={"track_ids": [t1]}).json()
+    assert detail["tracks"][0]["bpm"] == 126.0 and detail["tracks"][0]["proposal"] is None
+    assert detail["tracks"][1]["bpm"] is None and detail["tracks"][1]["proposal"]["bpm"] == 126.0
+    detail = client.post(f"/api/records/{rid}/discard").json()
+    assert detail["tracks"][1]["bpm"] is None and detail["tracks"][1]["proposal"] is None
+
+
+def test_wishlist_records_can_be_analysed_but_not_validated(client, db_path, audio_dir):
+    rid, t1, _, _ = setup_record(db_path, audio_dir)
+    client.patch(f"/api/records/{rid}", json={"status": "wantlist"})
+    run_lookup(client, rid, {t1: LOOKED})
+    assert client.get(f"/api/records/{rid}").json()["tracks"][0]["proposal"]["bpm"] == 126.0
+    resp = client.post(f"/api/records/{rid}/validate", json={"track_ids": [t1]})
+    assert resp.status_code == 409
+    client.patch(f"/api/records/{rid}", json={"status": "owned"})  # into the library: now it can
+    assert client.post(f"/api/records/{rid}/validate", json={"track_ids": [t1]}).status_code == 200
+
+
+def test_validate_rejects_tracks_without_a_proposal(client, db_path, audio_dir):
+    rid, t1, t2, _ = setup_record(db_path, audio_dir)
+    run_lookup(client, rid, {t1: LOOKED})
+    assert client.post(f"/api/records/{rid}/validate", json={"track_ids": [t2]}).status_code == 400
+    assert client.post(f"/api/records/{rid}/validate", json={"track_ids": []}).status_code == 422
+    assert client.post(f"/api/records/{rid}/discard", json={"track_ids": [t2]}).status_code == 400
+    assert client.post("/api/records/999/validate", json={"track_ids": [t1]}).status_code == 404
 
 
 def test_restart_recovery(db_path):

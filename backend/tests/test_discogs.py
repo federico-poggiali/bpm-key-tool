@@ -72,3 +72,26 @@ def test_tracks_side_positions_and_headings():
     # heading rows are skipped; only the two real tracks remain
     tracks = release_to_tracks(load_fixture("release_heading.json"))
     assert [(t["position"], t["duration_sec"]) for t in tracks] == [("A", 420), ("B", 333)]
+
+
+def test_styles_are_imported_and_genres_are_not():
+    record = release_to_record(load_fixture("release_simple.json"))
+    assert record["styles"] == ["Acid", "Techno"]  # the release's genre ('Electronic') is not stored
+    assert record["catno"] == "TRUNCATE14"
+    assert release_to_record(load_fixture("release_heading.json"))["styles"] == ["UK Garage", "Techno"]
+
+
+def test_genre_stands_in_only_when_a_release_has_no_styles():
+    base = {k: v for k, v in load_fixture("release_simple.json").items() if k != "styles"}
+    assert release_to_record({**base, "genres": ["Electronic"]})["styles"] == ["Electronic"]
+    assert release_to_record({**base, "genres": []})["styles"] == []
+    assert release_to_record({**base, "styles": [], "genres": ["Jazz"]})["styles"] == ["Jazz"]
+
+
+def test_year_falls_back_to_the_released_date():
+    base = {k: v for k, v in load_fixture("release_simple.json").items() if k not in ("year", "released")}
+    assert release_to_record({**base, "year": 2018})["year"] == 2018
+    assert release_to_record({**base, "year": 0, "released": "2011-05-01"})["year"] == 2011
+    assert release_to_record({**base, "released": "1999"})["year"] == 1999
+    assert release_to_record({**base, "released": "0000-00-00"})["year"] is None
+    assert release_to_record(base)["year"] is None

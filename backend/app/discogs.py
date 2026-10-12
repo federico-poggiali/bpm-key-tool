@@ -98,6 +98,14 @@ def _format_text(formats: list[dict]) -> str | None:
     return ", ".join(p for p in parts if p) or None
 
 
+def _year(data: dict) -> int | None:
+    """Discogs' year, else the year of its 'released' date ('2018-05-01', '2018-05', '2018')."""
+    if data.get("year"):
+        return data["year"]
+    released = str(data.get("released") or "")[:4]
+    return int(released) if released.isdigit() and int(released) > 0 else None
+
+
 def release_to_record(data: dict) -> dict:
     images = data.get("images") or []
     labels = data.get("labels") or []
@@ -106,8 +114,11 @@ def release_to_record(data: dict) -> dict:
         "artist": _join_artists(data.get("artists", [])) or "Unknown artist",
         "title": data["title"],
         "label": labels[0]["name"] if labels else None,
-        "year": data.get("year") or None,
+        "catno": (labels[0].get("catno") or None) if labels else None,
+        "year": _year(data),
         "format": _format_text(data.get("formats", [])),
+        # Styles only. Broad genres are not imported, except as a stand-in when a release has no style.
+        "styles": data.get("styles") or data.get("genres") or [],
         "cover_url": (images[0].get("uri") or images[0].get("uri150")) if images else None,
     }
 

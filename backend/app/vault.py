@@ -51,6 +51,15 @@ WHERE contains(camelot_keys, "8A")
 SORT artist ASC
 ```
 
+## Records by style
+
+```dataview
+TABLE artist, title, label, styles
+FROM "Records"
+WHERE contains(styles, "Dub Techno")
+SORT year DESC
+```
+
 ## Records by tag
 
 ```dataview
@@ -109,8 +118,10 @@ def render_record(record: dict) -> str:
                      key=lambda c: (int(c[:-1]), c[-1]))
     front = [
         ("discogs_id", record["discogs_release_id"]), ("artist", record["artist"]),
-        ("title", record["title"]), ("label", record["label"]), ("year", record["year"]),
-        ("format", record["format"]), ("status", record["status"]), ("tags", record["tags"]),
+        ("title", record["title"]), ("label", record["label"]), ("catno", record["catno"]),
+        ("year", record["year"]),
+        ("format", record["format"]), ("status", record["status"]), ("styles", record["styles"]),
+        ("tags", record["tags"]),
         ("bpm_min", min(bpms) if bpms else None), ("bpm_max", max(bpms) if bpms else None),
         ("keys", keys), ("camelot_keys", camelot),
     ]

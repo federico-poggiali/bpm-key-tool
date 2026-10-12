@@ -15,27 +15,24 @@ def job_of(client, job_id):
     return client.get(f"/api/jobs/{job_id}").json()
 
 
-def test_intake_enqueues_both_jobs_for_owned(client):
+def test_intake_starts_no_jobs_so_the_user_chooses(client):
     body = client.post("/api/records/intake", json=INTAKE).json()
-    assert set(body["jobs"]) == {"analysis", "discogs_sync"}
-    assert job_of(client, body["jobs"]["analysis"])["type"] == "analysis"
-    assert job_of(client, body["jobs"]["discogs_sync"])["type"] == "discogs_sync"
-
-
-def test_wantlist_is_not_synced_and_duplicates_enqueue_nothing(client):
-    body = client.post("/api/records/intake", json={**INTAKE, "status": "wantlist"}).json()
-    assert body["jobs"]["discogs_sync"] is None and body["jobs"]["analysis"]
-    again = client.post("/api/records/intake", json={**INTAKE, "status": "wantlist"}).json()
+    assert body["jobs"] is None
+    again = client.post("/api/records/intake", json=INTAKE).json()
     assert again["jobs"] is None
-    assert client.post(f"/api/records/{body['id']}/sync-discogs").status_code == 400
+
+
+def test_wantlist_is_not_synced(client):
+    rid = client.post("/api/records/intake", json={**INTAKE, "status": "wantlist"}).json()["id"]
+    assert client.post(f"/api/records/{rid}/sync-discogs").status_code == 400
 
 
 def test_sync_adds_once_and_marks_record(client, collection, db_path):
-    body = client.post("/api/records/intake", json=INTAKE).json()
-    rid = body["id"]
+    rid = client.post("/api/records/intake", json=INTAKE).json()["id"]
     client.app.state.runner = runner = runner_with(collection)
-    runner.run_pending()  # the sync job intake queued (its analysis job has no handler here)
-    job = job_of(client, body["jobs"]["discogs_sync"])
+    first = client.post(f"/api/records/{rid}/sync-discogs").json()["job_id"]
+    runner.run_pending()
+    job = job_of(client, first)
     assert job["status"] == "done" and job["result"]["added"] is True
     assert len(collection[9261843]) == 1
     conn = connect(db_path)
@@ -59,11 +56,11 @@ def test_release_already_in_collection_is_not_added_again(client, db_path):
 
 
 def test_sync_failure_is_stored_and_retryable(client, collection, db_path):
-    body = client.post("/api/records/intake", json=INTAKE).json()
-    rid = body["id"]
+    rid = client.post("/api/records/intake", json=INTAKE).json()["id"]
     client.app.state.runner = failing = runner_with(collection, fail=True)
+    first = client.post(f"/api/records/{rid}/sync-discogs").json()["job_id"]
     failing.run_pending()
-    job = job_of(client, body["jobs"]["discogs_sync"])
+    job = job_of(client, first)
     assert job["status"] == "failed" and "500" in job["error"]
     conn = connect(db_path)
     assert records.get(conn, rid)["discogs_collection_synced"] == 0
@@ -76,11 +73,27 @@ def test_sync_failure_is_stored_and_retryable(client, collection, db_path):
 
 
 def test_sync_failure_does_not_touch_analysis_job(client, collection, db_path):
-    body = client.post("/api/records/intake", json=INTAKE).json()
+    rid = client.post("/api/records/intake", json=INTAKE).json()["id"]
     client.app.state.runner = runner = JobRunner({
         sync.JOB_TYPE: sync.make_handler(lambda: make_discogs(fail_collection=True)),
         "analysis": lambda conn, job: {"ok": True},
     })
+    sync_job = client.post(f"/api/records/{rid}/sync-discogs").json()["job_id"]
+    analysis_job = client.post(f"/api/records/{rid}/analyze").json()["job_id"]
     runner.run_pending()
-    assert job_of(client, body["jobs"]["discogs_sync"])["status"] == "failed"
-    assert job_of(client, body["jobs"]["analysis"])["status"] == "done"
+    assert job_of(client, sync_job)["status"] == "failed"
+    assert job_of(client, analysis_job)["status"] == "done"
+
+
+def test_analyze_can_be_limited_to_chosen_tracks(client):
+    rec = client.post("/api/records/intake", json=INTAKE).json()
+    ids = [t["id"] for t in rec["tracks"]]
+    seen = []
+    client.app.state.runner = runner = JobRunner({"analysis": lambda conn, job: seen.append(job["params"]) or {}})
+    job = client.post(f"/api/records/{rec['id']}/analyze", json={"track_ids": ids[:1]}).json()["job_id"]
+    whole = client.post(f"/api/records/{rec['id']}/analyze").json()["job_id"]
+    runner.run_pending()
+    assert seen == [{"track_ids": ids[:1]}, None]
+    assert job_of(client, job)["status"] == job_of(client, whole)["status"] == "done"
+    assert client.post(f"/api/records/{rec['id']}/analyze", json={"track_ids": [999999]}).status_code == 400
+    assert client.post(f"/api/records/{rec['id']}/analyze", json={"track_ids": []}).status_code == 400

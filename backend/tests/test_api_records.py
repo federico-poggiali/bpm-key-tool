@@ -19,6 +19,8 @@ def library(db_path):
     want = records.create(conn, artist="Model 500", title="Be Brave", status="wantlist",
                           discogs_release_id=3)
     w1 = tracks.create(conn, want, position="A", title="Be Brave", bpm=128.0, camelot_key="9B")
+    for name in ("french", "peak"):
+        tags.create_tag(conn, 2, name)
     tags.add(conn, "record", house, "French")
     tags.add(conn, "track", h1, "peak")
     tags.add(conn, "record", techno, "peak")

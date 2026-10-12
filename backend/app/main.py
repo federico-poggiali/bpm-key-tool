@@ -8,13 +8,13 @@ from fastapi.responses import FileResponse
 from fastapi.routing import APIRoute
 from fastapi.staticfiles import StaticFiles
 
-from app import config, errors, sync
+from app import backfill, config, errors, sync
 from app.analysis import job as analysis_job
 from app.db import connect, migrate
 from app.discogs import DiscogsClient
 from app.jobs.runner import JobRunner
 from app.logging_config import configure as configure_logging
-from app.routes import admin, jobs, notes, records, search, tags, tracks
+from app.routes import admin, crate, jobs, label_maker, labels, notes, records, search, styles, tags, tracks
 from app.vault import VaultSyncer
 
 log = logging.getLogger("app.request")
@@ -34,6 +34,7 @@ async def lifespan(app: FastAPI):
     app.state.runner = JobRunner({
         analysis_job.JOB_TYPE: analysis_job.make_handler(_discogs),
         sync.JOB_TYPE: sync.make_handler(_discogs),
+        backfill.JOB_TYPE: backfill.make_handler(_discogs),
     }, on_done=syncer.request)
     app.state.runner.start()
     syncer.request()  # bring the vault up to date at startup
@@ -50,7 +51,7 @@ app = FastAPI(title="Vinyl Second-Brain", lifespan=lifespan, generate_unique_id_
 app.add_middleware(CORSMiddleware, allow_origins=config.CORS_ORIGINS, allow_methods=["*"],
                    allow_headers=["*"])
 errors.install(app)
-for module in (records, tracks, notes, tags, search, jobs, admin):
+for module in (records, tracks, notes, tags, styles, labels, label_maker, search, crate, jobs, admin):
     app.include_router(module.router)
 
 
@@ -69,7 +70,8 @@ async def refresh_vault_after_writes(request: Request, call_next):
     response = await call_next(request)
     syncer = getattr(request.app.state, "vault_syncer", None)
     if (syncer and request.method in ("POST", "PATCH", "PUT", "DELETE")
-            and response.status_code < 400 and not request.url.path.endswith("/sync-vault")):
+            and response.status_code < 400
+            and not request.url.path.endswith(("/sync-vault", "/label/render"))):  # these write nothing
         syncer.request()
     return response
 

@@ -32,6 +32,7 @@ pandas==3.0.6
 platformdirs==4.12.4
 pluggy==1.6.0
 pooch==1.9.0
+pillow==12.3.0
 pycparser==3.1
 pydantic==2.14.0
 pydantic_core==2.50.0
@@ -41,6 +42,7 @@ pytest-cov==7.1.0
 python-dateutil==2.9.0.post0
 python-dotenv==1.2.4
 PyYAML==6.0.3
+qrcode==8.2
 requests==2.34.2
 ruff==0.17.0
 scikit-learn==1.9.1

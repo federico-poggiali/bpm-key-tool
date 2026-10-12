@@ -10,11 +10,15 @@ def _out(row: sqlite3.Row | None) -> dict | None:
     job = dict(row)
     if job["result"] is not None:
         job["result"] = json.loads(job["result"])
+    job["params"] = json.loads(job["params"]) if job.get("params") else None
     return job
 
 
-def create(conn: sqlite3.Connection, type: str, record_id: int | None = None) -> int:
-    return _util.insert(conn, "jobs", {"type": type, "record_id": record_id})
+def create(conn: sqlite3.Connection, type: str, record_id: int | None = None, params: dict | None = None) -> int:
+    values = {"type": type, "record_id": record_id}
+    if params is not None:
+        values["params"] = json.dumps(params)
+    return _util.insert(conn, "jobs", values)
 
 
 def get(conn: sqlite3.Connection, job_id: int) -> dict | None:

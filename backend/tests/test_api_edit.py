@@ -16,7 +16,7 @@ def rec(db_path):
     return rid, t1, t2
 
 
-def test_manual_override_locks_against_reanalysis(client, rec, db_path):
+def test_manual_override_survives_validation_unless_overwritten(client, rec, db_path):
     rid, t1, _ = rec
     resp = client.patch(f"/api/tracks/{t1}", json={"bpm": 126.5, "key": "F# minor"})
     body = resp.json()
@@ -26,18 +26,25 @@ def test_manual_override_locks_against_reanalysis(client, rec, db_path):
     lookup = {"bpm": 100.0, "key": "C major", "camelot_key": "8B", "confidence": 0.9, "raw": {"x": 1}}
     runner = JobRunner({"analysis": make_handler(make_discogs, lookup_fn=lambda *a: {t1: lookup})})
     client.app.state.runner = runner
-    client.post(f"/api/records/{rid}/analyze")
-    runner.run_pending()
-    after = client.get(f"/api/tracks/{t1}").json()
+
+    def analyse_and_validate(**extra):
+        client.post(f"/api/records/{rid}/analyze")
+        runner.run_pending()
+        assert client.post(f"/api/records/{rid}/validate", json={"track_ids": [t1], **extra}).status_code == 200
+        return client.get(f"/api/tracks/{t1}").json()
+
+    after = analyse_and_validate()
     assert (after["bpm"], after["camelot_key"]) == (126.5, "11A")  # untouched
     assert after["analysis_raw"] == {"x": 1}  # the analysis itself is still recorded
 
-    # Unlock BPM only: the next analysis may overwrite BPM but not the key.
+    # Unlock BPM only: validation may overwrite BPM but not the key.
     assert not client.patch(f"/api/tracks/{t1}", json={"unlock": ["bpm"]}).json()["bpm_manual"]
-    client.post(f"/api/records/{rid}/analyze")
-    runner.run_pending()
-    after = client.get(f"/api/tracks/{t1}").json()
+    after = analyse_and_validate()
     assert (after["bpm"], after["camelot_key"], after["key_manual"]) == (100.0, "11A", True)
+
+    # Told to overwrite: the hand-entered key is replaced and its lock released.
+    after = analyse_and_validate(overwrite_manual=True)
+    assert (after["camelot_key"], after["confidence"], after["key_manual"]) == ("8B", 0.9, False)
 
 
 def test_manual_key_accepts_camelot_and_rejects_nonsense(client, rec):
@@ -78,6 +85,10 @@ def test_note_needs_exactly_one_existing_parent(client, rec):
 
 def test_tags_endpoints(client, rec):
     rid, t1, _ = rec
+    assert client.post(f"/api/records/{rid}/tags", json={"name": "house"}).status_code == 404  # not designed yet
+    gid = {g["name"]: g["id"] for g in client.get("/api/tag-groups").json()["items"]}
+    for name, group in (("house", "Atmosphere"), ("peak", "Set role")):
+        assert client.post(f"/api/tag-groups/{gid[group]}/tags", json={"name": name}).status_code == 201
     assert client.post(f"/api/records/{rid}/tags", json={"name": " House "}).json() == ["house"]
     assert client.post(f"/api/records/{rid}/tags", json={"name": "house"}).json() == ["house"]
     assert client.post(f"/api/tracks/{t1}/tags", json={"name": "House"}).json() == ["house"]
@@ -89,3 +100,29 @@ def test_tags_endpoints(client, rec):
     assert client.delete(f"/api/records/{rid}/tags/HOUSE").json() == []
     assert client.post("/api/records/999/tags", json={"name": "x"}).status_code == 404
     assert client.post(f"/api/records/{rid}/tags", json={"name": ""}).status_code == 422
+
+
+def test_tag_manager(client):
+    groups = client.get("/api/tag-groups").json()["items"]
+    assert [(g["name"], g["fixed"]) for g in groups] == [("Energy", True), ("Atmosphere", True), ("Set role", True)]
+    energy = groups[0]["id"]
+    assert client.patch(f"/api/tag-groups/{energy}", json={"name": "Vibe"}).status_code == 403
+    assert client.delete(f"/api/tag-groups/{energy}").status_code == 403
+
+    made = client.post("/api/tag-groups", json={"name": "Occasion"}).json()["items"]
+    occasion = made[-1]["id"]
+    assert client.post("/api/tag-groups", json={"name": "occasion"}).status_code == 422
+    assert client.patch(f"/api/tag-groups/{occasion}", json={"name": "Venue"}).status_code == 200
+
+    out = client.post(f"/api/tag-groups/{occasion}/tags", json={"name": " Warehouse "}).json()["items"]
+    tag = out[-1]["tags"][0]
+    assert tag["name"] == "warehouse"
+    assert client.post(f"/api/tag-groups/{energy}/tags", json={"name": "warehouse"}).status_code == 422
+    out = client.patch(f"/api/tag-defs/{tag['id']}", json={"group_id": energy, "name": "Peak"}).json()["items"]
+    assert [t["name"] for t in out[0]["tags"]] == ["peak"] and out[-1]["tags"] == []
+    assert client.patch("/api/tag-defs/999", json={"name": "x"}).status_code == 404
+
+    assert client.delete(f"/api/tag-defs/{tag['id']}").status_code == 200
+    assert client.delete(f"/api/tag-defs/{tag['id']}").status_code == 404
+    assert client.delete(f"/api/tag-groups/{occasion}").status_code == 200
+    assert client.delete(f"/api/tag-groups/{occasion}").status_code == 404

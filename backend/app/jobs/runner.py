@@ -27,10 +27,10 @@ class JobRunner:
         self._queue: queue.Queue[int | None] = queue.Queue()
         self._thread: threading.Thread | None = None
 
-    def enqueue(self, type: str, record_id: int | None = None) -> int:
+    def enqueue(self, type: str, record_id: int | None = None, params: dict | None = None) -> int:
         conn = self._connect()
         try:
-            job_id = jobs.create(conn, type, record_id)
+            job_id = jobs.create(conn, type, record_id, params)
         finally:
             conn.close()
         if self._thread:

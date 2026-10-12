@@ -43,8 +43,8 @@ def test_requests_are_logged_as_structured_json(client, caplog):
 def test_openapi_lists_every_endpoint_with_a_schema():
     schema = app.openapi()
     documented = {(path, method) for path, ops in schema["paths"].items() for method in ops}
-    from app.routes import admin, jobs, notes, records, search, tags, tracks
-    all_routes = [r for m in (records, tracks, notes, tags, search, jobs, admin) for r in m.router.routes]
+    from app.routes import admin, crate, jobs, label_maker, labels, notes, records, search, styles, tags, tracks
+    all_routes = [r for m in (records, tracks, notes, tags, styles, labels, label_maker, search, crate, jobs, admin) for r in m.router.routes]
     all_routes.append(next(r for r in app.routes if getattr(r, "path", "") == "/health"))
     routes = {(r.path, m.lower()) for r in all_routes for m in r.methods if m not in ("HEAD", "OPTIONS")}
     assert routes == documented

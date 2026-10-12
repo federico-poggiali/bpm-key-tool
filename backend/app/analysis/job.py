@@ -1,4 +1,6 @@
-"""The 'analysis' job: look BPM/key up from the Discogs link; local audio files override."""
+"""The 'analysis' job: look BPM/key up from the Discogs link; local audio files override.
+
+Results are stored as proposals; the owner validates them onto the tracks (see validate)."""
 import sqlite3
 from collections.abc import Callable
 from datetime import UTC, datetime
@@ -7,7 +9,7 @@ from pathlib import Path
 from app import config
 from app.analysis import engine, lookup
 from app.analysis.matching import find_audio_files, match_files
-from app.db import records, tracks
+from app.db import proposals, records, tracks
 from app.discogs import DiscogsClient
 
 JOB_TYPE = "analysis"
@@ -28,19 +30,29 @@ def match_report(conn: sqlite3.Connection, record_id: int, audio_dir: Path | Non
 
 
 def _store(conn: sqlite3.Connection, track_id: int, result: dict, audio_path: Path | None) -> None:
-    """Save an analysis result, leaving any field the user entered by hand untouched."""
-    current = tracks.get(conn, track_id)
-    values = {"confidence": result["confidence"], "analysis_raw": result["raw"],
-              "analyzed_at": datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ")}
-    if not current["bpm_manual"]:
-        values["bpm"] = result["bpm"]
-    if not current["key_manual"]:
-        values.update(key=result["key"], camelot_key=result["camelot_key"])
-    else:
-        del values["confidence"]  # it describes the analysed key, which is not the one in use
-    if audio_path:
-        values["audio_path"] = str(audio_path)
-    tracks.update(conn, track_id, **values)
+    """Keep an analysis result as a proposal; nothing reaches the track until it is validated."""
+    proposals.put(conn, track_id, bpm=result["bpm"], key=result["key"], camelot_key=result["camelot_key"],
+                  confidence=result["confidence"], analysis_raw=result["raw"],
+                  audio_path=str(audio_path) if audio_path else None,
+                  proposed_at=datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ"))
+
+
+def validate(conn: sqlite3.Connection, track_ids: list[int], overwrite_manual: bool = False) -> None:
+    """Copy these tracks' proposals onto them. A hand-entered value is kept unless overwrite_manual."""
+    for track_id in track_ids:
+        p = proposals.get(conn, track_id)
+        current = tracks.get(conn, track_id)
+        values = {"analysis_raw": p["analysis_raw"], "analyzed_at": p["proposed_at"]}
+        if p["bpm"] is not None and (overwrite_manual or not current["bpm_manual"]):
+            values.update(bpm=p["bpm"], bpm_manual=0)
+        if p["camelot_key"] is not None and (overwrite_manual or not current["key_manual"]):
+            # confidence describes the analysed key, so it only travels with it
+            values.update(key=p["key"], camelot_key=p["camelot_key"], confidence=p["confidence"],
+                          key_manual=0)
+        if p["audio_path"]:
+            values["audio_path"] = p["audio_path"]
+        tracks.update(conn, track_id, **values)
+    proposals.delete(conn, track_ids)
 
 
 def make_handler(
@@ -56,6 +68,9 @@ def make_handler(
         if record["discogs_release_id"] is None:
             raise ValueError("record has no Discogs release id")
         track_rows = tracks.list_for_record(conn, record["id"])
+        selected = (job.get("params") or {}).get("track_ids")
+        if selected is not None:
+            track_rows = [t for t in track_rows if t["id"] in set(selected)]
         errors: list[dict] = []
 
         # 1. From the Discogs link: online databases, then audio bpmkey finds itself.
@@ -69,6 +84,8 @@ def make_handler(
         from_files: list[int] = []
         folder = audio_folder(record, audio_dir)
         for m in report["matched"]:
+            if selected is not None and m["track_id"] not in selected:
+                continue
             path = folder / m["file"]
             try:
                 result = analyze(path)

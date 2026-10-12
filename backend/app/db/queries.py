@@ -5,6 +5,7 @@ import sqlite3
 from dataclasses import dataclass, field
 
 from app.db import notes as notes_dal
+from app.db import proposals as proposals_dal
 from app.db import records as records_dal
 from app.db import tracks as tracks_dal
 
@@ -15,6 +16,7 @@ class Filters:
     bpm_max: float | None = None
     camelot: str | None = None
     tags: list[str] = field(default_factory=list)
+    styles: list[str] = field(default_factory=list)
     status: str | None = None
     q: str | None = None
     limit: int = 50
@@ -43,6 +45,13 @@ def _track_conditions(f: Filters, alias: str) -> tuple[list[str], list]:
         where.append(f"{alias}.camelot_key = ?")
         params.append(f.camelot)
     return where, params
+
+
+def _style_conditions(f: Filters) -> tuple[list[str], list]:
+    """Styles live on the record, so tracks match through their record. Every style must match."""
+    where = ["EXISTS (SELECT 1 FROM json_each(r.styles) j WHERE lower(j.value) = lower(?))"
+             for _ in f.styles]
+    return where, list(f.styles)
 
 
 def _tag_exists(tag: str, record_expr: str, track_expr: str | None) -> tuple[str, list]:
@@ -92,6 +101,9 @@ def list_records(conn: sqlite3.Connection, f: Filters) -> tuple[list[dict], int]
                  "JOIN tracks t ON t.id = tt.track_id WHERE t.record_id = r.id AND g.name = ?)")
         where.append(f"({sql} OR {sql_t})")
         params += p + [tag]
+    conds, p = _style_conditions(f)
+    where += conds
+    params += p
     if (match := fts_query(f.q)):
         where.append(
             "(r.id IN (SELECT rowid FROM records_fts WHERE records_fts MATCH ?) "
@@ -102,7 +114,7 @@ def list_records(conn: sqlite3.Connection, f: Filters) -> tuple[list[dict], int]
         params += [match] * 3
     clause = ("WHERE " + " AND ".join(where)) if where else ""
     total = conn.execute(f"SELECT count(*) FROM records r {clause}", params).fetchone()[0]
-    rows = [dict(r) for r in conn.execute(
+    rows = [records_dal.decode(dict(r)) for r in conn.execute(
         f"SELECT r.* FROM records r {clause} ORDER BY r.added_at DESC, r.id DESC LIMIT ? OFFSET ?",
         [*params, f.limit, f.offset])]
 
@@ -115,8 +127,14 @@ def list_records(conn: sqlite3.Connection, f: Filters) -> tuple[list[dict], int]
             "SELECT record_id, count(*) AS n, min(bpm) AS bpm_min, max(bpm) AS bpm_max, "
             "group_concat(DISTINCT camelot_key) AS keys "
             f"FROM tracks WHERE record_id IN ({marks}) GROUP BY record_id", ids)}
+    noted: set[int] = set()
+    if ids:
+        noted = {r[0] for r in conn.execute(
+            f"SELECT DISTINCT record_id FROM notes WHERE trim(body) != '' AND record_id IN ({marks})", ids)}
     for r in rows:
         r["tags"] = tags.get(r["id"], [])
+        r["styles"] = r["styles"] or []
+        r["has_note"] = r["id"] in noted
         st = stats.get(r["id"], {})
         r["track_count"] = st.get("n", 0)
         r["bpm_min"], r["bpm_max"] = st.get("bpm_min"), st.get("bpm_max")
@@ -149,6 +167,9 @@ def list_tracks(conn: sqlite3.Connection, f: Filters) -> tuple[list[dict], int]:
         sql, p = _tag_exists(tag, "r.id", "t.id")
         where.append(sql)
         params += p
+    conds, p = _style_conditions(f)
+    where += conds
+    params += p
     if (match := fts_query(f.q)):
         words = re.findall(r"\w+", f.q)
         title_hit = " AND ".join("(t.title LIKE ? ESCAPE '\\' OR coalesce(t.artist, '') LIKE ? ESCAPE '\\')"
@@ -166,7 +187,8 @@ def list_tracks(conn: sqlite3.Connection, f: Filters) -> tuple[list[dict], int]:
     total = conn.execute(f"SELECT count(*) {base}", params).fetchone()[0]
     rows = conn.execute(
         f"SELECT t.*, r.artist AS r_artist, r.title AS r_title, r.status AS r_status, "
-        f"r.cover_url AS r_cover FROM tracks t JOIN records r ON r.id = t.record_id {clause} "
+        "r.cover_url AS r_cover, r.styles AS r_styles, r.year AS r_year "
+        f"FROM tracks t JOIN records r ON r.id = t.record_id {clause} "
         "ORDER BY r.id DESC, t.id LIMIT ? OFFSET ?", [*params, f.limit, f.offset]).fetchall()
     items = []
     for row in rows:
@@ -175,6 +197,8 @@ def list_tracks(conn: sqlite3.Connection, f: Filters) -> tuple[list[dict], int]:
                        "status": d.pop("r_status"), "cover_url": d.pop("r_cover")}
         if d["analysis_raw"] is not None:
             d["analysis_raw"] = json.loads(d["analysis_raw"])
+        d["styles"] = json.loads(d.pop("r_styles") or "[]")  # inherited from the record
+        d["year"] = d.pop("r_year")
         items.append(d)
     ids = [d["id"] for d in items]
     tags = _tags_for(conn, "track_tags", "track_id", ids)
@@ -190,6 +214,9 @@ def track_detail(conn: sqlite3.Connection, track_id: int) -> dict | None:
         return None
     track["tags"] = _tags_for(conn, "track_tags", "track_id", [track_id]).get(track_id, [])
     track["notes"] = notes_dal.list_for_track(conn, track_id)
+    parent = records_dal.get(conn, track["record_id"]) or {}
+    track["styles"] = parent.get("styles") or []
+    track["year"] = parent.get("year")
     return track
 
 
@@ -198,6 +225,7 @@ def record_detail(conn: sqlite3.Connection, record_id: int) -> dict | None:
     if record is None:
         return None
     record["tags"] = _tags_for(conn, "record_tags", "record_id", [record_id]).get(record_id, [])
+    record["styles"] = record["styles"] or []
     record["notes"] = notes_dal.list_for_record(conn, record_id)
     track_rows = tracks_dal.list_for_record(conn, record_id)
     ids = [t["id"] for t in track_rows]
@@ -207,9 +235,13 @@ def record_detail(conn: sqlite3.Connection, record_id: int) -> dict | None:
         marks = ",".join("?" for _ in ids)
         for n in conn.execute(f"SELECT * FROM notes WHERE track_id IN ({marks}) ORDER BY id", ids):
             track_notes.setdefault(n["track_id"], []).append(dict(n))
+    pending = proposals_dal.for_record(conn, record_id)
     for t in track_rows:
         t["tags"] = tags.get(t["id"], [])
         t["notes"] = track_notes.get(t["id"], [])
+        t["proposal"] = pending.get(t["id"])
+        t["styles"] = record["styles"]
+        t["year"] = record["year"]
     record["tracks"] = track_rows
     return record
 
@@ -235,3 +267,12 @@ def exact_search(conn: sqlite3.Connection, q: str, limit: int = 20) -> dict:
         hits.append({"snippet": row["snippet"], **hit})
     recs = [_record_ref(r) for r in records_dal.search(conn, match)[:limit]]
     return {"notes": hits, "records": recs}
+
+
+def style_counts(conn: sqlite3.Connection) -> list[dict]:
+    """Every distinct style (case-insensitive) with the number of records that have it."""
+    rows = conn.execute(
+        "SELECT min(j.value) AS name, count(DISTINCT r.id) AS record_count "
+        "FROM records r, json_each(r.styles) j GROUP BY lower(j.value) "
+        "ORDER BY record_count DESC, lower(j.value)")
+    return [dict(r) for r in rows]

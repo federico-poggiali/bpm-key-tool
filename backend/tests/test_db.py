@@ -86,6 +86,8 @@ def test_embeddings_only_for_prose_and_cleaned_up(conn, record):
 
 def test_tags(conn, record):
     rid, t1, _ = record
+    tags.create_tag(conn, 2, "house")
+    tags.create_tag(conn, 1, "peak")
     tags.add(conn, "record", rid, " House ")
     tags.add(conn, "record", rid, "house")
     tags.add(conn, "track", t1, "House")
@@ -97,6 +99,8 @@ def test_tags(conn, record):
     assert tags.remove(conn, "track", t1, "peak")
     with pytest.raises(sqlite3.IntegrityError):
         conn.execute("INSERT INTO tags(name) VALUES ('UPPER')")
+    with pytest.raises(LookupError):
+        tags.add(conn, "record", rid, "undefined")
 
 
 def test_full_text_search_tracks_changes(conn, record):
@@ -116,9 +120,34 @@ def test_full_text_search_tracks_changes(conn, record):
 def test_cascade_delete(conn, record):
     rid, t1, _ = record
     notes.create(conn, type="prose", body="x", track_id=t1)
+    tags.create_tag(conn, 1, "a")
     tags.add(conn, "track", t1, "a")
     records.delete(conn, rid)
     assert tracks.get(conn, t1) is None
     assert conn.execute("SELECT count(*) FROM notes").fetchone()[0] == 0
     assert conn.execute("SELECT count(*) FROM track_tags").fetchone()[0] == 0
     assert records.search(conn, "daft") == []
+
+
+def test_styles_migration_applies_to_an_existing_database():
+    old = connect(":memory:")
+    old.execute("CREATE TABLE schema_version (version INTEGER NOT NULL)")
+    for path in sorted(MIGRATIONS_DIR.glob("000[1-3]_*.sql")):
+        old.executescript(f"BEGIN;\n{path.read_text()}\nINSERT INTO schema_version VALUES "
+                          f"({int(path.name[:4])});\nCOMMIT;")
+    rid = records.create(old, artist="A", title="B", discogs_release_id=5)
+    assert migrate(old) == len(list(MIGRATIONS_DIR.glob("*.sql")))
+    row = records.get(old, rid)
+    assert (row["styles"], row["styles_manual"], row["catno"]) == (None, 0, None)  # never fetched
+    old.close()
+
+
+def test_styles_round_trip_and_are_cleaned(conn):
+    rid = records.create(conn, artist="A", title="B", styles=["Deep House", " deep  house ", "", "Techno"])
+    assert records.get(conn, rid)["styles"] == ["Deep House", "Techno"]
+    assert records.get_by_discogs_id(conn, 1) is None
+    assert records.list_all(conn)[0]["styles"] == ["Deep House", "Techno"]
+    records.update(conn, rid, styles=[])
+    assert records.get(conn, rid)["styles"] == []  # "Discogs has none" differs from never fetched
+    with pytest.raises(sqlite3.IntegrityError):
+        conn.execute("UPDATE records SET styles = 'not json' WHERE id = ?", (rid,))

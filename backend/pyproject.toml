@@ -8,6 +8,8 @@ dependencies = [
     "uvicorn[standard]",
     "httpx",
     "sqlite-vec",
+    "pillow",
+    "qrcode",
 ]
 
 [project.optional-dependencies]

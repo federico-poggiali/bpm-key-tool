@@ -20,12 +20,15 @@ def conn(db_path):
 def fixture_record(conn):
     rid = records.create(
         conn, artist="Daft Punk", title="Discovery", label="Virgin", year=2001, format="2xVinyl, LP",
-        discogs_release_id=123, cover_url="https://img.example/cover.jpg")
+        discogs_release_id=123, cover_url="https://img.example/cover.jpg",
+        catno="V2850", styles=["French House", "Disco"])
     t1 = tracks.create(conn, rid, position="A1", title="One More Time", bpm=123.0, key="F minor",
                        camelot_key="4A", confidence=0.62, bpm_manual=1)
     tracks.create(conn, rid, position="A2", title="Aero | dynamic", bpm=123.5, key="E minor",
                   camelot_key="9A", confidence=0.4)
     tracks.create(conn, rid, position="B1", title="Digital Love", artist="Guest")
+    tags.create_tag(conn, 2, "french")
+    tags.create_tag(conn, 2, "house")
     tags.add(conn, "record", rid, "french")
     tags.add(conn, "record", rid, "house")
     notes.create(conn, type="location", body="Shelf B, second row", record_id=rid)
