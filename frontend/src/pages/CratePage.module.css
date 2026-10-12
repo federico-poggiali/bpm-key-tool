@@ -1,0 +1,126 @@
+.page { display: grid; gap: 22px; }
+.head { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; flex-wrap: wrap; }
+.head h1 { font: 600 clamp(2rem, 5vw, 3.2rem)/1 var(--sans); letter-spacing: -0.045em; margin-top: 8px; }
+.tools { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.find input { width: 220px; }
+.modes { display: inline-flex; padding: 3px; border: 1px solid var(--line-2); border-radius: var(--r-m); }
+.modes button { height: 32px; padding: 0 14px; border: 0; border-radius: var(--r-s); background: none; color: var(--ink-2); font-weight: 500; font-size: 0.875rem; }
+.modes button:hover { color: var(--ink); }
+.modes button.on { background: var(--raise); color: var(--ink); box-shadow: inset 0 -2px 0 var(--signal); }
+
+/* Wall on the left, panel on the right. */
+.layout { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 20px; align-items: start; }
+.wallWrap { min-width: 0; overflow: auto; padding: 18px 4px 12px; display: grid; gap: 12px; align-content: start; }
+.hint { margin: 0; color: var(--ink-3); font-size: 0.8125rem; }
+.warn { margin: 0; font-size: 0.8125rem; color: var(--signal-ink); }
+.empty { display: grid; gap: 10px; justify-items: start; padding: 48px 4px; color: var(--ink-2); }
+.empty h2 { font: 600 1.5rem var(--sans); letter-spacing: -0.03em; color: var(--ink); }
+.empty p { margin: 0; max-width: 46ch; }
+
+.wall { position: relative; flex: none; }
+.building { background-image: radial-gradient(circle, var(--line-2) 1.2px, transparent 1.4px); background-size: var(--cell) var(--cell); background-position: calc(var(--cell) / -2) calc(var(--cell) / -2); border-radius: var(--r-m); }
+
+/* A unit is the furniture: a thick frame, cubes recessed into it. */
+.unit {
+  position: absolute; display: grid; gap: 5px; padding: 5px; border-radius: var(--r-s);
+  background: var(--raise); box-shadow: inset 0 0 0 1px var(--line-2), var(--lift);
+  transition: left 0.25s var(--ease), top 0.25s var(--ease), box-shadow 0.2s var(--ease);
+}
+.unit.selected { box-shadow: inset 0 0 0 2px var(--signal), var(--lift); }
+.unit.blocked { outline: 2px dashed var(--ink-3); outline-offset: 2px; }
+.tag {
+  position: absolute; top: -11px; left: 10px; z-index: 2; max-width: calc(100% - 20px); padding: 2px 8px;
+  border-radius: var(--r-s); background: var(--bg); border: 1px solid var(--line-2);
+  font: 500 0.6875rem/1.3 var(--mono); letter-spacing: 0.04em; color: var(--ink-2);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.handle { cursor: grab; touch-action: none; color: var(--ink); }
+.handle:active { cursor: grabbing; }
+
+.cube {
+  position: relative; display: grid; grid-template-rows: auto 1fr; min-width: 0; min-height: 0; border-radius: 2px;
+  background: var(--surface); box-shadow: inset 0 6px 10px -6px rgba(0, 0, 0, 0.45), inset 0 0 0 1px var(--line);
+  transition: opacity 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+.cube.selected { box-shadow: inset 0 0 0 2px var(--signal); }
+.cube.hit { box-shadow: inset 0 0 0 2px var(--signal), 0 0 0 4px color-mix(in srgb, var(--signal) 22%, transparent); }
+.cube.dim { opacity: 0.35; }
+.cubeBtn {
+  display: flex; justify-content: space-between; gap: 4px; align-items: baseline; min-width: 0; padding: 5px 6px 2px;
+  border: 0; background: none; text-align: left; border-radius: 2px;
+}
+.cubeBtn::after { content: ""; position: absolute; inset: 0; } /* the whole cube is the click target */
+.cubeName { min-width: 0; font: 600 0.75rem/1.2 var(--sans); letter-spacing: -0.01em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cubeName i { font-weight: 400; color: var(--ink-3); }
+.cubeCount { flex: none; font: 500 0.625rem var(--mono); color: var(--ink-3); }
+
+/* Sections sit above the click layer so records can be dropped on them. */
+.sections { position: relative; z-index: 1; display: flex; min-height: 0; padding: 0 4px 4px; pointer-events: none; }
+.section { position: relative; flex-basis: 0; min-width: 14px; display: grid; grid-template-rows: 1fr auto; pointer-events: auto; border-radius: 2px; transition: background 0.15s var(--ease); }
+.section + .section { border-left: 2px solid var(--line-2); } /* a divider */
+.section.over { background: color-mix(in srgb, var(--signal) 18%, transparent); box-shadow: inset 0 0 0 1px var(--signal); }
+.section.hit { background: color-mix(in srgb, var(--signal) 12%, transparent); }
+.spines { display: flex; align-items: flex-end; gap: 1px; padding: 0 3px; overflow: hidden; }
+.spines i { flex: 0 0 3px; border-radius: 1px 1px 0 0; background: var(--ink-3); }
+.spines i:nth-child(3n) { background: var(--ink-2); }
+.spines i:nth-child(5n+1) { background: color-mix(in srgb, var(--ink-3) 60%, transparent); }
+.sectionName { font: 500 0.5625rem/1.4 var(--mono); color: var(--ink-3); text-align: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 0 2px; }
+
+/* Right panel. */
+.panel { position: sticky; top: 16px; display: grid; gap: 14px; max-height: calc(100vh - 32px); overflow: auto; overscroll-behavior: contain; }
+.card {
+  display: grid; gap: 12px; padding: 16px; border: 1px solid var(--line); border-radius: var(--r-l); background: var(--surface);
+  transition: border-color 0.15s var(--ease);
+}
+.card.over { border-color: var(--signal); }
+.cardHead { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+.cardHead h2 { font: 600 1.125rem/1.2 var(--sans); letter-spacing: -0.02em; margin-top: 2px; overflow-wrap: anywhere; }
+.count { font: 500 0.75rem var(--mono); color: var(--ink-3); }
+.field { display: grid; gap: 6px; }
+.actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.presets { display: flex; gap: 6px; flex-wrap: wrap; }
+.presets .on { border-color: var(--signal); background: var(--raise); }
+.size { display: flex; align-items: flex-end; gap: 8px; }
+.size label { display: grid; gap: 6px; flex: 1; }
+.size input { width: 100%; }
+.size > span { padding-bottom: 10px; color: var(--ink-3); }
+
+.rows { display: grid; gap: 2px; }
+.row { display: grid; grid-template-columns: 10px 40px minmax(0, 1fr); grid-template-areas: "grip cover text" ". . move"; gap: 4px 10px; align-items: center; padding: 8px 6px; border-radius: var(--r-m); cursor: grab; }
+.row:hover { background: var(--raise); }
+.row:active { cursor: grabbing; }
+.row > :nth-child(2) { grid-area: cover; }
+.grip { grid-area: grip; font-size: 0.625rem; letter-spacing: -2px; color: var(--ink-3); }
+.rowText { grid-area: text; display: grid; gap: 2px; min-width: 0; font-size: 0.8125rem; }
+.rowText a { text-decoration: none; }
+.rowText a:hover b { text-decoration: underline; }
+.rowText b, .rowText > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rowText > span { color: var(--ink-2); }
+.move { grid-area: move; height: 30px; padding: 0 8px; border-radius: var(--r-s); border: 1px solid var(--line-2); background: var(--glass); font-size: 0.75rem; min-width: 0; }
+.suggest {
+  justify-self: start; max-width: 100%; margin-top: 4px; padding: 3px 8px; border: 1px solid color-mix(in srgb, var(--signal) 55%, transparent);
+  border-radius: var(--r-s); background: none; color: var(--signal-ink); font: 500 0.75rem/1.35 var(--sans); text-align: left;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.suggest:hover { background: color-mix(in srgb, var(--signal) 12%, transparent); }
+.suggest em { font-style: normal; color: var(--ink-3); margin-left: 4px; }
+
+.sectionCard { display: grid; gap: 6px; padding-top: 10px; border-top: 1px solid var(--line); }
+.sectionHead { display: flex; gap: 8px; align-items: center; }
+.sectionHead input { flex: 1; height: 32px; }
+
+.found { display: grid; gap: 2px; }
+.found button, .foundOff { display: grid; gap: 2px; width: 100%; padding: 8px; border: 0; border-radius: var(--r-m); background: none; text-align: left; font-size: 0.8125rem; }
+.found button:hover { background: var(--raise); }
+.found button span { color: var(--signal-ink); font-family: var(--mono); font-size: 0.75rem; }
+.foundOff span { color: var(--ink-3); font-size: 0.75rem; }
+
+@media (max-width: 1080px) {
+  .layout { grid-template-columns: minmax(0, 1fr); }
+  .panel { position: static; max-height: none; }
+}
+@media (max-width: 760px) {
+  .find input { width: 100%; }
+  .tools { width: 100%; }
+  .find { flex: 1; }
+}

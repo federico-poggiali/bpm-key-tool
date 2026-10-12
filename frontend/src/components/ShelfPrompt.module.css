@@ -1,0 +1,15 @@
+.card {
+  display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 14px 24px; padding: 18px 20px;
+  border: 1px solid var(--signal); border-radius: var(--r-l); background: var(--surface); animation: rise 0.4s var(--ease) both;
+}
+.text { display: grid; gap: 4px; min-width: 0; }
+.text h2 { font: 600 1.25rem/1.2 var(--sans); letter-spacing: -0.02em; }
+.text p { margin: 0; color: var(--ink-2); font-size: 0.875rem; }
+.text b { color: var(--ink); }
+.why { color: var(--ink-3); }
+.actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.select { min-width: 220px; max-width: 100%; }
+.done { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 0; padding: 12px 16px; border: 1px solid var(--line-2); border-radius: var(--r-m); font-size: 0.875rem; color: var(--ink-2); }
+.done b { color: var(--ink); }
+.done a { color: var(--signal-ink); }
+.done button { margin-left: auto; }
