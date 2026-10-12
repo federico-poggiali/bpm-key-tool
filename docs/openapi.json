@@ -1,6 +1,26 @@
 {
   "components": {
     "schemas": {
+      "AnalyzeRequest": {
+        "properties": {
+          "track_ids": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "integer"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Track Ids"
+          }
+        },
+        "title": "AnalyzeRequest",
+        "type": "object"
+      },
       "AssignAudio": {
         "properties": {
           "file": {
@@ -97,6 +117,210 @@
         "title": "AudioMatchedFile",
         "type": "object"
       },
+      "CrateOut": {
+        "properties": {
+          "units": {
+            "items": {
+              "$ref": "#/components/schemas/UnitOut"
+            },
+            "title": "Units",
+            "type": "array"
+          },
+          "unsorted": {
+            "items": {
+              "$ref": "#/components/schemas/UnsortedRecord"
+            },
+            "title": "Unsorted",
+            "type": "array"
+          }
+        },
+        "required": [
+          "units",
+          "unsorted"
+        ],
+        "title": "CrateOut",
+        "type": "object"
+      },
+      "CrateRecord": {
+        "properties": {
+          "artist": {
+            "title": "Artist",
+            "type": "string"
+          },
+          "cover_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cover Url"
+          },
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "styles": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "title": "Styles",
+            "type": "array"
+          },
+          "tags": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "title": "Tags",
+            "type": "array"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "year": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Year"
+          }
+        },
+        "required": [
+          "id",
+          "artist",
+          "title",
+          "year",
+          "cover_url"
+        ],
+        "title": "CrateRecord",
+        "type": "object"
+      },
+      "CrateSuggestion": {
+        "properties": {
+          "reasons": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Reasons",
+            "type": "array"
+          },
+          "score": {
+            "title": "Score",
+            "type": "integer"
+          },
+          "section_id": {
+            "title": "Section Id",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "section_id",
+          "score",
+          "reasons"
+        ],
+        "title": "CrateSuggestion",
+        "type": "object"
+      },
+      "CubeOut": {
+        "properties": {
+          "col": {
+            "title": "Col",
+            "type": "integer"
+          },
+          "description": {
+            "title": "Description",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "row": {
+            "title": "Row",
+            "type": "integer"
+          },
+          "sections": {
+            "items": {
+              "$ref": "#/components/schemas/SectionOut"
+            },
+            "title": "Sections",
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "row",
+          "col",
+          "name",
+          "description",
+          "sections"
+        ],
+        "title": "CubeOut",
+        "type": "object"
+      },
+      "CubePatch": {
+        "properties": {
+          "description": {
+            "anyOf": [
+              {
+                "maxLength": 300,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "name": {
+            "anyOf": [
+              {
+                "maxLength": 60,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          }
+        },
+        "title": "CubePatch",
+        "type": "object"
+      },
+      "DiscardRequest": {
+        "properties": {
+          "track_ids": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "integer"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Track Ids"
+          }
+        },
+        "title": "DiscardRequest",
+        "type": "object"
+      },
       "ExactNoteHit": {
         "properties": {
           "note": {
@@ -152,6 +376,65 @@
         "title": "ExactResults",
         "type": "object"
       },
+      "FromDiscogs": {
+        "properties": {
+          "discogs_url": {
+            "title": "Discogs Url",
+            "type": "string"
+          }
+        },
+        "required": [
+          "discogs_url"
+        ],
+        "title": "FromDiscogs",
+        "type": "object"
+      },
+      "GroupIn": {
+        "properties": {
+          "name": {
+            "maxLength": 40,
+            "minLength": 1,
+            "title": "Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "title": "GroupIn",
+        "type": "object"
+      },
+      "GroupList": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/TagGroup"
+            },
+            "title": "Items",
+            "type": "array"
+          }
+        },
+        "required": [
+          "items"
+        ],
+        "title": "GroupList",
+        "type": "object"
+      },
+      "GroupRename": {
+        "properties": {
+          "name": {
+            "maxLength": 40,
+            "minLength": 1,
+            "title": "Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "title": "GroupRename",
+        "type": "object"
+      },
       "HTTPValidationError": {
         "properties": {
           "detail": {
@@ -197,6 +480,17 @@
           "artist": {
             "title": "Artist",
             "type": "string"
+          },
+          "catno": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Catno"
           },
           "cover_url": {
             "anyOf": [
@@ -298,6 +592,18 @@
             "title": "Status",
             "type": "string"
           },
+          "styles": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "title": "Styles",
+            "type": "array"
+          },
+          "styles_manual": {
+            "title": "Styles Manual",
+            "type": "boolean"
+          },
           "tags": {
             "default": [],
             "items": {
@@ -335,12 +641,14 @@
           "artist",
           "title",
           "label",
+          "catno",
           "year",
           "format",
           "cover_url",
           "status",
           "added_at",
           "discogs_collection_synced",
+          "styles_manual",
           "tracks",
           "notes",
           "resolved_from_master",
@@ -443,6 +751,260 @@
         "title": "JobStarted",
         "type": "object"
       },
+      "LabelData": {
+        "properties": {
+          "artist": {
+            "title": "Artist",
+            "type": "string"
+          },
+          "catno": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Catno"
+          },
+          "country": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Not stored: type it in if you want it printed",
+            "title": "Country"
+          },
+          "hidden": {
+            "default": [],
+            "items": {
+              "enum": [
+                "label",
+                "catno",
+                "year",
+                "country",
+                "styles",
+                "note",
+                "qr"
+              ],
+              "type": "string"
+            },
+            "title": "Hidden",
+            "type": "array"
+          },
+          "label": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Label"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          },
+          "qr_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The Discogs page the QR code opens",
+            "title": "Qr Url"
+          },
+          "styles": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "title": "Styles",
+            "type": "array"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "tracks": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/LabelTrack"
+            },
+            "title": "Tracks",
+            "type": "array"
+          },
+          "year": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Year"
+          }
+        },
+        "required": [
+          "artist",
+          "title"
+        ],
+        "title": "LabelData",
+        "type": "object"
+      },
+      "LabelImage": {
+        "properties": {
+          "height": {
+            "title": "Height",
+            "type": "integer"
+          },
+          "kind": {
+            "enum": [
+              "main",
+              "tracks"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "png_base64": {
+            "title": "Png Base64",
+            "type": "string"
+          },
+          "width": {
+            "title": "Width",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "kind",
+          "name",
+          "png_base64",
+          "width",
+          "height"
+        ],
+        "title": "LabelImage",
+        "type": "object"
+      },
+      "LabelRender": {
+        "properties": {
+          "images": {
+            "items": {
+              "$ref": "#/components/schemas/LabelImage"
+            },
+            "title": "Images",
+            "type": "array"
+          },
+          "warnings": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Warnings",
+            "type": "array"
+          }
+        },
+        "required": [
+          "images",
+          "warnings"
+        ],
+        "title": "LabelRender",
+        "type": "object"
+      },
+      "LabelTrack": {
+        "properties": {
+          "bpm": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bpm"
+          },
+          "hidden": {
+            "default": [],
+            "items": {
+              "enum": [
+                "bpm",
+                "key",
+                "tags",
+                "note"
+              ],
+              "type": "string"
+            },
+            "title": "Hidden",
+            "type": "array"
+          },
+          "key": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Key"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          },
+          "position": {
+            "title": "Position",
+            "type": "string"
+          },
+          "skip": {
+            "default": false,
+            "description": "Leave this track off the tracks label",
+            "title": "Skip",
+            "type": "boolean"
+          },
+          "tags": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "title": "Tags",
+            "type": "array"
+          }
+        },
+        "required": [
+          "position"
+        ],
+        "title": "LabelTrack",
+        "type": "object"
+      },
       "NoteCreate": {
         "properties": {
           "body": {
@@ -472,6 +1034,7 @@
             "title": "Track Id"
           },
           "type": {
+            "default": "prose",
             "maxLength": 50,
             "minLength": 1,
             "title": "Type",
@@ -479,7 +1042,6 @@
           }
         },
         "required": [
-          "type",
           "body"
         ],
         "title": "NoteCreate",
@@ -652,6 +1214,123 @@
         "title": "Page[TrackHit]",
         "type": "object"
       },
+      "PlaceIn": {
+        "properties": {
+          "record_ids": {
+            "items": {
+              "type": "integer"
+            },
+            "maxItems": 500,
+            "minItems": 1,
+            "title": "Record Ids",
+            "type": "array"
+          },
+          "section_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Section Id"
+          }
+        },
+        "required": [
+          "record_ids",
+          "section_id"
+        ],
+        "title": "PlaceIn",
+        "type": "object"
+      },
+      "ProposalOut": {
+        "description": "An analysis result waiting to be validated onto its track.",
+        "properties": {
+          "analysis_raw": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Analysis Raw"
+          },
+          "audio_path": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Audio Path"
+          },
+          "bpm": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Bpm"
+          },
+          "camelot_key": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Camelot Key"
+          },
+          "confidence": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Confidence"
+          },
+          "key": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Key"
+          },
+          "proposed_at": {
+            "title": "Proposed At",
+            "type": "string"
+          }
+        },
+        "required": [
+          "bpm",
+          "key",
+          "camelot_key",
+          "confidence",
+          "analysis_raw",
+          "audio_path",
+          "proposed_at"
+        ],
+        "title": "ProposalOut",
+        "type": "object"
+      },
       "RecordDetail": {
         "properties": {
           "added_at": {
@@ -661,6 +1340,17 @@
           "artist": {
             "title": "Artist",
             "type": "string"
+          },
+          "catno": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Catno"
           },
           "cover_url": {
             "anyOf": [
@@ -730,6 +1420,18 @@
             "title": "Status",
             "type": "string"
           },
+          "styles": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "title": "Styles",
+            "type": "array"
+          },
+          "styles_manual": {
+            "title": "Styles Manual",
+            "type": "boolean"
+          },
           "tags": {
             "default": [],
             "items": {
@@ -767,12 +1469,14 @@
           "artist",
           "title",
           "label",
+          "catno",
           "year",
           "format",
           "cover_url",
           "status",
           "added_at",
           "discogs_collection_synced",
+          "styles_manual",
           "tracks",
           "notes"
         ],
@@ -792,6 +1496,17 @@
               }
             ],
             "title": "Artist"
+          },
+          "catno": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Catno"
           },
           "cover_url": {
             "anyOf": [
@@ -826,6 +1541,12 @@
             ],
             "title": "Label"
           },
+          "reset_styles": {
+            "default": false,
+            "description": "Release the lock and re-fetch the styles from Discogs",
+            "title": "Reset Styles",
+            "type": "boolean"
+          },
           "status": {
             "anyOf": [
               {
@@ -841,6 +1562,21 @@
               }
             ],
             "title": "Status"
+          },
+          "styles": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Replaces the whole list and locks it against Discogs re-fetches",
+            "title": "Styles"
           },
           "title": {
             "anyOf": [
@@ -956,6 +1692,17 @@
             "title": "Camelot Keys",
             "type": "array"
           },
+          "catno": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Catno"
+          },
           "cover_url": {
             "anyOf": [
               {
@@ -992,6 +1739,11 @@
               }
             ],
             "title": "Format"
+          },
+          "has_note": {
+            "default": false,
+            "title": "Has Note",
+            "type": "boolean"
           },
           "id": {
             "title": "Id",
@@ -1031,6 +1783,18 @@
             "title": "Status",
             "type": "string"
           },
+          "styles": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "title": "Styles",
+            "type": "array"
+          },
+          "styles_manual": {
+            "title": "Styles Manual",
+            "type": "boolean"
+          },
           "tags": {
             "default": [],
             "items": {
@@ -1065,12 +1829,14 @@
           "artist",
           "title",
           "label",
+          "catno",
           "year",
           "format",
           "cover_url",
           "status",
           "added_at",
           "discogs_collection_synced",
+          "styles_manual",
           "track_count"
         ],
         "title": "RecordSummary",
@@ -1087,6 +1853,49 @@
           "embedded"
         ],
         "title": "ReembedOut",
+        "type": "object"
+      },
+      "SectionIn": {
+        "properties": {
+          "name": {
+            "default": "",
+            "maxLength": 60,
+            "title": "Name",
+            "type": "string"
+          }
+        },
+        "title": "SectionIn",
+        "type": "object"
+      },
+      "SectionOut": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "position": {
+            "title": "Position",
+            "type": "integer"
+          },
+          "records": {
+            "items": {
+              "$ref": "#/components/schemas/CrateRecord"
+            },
+            "title": "Records",
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "position",
+          "name",
+          "records"
+        ],
+        "title": "SectionOut",
         "type": "object"
       },
       "SemanticHit": {
@@ -1120,8 +1929,46 @@
         "title": "SemanticHit",
         "type": "object"
       },
+      "StyleCount": {
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "record_count": {
+            "title": "Record Count",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "name",
+          "record_count"
+        ],
+        "title": "StyleCount",
+        "type": "object"
+      },
+      "StyleList": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/StyleCount"
+            },
+            "title": "Items",
+            "type": "array"
+          }
+        },
+        "required": [
+          "items"
+        ],
+        "title": "StyleList",
+        "type": "object"
+      },
       "TagCount": {
         "properties": {
+          "group": {
+            "title": "Group",
+            "type": "string"
+          },
           "name": {
             "title": "Name",
             "type": "string"
@@ -1137,10 +1984,115 @@
         },
         "required": [
           "name",
+          "group",
           "record_count",
           "track_count"
         ],
         "title": "TagCount",
+        "type": "object"
+      },
+      "TagDef": {
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "record_count": {
+            "title": "Record Count",
+            "type": "integer"
+          },
+          "track_count": {
+            "title": "Track Count",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "record_count",
+          "track_count"
+        ],
+        "title": "TagDef",
+        "type": "object"
+      },
+      "TagDefIn": {
+        "properties": {
+          "name": {
+            "maxLength": 50,
+            "minLength": 1,
+            "title": "Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "title": "TagDefIn",
+        "type": "object"
+      },
+      "TagDefUpdate": {
+        "properties": {
+          "group_id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Group Id"
+          },
+          "name": {
+            "anyOf": [
+              {
+                "maxLength": 50,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          }
+        },
+        "title": "TagDefUpdate",
+        "type": "object"
+      },
+      "TagGroup": {
+        "properties": {
+          "fixed": {
+            "title": "Fixed",
+            "type": "boolean"
+          },
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "tags": {
+            "items": {
+              "$ref": "#/components/schemas/TagDef"
+            },
+            "title": "Tags",
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "fixed",
+          "tags"
+        ],
+        "title": "TagGroup",
         "type": "object"
       },
       "TagIn": {
@@ -1300,12 +2252,30 @@
             "title": "Position",
             "type": "string"
           },
+          "proposal": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ProposalOut"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "record": {
             "$ref": "#/components/schemas/RecordRef"
           },
           "record_id": {
             "title": "Record Id",
             "type": "integer"
+          },
+          "styles": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "title": "Styles",
+            "type": "array"
           },
           "tags": {
             "default": [],
@@ -1318,6 +2288,17 @@
           "title": {
             "title": "Title",
             "type": "string"
+          },
+          "year": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Year"
           }
         },
         "required": [
@@ -1467,9 +2448,27 @@
             "title": "Position",
             "type": "string"
           },
+          "proposal": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ProposalOut"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "record_id": {
             "title": "Record Id",
             "type": "integer"
+          },
+          "styles": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "title": "Styles",
+            "type": "array"
           },
           "tags": {
             "default": [],
@@ -1482,6 +2481,17 @@
           "title": {
             "title": "Title",
             "type": "string"
+          },
+          "year": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Year"
           }
         },
         "required": [
@@ -1548,6 +2558,167 @@
         "title": "TrackPatch",
         "type": "object"
       },
+      "UnitCreate": {
+        "properties": {
+          "cols": {
+            "maximum": 8.0,
+            "minimum": 1.0,
+            "title": "Cols",
+            "type": "integer"
+          },
+          "name": {
+            "maxLength": 60,
+            "minLength": 1,
+            "title": "Name",
+            "type": "string"
+          },
+          "rows": {
+            "maximum": 8.0,
+            "minimum": 1.0,
+            "title": "Rows",
+            "type": "integer"
+          },
+          "x": {
+            "default": 0,
+            "maximum": 60.0,
+            "minimum": 0.0,
+            "title": "X",
+            "type": "integer"
+          },
+          "y": {
+            "default": 0,
+            "maximum": 30.0,
+            "minimum": 0.0,
+            "title": "Y",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "name",
+          "rows",
+          "cols"
+        ],
+        "title": "UnitCreate",
+        "type": "object"
+      },
+      "UnitOut": {
+        "properties": {
+          "cols": {
+            "title": "Cols",
+            "type": "integer"
+          },
+          "cubes": {
+            "items": {
+              "$ref": "#/components/schemas/CubeOut"
+            },
+            "title": "Cubes",
+            "type": "array"
+          },
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "rows": {
+            "title": "Rows",
+            "type": "integer"
+          },
+          "x": {
+            "title": "X",
+            "type": "integer"
+          },
+          "y": {
+            "title": "Y",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "rows",
+          "cols",
+          "x",
+          "y",
+          "cubes"
+        ],
+        "title": "UnitOut",
+        "type": "object"
+      },
+      "UnitPatch": {
+        "description": "Shrinking a unit drops the cubes outside it; their records go back to unsorted.",
+        "properties": {
+          "cols": {
+            "anyOf": [
+              {
+                "maximum": 8.0,
+                "minimum": 1.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cols"
+          },
+          "name": {
+            "anyOf": [
+              {
+                "maxLength": 60,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          },
+          "rows": {
+            "anyOf": [
+              {
+                "maximum": 8.0,
+                "minimum": 1.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rows"
+          },
+          "x": {
+            "anyOf": [
+              {
+                "maximum": 60.0,
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "X"
+          },
+          "y": {
+            "anyOf": [
+              {
+                "maximum": 30.0,
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Y"
+          }
+        },
+        "title": "UnitPatch",
+        "type": "object"
+      },
       "UnmatchedFile": {
         "properties": {
           "file": {
@@ -1587,6 +2758,103 @@
           "title"
         ],
         "title": "UnmatchedTrack",
+        "type": "object"
+      },
+      "UnsortedRecord": {
+        "properties": {
+          "artist": {
+            "title": "Artist",
+            "type": "string"
+          },
+          "cover_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cover Url"
+          },
+          "id": {
+            "title": "Id",
+            "type": "integer"
+          },
+          "styles": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "title": "Styles",
+            "type": "array"
+          },
+          "suggestion": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/CrateSuggestion"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "tags": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "title": "Tags",
+            "type": "array"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "year": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Year"
+          }
+        },
+        "required": [
+          "id",
+          "artist",
+          "title",
+          "year",
+          "cover_url",
+          "suggestion"
+        ],
+        "title": "UnsortedRecord",
+        "type": "object"
+      },
+      "ValidateRequest": {
+        "properties": {
+          "overwrite_manual": {
+            "default": false,
+            "description": "Replace hand-entered BPM/key too (and release their lock)",
+            "title": "Overwrite Manual",
+            "type": "boolean"
+          },
+          "track_ids": {
+            "items": {
+              "type": "integer"
+            },
+            "minItems": 1,
+            "title": "Track Ids",
+            "type": "array"
+          }
+        },
+        "required": [
+          "track_ids"
+        ],
+        "title": "ValidateRequest",
         "type": "object"
       },
       "ValidationError": {
@@ -1701,6 +2969,28 @@
   },
   "openapi": "3.1.0",
   "paths": {
+    "/api/admin/backfill-styles": {
+      "post": {
+        "description": "Fetch styles for records that have none yet. Runs as a job (Discogs allows 60 calls a minute).",
+        "operationId": "backfill_styles",
+        "responses": {
+          "202": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobStarted"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Backfill Styles",
+        "tags": [
+          "admin"
+        ]
+      }
+    },
     "/api/admin/open-vault": {
       "post": {
         "description": "Reveal the Dataview examples file in Finder (macOS only; elsewhere just report the path).",
@@ -1786,6 +3076,395 @@
         ]
       }
     },
+    "/api/crate": {
+      "get": {
+        "description": "The shelf: units, their cubes and sections with the records in each, and the unsorted\nrecords with a suggested section.",
+        "operationId": "get_crate",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CrateOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Get Crate",
+        "tags": [
+          "crate"
+        ]
+      }
+    },
+    "/api/crate/cubes/{cube_id}": {
+      "patch": {
+        "operationId": "update_cube",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "cube_id",
+            "required": true,
+            "schema": {
+              "title": "Cube Id",
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CubePatch"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CrateOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Update Cube",
+        "tags": [
+          "crate"
+        ]
+      }
+    },
+    "/api/crate/cubes/{cube_id}/sections": {
+      "post": {
+        "description": "Add a divider: a new section at the right end of the cube.",
+        "operationId": "add_section",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "cube_id",
+            "required": true,
+            "schema": {
+              "title": "Cube Id",
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SectionIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CrateOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Add Section",
+        "tags": [
+          "crate"
+        ]
+      }
+    },
+    "/api/crate/place": {
+      "put": {
+        "description": "Put records in a section, or back in unsorted with section_id null.",
+        "operationId": "place",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlaceIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CrateOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Place",
+        "tags": [
+          "crate"
+        ]
+      }
+    },
+    "/api/crate/sections/{section_id}": {
+      "delete": {
+        "description": "Remove a divider; its records merge into the neighbouring section.",
+        "operationId": "delete_section",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "section_id",
+            "required": true,
+            "schema": {
+              "title": "Section Id",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CrateOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Delete Section",
+        "tags": [
+          "crate"
+        ]
+      },
+      "patch": {
+        "operationId": "update_section",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "section_id",
+            "required": true,
+            "schema": {
+              "title": "Section Id",
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SectionIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CrateOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Update Section",
+        "tags": [
+          "crate"
+        ]
+      }
+    },
+    "/api/crate/units": {
+      "post": {
+        "operationId": "create_unit",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnitCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CrateOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Create Unit",
+        "tags": [
+          "crate"
+        ]
+      }
+    },
+    "/api/crate/units/{unit_id}": {
+      "delete": {
+        "description": "Its records go back to unsorted.",
+        "operationId": "delete_unit",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "unit_id",
+            "required": true,
+            "schema": {
+              "title": "Unit Id",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Delete Unit",
+        "tags": [
+          "crate"
+        ]
+      },
+      "patch": {
+        "operationId": "update_unit",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "unit_id",
+            "required": true,
+            "schema": {
+              "title": "Unit Id",
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnitPatch"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CrateOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Update Unit",
+        "tags": [
+          "crate"
+        ]
+      }
+    },
     "/api/jobs/{job_id}": {
       "get": {
         "operationId": "get_job",
@@ -1825,6 +3504,90 @@
         "summary": "Get Job",
         "tags": [
           "jobs"
+        ]
+      }
+    },
+    "/api/labels/from-discogs": {
+      "post": {
+        "description": "Look a release up and describe it as a label. Nothing is stored; a record already in the\nlibrary brings its BPM, key, tags and notes along.",
+        "operationId": "label_from_discogs",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FromDiscogs"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LabelData"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Label From Discogs",
+        "tags": [
+          "labels"
+        ]
+      }
+    },
+    "/api/labels/render": {
+      "post": {
+        "description": "Draw a label that belongs to no record. Nothing is stored.",
+        "operationId": "render_loose_label",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LabelData"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LabelRender"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Render Loose Label",
+        "tags": [
+          "labels"
         ]
       }
     },
@@ -2018,6 +3781,19 @@
                 "type": "string"
               },
               "title": "Tag",
+              "type": "array"
+            }
+          },
+          {
+            "in": "query",
+            "name": "style",
+            "required": false,
+            "schema": {
+              "default": [],
+              "items": {
+                "type": "string"
+              },
+              "title": "Style",
               "type": "array"
             }
           },
@@ -2389,6 +4165,7 @@
     },
     "/api/records/{record_id}/analyze": {
       "post": {
+        "description": "Analyse the whole record, or only `track_ids` when given.",
         "operationId": "analyze",
         "parameters": [
           {
@@ -2401,6 +4178,23 @@
             }
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "anyOf": [
+                  {
+                    "$ref": "#/components/schemas/AnalyzeRequest"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Body"
+              }
+            }
+          }
+        },
         "responses": {
           "202": {
             "content": {
@@ -2471,6 +4265,162 @@
         ]
       }
     },
+    "/api/records/{record_id}/discard": {
+      "post": {
+        "description": "Drop analysis proposals (all of them, or only `track_ids`) without touching the tracks.",
+        "operationId": "discard",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "record_id",
+            "required": true,
+            "schema": {
+              "title": "Record Id",
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "anyOf": [
+                  {
+                    "$ref": "#/components/schemas/DiscardRequest"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ],
+                "title": "Body"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecordDetail"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Discard",
+        "tags": [
+          "records"
+        ]
+      }
+    },
+    "/api/records/{record_id}/label": {
+      "get": {
+        "description": "The label as the database describes it: the starting point for the editor.",
+        "operationId": "get_label",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "record_id",
+            "required": true,
+            "schema": {
+              "title": "Record Id",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LabelData"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get Label",
+        "tags": [
+          "labels"
+        ]
+      }
+    },
+    "/api/records/{record_id}/label/render": {
+      "post": {
+        "description": "Draw the (possibly edited) label. Nothing is stored: edits apply to this print only.",
+        "operationId": "render_label",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "record_id",
+            "required": true,
+            "schema": {
+              "title": "Record Id",
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LabelData"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LabelRender"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Render Label",
+        "tags": [
+          "labels"
+        ]
+      }
+    },
     "/api/records/{record_id}/sync-discogs": {
       "post": {
         "operationId": "sync_discogs",
@@ -2508,6 +4458,59 @@
           }
         },
         "summary": "Sync Discogs",
+        "tags": [
+          "records"
+        ]
+      }
+    },
+    "/api/records/{record_id}/validate": {
+      "post": {
+        "description": "Save the chosen tracks' analysis proposals onto them. Only records you own can be validated.",
+        "operationId": "validate",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "record_id",
+            "required": true,
+            "schema": {
+              "title": "Record Id",
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ValidateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecordDetail"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Validate",
         "tags": [
           "records"
         ]
@@ -2627,6 +4630,324 @@
         ]
       }
     },
+    "/api/styles": {
+      "get": {
+        "description": "Every style in the library with its record count, for filter and editor pickers.",
+        "operationId": "list_styles",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StyleList"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "List Styles",
+        "tags": [
+          "styles"
+        ]
+      }
+    },
+    "/api/tag-defs/{tag_id}": {
+      "delete": {
+        "operationId": "delete_tag",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "tag_id",
+            "required": true,
+            "schema": {
+              "title": "Tag Id",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GroupList"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Delete Tag",
+        "tags": [
+          "tags"
+        ]
+      },
+      "patch": {
+        "operationId": "update_tag",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "tag_id",
+            "required": true,
+            "schema": {
+              "title": "Tag Id",
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TagDefUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GroupList"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Update Tag",
+        "tags": [
+          "tags"
+        ]
+      }
+    },
+    "/api/tag-groups": {
+      "get": {
+        "operationId": "list_groups",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GroupList"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "List Groups",
+        "tags": [
+          "tags"
+        ]
+      },
+      "post": {
+        "operationId": "create_group",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GroupIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GroupList"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Create Group",
+        "tags": [
+          "tags"
+        ]
+      }
+    },
+    "/api/tag-groups/{group_id}": {
+      "delete": {
+        "operationId": "delete_group",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "group_id",
+            "required": true,
+            "schema": {
+              "title": "Group Id",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GroupList"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Delete Group",
+        "tags": [
+          "tags"
+        ]
+      },
+      "patch": {
+        "operationId": "rename_group",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "group_id",
+            "required": true,
+            "schema": {
+              "title": "Group Id",
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GroupRename"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GroupList"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Rename Group",
+        "tags": [
+          "tags"
+        ]
+      }
+    },
+    "/api/tag-groups/{group_id}/tags": {
+      "post": {
+        "operationId": "create_tag",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "group_id",
+            "required": true,
+            "schema": {
+              "title": "Group Id",
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TagDefIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GroupList"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Create Tag",
+        "tags": [
+          "tags"
+        ]
+      }
+    },
     "/api/tags": {
       "get": {
         "operationId": "list_tags",
@@ -2712,6 +5033,19 @@
                 "type": "string"
               },
               "title": "Tag",
+              "type": "array"
+            }
+          },
+          {
+            "in": "query",
+            "name": "style",
+            "required": false,
+            "schema": {
+              "default": [],
+              "items": {
+                "type": "string"
+              },
+              "title": "Style",
               "type": "array"
             }
           },

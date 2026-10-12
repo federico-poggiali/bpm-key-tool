@@ -33,6 +33,7 @@ has no login, so do not expose the port.
 | `make lint`, `make coverage` | ruff, and a coverage report |
 | `make backup` | copy the database to `backend/backups/` now |
 | `make sync-vault` | rebuild the Obsidian files now (the app also does this a couple of seconds after any change) |
+| `make backfill-styles` | fetch Discogs styles (and catalogue number, year if missing) for records added before styles existed; calls Discogs once per record |
 | `make openapi`, `make types` | re-export `docs/openapi.json`, and regenerate the frontend's API types from it |
 
 Data lives in `backend/data/vinyl.db`, your audio in `audio/`, the Obsidian files in `vault/`. Paths and other settings
@@ -47,6 +48,16 @@ Open the `vault/` folder as a vault (Obsidian: *Open folder as vault*) and enabl
 The vault is **generated output**. Edits made in Obsidian are overwritten on the next sync, because the database is the
 only place anything is written. Your own notes in `Records/` are never deleted (only files the app generated are).
 To keep your own Obsidian notes, put them outside `Records/`, or point `VAULT_DIR` at a folder inside a bigger vault.
+
+## Labels
+
+On a record page, **Make label** opens a preview and editor for two 62 × 40 mm labels (696 × 472 px, 1-bit PNG, ready
+for a Brother QL with 62 mm tape): the **main label** (artist, label and cat#, title, a QR code to the Discogs page, year,
+country, styles and a one-sentence note) and the **tracks label** (per side a black block, then position, BPM, Camelot
+key, tags and the track note; a long tracklist continues on a second label). Every field can be edited or hidden with
+its tick, tracks can be skipped, and the preview warns when text had to be cut. Edits are for that print only: the
+record is not changed. Country is not stored anywhere, so type it in if you want it. **Download** saves the PNGs;
+printing straight to the Brother (`brother_ql`) is not wired in yet.
 
 ## Audio files (optional)
 
@@ -75,6 +86,7 @@ Docker was not available where this was developed. `make run` is the supported w
 
 - Search **by meaning** (finding "banging track" from "huge energy"): the plumbing is in place, but no embedding model
   is configured, so the Search page offers exact word search until one is plugged in (`backend/app/deps.py`).
+- Printing labels straight to the Brother QL (labels can be downloaded as PNG today).
 - Two-way Obsidian sync, playlist and set building by Camelot compatibility.
 
 ## Layout

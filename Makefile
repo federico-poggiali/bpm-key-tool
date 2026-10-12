@@ -4,7 +4,7 @@ export PATH := $(CURDIR)/.nodeenv/bin:$(PATH)
 PORT ?= 8000
 
 .PHONY: help setup run dev frontend-dev build test test-frontend e2e test-all lint coverage \
-        sync-vault openapi types backup
+        sync-vault backfill-styles openapi types backup
 
 help:
 	@echo "make run        build the app and serve it on http://127.0.0.1:$(PORT)  (sets everything up first)"
@@ -63,6 +63,9 @@ coverage: $(PY)
 # ---- tools ----
 sync-vault: $(PY)
 	cd backend && PYTHONPATH=..:. ../$(PY) -m app.vault
+
+backfill-styles: $(PY)
+	cd backend && PYTHONPATH=..:. ../$(PY) -m app.backfill
 
 openapi: $(PY)
 	cd backend && PYTHONPATH=..:. ../$(PY) -m app.export_openapi
