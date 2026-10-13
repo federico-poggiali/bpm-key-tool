@@ -1,35 +1,63 @@
-/* Floating rail: sticks beside the results; menu rows open their picker in a flyout to the right. */
-.bar { position: sticky; top: 16px; display: grid; gap: 14px; padding: 14px; border: 1px solid var(--line); border-radius: var(--r-l); background: var(--surface); box-shadow: 0 12px 32px -18px rgba(0, 0, 0, 0.45); align-content: start; z-index: 5; }
-.bar > button { justify-self: start; }
+/* Attio view chrome: underline tabs for what is listed, then one toolbar row of quiet filter buttons. */
+.bar { display: grid; gap: 12px; }
 
-.modes, .views { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--line-2); border-radius: var(--r-m); overflow: hidden; }
-.modes button, .views button { height: 36px; border: 0; background: none; font-weight: 600; color: var(--ink-2); }
-.views button { height: 32px; font-weight: 500; }
-.modes button[aria-pressed="true"], .views button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+.tabs { display: flex; gap: 20px; border-bottom: 1px solid var(--line); }
+.tabs button {
+  position: relative; height: 36px; padding: 0; border: 0; background: none; font-weight: 500; font-size: 0.875rem; color: var(--ink-3);
+  transition: color 0.15s var(--ease);
+}
+.tabs button:hover { color: var(--ink-2); }
+.tabs button[aria-pressed="true"] { color: var(--ink); }
+.tabs button[aria-pressed="true"]::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; border-radius: 2px; background: var(--ink); }
 
-.search { display: flex; align-items: center; height: 40px; padding: 0 12px; background: var(--glass); border: 1px solid var(--line-2); border-radius: var(--r-m); transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease); }
-.search:focus-within { border-color: var(--signal); box-shadow: 0 0 0 3px color-mix(in srgb, var(--signal) 28%, transparent); }
-.search input { flex: 1; min-width: 0; border: 0; background: transparent; outline: none; font: 400 0.875rem var(--mono); }
+.toolbar { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
 
-.menu { display: grid; gap: 2px; border-top: 1px solid var(--line); padding-top: 10px; }
+.search {
+  display: flex; align-items: center; gap: 7px; height: 30px; width: 200px; padding: 0 9px; color: var(--ink-3);
+  background: var(--surface); border: 1px solid var(--line-2); border-radius: var(--r-m);
+  transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+.search:focus-within { border-color: var(--signal); box-shadow: 0 0 0 3px color-mix(in srgb, var(--signal) 24%, transparent); }
+.search input { flex: 1; min-width: 0; border: 0; background: transparent; outline: none; font-size: 0.8125rem; font-weight: 500; color: var(--ink); }
+.search input::placeholder { color: var(--ink-3); }
+
+.menu { display: flex; gap: 6px; }
 .item { position: relative; }
-.trigger { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 10px; height: 38px; padding: 0 10px; border: 0; border-radius: var(--r-s); background: none; font-weight: 500; color: var(--ink); text-align: left; }
-.trigger::after { content: "›"; color: var(--ink-3); }
-.active { margin-left: auto; color: var(--ink-3); font: 500 0.6875rem var(--mono); max-width: 110px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.item:hover .trigger, .item:focus-within .trigger, .pinned .trigger { background: var(--glass); }
+.trigger {
+  display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 9px; border: 1px dashed var(--line-2); border-radius: var(--r-m);
+  background: none; font-weight: 500; font-size: 0.8125rem; color: var(--ink-2); white-space: nowrap;
+  transition: background 0.15s var(--ease), color 0.15s var(--ease), border-color 0.15s var(--ease);
+}
+.trigger svg { color: var(--ink-3); }
+.item:hover .trigger, .item:focus-within .trigger, .pinned .trigger { background: var(--surface); color: var(--ink); }
+/* a filter that is on: solid border, its value in red */
+.trigger:has(.active) { border-style: solid; color: var(--ink); background: var(--surface); }
+.active { color: var(--signal-ink); max-width: 120px; overflow: hidden; text-overflow: ellipsis; }
 
-.flyout { position: absolute; left: calc(100% + 14px); top: -8px; width: min(420px, 60vw); max-height: 70vh; overflow: auto; padding: 14px; border: 1px solid var(--line-2); border-radius: var(--r-l); background: var(--surface); box-shadow: 0 18px 40px -16px rgba(0, 0, 0, 0.5); opacity: 0; visibility: hidden; transform: translateX(-6px); transition: opacity 0.15s var(--ease), transform 0.15s var(--ease), visibility 0s 0.15s; }
-/* invisible bridge so the pointer can cross the gap without the flyout closing */
-.flyout::before { content: ""; position: absolute; left: -16px; top: 0; bottom: 0; width: 16px; }
+.flyout {
+  position: absolute; left: 0; top: calc(100% + 6px); z-index: 20; width: min(420px, 80vw); max-height: 60vh; overflow: auto; padding: 12px;
+  border: 1px solid var(--line-2); border-radius: var(--r-l); background: var(--raise); box-shadow: var(--lift);
+  opacity: 0; visibility: hidden; transform: translateY(-4px);
+  transition: opacity 0.15s var(--ease), transform 0.15s var(--ease), visibility 0s 0.15s;
+}
+/* invisible bridge so the pointer can cross the gap without the dropdown closing */
+.flyout::before { content: ""; position: absolute; left: 0; right: 0; top: -8px; height: 8px; }
 .item:hover .flyout, .item:focus-within .flyout, .pinned .flyout { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
 .flyout :global(ul) { max-height: none; }
+
+.clear { height: 30px; padding: 0 8px; border: 0; background: none; font-size: 0.8125rem; font-weight: 500; color: var(--ink-3); }
+.clear:hover { color: var(--ink); }
+
+.views { margin-left: auto; display: flex; padding: 2px; gap: 2px; border: 1px solid var(--line-2); border-radius: var(--r-m); background: var(--surface); }
+.views button { display: grid; place-items: center; width: 28px; height: 24px; border: 0; border-radius: 7px; background: none; color: var(--ink-3); }
+.views button:hover { color: var(--ink); }
+.views button[aria-pressed="true"] { background: var(--raise); color: var(--ink); box-shadow: inset 0 0 0 1px var(--line-2); }
 
 .keys { display: grid; gap: 8px; min-width: 0; }
 .keysHead { display: flex; justify-content: space-between; align-items: center; }
 
 @media (prefers-reduced-motion: reduce) { .flyout { transition: none; } }
-@media (max-width: 900px) {
-  .bar { position: static; box-shadow: none; }
-  .flyout { position: static; width: auto; max-height: none; margin: 4px 0 8px; box-shadow: none; display: none; opacity: 1; visibility: visible; transform: none; }
-  .pinned .flyout { display: block; }
+@media (max-width: 760px) {
+  .search { width: 100%; }
+  .flyout { position: fixed; left: 16px; right: 16px; top: auto; width: auto; }
 }

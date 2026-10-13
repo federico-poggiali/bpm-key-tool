@@ -1,6 +1,6 @@
 .page { display: grid; gap: 28px; }
 .head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
-.head h1 { font: 600 clamp(1.8rem, 4vw, 2.8rem)/1 var(--sans); letter-spacing: -0.045em; overflow-wrap: anywhere; margin-top: 8px; }
+.head h1 { font: 600 clamp(1.8rem, 4vw, 2.8rem)/1 var(--sans); letter-spacing: -0.02em; overflow-wrap: anywhere; margin-top: 8px; }
 .sub { margin: 6px 0 0; color: var(--ink-2); }
 .head a { display: inline-flex; align-items: center; text-decoration: none; }
 .layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 480px); gap: 32px; align-items: start; }
@@ -12,6 +12,6 @@
 .figure figcaption { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
 .hint { margin: 0; color: var(--ink-3); font-size: 0.8125rem; }
 .missing { display: grid; gap: 12px; justify-items: start; padding-top: 10vh; }
-.missing h1 { font: 600 2rem/1.05 var(--sans); letter-spacing: -0.04em; }
+.missing h1 { font: 600 2rem/1.05 var(--sans); letter-spacing: -0.02em; }
 .missing a { text-decoration: none; display: inline-flex; align-items: center; }
 @media (max-width: 960px) { .layout { grid-template-columns: 1fr; } .preview { position: static; order: -1; } }

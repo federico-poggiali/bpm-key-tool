@@ -27,3 +27,15 @@ frontend/test-results/
 frontend/playwright-report/
 frontend/.shots/
 .nodeenv/
+
+# Local tooling / stray files
+.claude/settings.local.json
+backend/*.sqlite
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+backend/data/
+
+# bpmkey research leftovers (scripts stay tracked)
+benchmark/*.npy
+benchmark/*.log

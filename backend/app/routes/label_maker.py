@@ -8,8 +8,8 @@ from app.db import queries, records
 from app.deps import get_db, get_discogs
 from app.discogs import DiscogsClient, DiscogsError, DiscogsNotFound, release_to_record, release_to_tracks
 from app.labels import data as label_data
+from app.labels.api import LabelRender, draw
 from app.labels.data import LabelData
-from app.routes.labels import LabelRender, draw
 
 router = APIRouter(prefix="/api/labels", tags=["labels"])
 

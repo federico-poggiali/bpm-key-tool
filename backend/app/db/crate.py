@@ -110,7 +110,8 @@ def place(conn: sqlite3.Connection, record_ids: list[int], section_id: int | Non
     missing = [i for i in record_ids if i not in found]
     if not missing:
         with conn:
-            conn.execute(f"UPDATE records SET section_id = ? WHERE id IN ({marks})", [section_id, *record_ids])
+            conn.execute(f"UPDATE records SET section_id = ? WHERE id IN ({marks})",
+                         [section_id, *record_ids])
     return missing
 
 
@@ -203,7 +204,8 @@ def layout(conn: sqlite3.Connection) -> dict:
     cube_index = {c["id"]: c for cs in cubes.values() for c in cs}
     for s in conn.execute("SELECT * FROM cube_sections ORDER BY position, id"):
         cube_index[s["cube_id"]]["sections"].append(
-            {"id": s["id"], "position": s["position"], "name": s["name"], "records": by_section.get(s["id"], [])})
+            {"id": s["id"], "position": s["position"], "name": s["name"],
+             "records": by_section.get(s["id"], [])})
 
     places = []
     for unit in units:

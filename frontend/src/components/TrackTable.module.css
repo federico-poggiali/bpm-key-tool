@@ -13,7 +13,7 @@
 .num { text-align: right; white-space: nowrap; }
 .bpmWrap, .keyWrap { display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
 .keyWrap { justify-content: flex-start; }
-.bpm { font: 600 1.25rem/1 var(--sans); letter-spacing: -0.04em; font-variant-numeric: tabular-nums; border: 0; background: none; padding: 4px 6px; border-radius: var(--r-s); min-width: 3rem; text-align: right; }
+.bpm { font: 600 1.25rem/1 var(--sans); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; border: 0; background: none; padding: 4px 6px; border-radius: var(--r-s); min-width: 3rem; text-align: right; }
 button.bpm:hover { background: var(--raise); }
 .bpmInput { width: 92px; height: 34px; text-align: right; font: 600 1rem var(--sans); }
 .dash { color: var(--ink-3); font: 500 0.75rem var(--mono); font-weight: 500; letter-spacing: 0; }
@@ -26,7 +26,7 @@ button.bpm:hover { background: var(--raise); }
 .keySelect { position: absolute; inset: 0; width: 100%; opacity: 0; cursor: pointer; font-size: 16px; }
 .keyPick:hover .key { border-color: var(--ink); }
 .key.empty { border-color: var(--line); color: var(--ink-3); }
-.open .key:not(.empty) { background: var(--signal); border-color: var(--signal); color: var(--on-signal); }
+.open .key:not(.empty) { background: var(--signal-fill); border-color: var(--signal); color: var(--on-signal); }
 .open .key:not(.empty) option { background: var(--surface); color: var(--ink); }
 .manual { display: inline-flex; align-items: center; gap: 2px; font: 500 0.625rem/1 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-2); border: 1px solid var(--line-2); border-radius: var(--r-s); padding: 3px 3px 3px 6px; }
 .manual button { border: 0; background: none; color: var(--ink-3); font-size: 0.9rem; line-height: 1; padding: 0 3px; }

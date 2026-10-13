@@ -176,3 +176,35 @@ export function useKeyFormat(): [KeyFormat, (f: KeyFormat) => void] {
   };
   return [format, set];
 }
+
+const KEYS_STORAGE = "spincount.keys";
+const KEYS_EVENT = "spincount-keys";
+
+/** Whether musical keys are analysed and shown anywhere. Off unless switched on in Settings;
+ *  remembered per browser. BPM is always shown regardless. */
+export function useKeysEnabled(): [boolean, (on: boolean) => void] {
+  const read = () => {
+    try {
+      return localStorage.getItem(KEYS_STORAGE) === "on";
+    } catch {
+      return false;
+    }
+  };
+  const [on, setOn] = useState(read);
+  useEffect(() => {
+    const sync = () => setOn(read());
+    window.addEventListener(KEYS_EVENT, sync);
+    window.addEventListener("storage", sync);
+    return () => { window.removeEventListener(KEYS_EVENT, sync); window.removeEventListener("storage", sync); };
+  }, []);
+  const set = (next: boolean) => {
+    setOn(next);
+    try {
+      localStorage.setItem(KEYS_STORAGE, next ? "on" : "off");
+    } catch {
+      /* private mode: the choice just is not remembered */
+    }
+    window.dispatchEvent(new Event(KEYS_EVENT));
+  };
+  return [on, set];
+}

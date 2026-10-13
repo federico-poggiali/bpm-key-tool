@@ -21,7 +21,7 @@ const num = (v: string | null) => {
   return Number.isFinite(n) ? n : undefined;
 };
 
-/** The URL is the single source of truth for the library view, so it survives refresh and is shareable. */
+/** The URL is the single source of truth (records default to the table view) for the library view, so it survives refresh and is shareable. */
 export function parseFilters(params: URLSearchParams, defaultStatus: Status): Filters {
   const status = params.get("status");
   const view = params.get("view");
@@ -33,7 +33,7 @@ export function parseFilters(params: URLSearchParams, defaultStatus: Status): Fi
     tags: params.getAll("tag"),
     styles: params.getAll("style"),
     status: status === "all" || status === "owned" || status === "wantlist" || status === "considering" ? status : defaultStatus,
-    view: view === "table" || view === "tracks" ? view : "grid",
+    view: view === "grid" || view === "tracks" ? view : "table",
     page: Math.max(1, num(params.get("page")) ?? 1),
   };
 }
@@ -47,7 +47,7 @@ export function serializeFilters(f: Filters, defaultStatus: Status): URLSearchPa
   f.tags.forEach((t) => p.append("tag", t));
   f.styles.forEach((s) => p.append("style", s));
   if (f.status !== defaultStatus) p.set("status", f.status);
-  if (f.view !== "grid") p.set("view", f.view);
+  if (f.view !== "table") p.set("view", f.view);
   if (f.page > 1) p.set("page", String(f.page));
   return p;
 }

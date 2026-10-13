@@ -4,7 +4,7 @@ import { api, type LabelData } from "../api/api";
 import { LabelEditor } from "../components/LabelEditor";
 import { fileStem, LabelPreview } from "../components/LabelPreview";
 import { useDebounced } from "../hooks";
-import addStyles from "./AddRecordPage.module.css";
+import shared from "../styles/intake.module.css";
 import styles from "./LabelPage.module.css";
 
 const BLANK: LabelData = { artist: "", title: "", styles: [], hidden: [], tracks: [] };
@@ -35,19 +35,19 @@ export default function LabelMakerPage() {
 
   return (
     <div className={styles.page}>
-      <header className={addStyles.hero}>
+      <header className={shared.hero}>
         <span className="micro">label maker</span>
         <h1>Make a label. <span>Any record.</span></h1>
-        <form onSubmit={submit} className={addStyles.form}>
-          <label className={addStyles.field}>
+        <form onSubmit={submit} className={shared.form}>
+          <label className={shared.field}>
             <span className="sr">Discogs link</span>
             <input type="url" inputMode="url" required autoComplete="off" placeholder="discogs.com/release/…" value={url} onChange={(e) => setUrl(e.target.value)} />
           </label>
           <button className="primary" type="submit" disabled={fetchLabel.isPending}>{fetchLabel.isPending ? "Fetching…" : "Fetch details"}</button>
           <button className="ghost" type="button" onClick={() => { setStart({ ...BLANK }); setEdited(null); }}>Start blank</button>
         </form>
-        <p className={addStyles.hint}>For records you do not own yet. The record is not added to your library.</p>
-        {fetchLabel.isError && <p className={addStyles.error} role="alert">{fetchLabel.error.message}</p>}
+        <p className={shared.hint}>For records you do not own yet. The record is not added to your library.</p>
+        {fetchLabel.isError && <p className={shared.error} role="alert">{fetchLabel.error.message}</p>}
       </header>
 
       {label && (

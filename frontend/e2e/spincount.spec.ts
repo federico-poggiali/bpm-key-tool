@@ -5,11 +5,17 @@ import path from "node:path";
 const VAULT = path.resolve("e2e/.run/vault/Records");
 const vaultFiles = () => (fs.existsSync(VAULT) ? fs.readdirSync(VAULT).filter((f) => f.endsWith(".md")) : []);
 
+// Keys are off until switched on in Settings; these flows cover them, so switch them on.
+test.beforeEach(async ({ page }, info) => {
+  if (info.title.startsWith("settings: keys")) return;
+  await page.addInitScript(() => localStorage.setItem("spincount.keys", "on"));
+});
+
 test("add a record, take a note, find it by search, and see it in the vault", async ({ page }) => {
   // 1. Add a record (Discogs is mocked server-side with real saved responses).
   await page.goto("/add");
   await page.getByLabel("Discogs link").fill("https://www.discogs.com/release/9261843");
-  await page.getByLabel("owned").check();
+  await page.getByRole("button", { name: "owned", exact: true }).click();
   await page.getByRole("button", { name: "Add record" }).click();
   await expect(page).toHaveURL(/\/records\/\d+/);
   await expect(page.getByRole("heading", { level: 1, name: "7_1 12-inch Mixes" })).toBeVisible();
@@ -23,7 +29,7 @@ test("add a record, take a note, find it by search, and see it in the vault", as
   await expect(page.getByText(/tracks? to validate/)).toHaveCount(0);
   await page.getByRole("button", { name: "Add to Discogs collection" }).click();
   await expect(page.getByTestId("job-discogs-sync").getByRole("status")).toHaveText("done");
-  await expect(page.getByRole("row", { name: /Ambivalent Remix/ })).toContainText("120");
+  await expect(page.getByRole("row", { name: /Ambivalent Remix/ })).toContainText("8A (current)");
 
   // 2. Adding it again opens the existing record and says so, not duplicated.
   await page.goto("/add");
@@ -35,6 +41,7 @@ test("add a record, take a note, find it by search, and see it in the vault", as
   await page.goto("/");
   await page.getByRole("link", { name: /7_1 12-inch Mixes/ }).click();
   await expect(page.getByRole("heading", { level: 1, name: "7_1 12-inch Mixes" })).toBeVisible();
+  await page.getByRole("tab", { name: /Notes/ }).click();
   await page.getByPlaceholder("Huge energy").fill("Huge energy, the floor erupted at midnight.");
   await page.getByRole("button", { name: "Add note" }).click();
   await expect(page.getByText("Huge energy, the floor erupted at midnight.")).toBeVisible();
@@ -77,10 +84,10 @@ test("library filters live in the URL and the back button restores them", async 
   await expect(page).not.toHaveURL(/key=/);
   await page.goBack();
 
-  await page.getByRole("button", { name: "Table" }).click();
-  await expect(page).toHaveURL(/view=table/);
+  await page.getByRole("button", { name: "Grid" }).click();
+  await expect(page).toHaveURL(/view=grid/);
   await page.goBack();
-  await expect(page).not.toHaveURL(/view=table/);
+  await expect(page).not.toHaveURL(/view=grid/);
   await expect(page.getByTestId("count")).toHaveText("2 records");
 
   // Styles come from Discogs: 46673 is UK Garage + Techno, 9261843 is Acid + Techno.
@@ -94,7 +101,17 @@ test("library filters live in the URL and the back button restores them", async 
 
   await page.goto("/?key=9B&view=tracks");
   await expect(page.getByTestId("count")).toHaveText("1 tracks");
+  await page.getByRole("button", { name: "Key", exact: true }).click();
   await expect(page.getByRole("button", { name: "9B, G major" })).toHaveAttribute("aria-pressed", "true");
+});
+
+test("settings: keys are hidden until switched on", async ({ page }) => {
+  await page.goto("/?view=tracks");
+  await expect(page.getByRole("button", { name: "Key", exact: true })).toHaveCount(0);
+  await page.goto("/settings");
+  await page.getByLabel("Analyse and show musical key").check();
+  await page.goto("/?view=tracks");
+  await expect(page.getByRole("button", { name: "Key", exact: true })).toBeVisible();
 });
 
 test("settings: sync the vault and see the result", async ({ page }) => {
@@ -178,8 +195,7 @@ test("crate: draw a shelf, name a cube, file a record by its suggestion, and fin
   await request.post("/api/records/intake", { data: { discogs_url: "https://www.discogs.com/release/9261843", status: "owned" } });
 
   await page.goto("/");
-  await page.getByRole("button", { name: "Library" }).click();
-  await page.getByRole("link", { name: "Crate" }).click();
+  await page.getByRole("navigation", { name: "Library" }).getByRole("link", { name: "Crate" }).click();
   await expect(page).toHaveURL(/\/crate$/);
 
   // Build: a 1x4 unit, then name its first cube after a style.
@@ -218,7 +234,7 @@ test("crate: adding a record to the library asks where it goes on the shelf", as
 
   await page.goto("/add");
   await page.getByLabel("Discogs link").fill("https://www.discogs.com/release/46673");
-  await page.getByLabel("owned").check();
+  await page.getByRole("button", { name: "owned", exact: true }).click();
   await page.getByRole("button", { name: "Add record" }).click();
   const prompt = page.getByRole("region", { name: "Where does it go?" });
   await expect(prompt).toContainText("Garage shelf › UK Garage"); // suggested from its UK Garage style
@@ -228,7 +244,7 @@ test("crate: adding a record to the library asks where it goes on the shelf", as
   // Once placed, it is not asked again.
   await page.goto("/add");
   await page.getByLabel("Discogs link").fill("https://www.discogs.com/release/46673");
-  await page.getByLabel("owned").check();
+  await page.getByRole("button", { name: "owned", exact: true }).click();
   await page.getByRole("button", { name: "Add record" }).click();
   await expect(page.getByText("Already in your library.")).toBeVisible();
   await expect(page.getByRole("region", { name: "Where does it go?" })).toHaveCount(0);

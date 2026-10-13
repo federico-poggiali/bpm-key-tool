@@ -219,6 +219,54 @@ def test_validate_rejects_tracks_without_a_proposal(client, db_path, audio_dir):
     assert client.post("/api/records/999/validate", json={"track_ids": [t1]}).status_code == 404
 
 
+def test_a_pending_proposal_leaves_the_track_alone(client, db_path, audio_dir):
+    rid, t1, _, _ = setup_record(db_path, audio_dir)
+    client.patch(f"/api/tracks/{t1}", json={"bpm": 118.0, "key": "A minor"})
+    run_lookup(client, rid, {t1: LOOKED})
+    detail = client.get(f"/api/records/{rid}").json()["tracks"][0]
+    assert detail["proposal"]["bpm"] == 126.0  # waiting for you
+    assert (detail["bpm"], detail["camelot_key"], detail["analyzed_at"]) == (118.0, "8A", None)  # not applied
+
+
+def test_rejecting_a_proposal_keeps_hand_set_values(client, db_path, audio_dir):
+    rid, t1, t2, _ = setup_record(db_path, audio_dir)
+    client.patch(f"/api/tracks/{t1}", json={"bpm": 118.0, "key": "A minor"})
+    run_lookup(client, rid, {t1: LOOKED, t2: LOOKED})
+    detail = client.post(f"/api/records/{rid}/discard", json={"track_ids": [t1]}).json()
+    first, second = detail["tracks"]
+    assert (first["bpm"], first["camelot_key"], first["bpm_manual"], first["key_manual"]) == (118.0, "8A", True, True)
+    assert first["proposal"] is None and first["analyzed_at"] is None
+    assert second["proposal"]["bpm"] == 126.0  # only the rejected track lost its proposal
+
+
+def test_a_hand_edit_made_while_a_proposal_waits_wins_on_accept(client, db_path, audio_dir):
+    rid, t1, _, _ = setup_record(db_path, audio_dir)
+    run_lookup(client, rid, {t1: LOOKED})
+    client.patch(f"/api/tracks/{t1}", json={"bpm": 118.0})  # typed after the proposal arrived
+    track = client.post(f"/api/records/{rid}/validate", json={"track_ids": [t1]}).json()["tracks"][0]
+    assert (track["bpm"], track["bpm_manual"]) == (118.0, True)
+    assert track["camelot_key"] == "5A"  # the key was never set by hand, so it is accepted
+    assert track["proposal"] is None
+
+
+def test_accepting_a_partial_proposal_does_not_blank_what_it_lacks(client, db_path, audio_dir):
+    rid, t1, _, _ = setup_record(db_path, audio_dir)
+    client.patch(f"/api/tracks/{t1}", json={"key": "A minor"})
+    client.patch(f"/api/tracks/{t1}", json={"unlock": ["key"]})  # key known but not locked
+    bpm_only = {"bpm": 126.0, "key": None, "camelot_key": None, "confidence": None, "raw": {}}
+    run_lookup(client, rid, {t1: bpm_only})
+    track = client.post(f"/api/records/{rid}/validate", json={"track_ids": [t1]}).json()["tracks"][0]
+    assert (track["bpm"], track["camelot_key"]) == (126.0, "8A")
+
+
+def test_a_new_run_replaces_the_waiting_proposal(client, db_path, audio_dir):
+    rid, t1, _, _ = setup_record(db_path, audio_dir)
+    run_lookup(client, rid, {t1: LOOKED})
+    run_lookup(client, rid, {t1: {**LOOKED, "bpm": 130.0}})
+    track = client.get(f"/api/records/{rid}").json()["tracks"][0]
+    assert track["proposal"]["bpm"] == 130.0 and track["bpm"] is None
+
+
 def test_restart_recovery(db_path):
     from app.db import jobs
     conn = connect(db_path)

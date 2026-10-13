@@ -2,7 +2,7 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
 // Runs last (file name) against the same throwaway server; seeds what it needs, so it also works alone.
-const pages = ["/", "/wantlist", "/crate", "/add", "/labels", "/tags", "/search?mode=exact&q=floor", "/settings", "/record", "/record/label", "/?view=table", "/?view=tracks"];
+const pages = ["/", "/wantlist", "/crate", "/add", "/labels", "/tags", "/search?mode=exact&q=floor", "/settings", "/record", "/record/label", "/?view=grid", "/?view=tracks"];
 
 for (const scheme of ["dark", "light"] as const) {
   test.describe(`accessibility (${scheme})`, () => {

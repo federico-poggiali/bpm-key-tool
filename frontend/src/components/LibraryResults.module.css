@@ -1,32 +1,54 @@
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 18px; }
+/* Grid: covers in hairline cards. Table: an Attio record list, framed, hairline rows, quiet column heads. */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
 .item { position: relative; }
-.noteSlot { position: absolute; top: 16px; right: 16px; z-index: 2; opacity: 0; transition: opacity 0.2s var(--ease); }
+.noteSlot { position: absolute; top: 18px; right: 18px; z-index: 2; opacity: 0; transition: opacity 0.2s var(--ease); }
 .item:hover .noteSlot, .item:focus-within .noteSlot, .noteSlot:has([data-filled="true"]), .noteSlot:has([aria-expanded="true"]) { opacity: 1; }
 @media (hover: none) { .noteSlot { opacity: 1; } }
-.noteCell { width: 44px; text-align: right !important; }
-.card { display: grid; gap: 10px; text-decoration: none; padding: 10px; border-radius: var(--r-l); transition: background 0.2s var(--ease), transform 0.14s var(--ease); height: 100%; align-content: start; }
-.card:hover { background: var(--surface); box-shadow: var(--lift); }
+.card {
+  display: grid; gap: 10px; height: 100%; align-content: start; padding: 8px 8px 12px; text-decoration: none;
+  border: 1px solid var(--line); border-radius: var(--r-l); background: var(--surface);
+  transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease), transform 0.14s var(--ease);
+}
+.card:hover { border-color: var(--line-2); box-shadow: var(--lift); }
 .card:active { transform: scale(0.99); }
-.body { display: grid; gap: 4px; min-width: 0; }
-.body b { font-weight: 600; letter-spacing: -0.01em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.body > span:not(.micro) { color: var(--ink-2); font-size: 0.875rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.chips { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; margin: 4px 0; }
+.card > :first-child { border-radius: 7px; overflow: hidden; }
+.body { display: grid; gap: 3px; min-width: 0; padding: 0 4px; }
+.body b { font-weight: 600; font-size: 0.875rem; letter-spacing: -0.01em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.body > span:not(.micro):not(.chips) { color: var(--ink-2); font-size: 0.8125rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.body .chips { margin: 4px 0 2px; }
+.body :global(.micro) { text-transform: none; letter-spacing: 0; font-family: var(--sans); font-size: 0.75rem; }
+
+.chips { display: inline-flex; gap: 4px; align-items: center; flex-wrap: nowrap; max-width: 100%; overflow: hidden; }
 .chips i { font-style: normal; }
-.bpm { font: 600 1rem/1 var(--sans); letter-spacing: -0.04em; font-variant-numeric: tabular-nums; margin-right: 4px; }
-.bpm small { font: 500 0.625rem var(--mono); color: var(--ink-3); margin-left: 3px; letter-spacing: 0; }
-.key { font: 600 0.6875rem/1 var(--mono); padding: 4px 6px; border: 1px solid var(--line-2); border-radius: var(--r-s); }
-.style { font: 500 0.6875rem/1 var(--mono); padding: 4px 6px; border-radius: var(--r-s); background: var(--surface); color: var(--ink-2); }
-.more { color: var(--ink-3); font: 500 0.6875rem var(--mono); }
-.table { width: 100%; border-collapse: collapse; }
-.table thead th { font: 500 0.6875rem/1 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); text-align: left; padding: 0 10px 10px; }
-.table td, .table tbody th { padding: 8px 10px; border-top: 1px solid var(--line); text-align: left; font-weight: 400; vertical-align: middle; }
-.table tbody tr:hover > * { background: var(--surface); }
-.table tbody th a { font-weight: 600; letter-spacing: -0.01em; }
+.style { font-size: 0.75rem; font-weight: 500; line-height: 1; padding: 4px 7px; border-radius: var(--r-s); background: var(--raise); color: var(--ink-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 120px; }
+.more { color: var(--ink-3); font-size: 0.75rem; font-weight: 500; }
+.none { color: var(--ink-3); }
+.key { font: 600 0.75rem/1 var(--mono); padding: 4px 6px; border: 1px solid var(--line-2); border-radius: var(--r-s); }
+.badge { display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; font-weight: 500; color: var(--ink-2); text-transform: capitalize; }
+.badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--ink-3); }
+.badge[data-status="owned"] { color: var(--ink); }
+.badge[data-status="owned"]::before { background: var(--signal); }
+
+.frame { border: 1px solid var(--line); border-radius: var(--r-l); background: var(--surface); overflow-x: auto; }
+.table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+.table thead th {
+  position: sticky; top: 0; z-index: 1; height: 36px; padding: 0 12px; text-align: left; white-space: nowrap;
+  font-size: 0.75rem; font-weight: 500; color: var(--ink-3); background: var(--surface); border-bottom: 1px solid var(--line);
+}
+.table thead th + th, .table td + td, .table td + th, .table th + td { border-left: 1px solid var(--line); }
+.table td, .table tbody th { height: 44px; padding: 0 12px; border-top: 1px solid var(--line); text-align: left; font-weight: 500; vertical-align: middle; white-space: nowrap; max-width: 280px; overflow: hidden; text-overflow: ellipsis; }
+.table tbody tr:first-child > * { border-top: 0; }
+.table tbody tr { transition: background 0.12s var(--ease); }
+.table tbody tr:hover { background: var(--raise); }
+.table tbody th a { font-weight: 600; letter-spacing: -0.01em; text-decoration: none; }
+.table tbody th a:hover { color: var(--signal-ink); }
 .thumb { width: 52px; }
-.thumb > * { width: 36px; }
+.thumb > * { width: 28px; border-radius: 5px; overflow: hidden; }
+.noteCell { width: 44px; text-align: right !important; }
 .num { text-align: right !important; font-variant-numeric: tabular-nums; font-weight: 600; }
 .dim { color: var(--ink-2); }
 .mono { font: 600 0.75rem var(--mono); }
 .rec { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; color: var(--ink-2); }
-.rec > * { width: 28px; }
+.rec:hover { color: var(--ink); }
+.rec > * { width: 24px; border-radius: 4px; overflow: hidden; }
 @media (max-width: 760px) { .table th:nth-child(n+4), .table td:nth-child(n+4) { display: none; } .table th.num, .table td.num { display: table-cell; } }

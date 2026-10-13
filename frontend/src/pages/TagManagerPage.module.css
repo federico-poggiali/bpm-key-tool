@@ -1,5 +1,5 @@
 .page { display: grid; gap: 28px; max-width: 760px; }
-.page h1 { font: 600 clamp(2rem, 5vw, 3.2rem)/1 var(--sans); letter-spacing: -0.045em; margin-top: 8px; }
+.page h1 { font: 600 clamp(2rem, 5vw, 3.2rem)/1 var(--sans); letter-spacing: -0.02em; margin-top: 8px; }
 .hint { margin: 6px 0 0; color: var(--ink-3); font-size: 0.875rem; }
 .group { display: grid; gap: 12px; padding-top: 16px; border-top: 1px solid var(--line-2); }
 .groupHead { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 16px; }

@@ -1,6 +1,6 @@
 .editor { display: grid; gap: 28px; min-width: 0; }
 .group { display: grid; gap: 10px; }
-.group h2 { font: 600 1.25rem var(--sans); letter-spacing: -0.03em; margin-bottom: 4px; }
+.group h2 { font: 600 1.25rem var(--sans); letter-spacing: -0.02em; margin-bottom: 4px; }
 .field { display: grid; grid-template-columns: 96px minmax(0, 1fr) 22px; gap: 10px; align-items: center; }
 .field textarea { min-height: 64px; }
 .print { width: 18px; height: 18px; accent-color: var(--signal); cursor: pointer; }

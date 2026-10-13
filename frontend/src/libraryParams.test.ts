@@ -11,7 +11,7 @@ describe("library URL state", () => {
 
   it("keeps the URL clean for the default view", () => {
     const filters = parseFilters(new URLSearchParams(""), "owned");
-    expect(filters).toMatchObject({ status: "owned", view: "grid", page: 1, tags: [], styles: [] });
+    expect(filters).toMatchObject({ status: "owned", view: "table", page: 1, tags: [], styles: [] });
     expect(serializeFilters(filters, "owned").toString()).toBe("");
     expect(isFiltered(filters, "owned")).toBe(false);
   });
@@ -28,6 +28,6 @@ describe("library URL state", () => {
 
   it("ignores junk values instead of crashing", () => {
     const f = parseFilters(new URLSearchParams("bpm_min=abc&page=-4&view=nope&status=zzz"), "owned");
-    expect(f).toMatchObject({ bpmMin: undefined, page: 1, view: "grid", status: "owned" });
+    expect(f).toMatchObject({ bpmMin: undefined, page: 1, view: "table", status: "owned" });
   });
 });

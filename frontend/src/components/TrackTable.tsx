@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useRef, useState } from "react";
-import { formatDuration, keyLabel, LOW_CONFIDENCE, WHEEL_KEYS, type KeyFormat } from "../lib";
+import { altBpm, formatBpm, formatDuration, keyLabel, LOW_CONFIDENCE, WHEEL_KEYS, type KeyFormat } from "../lib";
 import type { RecordDetail, TrackOut } from "../api/api";
 import { usePatchTrack, useTagMutations, useTags } from "../hooks";
 import { QuickNote } from "./QuickNote";
@@ -8,7 +8,7 @@ import styles from "./TrackTable.module.css";
 
 type Selection = { ids: Set<number>; onChange: (ids: Set<number>) => void };
 type Props = {
-  record: RecordDetail; editable: boolean; keyFormat: KeyFormat; busyIds?: Set<number>; selection?: Selection;
+  record: RecordDetail; editable: boolean; keyFormat: KeyFormat; showKeys: boolean; busyIds?: Set<number>; selection?: Selection;
   /** Decide on a track's waiting analysis from its pop-up: take it, or pass on it. */
   onUse?: (track: TrackOut) => void;
   onPass?: (track: TrackOut) => void;
@@ -16,10 +16,10 @@ type Props = {
 
 const SORTED_KEYS = [...WHEEL_KEYS].sort((a, b) => parseInt(a.camelot) - parseInt(b.camelot) || a.camelot.localeCompare(b.camelot));
 
-export function TrackTable({ record, editable, keyFormat, busyIds, selection, onUse, onPass }: Props) {
+export function TrackTable({ record, editable, keyFormat, showKeys, busyIds, selection, onUse, onPass }: Props) {
   const [open, setOpen] = useState<number | null>(null);
   const all = record.tracks.length > 0 && record.tracks.every((t) => selection?.ids.has(t.id));
-  const colSpan = selection ? 6 : 5;
+  const colSpan = (selection ? 6 : 5) + (showKeys ? 1 : 0);
   return (
     <table className={styles.table}>
       <caption className="sr">Tracklist</caption>
@@ -34,7 +34,8 @@ export function TrackTable({ record, editable, keyFormat, busyIds, selection, on
           <th scope="col">Pos</th>
           <th scope="col">Title</th>
           <th scope="col" className={styles.num}>Length</th>
-          <th scope="col">Key</th>
+          <th scope="col" className={styles.num}>BPM</th>
+          {showKeys && <th scope="col">Key</th>}
           <th scope="col">Tags</th>
         </tr>
       </thead>
@@ -46,6 +47,7 @@ export function TrackTable({ record, editable, keyFormat, busyIds, selection, on
             record={record}
             editable={editable}
             keyFormat={keyFormat}
+            showKeys={showKeys}
             open={open === track.id}
             working={busyIds?.has(track.id) ?? false}
             colSpan={colSpan}
@@ -70,6 +72,7 @@ type RowProps = {
   record: RecordDetail;
   editable: boolean;
   keyFormat: KeyFormat;
+  showKeys: boolean;
   open: boolean;
   working: boolean;
   colSpan: number;
@@ -80,11 +83,11 @@ type RowProps = {
   onToggle: () => void;
 };
 
-function TrackRow({ track, record, editable, keyFormat, open, working, colSpan, onUse, onPass, picked, onPick, onToggle }: RowProps) {
+function TrackRow({ track, record, editable, keyFormat, showKeys, open, working, colSpan, onUse, onPass, picked, onPick, onToggle }: RowProps) {
   const patch = usePatchTrack(record.id);
   const trackNote = track.notes.map((n) => n.body.trim()).filter(Boolean).join(" · ");
   const raw = (track.analysis_raw ?? {}) as { status?: string; note?: string; measurements?: { origin: string; bpm?: number; camelot?: string }[] };
-  const hasData = track.camelot_key != null || track.proposal != null;
+  const hasData = track.bpm != null || (showKeys && track.camelot_key != null) || track.proposal != null;
 
   return (
     <Fragment>
@@ -106,11 +109,19 @@ function TrackRow({ track, record, editable, keyFormat, open, working, colSpan, 
           </div>
         </th>
         <td className={`${styles.num} ${styles.length}`}>{track.duration_sec != null ? formatDuration(track.duration_sec) : ""}</td>
-        <td>
-          <KeyCell track={track} keyFormat={keyFormat} editable={editable} onUse={onUse} onPass={onPass}
-            onSave={(key) => patch.mutate({ trackId: track.id, patch: { key } })}
-            onUnlock={() => patch.mutate({ trackId: track.id, patch: { unlock: ["key"] } })} />
+        <td className={styles.num}>
+          <BpmCell track={track} alt={altBpm(track.analysis_raw)} editable={editable} keyFormat={keyFormat} showKeys={showKeys}
+            onUse={onUse} onPass={onPass}
+            onSave={(bpm) => patch.mutate({ trackId: track.id, patch: { bpm } })}
+            onUnlock={() => patch.mutate({ trackId: track.id, patch: { unlock: ["bpm"] } })} />
         </td>
+        {showKeys && (
+          <td>
+            <KeyCell track={track} keyFormat={keyFormat} editable={editable}
+              onSave={(key) => patch.mutate({ trackId: track.id, patch: { key } })}
+              onUnlock={() => patch.mutate({ trackId: track.id, patch: { unlock: ["key"] } })} />
+          </td>
+        )}
         <td className={styles.tagCell}>
           <div className={styles.tagWrap}>
             {(track.tags ?? []).map((t) => <i key={t} className={styles.tagChip}>{t}</i>)}
@@ -126,10 +137,10 @@ function TrackRow({ track, record, editable, keyFormat, open, working, colSpan, 
               {raw.measurements?.map((m, i) => (
                 <Fragment key={i}>
                   <dt>{m.origin}</dt>
-                  <dd>{[m.camelot ?? ""].filter(Boolean).join(" · ") || "no value"}</dd>
+                  <dd>{[m.bpm ? `${formatBpm(m.bpm)} BPM` : "", showKeys ? m.camelot ?? "" : ""].filter(Boolean).join(" · ") || "no value"}</dd>
                 </Fragment>
               ))}
-              {track.confidence != null && !track.key_manual && (<><dt>Key confidence</dt><dd>{Math.round(track.confidence * 100)}%{track.confidence < LOW_CONFIDENCE ? ", low: check it by ear" : ""}</dd></>)}
+              {showKeys && track.confidence != null && !track.key_manual && (<><dt>Key confidence</dt><dd>{Math.round(track.confidence * 100)}%{track.confidence < LOW_CONFIDENCE ? ", low: check it by ear" : ""}</dd></>)}
               {track.audio_path && (<><dt>Audio file</dt><dd>{track.audio_path.split("/").pop()}</dd></>)}
               {track.analyzed_at && (<><dt>Analysed</dt><dd>{track.analyzed_at.replace("T", " ").replace("Z", "")}</dd></>)}
             </dl>
@@ -170,10 +181,10 @@ function TrackTagButton({ track, label }: { track: TrackOut; label: string }) {
   );
 }
 
-/** A waiting analysis value. Clicking it opens a small pop-up with the analysed key, how sure the
- *  analysis was, and the choice to use it or pass on it. */
-function ProposalPop({ track, keyFormat, label, onUse, onPass }: {
-  track: TrackOut; keyFormat: KeyFormat; label: string; onUse?: (t: TrackOut) => void; onPass?: (t: TrackOut) => void;
+/** A waiting analysis value. Clicking it opens a small pop-up with the analysed BPM (and key, when keys
+ *  are on), how sure the analysis was, and the choice to use it or pass on it. */
+function ProposalPop({ track, keyFormat, showKeys, label, onUse, onPass }: {
+  track: TrackOut; keyFormat: KeyFormat; showKeys: boolean; label: string; onUse?: (t: TrackOut) => void; onPass?: (t: TrackOut) => void;
 }) {
   const [open, setOpen] = useState(false);
   const root = useRef<HTMLSpanElement>(null);
@@ -184,7 +195,7 @@ function ProposalPop({ track, keyFormat, label, onUse, onPass }: {
     return () => document.removeEventListener("mousedown", onDown);
   }, [open]);
   const p = track.proposal!;
-  const low = p.confidence != null && p.confidence < LOW_CONFIDENCE;
+  const low = showKeys && p.confidence != null && p.confidence < LOW_CONFIDENCE;
   return (
     <span className={styles.tagPop} ref={root} onKeyDown={(e) => { if (e.key === "Escape") setOpen(false); }}>
       <button type="button" className={styles.proposed} aria-expanded={open} aria-label={`Review the analysis for ${track.title}`}
@@ -192,8 +203,9 @@ function ProposalPop({ track, keyFormat, label, onUse, onPass }: {
       {open && (
         <div className={styles.pop} role="dialog" aria-label={`Analysis for ${track.title}`}>
           <dl className={styles.popFacts}>
-            {p.camelot_key != null && (<><dt>Key</dt><dd>{keyLabel(p.camelot_key, keyFormat)}</dd></>)}
-            {p.confidence != null && (<><dt>Confidence</dt><dd>{Math.round(p.confidence * 100)}%</dd></>)}
+            {p.bpm != null && (<><dt>BPM</dt><dd>{formatBpm(p.bpm)}</dd></>)}
+            {showKeys && p.camelot_key != null && (<><dt>Key</dt><dd>{keyLabel(p.camelot_key, keyFormat)}</dd></>)}
+            {showKeys && p.confidence != null && (<><dt>Confidence</dt><dd>{Math.round(p.confidence * 100)}%</dd></>)}
           </dl>
           {low && <p className={styles.popWarn}>The analysis was unsure about this key. Check it by ear.</p>}
           <div className={styles.popActions}>
@@ -206,9 +218,8 @@ function ProposalPop({ track, keyFormat, label, onUse, onPass }: {
   );
 }
 
-function KeyCell({ track, keyFormat, editable, onSave, onUnlock, onUse, onPass }: {
+function KeyCell({ track, keyFormat, editable, onSave, onUnlock }: {
   track: TrackOut; keyFormat: KeyFormat; editable: boolean; onSave: (key: string) => void; onUnlock: () => void;
-  onUse?: (t: TrackOut) => void; onPass?: (t: TrackOut) => void;
 }) {
   const label = keyLabel(track.camelot_key, keyFormat);
   return (
@@ -236,8 +247,66 @@ function KeyCell({ track, keyFormat, editable, onSave, onUnlock, onUse, onPass }
           <button type="button" aria-label={`Hand key for ${track.title} back to analysis`} title="Hand back to analysis" onClick={onUnlock}>×</button>
         )}</span>
       )}
-      {track.proposal?.camelot_key != null && track.proposal.camelot_key !== track.camelot_key && (
-        <ProposalPop track={track} keyFormat={keyFormat} label={keyLabel(track.proposal.camelot_key, keyFormat)} onUse={onUse} onPass={onPass} />
+    </span>
+  );
+}
+
+function BpmCell({ track, alt, editable, keyFormat, showKeys, onSave, onUnlock, onUse, onPass }: {
+  track: TrackOut; alt: number | null; editable: boolean; keyFormat: KeyFormat; showKeys: boolean;
+  onSave: (bpm: number) => void; onUnlock: () => void; onUse?: (t: TrackOut) => void; onPass?: (t: TrackOut) => void;
+}) {
+  const [editing, setEditing] = useState(false);
+  const [draft, setDraft] = useState("");
+
+  const commit = () => {
+    setEditing(false);
+    const value = parseFloat(draft.replace(",", "."));
+    if (Number.isFinite(value) && value > 0 && value <= 400 && value !== track.bpm) onSave(value);
+  };
+
+  if (editing) {
+    return (
+      <input
+        className={`field-input ${styles.bpmInput}`}
+        type="number" step="0.1" min="1" max="400" autoFocus
+        aria-label={`BPM for ${track.title}`}
+        value={draft}
+        onChange={(e) => setDraft(e.target.value)}
+        onBlur={commit}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") commit();
+          if (e.key === "Escape") setEditing(false);
+        }}
+      />
+    );
+  }
+  const value = track.bpm != null ? formatBpm(track.bpm) : "";
+  const p = track.proposal;
+  const newBpm = p?.bpm != null && p.bpm !== track.bpm;
+  const newKey = showKeys && p?.camelot_key != null && p.camelot_key !== track.camelot_key;
+  const proposalLabel = [newBpm ? formatBpm(p!.bpm) : "", newKey ? keyLabel(p!.camelot_key, keyFormat) : ""].filter(Boolean).join(" · ");
+  return (
+    <span className={styles.bpmWrap}>
+      {editable ? (
+        <button type="button" className={styles.bpm} aria-label={`Edit BPM for ${track.title}`}
+          onClick={() => { setDraft(value); setEditing(true); }}>
+          {value || <span className={styles.dash}>set</span>}
+        </button>
+      ) : (
+        <span className={styles.bpm}>{value || <span className={styles.dash}>·</span>}</span>
+      )}
+      {track.bpm_manual && (
+        <span className={styles.manual}>manual{editable && (
+          <button type="button" aria-label={`Hand BPM for ${track.title} back to analysis`} title="Hand back to analysis" onClick={onUnlock}>×</button>
+        )}</span>
+      )}
+      {editable && alt != null && alt !== track.bpm && (
+        <button type="button" className={styles.alt} title="Use the half/double-tempo reading" aria-label={`Use ${formatBpm(alt)} BPM instead`} onClick={() => onSave(alt)}>
+          alt {formatBpm(alt)}
+        </button>
+      )}
+      {proposalLabel && (
+        <ProposalPop track={track} keyFormat={keyFormat} showKeys={showKeys} label={proposalLabel} onUse={onUse} onPass={onPass} />
       )}
     </span>
   );

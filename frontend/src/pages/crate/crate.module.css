@@ -1,6 +1,6 @@
 .page { display: grid; gap: 22px; }
 .head { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; flex-wrap: wrap; }
-.head h1 { font: 600 clamp(2rem, 5vw, 3.2rem)/1 var(--sans); letter-spacing: -0.045em; margin-top: 8px; }
+.head h1 { font: 600 clamp(2rem, 5vw, 3.2rem)/1 var(--sans); letter-spacing: -0.02em; margin-top: 8px; }
 .tools { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
 .find input { width: 220px; }
 .modes { display: inline-flex; padding: 3px; border: 1px solid var(--line-2); border-radius: var(--r-m); }
@@ -14,7 +14,7 @@
 .hint { margin: 0; color: var(--ink-3); font-size: 0.8125rem; }
 .warn { margin: 0; font-size: 0.8125rem; color: var(--signal-ink); }
 .empty { display: grid; gap: 10px; justify-items: start; padding: 48px 4px; color: var(--ink-2); }
-.empty h2 { font: 600 1.5rem var(--sans); letter-spacing: -0.03em; color: var(--ink); }
+.empty h2 { font: 600 1.5rem var(--sans); letter-spacing: -0.02em; color: var(--ink); }
 .empty p { margin: 0; max-width: 46ch; }
 
 .wall { position: relative; flex: none; }

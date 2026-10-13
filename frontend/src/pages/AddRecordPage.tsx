@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { api, type Status } from "../api/api";
 import type { Arrival } from "./RecordPage";
+import shared from "../styles/intake.module.css";
 import styles from "./AddRecordPage.module.css";
 
 // Nothing picked means "considering": it only keeps it on a list. Owned and wantlist are opt-in toggles.
@@ -32,11 +33,11 @@ export default function AddRecordPage() {
 
   return (
     <div className={styles.page}>
-      <header className={styles.hero}>
+      <header className={shared.hero}>
         <span className="micro">add record</span>
         <h1>Paste a record. <span>We'll do the rest ;-)</span></h1>
-        <form onSubmit={submit} className={styles.form}>
-          <label className={styles.field}>
+        <form onSubmit={submit} className={shared.form}>
+          <label className={shared.field}>
             <span className="sr">Discogs link</span>
             <input
               type="url" inputMode="url" required autoFocus autoComplete="off"
@@ -56,8 +57,8 @@ export default function AddRecordPage() {
             </button>
           ))}
         </fieldset>
-        <p className={styles.hint}>Release or master links both work. Pick nothing and it is only considered. Click a choice again to undo it.</p>
-        {intake.isError && <p className={styles.error} role="alert">{intake.error.message}</p>}
+        <p className={shared.hint}>Release or master links both work. Pick nothing and it is only considered. Click a choice again to undo it.</p>
+        {intake.isError && <p className={shared.error} role="alert">{intake.error.message}</p>}
       </header>
     </div>
   );

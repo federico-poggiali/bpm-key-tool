@@ -1,0 +1,16 @@
+/* Shared by the pages that start from a pasted Discogs link: a hero, the link field and its hint/error. */
+.hero { display: grid; gap: 14px; padding-top: clamp(8px, 5vh, 48px); }
+.hero h1 { font: 600 clamp(2.2rem, 6vw, 4rem)/0.98 var(--sans); letter-spacing: -0.025em; max-width: 14ch; }
+.hero h1 span { color: var(--ink-3); }
+.form { display: flex; gap: 10px; margin-top: 8px; flex-wrap: wrap; }
+.field {
+  flex: 1; min-width: 240px; display: flex; align-items: center; height: 52px; padding: 0 18px; background: var(--glass);
+  border: 1px solid var(--line-2); border-radius: var(--r-l); backdrop-filter: blur(22px) saturate(170%);
+  transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+.field:focus-within { border-color: var(--signal); box-shadow: 0 0 0 3px color-mix(in srgb, var(--signal) 28%, transparent); }
+.field input { flex: 1; min-width: 0; border: 0; background: transparent; outline: none; font: 400 0.9375rem var(--mono); }
+.field input::placeholder { color: var(--ink-3); }
+.form :global(.primary) { height: 52px; }
+.hint { margin: 0; color: var(--ink-3); font-size: 0.875rem; }
+.error { margin: 0; color: var(--signal-ink); font-size: 0.9375rem; }

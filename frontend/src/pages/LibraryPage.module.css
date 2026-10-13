@@ -1,10 +1,12 @@
-.layout { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 24px; align-items: start; }
-@media (max-width: 900px) { .layout { grid-template-columns: 1fr; } }
-.page { display: grid; gap: 22px; }
-.head { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; }
-.head h1 { font: 600 clamp(2rem, 5vw, 3.2rem)/1 var(--sans); letter-spacing: -0.045em; margin-top: 8px; }
-.count { color: var(--ink-3); font: 500 0.75rem var(--mono); }
+.page { display: grid; gap: 16px; }
+.head { display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 40px; }
+.title { display: flex; align-items: baseline; gap: 10px; }
+.title h1 { font-size: 1.25rem; line-height: 1.2; letter-spacing: -0.015em; }
+.count { color: var(--ink-3); font-size: 0.8125rem; font-weight: 500; font-variant-numeric: tabular-nums; }
 .stale { opacity: 0.55; transition: opacity 0.2s; }
-.empty { display: grid; gap: 10px; justify-items: start; padding: 48px 4px; color: var(--ink-2); }
-.empty h2 { font: 600 1.5rem var(--sans); letter-spacing: -0.03em; color: var(--ink); }
-.empty p { margin: 0; }
+.empty {
+  display: grid; gap: 10px; justify-items: center; text-align: center; padding: 72px 24px; color: var(--ink-2);
+  border: 1px dashed var(--line-2); border-radius: var(--r-xl);
+}
+.empty h2 { font-size: 1.25rem; color: var(--ink); }
+.empty p { margin: 0; max-width: 44ch; }

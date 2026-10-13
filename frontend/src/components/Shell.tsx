@@ -1,56 +1,40 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 import { useIsFetching, useQuery } from "@tanstack/react-query";
-import { Link, NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import { api } from "../api/api";
+import { Icon, type IconName } from "./Icon";
 import { Toasts } from "./Toasts";
 import styles from "./Shell.module.css";
 
-const NAV = [
-  { to: "/add", label: "Add record" },
-  { to: "/labels", label: "Make a label" },
-  { to: "/tags", label: "Tag Manager" },
-  { to: "/settings", label: "Settings" },
+const VIEWS: { to: string; label: string; icon: IconName }[] = [
+  { to: "/", label: "Library", icon: "library" },
+  { to: "/wantlist", label: "Wishlist", icon: "wishlist" },
+  { to: "/crate", label: "Crate", icon: "crate" },
 ];
 
-const LIBRARY = [
-  { to: "/", label: "Records" },
-  { to: "/wantlist", label: "Wishlist" },
-  { to: "/crate", label: "Crate" },
+const TOOLS: { to: string; label: string; icon: IconName }[] = [
+  { to: "/add", label: "Add record", icon: "add" },
+  { to: "/labels", label: "Make a label", icon: "label" },
+  { to: "/tags", label: "Tag Manager", icon: "tag" },
+  { to: "/settings", label: "Settings", icon: "settings" },
 ];
 
-/** Top-right menu holding the library, the wishlist and the crate (the physical shelf). */
-function LibraryMenu() {
-  const [open, setOpen] = useState(false);
-  const box = useRef<HTMLDivElement>(null);
-  const { pathname } = useLocation();
-  useEffect(() => setOpen(false), [pathname]);
-  useEffect(() => {
-    if (!open) return;
-    const away = (e: MouseEvent) => box.current && !box.current.contains(e.target as Node) && setOpen(false);
-    const esc = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
-    document.addEventListener("mousedown", away);
-    document.addEventListener("keydown", esc);
-    return () => { document.removeEventListener("mousedown", away); document.removeEventListener("keydown", esc); };
-  }, [open]);
-  const inLibrary = LIBRARY.some((item) => item.to === pathname);
+/** One sidebar group: a quiet caption over a list of links, the current one lifted with a red tick. */
+function Group({ title, label, items }: { title: string; label: string; items: typeof VIEWS }) {
   return (
-    <div className={styles.menu} ref={box}>
-      <button type="button" className={`${styles.menuBtn} ${inLibrary ? styles.active : ""}`} aria-expanded={open} aria-haspopup="true" onClick={() => setOpen(!open)}>
-        Library <span aria-hidden="true">▾</span>
-      </button>
-      {open && (
-        <ul className={styles.menuList} aria-label="Library">
-          {LIBRARY.map((item) => {
-            const on = pathname === item.to;
-            return (
-              <li key={item.to}>
-                <Link to={item.to} className={on ? styles.active : ""} aria-current={on ? "page" : undefined}>{item.label}</Link>
-              </li>
-            );
-          })}
-        </ul>
-      )}
-    </div>
+    <nav aria-label={label} className={styles.group}>
+      <span className={styles.caption}>{title}</span>
+      <ul className={styles.nav}>
+        {items.map((item) => (
+          <li key={item.to}>
+            <NavLink to={item.to} end className={({ isActive }) => (isActive ? styles.active : "")}>
+              <Icon name={item.icon} />
+              {item.label}
+            </NavLink>
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 }
 
@@ -71,6 +55,11 @@ export function Shell() {
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        navigate("/search?focus=1");
+        return;
+      }
       if (e.metaKey || e.ctrlKey || e.altKey || typing(e.target)) return;
       if (e.key === "/") {
         e.preventDefault();
@@ -92,33 +81,27 @@ export function Shell() {
       </a>
       <aside className={styles.side}>
         <div className={styles.brand}>
-          <span className={`${styles.led} ${busy ? styles.busy : state === "ok" ? styles.ok : ""}`} aria-hidden="true" />
+          <span className={styles.mark} aria-hidden="true" />
           Spin Count
+          <span className={`${styles.led} ${busy ? styles.busy : state === "ok" ? styles.ok : ""}`} aria-hidden="true" />
         </div>
-        <nav aria-label="Main">
-          <ul className={styles.nav}>
-            {NAV.map((item) => (
-              <li key={item.to}>
-                <NavLink to={item.to} className={({ isActive }) => (isActive ? styles.active : "")}>
-                  {item.label}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <Link to="/search?focus=1" className={styles.search}>
+          <Icon name="search" />
+          <span>Search</span>
+          <kbd>⌘K</kbd>
+        </Link>
+        <Group title="Views" label="Library" items={VIEWS} />
+        <Group title="Tools" label="Main" items={TOOLS} />
         <div className={styles.foot}>
-          <span className="micro" role="status" data-testid="health">
-            api {state}
+          <span className={styles.status} role="status" data-testid="health">
+            <i data-state={state} aria-hidden="true" />api {state}
           </span>
-          <span className="micro">/ search · n add</span>
+          <span className={styles.keys}><kbd>/</kbd> search <kbd>n</kbd> add</span>
         </div>
       </aside>
-      <div className={styles.content}>
-        <div className={styles.topbar}><LibraryMenu /></div>
-        <main id="main" className={styles.main} tabIndex={-1}>
-          <Outlet />
-        </main>
-      </div>
+      <main id="main" className={styles.main} tabIndex={-1}>
+        <Outlet />
+      </main>
       <Toasts />
     </div>
   );

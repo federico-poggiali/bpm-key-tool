@@ -1,5 +1,5 @@
 .page { display: grid; gap: 22px; max-width: 760px; }
-.page h1 { font: 600 clamp(2rem, 5vw, 3.2rem)/1 var(--sans); letter-spacing: -0.045em; margin-top: 8px; }
+.page h1 { font: 600 clamp(2rem, 5vw, 3.2rem)/1 var(--sans); letter-spacing: -0.02em; margin-top: 8px; }
 .warning { margin: 0; padding: 14px 16px; border: 1px solid var(--signal); border-radius: var(--r-m); }
 .facts { display: grid; gap: 16px; margin: 0; }
 .facts div { display: grid; gap: 6px; }
@@ -7,3 +7,5 @@
 .actions { display: flex; gap: 10px; flex-wrap: wrap; }
 .hint { margin: 0; color: var(--ink-3); font-size: 0.875rem; }
 .error { margin: 0; color: var(--signal-ink); }
+.toggle { display: inline-flex; align-items: center; gap: 10px; font-weight: 500; cursor: pointer; }
+.toggle input { width: 18px; height: 18px; accent-color: var(--signal); }

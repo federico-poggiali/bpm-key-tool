@@ -2,6 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { api } from "../api/api";
 import { JobChip } from "../components/JobChip";
+import { useKeysEnabled } from "../hooks";
 import { pushToast } from "../toast";
 import styles from "./SettingsPage.module.css";
 
@@ -18,6 +19,7 @@ export default function SettingsPage() {
   });
   const [stylesJob, setStylesJob] = useState<number | null>(null);
   const fetchStyles = useMutation({ mutationFn: api.backfillStyles, onSuccess: ({ job_id }) => setStylesJob(job_id) });
+  const [keysOn, setKeysOn] = useKeysEnabled();
   const last = sync.data ?? status.data?.last_sync ?? null;
 
   return (
@@ -53,6 +55,19 @@ export default function SettingsPage() {
         <button className="ghost" onClick={() => reveal.mutate()} disabled={reveal.isPending}>Show Dataview examples in Finder</button>
       </div>
       <p className={styles.hint}>The vault also syncs by itself a couple of seconds after any change. The Dataview examples file shows ready-made queries by BPM, key and tag.</p>
+
+      <header>
+        <span className="micro">analysis</span>
+        <h2>Musical key</h2>
+      </header>
+      <label className={styles.toggle}>
+        <input type="checkbox" checked={keysOn} onChange={(e) => setKeysOn(e.target.checked)} />
+        <span>Analyse and show musical key</span>
+      </label>
+      <p className={styles.hint}>
+        BPM is always analysed and shown. With this on, analysis also proposes a key for each track, and the tracklist, library
+        filters and track list show keys (Camelot or musical). Off, every key column, filter and picker is hidden.
+      </p>
 
       <header>
         <span className="micro">discogs</span>

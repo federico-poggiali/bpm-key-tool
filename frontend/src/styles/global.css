@@ -2,14 +2,14 @@
 html { -webkit-text-size-adjust: 100%; background: var(--bg); scroll-behavior: smooth; }
 body {
   margin: 0; min-height: 100vh; background: var(--bg); color: var(--ink);
-  font: 400 1rem/1.5 var(--sans); font-optical-sizing: auto; -webkit-font-smoothing: antialiased;
+  font: 450 0.9375rem/1.5 var(--sans); font-feature-settings: "ss03", "cv11"; letter-spacing: -0.006em; -webkit-font-smoothing: antialiased;
 }
-::selection { background: var(--signal); color: var(--on-signal); }
+::selection { background: var(--signal-fill); color: var(--on-signal); }
 button, input, select, textarea { font: inherit; color: inherit; }
 button { cursor: pointer; }
 a { color: inherit; }
 :focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; border-radius: var(--r-m); }
-h1, h2, h3 { margin: 0; letter-spacing: -0.03em; text-wrap: balance; }
+h1, h2, h3 { margin: 0; font-weight: 600; letter-spacing: -0.02em; text-wrap: balance; }
 p { text-wrap: pretty; }
 td, th, dd, .mono { font-variant-numeric: tabular-nums; }
 ol, ul { list-style: none; margin: 0; padding: 0; }
@@ -17,21 +17,22 @@ ol, ul { list-style: none; margin: 0; padding: 0; }
 .micro { font: 500 0.6875rem/1 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); }
 .mono { font-family: var(--mono); }
 
+.ghost, .primary { display: inline-flex; align-items: center; justify-content: center; gap: 6px; text-decoration: none; white-space: nowrap; }
 .ghost {
-  height: 38px; padding: 0 16px; border-radius: var(--r-m); border: 1px solid var(--line-2); background: transparent;
+  height: 36px; padding: 0 12px; border-radius: var(--r-m); border: 1px solid var(--line-2); background: transparent;
   font-size: 0.875rem; font-weight: 500; transition: transform 0.1s var(--ease), background 0.2s var(--ease);
 }
-.ghost:hover { background: var(--surface); }
+.ghost:hover { background: var(--surface); border-color: color-mix(in srgb, var(--ink) 22%, transparent); }
 .ghost:active { transform: scale(0.97); }
 .ghost[disabled] { opacity: 0.4; cursor: default; }
-.ghost.small { height: 30px; padding: 0 11px; font-size: 0.8125rem; }
+.ghost.small, .primary.small { height: 30px; padding: 0 11px; font-size: 0.8125rem; }
 .ghost.danger:hover { border-color: var(--signal); color: var(--signal-ink); }
 .primary {
-  position: relative; height: 44px; padding: 0 22px; border: 0; border-radius: var(--r-l); overflow: hidden;
-  background: var(--signal); color: var(--on-signal); font-weight: 600; letter-spacing: -0.01em;
+  position: relative; height: 36px; padding: 0 14px; font-size: 0.875rem; border: 0; border-radius: var(--r-m); overflow: hidden;
+  background: var(--signal-fill); color: var(--on-signal); font-weight: 500; letter-spacing: -0.01em;
   transition: transform 0.1s var(--ease), filter 0.2s;
 }
-.primary:hover { filter: brightness(1.07); }
+.primary:hover { filter: brightness(1.1); }
 .primary:active { transform: scale(0.97); }
 .primary[disabled] { cursor: progress; opacity: 0.7; }
 .field-input {

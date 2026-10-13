@@ -1,6 +1,6 @@
 .page { display: grid; gap: 22px; max-width: 860px; }
 .head { display: grid; gap: 8px; }
-.head h1 { font: 600 clamp(2rem, 5vw, 3.2rem)/1 var(--sans); letter-spacing: -0.045em; }
+.head h1 { font: 600 clamp(2rem, 5vw, 3.2rem)/1 var(--sans); letter-spacing: -0.02em; }
 .controls { display: flex; gap: 12px; flex-wrap: wrap; }
 .field { flex: 1; min-width: 240px; display: flex; align-items: center; height: 52px; padding: 0 18px; background: var(--glass); border: 1px solid var(--line-2); border-radius: var(--r-l); transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease); }
 .field:focus-within { border-color: var(--signal); box-shadow: 0 0 0 3px color-mix(in srgb, var(--signal) 28%, transparent); }
@@ -16,7 +16,7 @@
 .hit:hover { background: var(--surface); }
 .hitBody { display: grid; gap: 6px; min-width: 0; }
 .snippet { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-.snippet mark { background: var(--signal); color: var(--on-signal); border-radius: 3px; padding: 0 2px; }
+.snippet mark { background: var(--signal-fill); color: var(--on-signal); border-radius: 3px; padding: 0 2px; }
 .where { color: var(--ink-3); font-size: 0.8125rem; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .type { font: 600 0.625rem/1 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 6px; border: 1px solid var(--line-2); border-radius: var(--r-s); color: var(--ink-2); }
 .score { display: grid; gap: 6px; justify-items: end; width: 64px; }

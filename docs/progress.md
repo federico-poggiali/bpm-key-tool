@@ -100,3 +100,24 @@ Decisions: shelving is drawn as units of cubes (IKEA Kallax/Eket style); a cube 
 - Ask on arrival: adding a record as owned (Add page) or pressing "Add to library" opens the record with a "Where does it go?" card (suggested spot, any cube/section, or Later). It shows only when a shelf exists and the record is unsorted (`components/ShelfPrompt.tsx`).
 - Tests: 144 backend (7 new), 2 new browser flows, 2 new axe checks; the full browser suite passes (30).
 - A running `make run` server must be restarted to pick up the crate API and migration 0006.
+
+## Analysis proposals, prose-only notes, tag groups (done)
+Backend in commit `eca7742`, frontend in `c3a0e3c`. Migrations `0005`-`0009`:
+- `0005_job_params.sql`: `jobs.params` (JSON, optional job input). `POST /api/records/{id}/analyze` can now take `track_ids` to analyse only some tracks; the ids are stored in `params` and read by the worker.
+- `0007_proposals.sql`: `track_proposals` (one row per track, a new run replaces it). Analysis no longer writes BPM/key onto tracks; it leaves a proposal (bpm, key, camelot key, confidence, raw result, audio path) for the owner to accept. `POST /api/records/{id}/validate` (`track_ids`, `overwrite_manual`) copies the chosen proposals onto the tracks; the proposals are dropped without touching tracks by the discard endpoint on the same router. Only records you own can be validated (409 otherwise); wantlist records are not part of the library.
+- `0008_notes_are_prose.sql`: every note becomes `prose`; the free-form note type is gone from the UI. The note editor and notes panel were simplified to match.
+- `0009_tag_groups.sql`: `tag_groups` (name, `fixed`, position) and `tags.group_id`. Energy, Atmosphere and Set role are fixed groups (cannot be renamed or deleted, 403); any other group is yours. **The old free-text tags were deleted by this migration** (notes carry prose now); tags are re-created in the Tag Manager.
+- API (`routes/tags.py`): `GET /api/tags` (with counts), `GET/POST /api/tag-groups`, `PATCH/DELETE /api/tag-groups/{id}`, `POST /api/tag-groups/{id}/tags`, `PATCH/DELETE /api/tag-defs/{id}`. Every write returns the full group list. Errors: unknown 404, fixed group 403, bad input 422.
+
+## Tag Manager, QuickNote, Search popup (done)
+- **Tag Manager** (`/tags`, `pages/TagManagerPage.tsx`): one section per group; add, rename, delete (asks first when the tag is in use) and move tags between groups; "New group" for your own way of sorting tracks. The filter bar and tag editors now pick from these groups.
+- **QuickNote** (`components/QuickNote.tsx`): a small note icon on record and track corners (a "hero" variant sits at the top of a record page) that opens a pad. What you write is the record's (or track's) one prose note, autosaved after 700 ms, queued so a note is never created twice; the icon shows a dot once a note exists. It is the note that prints on the label.
+- **Search popup** (`components/SearchPopup.tsx`): library search as a dialog over the current page (Esc or following a result closes it), reusing `SearchPage` in embedded mode; opened from the shell. `/search` still works as a page.
+- Tests: `QuickNote.test.tsx`, `LabelEditor.test.tsx`, an updated `FilterBar.test.tsx`; the browser flows in `spincount.spec.ts` were rewritten for the new notes and tags.
+
+## Label Maker (done)
+Extends "Record labels": labels for records that are not in the library.
+- `/labels` (`pages/LabelMakerPage.tsx`, listed in the Library menu): start from a blank label or paste a Discogs link, edit with the same editor and live preview as `/records/:id/label`, download the PNGs.
+- API (`routes/label_maker.py`): `POST /api/labels/from-discogs` (looks the release up and returns `LabelData`; a record already in the library brings its BPM, key, tags and notes; nothing is stored; 404 unknown release, 400 not a Discogs link, 502 Discogs down) and `POST /api/labels/render` (draws a `LabelData`; stores nothing).
+- Unchanged from before: download only, no `brother_ql`, no stored country or category.
+- Not run by me against the real Discogs API or a real library.

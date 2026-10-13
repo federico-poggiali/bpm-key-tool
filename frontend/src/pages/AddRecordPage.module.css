@@ -1,30 +1,15 @@
 .page { display: grid; gap: 28px; max-width: 860px; }
-.hero { display: grid; gap: 14px; padding-top: clamp(8px, 5vh, 48px); }
-.hero h1 { font: 600 clamp(2.2rem, 6vw, 4rem)/0.98 var(--sans); letter-spacing: -0.045em; max-width: 14ch; }
-.hero h1 span { color: var(--ink-3); }
-.form { display: flex; gap: 10px; margin-top: 8px; flex-wrap: wrap; }
-.field {
-  flex: 1; min-width: 240px; display: flex; align-items: center; height: 52px; padding: 0 18px; background: var(--glass);
-  border: 1px solid var(--line-2); border-radius: var(--r-l); backdrop-filter: blur(22px) saturate(170%);
-  transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
-}
-.field:focus-within { border-color: var(--signal); box-shadow: 0 0 0 3px color-mix(in srgb, var(--signal) 28%, transparent); }
-.field input { flex: 1; min-width: 0; border: 0; background: transparent; outline: none; font: 400 0.9375rem var(--mono); }
-.field input::placeholder { color: var(--ink-3); }
-.form :global(.primary) { height: 52px; }
 .status { display: flex; align-items: center; gap: 8px; border: 0; margin: 0; padding: 0; flex-wrap: wrap; }
 .status legend { float: left; padding: 0 8px 0 0; line-height: 34px; }
 .status button { display: inline-flex; align-items: center; height: 34px; padding: 0 14px; border-radius: var(--r-m); border: 1px solid var(--line-2); font-size: 0.875rem; cursor: pointer; transition: background 0.2s var(--ease); }
 .status button:hover { background: var(--surface); }
 .status button.on { background: var(--ink); color: var(--bg); border-color: var(--ink); }
-.hint { margin: 0; color: var(--ink-3); font-size: 0.875rem; }
-.error { margin: 0; color: var(--signal-ink); font-size: 0.9375rem; }
 .result { display: grid; gap: 18px; }
 .dupe { margin: 0; padding: 12px 14px; border: 1px solid var(--signal); border-radius: var(--r-m); }
 .dupe a { color: var(--signal-ink); }
 .release { display: flex; gap: 16px; align-items: center; }
 .cover { width: 88px; flex: none; }
-.release h2 { font: 600 1.5rem/1.1 var(--sans); letter-spacing: -0.03em; }
+.release h2 { font: 600 1.5rem/1.1 var(--sans); letter-spacing: -0.02em; }
 .release p { margin: 4px 0 0; color: var(--ink-2); }
 .release .meta { color: var(--ink-3); font-size: 0.8125rem; }
 .open { display: inline-block; margin-top: 8px; font-size: 0.875rem; }

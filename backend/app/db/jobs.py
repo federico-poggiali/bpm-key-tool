@@ -14,7 +14,8 @@ def _out(row: sqlite3.Row | None) -> dict | None:
     return job
 
 
-def create(conn: sqlite3.Connection, type: str, record_id: int | None = None, params: dict | None = None) -> int:
+def create(conn: sqlite3.Connection, type: str, record_id: int | None = None,
+           params: dict | None = None) -> int:
     values = {"type": type, "record_id": record_id}
     if params is not None:
         values["params"] = json.dumps(params)
